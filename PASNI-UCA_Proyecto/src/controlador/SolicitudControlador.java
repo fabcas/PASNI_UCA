@@ -15,6 +15,7 @@ public class SolicitudControlador {
 	}
 	
 	private void RegistrarSolicitud(){
+		
 		try {
 			Monitor m = new Monitor();
 			SolicitudModelo sm = new SolicitudModelo();

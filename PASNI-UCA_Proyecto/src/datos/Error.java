@@ -1,6 +1,7 @@
 package datos;
 
 public class Error {
+	
 	private String codError;
 	private String mensajeError;
 	

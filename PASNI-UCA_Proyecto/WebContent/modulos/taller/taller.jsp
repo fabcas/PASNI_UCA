@@ -190,6 +190,48 @@
 											arrayL = neg.cargarDPTaller();
 										
 										%>
+										
+										<!-- Inicio del modal -->
+											
+										<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Guardar</button>
+		
+		                                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+		                                    <div class="modal-dialog modal-sm">
+		                                        <div class="modal-content">
+		
+		                                            <div class="modal-header">
+		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+		                                                </button>
+		                                                <h5 class="modal-title" id="myModalLabel2">Agregar Taller de Reforzamieno</h5>
+		                                            </div>
+		                                            <div class="modal-body">
+		                                                <h4>Complete los campos</h4>
+		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLTaller?opc=1">
+		                                                	<div class="item form-group">
+																<label>Cuatrimestre:</label> 
+																<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">
+																<label>Nombre:</label> 
+																<input id="nombre" name="nombre" required="required" class="form-control" placeholder="">
+																<label>Descripci&iacute;n:</label> 
+																<input id="descripcion" name="descripcion" required="required" class="form-control" placeholder="">
+																<label>Fecha inicio:</label> 
+																<input type="date" id="fechaini" name="fechaini" required="required" class="form-control" placeholder="">
+																<label>Fecha final:</label> 
+																<input type="date" id="fechafin" name="fechafin" required="required" class="form-control" placeholder="">
+															</div>
+															<div class="modal-footer">
+			                                                	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			                                                	<button type="submit" class="btn btn-primary">Save changes</button>
+		                                           			 </div>
+		                                                </form>
+		                                            </div>
+		                                            
+		                                        </div>
+		                                    </div>
+		                                </div>
+										
+										<!-- Final del modal -->
+										
                                 	<table id="example" class="table table-striped responsive-utilities jambo_table">
                                         <thead>
                                             <tr class="headings">
@@ -212,86 +254,31 @@
 													for(Taller enti: arrayL)
 													{
 												%>
-                                            <tr class="even pointer">
-                                                <td class="a-center ">
-                                                    <input type="checkbox" class="tableflat">
-                                                </td>
-                                                <td class=" "><%=enti.getIdTaller() %></td>
-                                                <td class=" "><%=enti.getNombreCuatrimestre() %></td>
-                                                <td class=" "><%=enti.getNombre() %><!-- <i class="success fa fa-long-arrow-up"></i> -->
-                                                </td>
-                                                <td class=" "><%=enti.getDescripcion() %>L</td>
-                                                <td class=" "><%=enti.getFechaInicio() %></td>
-                                                <td class="a-right a-right "><%=enti.getFechaFinal()%></td>
-                                                <td class=" last"><a href="#">View</a>
-                                                </td>
-                                            </tr>
+                                            		<tr class="even pointer">
+                                                		<td class="a-center ">
+                                                    		<input type="checkbox" class="tableflat">
+                                                		</td>
+		                                                <td class=" "><%=enti.getIdTaller() %></td>
+		                                                <td class=" "><%=enti.getNombreCuatrimestre() %></td>
+		                                                <td class=" "><%=enti.getNombre() %><!-- <i class="success fa fa-long-arrow-up"></i> -->
+		                                                </td>
+		                                                <td class=" "><%=enti.getDescripcion() %></td>
+		                                                <td class=" "><%=enti.getFechaInicio() %></td>
+		                                                <td class="a-right a-right "><%=enti.getFechaFinal()%></td>
+		                                                <td> 
+		                                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+		                                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+		                                                </td>
+		                                            </tr>
                                             
-                                           <%
-												} 
-											%>
+                                           		<%
+													} 
+												%>
                                            
                                             </tbody>
                                             </table>
                                 
-                                 <!-- Aquí inicia el formulario -->
-                                    
-                                  <!--  <form id="form" action="./SLTaller?opc=1" method="post">
-		
-											<label> IdTaller </label> <br>
-											<input type="text" id="idTaller" name="idTaller"> <br>
-											<label> Id cuatrimestre: </label> <br>
-											<input type="number" id="cuatri" name="cuatri"> <br>
-											<label> Nombre: </label> <br>
-											<input type="text" id="nombre" name="nombre"> <br>
-											<label> Descripcion </label> <br>
-											<input type="text" id="descripcion" name="descripcion"> <br>
-											<label> Fecha inicio </label>  <br>
-											<input type="date" id="fechaini" name="fechaini"> <br>
-											<label> Fecha fin </label>  <br>
-											<input type="date" id="fechafin" name="fechafin"> <br> <br>
-											
-											<button type="submit"> GUARDAR </button>
-											<button type="submit"> MODIFICAR</button>
-											<button type="submit"> ELIMINAR </button>
-											
-										</form>
-										
-										<br> <br> <br>
-										
-										<%
-											
-											/*NGTaller neg = new NGTaller();
-											ArrayList<Taller> arrayL = new ArrayList<Taller>(); 
-											arrayL = neg.cargarDPTaller();*/
-										
-										%>
-										<table>
-											<thead>
-												<tr>
-													
-													<th> Id Taller </th>
-													<th> Cuatrimestre </th>
-													<th> Nombre </th>
-													<th> Descripcion </th>
-													<th> Fecha Inicio </th>
-													<th> Fecha Fin </th>	
-											</thead>
-											
-											<tbody>
-												<%
-													/*for(Taller enti: arrayL)
-													{*/
-												%> 
-												<tr>
-													aca el form
-												</tr>
-												<%
-													//} 
-												%>
-											</tbody>
-										</table>
-										!-->
+                              
                         </div>
                     </div>
                                    <!-- Fin del formulario -->
@@ -312,6 +299,17 @@
         <script src="../../js/icheck.min.js"></script>
 
 </body>
+
+	<script type="text/javascript">
+	
+		function cargarDatos(id, nombre){
+			$("#Id_Pais").val(id);
+			$("#Id_PaisE").val(id);
+			$("#idD").val(id);
+			$("#Nombre_Pais_E").val(nombre);
+			$("#nombreD").val(nombre);
+			
+		}
 
 	<%
 		String msj ="";

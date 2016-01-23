@@ -75,9 +75,9 @@ public class SLTaller extends HttpServlet {
 				
 				g = ngt.guardarNGTaller(t);
 				if(g == true)
-					response.sendRedirect("./taller.jsp?msj=1");
+					response.sendRedirect("../../modulos/taller/taller.jsp?msj=1");
 				else
-					response.sendRedirect("./taller.jsp");
+					response.sendRedirect("../../modulos/taller/taller.jsp");
 			}
 			else if(opc.equals("2"))
 			{

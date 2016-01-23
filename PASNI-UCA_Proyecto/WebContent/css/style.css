@@ -1,0 +1,162 @@
+/*
+ * programs boxes
+ */
+.btn.btn-white-fill {
+	color: #fff;
+	border-color: #fff;
+	background: transparent;
+}
+
+.btn.btn-white-fill:hover {
+	color: #00a8ff;
+	background: #fff;
+}
+
+.box-main {
+	position: relative;
+	height: 300px;
+	z-index: 10;
+	padding-top: 40px;
+	background: #00a8ff;
+	-webkit-transition: -webkit-transform 0.3s, background-image 0.3s, opacity 0.3s;
+	transition: transform 0.3s, background-image 0.3s, opacity 0.3s;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.box-main:not(.active) {
+	cursor: pointer;
+}
+
+.box-main .info-icon {
+	font-size: 14px;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	pointer-events: none;
+	opacity: 0;
+	color: #fff;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.box-main:not(.active) .info-icon {
+	opacity: 1;
+	-webkit-transition-delay: 0.2s;
+	transition-delay: 0.2s;
+}
+
+.box-main:not(.active):hover {
+	background: #afafaf;
+}
+
+.box-main.active {
+	background: #00a8ff;
+	-webkit-transform: translateX(-99%);
+	-ms-transform: translateX(-99%);
+	transform: translateX(-99%);
+}
+
+ .box-main a.btn {
+	margin-top: 50px;
+}
+
+
+.btn {
+	font-size: 18px;
+	display: inline-block;
+	padding: 15px 30px;
+	color: white;
+	border: 2px solid transparent;
+	border-radius: 2px;
+	background: transparent;
+	-webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.btn:hover,
+.btn:focus {
+	color: white;
+}
+
+/*
+ * several
+ */
+.intro-tables {
+	top: -20px;
+	position: relative;
+}
+
+.white {
+	color: white;
+}
+
+.regular {
+	font-weight: 400;
+}
+
+.light {
+	font-weight: 300;
+}
+
+.headf{
+	margin-bottom: 100px;
+}
+
+.img-style{
+	height: 50px;
+	width: 50px;
+}
+
+.s5{
+    height: 50px;
+    width: 110px;
+}
+
+/*
+ * typography
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Roboto', 'Avenir Next', 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+	position: relative;
+	margin: 10px 0;
+}
+
+h1 {
+	font-size: 60px;
+}
+
+h2 {
+	font-size: 48px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+h4 {
+	font-size: 24px;
+}
+
+h5 {
+	font-size: 18px;
+}
+
+h6 {
+	font-size: 16px;
+}
+
+a,
+a:hover,
+a:focus {
+    text-decoration: none
+}
+
+/****FORM****/
+
+

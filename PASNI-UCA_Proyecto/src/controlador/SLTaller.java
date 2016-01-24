@@ -54,8 +54,13 @@ public class SLTaller extends HttpServlet {
 			 String Fecha_Fin="";
 			 opc = request.getParameter("opc"); //Obtiene el parámetro 1, 2 ó 3 según la acción realizada.
 			 
-			if(opc.equals("1"))
-			{
+			 if(opc.isEmpty() == true)
+			 {
+				 response.sendRedirect("../../modulos/taller/taller.jsp");
+			 }
+			 
+			 else if(opc.equals("1"))
+			 {
 				idCuat = request.getParameter("cuatri");
 				t.setIdCuatrimestre(Integer.parseInt(idCuat));
 				t.setNombre(request.getParameter("nombre"));

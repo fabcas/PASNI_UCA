@@ -14,5 +14,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="C:/sqljdbc4.jar"/>
+	<classpathentry kind="lib" path="C:/commons-lang3-3.3.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

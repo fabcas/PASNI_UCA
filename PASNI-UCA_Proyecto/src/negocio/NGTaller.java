@@ -3,6 +3,7 @@ package negocio;
 import java.util.ArrayList;
 
 import modelo.MDTaller;
+import datos.Cuatrimestre;
 import datos.Taller;
 
 public class NGTaller {
@@ -78,6 +79,24 @@ public class NGTaller {
 			try
 			{
 				arrayL = datos.cargarDatos();
+			}
+			catch(Exception e)
+			{
+				System.out.println("NG: el error es: "+e.getMessage());
+				e.printStackTrace();
+			}
+			
+			
+			return arrayL;
+		}
+		
+		public ArrayList<Cuatrimestre> comboCuatrimestre()
+		{
+			ArrayList<Cuatrimestre> arrayL = new ArrayList<Cuatrimestre>();
+			MDTaller datos = new MDTaller();
+			try
+			{
+				arrayL = datos.comboCuatrimestre();
 			}
 			catch(Exception e)
 			{

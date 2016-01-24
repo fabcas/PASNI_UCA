@@ -2,6 +2,8 @@ package modelo;
 
 import java.sql.*;
 import java.util.ArrayList;
+
+import datos.Cuatrimestre;
 import datos.Taller;
 
 public class MDTaller extends Conexion
@@ -156,10 +158,10 @@ public class MDTaller extends Conexion
 	}
 	
 	//Combo cuatrimestre
-		/*public ArrayList <Ubic_Pais> ComboPais()
+		public ArrayList <Cuatrimestre> comboCuatrimestre()
 		{
-			ArrayList <Ubic_Pais> arrayL = new ArrayList <Ubic_Pais>();
-			String sql = ("Select * from Ubic_Pais where Activo= 'true'");
+			ArrayList <Cuatrimestre> arrayL = new ArrayList <Cuatrimestre>();
+			String sql = ("SELECT idCuatrimestre, nombre FROM Cuatrimestre;");
 			
 			try
 			{
@@ -169,12 +171,10 @@ public class MDTaller extends Conexion
 												
 				while(rs.next())		
 				{					    					
-					Ubic_Pais  enti = new Ubic_Pais();
+					Cuatrimestre  enti = new Cuatrimestre();
 					
-					enti.setId_Pais(rs.getInt("Id_Pais"));
-					enti.setNombre_Pais(rs.getString("Nombre_Pais"));
-					enti.setActivo(rs.getBoolean("Activo"));
-					
+					enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
+					enti.setNombre(rs.getString("nombre"));
 					arrayL.add(enti);
 				}
 				
@@ -184,11 +184,11 @@ public class MDTaller extends Conexion
 			}
 			catch(Exception e)
 			{
-				System.out.println("DATOS: ERROR AL CARGAR COMBO PAIS "+e.getMessage());
+				System.out.println("Datos: Error al cargar la lista de cuatrimestre -> "+e.getMessage());
 				e.printStackTrace();
 			}
 			
 			return arrayL;
 		}//combo cuatrimestre
-*/
+
 }

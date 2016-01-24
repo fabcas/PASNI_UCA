@@ -19,6 +19,7 @@
     
     <link href="../../css/custom.css" rel="stylesheet">
     <link href="../../css/green.css" rel="stylesheet">
+    <link href="../../css/icheck/flat/green.css" rel="stylesheet">
     
     <script src="../../js/jquery.min.js"></script>
 
@@ -191,7 +192,7 @@
 										
 										%>
 										
-										<!-- Inicio del modal -->
+										<!-- Inicio del modal para agregar nuevo registro -->
 											
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Guardar</button>
 		
@@ -208,8 +209,21 @@
 		                                                <h4>Complete los campos</h4>
 		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLTaller?opc=1">
 		                                                	<div class="item form-group">
+		                                                		<%
+																	NGTaller negC1 = new NGTaller();
+																	ArrayList<Cuatrimestre> arrayLC1 = new ArrayList<Cuatrimestre>();
+																	arrayLC1 = negC1.comboCuatrimestre();
+															%>
 																<label>Cuatrimestre:</label> 
-																<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">
+																<select id="cuatri" name="cuatri" required="required" class="form-control">
+																		<option>Seleccione...</option>
+																		<%for(Cuatrimestre entiC1 : arrayLC1)
+																		  { 
+																		%>
+																			<option value="<%=entiC1.getIdCuatrimestre() %>" ><%=entiC1.getNombre()%></option>
+																		<%}%>
+																	</select>
+																<!--<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">-->
 																<label>Nombre:</label> 
 																<input id="nombre" name="nombre" required="required" class="form-control" placeholder="">
 																<label>Descripci&iacute;n:</label> 
@@ -220,8 +234,8 @@
 																<input type="date" id="fechafin" name="fechafin" required="required" class="form-control" placeholder="">
 															</div>
 															<div class="modal-footer">
-			                                                	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			                                                	<button type="submit" class="btn btn-primary">Save changes</button>
+			                                                	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			                                                	<button type="submit" class="btn btn-primary">Guardar</button>
 		                                           			 </div>
 		                                                </form>
 		                                            </div>
@@ -230,7 +244,100 @@
 		                                    </div>
 		                                </div>
 										
-										<!-- Final del modal -->
+										<!-- Final del modal para guardar nuevo registro -->
+										
+											<!-- Inicio del modal para editar registro -->
+											
+										<!-- button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Guardar</button> -->
+		
+		                                <div class="modal fade modalEdicion" tabindex="-1" role="dialog" aria-hidden="true">
+		                                    <div class="modal-dialog modal-sm">
+		                                        <div class="modal-content">
+		
+		                                            <div class="modal-header">
+		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+		                                                </button>
+		                                                <h5 class="modal-title" id="myModalLabel2">Editar Taller de Reforzamieno</h5>
+		                                            </div>
+		                                            <div class="modal-body">
+		                                                <h4>Complete los campos</h4>
+		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLTaller?opc=2">
+		                                                	<div class="item form-group">
+		                                                		<%
+																	NGTaller negt = new NGTaller();
+																	ArrayList<Cuatrimestre> arrayt = new ArrayList<Cuatrimestre>();
+																	arrayt = negt.comboCuatrimestre();
+															%>
+																<label>Cuatrimestre:</label> 
+																<select id="cuatri" name="cuatri" required="required" class="form-control">
+																		<option>Seleccione...</option>
+																		<%for(Cuatrimestre negtw : arrayt)
+																		  { 
+																		%>
+																			<option value="<%=negtw.getIdCuatrimestre() %>" ><%=negtw.getNombre()%></option>
+																		<%}%>
+																	</select>
+																<!--<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">-->
+																<label>Nombre:</label> 
+																<input id="nombre" name="nombre" required="required" class="form-control" placeholder="">
+																<label>Descripción:</label> 
+																<input id="descripcion" name="descripcion" required="required" class="form-control" placeholder="">
+																<label>Fecha inicio:</label> 
+																<input type="date" id="fechaini" name="fechaini" required="required" class="form-control" placeholder="">
+																<label>Fecha final:</label> 
+																<input type="date" id="fechafin" name="fechafin" required="required" class="form-control" placeholder="">
+															</div>
+															<div class="modal-footer">
+			                                                	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			                                                	<button type="submit" class="btn btn-primary">Guardar</button>
+		                                           			 </div>
+		                                                </form>
+		                                            </div>
+		                                            
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                
+		                                <!-- Fin del modal de editar  -->
+		                                
+		                                <!-- Inicio del modal para eliminar registro -->
+											
+										<!-- button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Guardar</button> -->
+		
+		                                <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-hidden="true">
+		                                    <div class="modal-dialog modal-sm">
+		                                        <div class="modal-content">
+		
+		                                            <div class="modal-header">
+		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+		                                                </button>
+		                                                <h5 class="modal-title" id="myModalLabel2">Eliminar Taller de Reforzamiento</h5>
+		                                            </div>
+		                                            <div class="modal-body">
+		                                               
+		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLTaller?opc=3">
+		                                                	<div class="item form-group">
+		                                                		<div class="col-md-12 col-sm-12 col-xs-12">
+																	<input type="hidden" name="idTallerEliminar" id="idTallerEliminar">
+																	<p>¿Seguro que desea eliminar este taller?</p>
+																</div>
+															</div>
+															<div class="modal-footer">
+			                                                	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			                                                	<button type="submit" class="btn btn-primary">Eliminar</button>
+		                                           			 </div>
+		                                                </form>
+		                                            </div>
+		                                            
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                
+		                                <!-- Fin del modal de eliminar  -->
+										
+										
+										
+										<!-- Mostrar registros -->
 										
                                 	<table id="example" class="table table-striped responsive-utilities jambo_table">
                                         <thead>
@@ -260,14 +367,14 @@
                                                 		</td>
 		                                                <td class=" "><%=enti.getIdTaller() %></td>
 		                                                <td class=" "><%=enti.getNombreCuatrimestre() %></td>
-		                                                <td class=" "><%=enti.getNombre() %><!-- <i class="success fa fa-long-arrow-up"></i> -->
+		                                                <td class=" "><%=enti.getNombre() %>
 		                                                </td>
 		                                                <td class=" "><%=enti.getDescripcion() %></td>
 		                                                <td class=" "><%=enti.getFechaInicio() %></td>
 		                                                <td class="a-right a-right "><%=enti.getFechaFinal()%></td>
 		                                                <td> 
-		                                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-		                                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+		                                                    <button class="btn btn-info btn-xs" data-toogle="modal" data-target=".modalEdicion" ><i class="fa fa-pencil"></i> Editar </button>
+		                                                    <button class="btn btn-danger btn-xs" data-toogle="modal" data-target="#modalEliminar" ><i class="fa fa-trash-o"></i> Eliminar </button>
 		                                                </td>
 		                                            </tr>
                                             
@@ -302,7 +409,7 @@
 
 	<script type="text/javascript">
 	
-		function cargarDatos(id, nombre){
+		function cargarDatos(id, idc, nombre, descripcion, fechaini, fechafin){
 			$("#Id_Pais").val(id);
 			$("#Id_PaisE").val(id);
 			$("#idD").val(id);

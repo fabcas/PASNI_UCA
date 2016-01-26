@@ -77,7 +77,7 @@ public class SLTaller extends HttpServlet {
 				java.util.Date parsed2 = null;
 				parsed2 = format2.parse(Fecha_Fin);
 				t.setFechaFinal((new java.sql.Date(parsed2.getTime()))); 
-				
+								
 				g = ngt.guardarNGTaller(t);
 				if(g == true)
 					response.sendRedirect("../../modulos/taller/taller.jsp?msj=1");

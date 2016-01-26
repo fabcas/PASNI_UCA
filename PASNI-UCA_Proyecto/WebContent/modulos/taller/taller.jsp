@@ -21,8 +21,6 @@
     <link href="../../css/green.css" rel="stylesheet">
     <link href="../../css/icheck/flat/green.css" rel="stylesheet">
     
-    <script src="../../js/jquery.min.js"></script>
-
 
 <body class="nav-md">
 
@@ -184,14 +182,7 @@
 				
                                     <div class="clearfix"></div>
                                 </div>
-                                		<%
-											
-											NGTaller neg = new NGTaller();
-											ArrayList<Taller> arrayL = new ArrayList<Taller>(); 
-											arrayL = neg.cargarDPTaller();
-										
-										%>
-										
+                                		
 										<!-- Inicio del modal para agregar nuevo registro -->
 											
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Guardar</button>
@@ -203,7 +194,7 @@
 		                                            <div class="modal-header">
 		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 		                                                </button>
-		                                                <h5 class="modal-title" id="myModalLabel2">Agregar Taller de Reforzamieno</h5>
+		                                                <h5 class="modal-title">Agregar Taller de Reforzamiento</h5>
 		                                            </div>
 		                                            <div class="modal-body">
 		                                                <h4>Complete los campos</h4>
@@ -214,7 +205,7 @@
 																	ArrayList<Cuatrimestre> arrayLC1 = new ArrayList<Cuatrimestre>();
 																	arrayLC1 = negC1.comboCuatrimestre();
 															%>
-																<label>Cuatrimestre:</label> 
+																<br><label>Cuatrimestre:</label> 
 																<select id="cuatri" name="cuatri" required="required" class="form-control">
 																		<option>Seleccione...</option>
 																		<%for(Cuatrimestre entiC1 : arrayLC1)
@@ -226,8 +217,8 @@
 																<!--<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">-->
 																<label>Nombre:</label> 
 																<input id="nombre" name="nombre" required="required" class="form-control" placeholder="">
-																<label>Descripci&iacute;n:</label> 
-																<input id="descripcion" name="descripcion" required="required" class="form-control" placeholder="">
+																<label>Descripción:</label> 
+																<textarea id="descripcion" name="descripcion" required="required" class="form-control" placeholder=""></textarea>
 																<label>Fecha inicio:</label> 
 																<input type="date" id="fechaini" name="fechaini" required="required" class="form-control" placeholder="">
 																<label>Fecha final:</label> 
@@ -248,16 +239,15 @@
 										
 											<!-- Inicio del modal para editar registro -->
 											
-										<!-- button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Guardar</button> -->
+										<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modalEditar">Editar</button> 
 		
-		                                <div class="modal fade modalEdicion" tabindex="-1" role="dialog" aria-hidden="true">
+		                                <div class="modal fade modalEditar" tabindex="-1" role="dialog" aria-hidden="true">
 		                                    <div class="modal-dialog modal-sm">
 		                                        <div class="modal-content">
-		
 		                                            <div class="modal-header">
 		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 		                                                </button>
-		                                                <h5 class="modal-title" id="myModalLabel2">Editar Taller de Reforzamieno</h5>
+		                                                <h5 class="modal-title">Editar Taller de Reforzamiento</h5>
 		                                            </div>
 		                                            <div class="modal-body">
 		                                                <h4>Complete los campos</h4>
@@ -267,7 +257,7 @@
 																	NGTaller negt = new NGTaller();
 																	ArrayList<Cuatrimestre> arrayt = new ArrayList<Cuatrimestre>();
 																	arrayt = negt.comboCuatrimestre();
-															%>
+																%>
 																<label>Cuatrimestre:</label> 
 																<select id="cuatri" name="cuatri" required="required" class="form-control">
 																		<option>Seleccione...</option>
@@ -302,16 +292,15 @@
 		                                
 		                                <!-- Inicio del modal para eliminar registro -->
 											
-										<!-- button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Guardar</button> -->
+										 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEliminar">eliminar</button>  
 		
 		                                <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-hidden="true">
 		                                    <div class="modal-dialog modal-sm">
 		                                        <div class="modal-content">
-		
 		                                            <div class="modal-header">
 		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 		                                                </button>
-		                                                <h5 class="modal-title" id="myModalLabel2">Eliminar Taller de Reforzamiento</h5>
+		                                                <h5 class="modal-title">Eliminar Taller de Reforzamiento</h5>
 		                                            </div>
 		                                            <div class="modal-body">
 		                                               
@@ -325,7 +314,7 @@
 															<div class="modal-footer">
 			                                                	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 			                                                	<button type="submit" class="btn btn-primary">Eliminar</button>
-		                                           			 </div>
+		                                           			</div>
 		                                                </form>
 		                                            </div>
 		                                            
@@ -338,6 +327,13 @@
 										
 										
 										<!-- Mostrar registros -->
+										<%
+											
+											NGTaller neg = new NGTaller();
+											ArrayList<Taller> arrayL = new ArrayList<Taller>(); 
+											arrayL = neg.cargarDPTaller();
+										
+										%>
 										
                                 	<table id="example" class="table table-striped responsive-utilities jambo_table">
                                         <thead>
@@ -351,8 +347,7 @@
                                                 <th>Descripción </th>
                                                 <th>Fecha Inicio </th>
                                                 <th>Fecha Fin </th>
-                                                <th class=" no-link last"><span class="nobr">Action</span>
-                                                </th>
+                                                <th><span class="nobr">Acción</span></th>
                                             </tr>
                                         </thead>
 
@@ -365,16 +360,16 @@
                                                 		<td class="a-center ">
                                                     		<input type="checkbox" class="tableflat">
                                                 		</td>
-		                                                <td class=" "><%=enti.getIdTaller() %></td>
-		                                                <td class=" "><%=enti.getNombreCuatrimestre() %></td>
-		                                                <td class=" "><%=enti.getNombre() %>
+			                                                <td class=""><%=enti.getIdTaller() %></td>
+			                                                <td class=""><%=enti.getNombreCuatrimestre() %></td>
+			                                                <td class=""><%=enti.getNombre() %>
 		                                                </td>
-		                                                <td class=" "><%=enti.getDescripcion() %></td>
-		                                                <td class=" "><%=enti.getFechaInicio() %></td>
-		                                                <td class="a-right a-right "><%=enti.getFechaFinal()%></td>
+			                                                <td class=""><%=enti.getDescripcion() %></td>
+			                                                <td class=""><%=enti.getFechaInicio() %></td>
+			                                                <td class=""><%=enti.getFechaFinal()%></td>
 		                                                <td> 
-		                                                    <button class="btn btn-info btn-xs" data-toogle="modal" data-target=".modalEdicion" ><i class="fa fa-pencil"></i> Editar </button>
-		                                                    <button class="btn btn-danger btn-xs" data-toogle="modal" data-target="#modalEliminar" ><i class="fa fa-trash-o"></i> Eliminar </button>
+		                                                    <a class="btn btn-info btn-xs" data-toogle="modal" data-target=".modalEditar"><i class="fa fa-pencil"></i></a>
+		                                                    <a class="btn btn-danger btn-xs" data-toogle="modal" data-target="#modalEliminar"><i class="fa fa-trash-o"></i></a>
 		                                                </td>
 		                                            </tr>
                                             
@@ -383,7 +378,7 @@
 												%>
                                            
                                             </tbody>
-                                            </table>
+                                          </table>
                                 
                               
                         </div>
@@ -397,24 +392,34 @@
 
    <!--   </div> -->  <!-- /container body-->
 
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
-
-		<script src="../../js/bootstrap.min.js"></script>
-        <script src="../../js/custom.js"></script>
+	    <script src="../../js/bootstrap.min.js"></script>
+	    <script src="../../js/jquery.min.js"></script>
+	    <script src="../../js/custom.js"></script>
         <!-- icheck -->
         <script src="../../js/icheck.min.js"></script>
 
 </body>
+	<script>
+   		$(function () { $('#modalEliminar').modal('show')});
+	</script>
+	
+	<script type="text/javascript">
+		function validarFecha(inicio, fin)
+		{
+			
+		}
+	</script>
 
 	<script type="text/javascript">
 	
 		function cargarDatos(id, idc, nombre, descripcion, fechaini, fechafin){
-			$("#Id_Pais").val(id);
-			$("#Id_PaisE").val(id);
-			$("#idD").val(id);
-			$("#Nombre_Pais_E").val(nombre);
-			$("#nombreD").val(nombre);
+			$("#IdTaller").val(id);
+			//$("#Id_PaisE").val(id);
+			$("#cuatri").val(idc);
+			$("#nombre").val(nombre);
+			$("#descripcion").val(descripcion);
+			$("#fechaini").val(fechaini);
+			$("#fechafin").val(fechafin);
 			
 		}
 

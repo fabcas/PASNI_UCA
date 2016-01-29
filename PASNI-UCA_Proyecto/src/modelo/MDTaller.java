@@ -9,7 +9,7 @@ import datos.Taller;
 public class MDTaller extends Conexion
 {
 	
-	public boolean guardarDt_Taller(Taller enti) throws SQLException
+	public boolean guardarDt_Taller(Taller t) throws SQLException
 	{
 		boolean g = false;
 		int y = 0;
@@ -21,11 +21,11 @@ public class MDTaller extends Conexion
 					
 		try {
 			
-			cstmt.setInt(1,enti.getIdCuatrimestre());
-			cstmt.setString(2,enti.getNombre());
-			cstmt.setString(3,enti.getDescripcion());
-			cstmt.setDate(4, (Date) enti.getFechaInicio());
-			cstmt.setDate(5, (Date) enti.getFechaFinal());
+			cstmt.setInt(1,t.getIdCuatrimestre());
+			cstmt.setString(2,t.getNombre());
+			cstmt.setString(3,t.getDescripcion());
+			cstmt.setDate(4, (Date) t.getFechaInicio());
+			cstmt.setDate(5, (Date) t.getFechaFinal());
 			y = cstmt.executeUpdate();
 			g = y > 0;
 			
@@ -44,7 +44,7 @@ public class MDTaller extends Conexion
 	
 	
 	//M?todo Actualizar
-	public boolean actualizarTaller(Taller enti)
+	public boolean actualizarTaller(Taller t)
 	{
 		int x = 0;
 		boolean g = false;
@@ -54,16 +54,16 @@ public class MDTaller extends Conexion
 		
 			Connection cn = getConnection();
 			CallableStatement s = null;	
-			String sql = "{call dbo.SPActualizarTaller(?,?,?,?,?,?)}";
+			String sql = "{call dbo.SPActualizarTaller2(?,?,?,?,?,?)}";
 			s = cn.prepareCall(sql);
 			
-						System.out.println(enti.getIdCuatrimestre() + ", " + enti.getNombre() + ", " + enti.getDescripcion() + ", " + enti.getFechaInicio() + ", " + enti.getFechaFinal() + ", " + enti.getIdTaller());
-						s.setInt(1, enti.getIdCuatrimestre());
-						s.setString(2, enti.getNombre());
-						s.setString(3, enti.getDescripcion());
-						s.setDate(4, (Date) enti.getFechaInicio());
-						s.setDate(5, (Date) enti.getFechaFinal());
-						s.setInt(6, enti.getIdTaller());
+						//System.out.println(t.getIdCuatrimestre() + ", " + enti.getNombre() + ", " + enti.getDescripcion() + ", " + enti.getFechaInicio() + ", " + enti.getFechaFinal() + ", " + enti.getIdTaller());
+						s.setInt(1, t.getIdCuatrimestre());
+						s.setString(2, t.getNombre());
+						s.setString(3, t.getDescripcion());
+						s.setDate(4, (Date) t.getFechaInicio());
+						s.setDate(5, (Date) t.getFechaFinal());
+						s.setInt(6, t.getIdTaller());
 			
 			x = s.executeUpdate();
 			g = x > 0;
@@ -83,7 +83,7 @@ public class MDTaller extends Conexion
 
 
 	//metodo para eliminar logico
-	public boolean eliminarTaller(Taller enti ){
+	public boolean eliminarTaller(Taller t){
 		int x = 0;
 		boolean el = false;
 		
@@ -94,7 +94,7 @@ public class MDTaller extends Conexion
 			s = cn.prepareCall(sql);
 			
 			//s.setBoolean(1, false);
-			s.setInt(1, enti.getIdTaller());
+			s.setInt(1, t.getIdTaller());
 			 
 			x = s.executeUpdate();
 			el = x > 0;
@@ -116,7 +116,7 @@ public class MDTaller extends Conexion
 	//Cargar datos
 	public ArrayList < Taller  > cargarDatos()
 	{
-		ArrayList <Taller> arrayL = new ArrayList <Taller>();
+		ArrayList <Taller> array = new ArrayList <Taller>();
 		String sql = ("SELECT t.IdTaller, t.Nombre, t.Descripcion, c.nombre [Cuatrimestre], t.FechaInicio, t.FechaFin"+
 						" FROM Taller t, Cuatrimestre c " +
 							" WHERE t.idCuatrimestre = c.idCuatrimestre " +
@@ -141,7 +141,7 @@ public class MDTaller extends Conexion
 				enti.setFechaInicio(rs.getDate("FechaInicio"));
 				enti.setFechaFinal(rs.getDate("FechaFin"));				
 					
-				arrayL.add(enti);
+				array.add(enti);
 			}
 			
 			//Cerramos la conexion
@@ -154,13 +154,13 @@ public class MDTaller extends Conexion
 			e.printStackTrace();
 		}
 		
-		return arrayL;
+		return array;
 	}
 	
 	//Combo cuatrimestre
 		public ArrayList <Cuatrimestre> comboCuatrimestre()
 		{
-			ArrayList <Cuatrimestre> arrayL = new ArrayList <Cuatrimestre>();
+			ArrayList <Cuatrimestre> arrayCuatrimestre = new ArrayList <Cuatrimestre>();
 			String sql = ("SELECT idCuatrimestre, nombre FROM Cuatrimestre;");
 			
 			try
@@ -175,7 +175,7 @@ public class MDTaller extends Conexion
 					
 					enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
 					enti.setNombre(rs.getString("nombre"));
-					arrayL.add(enti);
+					arrayCuatrimestre.add(enti);
 				}
 				
 				//Cerramos la conexion
@@ -188,7 +188,7 @@ public class MDTaller extends Conexion
 				e.printStackTrace();
 			}
 			
-			return arrayL;
+			return arrayCuatrimestre;
 		}//combo cuatrimestre
 
 }

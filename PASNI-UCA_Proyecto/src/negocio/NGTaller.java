@@ -53,13 +53,13 @@ public class NGTaller {
 		
 		//Método para eliminar
 		
-		public boolean eliminarNGTaller(Taller enti){
+		public boolean eliminarNGTaller(Taller t){
 			
 			boolean bl = true;
 			try{
 				
 			MDTaller datos = new MDTaller();
-			bl = datos.eliminarTaller(enti);
+			bl = datos.eliminarTaller(t);
 			
 			System.out.println("NEGOCIO: DATOS ACTUALIZADOS CON EXITO!");
 			}catch(Exception e)
@@ -74,38 +74,38 @@ public class NGTaller {
 		
 		public ArrayList<Taller> cargarDPTaller()
 		{
-			ArrayList< Taller> arrayL = new ArrayList<Taller>();
+			ArrayList < Taller > array = new ArrayList<Taller>();
 			MDTaller datos = new MDTaller();
 			try
 			{
-				arrayL = datos.cargarDatos();
+				array = datos.cargarDatos();
 			}
 			catch(Exception e)
 			{
-				System.out.println("NG: el error es: "+e.getMessage());
+				System.out.println("Negocio, el error es: "+e.getMessage());
 				e.printStackTrace();
 			}
 			
 			
-			return arrayL;
+			return array;
 		}
 		
 		public ArrayList<Cuatrimestre> comboCuatrimestre()
 		{
-			ArrayList<Cuatrimestre> arrayL = new ArrayList<Cuatrimestre>();
+			ArrayList<Cuatrimestre> combo = new ArrayList<Cuatrimestre>();
 			MDTaller datos = new MDTaller();
 			try
 			{
-				arrayL = datos.comboCuatrimestre();
+				combo = datos.comboCuatrimestre();
 			}
 			catch(Exception e)
 			{
-				System.out.println("NG: el error es: "+e.getMessage());
+				System.out.println("Negocio, el error es: "+e.getMessage());
 				e.printStackTrace();
 			}
 			
 			
-			return arrayL;
+			return combo;
 		}
 	
 

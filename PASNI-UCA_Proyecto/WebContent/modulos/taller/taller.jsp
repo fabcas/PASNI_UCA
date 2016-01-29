@@ -2,29 +2,51 @@
     pageEncoding="ISO-8859-1"
     import = "controlador.*, datos.*, modelo.*, negocio.*, java.util.*"
  %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+ 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Catálogo de Taller</title>
+    <title>PASNI-UCA | Catálogo de Taller </title>
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../../fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom styling plus plugins -->
+    <link href="../../css/custom.css" rel="stylesheet">
+    <link href="../../css/icheck/flat/green.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../css/progressbar/bootstrap-progressbar-3.3.0.css">
+    <script src="../../js/jquery.min.js"></script>
+    <link href="../../css/select/select2.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
+        <![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
 </head>
 
-	<link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../fonts/css/font-awesome.min.css" rel="stylesheet">
-    
-    <link href="../../css/custom.css" rel="stylesheet">
-    <link href="../../css/green.css" rel="stylesheet">
-    <link href="../../css/icheck/flat/green.css" rel="stylesheet">
-    
 
 <body class="nav-md">
 
     <div class="container body">
+
 
         <div class="main_container">
 
@@ -38,6 +60,20 @@
 
                     <br/>
 
+                    <!-- menu prile quick info -->
+                   <!--  <div class="profile">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2>Anthony Fernando</h2>
+                        </div>
+                    </div>
+                    <!-- /menu prile quick info -->
+
+                    <br /> 
+					
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
@@ -65,9 +101,9 @@
                                 </li>
                                 <li><a><i class="fa fa-desktop"></i> Taller de Formación <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                       <li><a href="index.html">Dashboard</a>
+                                       <li><a href="solicitarTaller.jsp">Solicitar Taller de Reforzamiento</a>
                                         </li>
-                                        <li><a href="index2.html">Dashboard2</a>
+                                        <li><a href="taller.jsp">Catálogo de Taller</a>
                                         </li>
                                         <li><a href="index3.html">Dashboard3</a>
                                         </li>
@@ -86,10 +122,9 @@
                             </ul>
                         </div>
                         
-                    </div><!-- /sidebar menu -->
-					
-						
-					
+                    </div>
+                    <!-- /sidebar menu -->
+
                     <!-- /menu footer buttons -->
                     <div class="sidebar-footer hidden-small">
                         <a data-toggle="tooltip" data-placement="top" >
@@ -104,10 +139,12 @@
                         <a data-toggle="tooltip" data-placement="top" >
                              <img class="imgsize" src="../../img/logos/lg_ausjal.png">
                         </a>
-                    </div> <!-- /menu footer buttons -->
+                    </div>
+                    <!-- /menu footer buttons -->
                 </div>
-            </div><!--/col-md-3 left_col-->
-            
+            </div>
+
+            <!-- top navigation -->
             <div class="top_nav">
 
                 <div class="nav_menu">
@@ -118,28 +155,114 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
-                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                    <img src="../../img/user.png" alt="">Usuario
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/img.jpg" alt="">John Doe
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="index.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="javascript:;">  Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Help</a>
+                                    </li>
+                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>
+
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green">6</span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
+                                    <li>
+                                        <a>
+                                            <span class="image">
+                                        <img src="images/img.jpg" alt="Profile Image" />
+                                    </span>
+                                            <span>
+                                        <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
+                                    </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image">
+                                        <img src="images/img.jpg" alt="Profile Image" />
+                                    </span>
+                                            <span>
+                                        <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
+                                    </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image">
+                                        <img src="images/img.jpg" alt="Profile Image" />
+                                    </span>
+                                            <span>
+                                        <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
+                                    </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image">
+                                        <img src="images/img.jpg" alt="Profile Image" />
+                                    </span>
+                                            <span>
+                                        <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
+                                    </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="text-center">
+                                            <a>
+                                                <strong>See All Alerts</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
                         </ul>
                     </nav>
                 </div>
 
             </div>
             <!-- /top navigation -->
-            
+
             <!-- page content -->
             <div class="right_col" role="main">
+
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Catálogo de Taller</h3>
+                            <h3>Taller de Formación</h3>
                         </div>
 
                         <div class="title_right">
@@ -155,79 +278,59 @@
                     </div>
                     <div class="clearfix"></div>
 
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_panel" style="height:600px;">
-                                <div class="x_title">
-                                    <h2>Talleres de Reforzamiento</h2>
-                                    
-                                 
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                        
-                                     
-							    	</ul>
-				
-                                    <div class="clearfix"></div>
-                                </div>
-                                		
-										<!-- Inicio del modal para agregar nuevo registro -->
+                    <div class="">
+                       
+                              
+                          
+                       <!-- Inicio del modal para agregar nuevo registro -->
 											
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Guardar</button>
+									<!-- button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Guardar</button> -->
 		
-		                                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-		                                    <div class="modal-dialog modal-sm">
+		                                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+		                                    <div class="modal-dialog">
 		                                        <div class="modal-content">
 		
 		                                            <div class="modal-header">
-		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span>
 		                                                </button>
-		                                                <h5 class="modal-title">Agregar Taller de Reforzamiento</h5>
+		                                                <h5 class="modal-title"><b>Agregar Taller de Reforzamiento</b></h5>
 		                                            </div>
 		                                            <div class="modal-body">
-		                                                <h4>Complete los campos</h4>
+		                                                <h4><b>Complete los campos</b></h4>
 		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLTaller?opc=1">
 		                                                	<div class="item form-group">
 		                                                		<%
-																	NGTaller negC1 = new NGTaller();
-																	ArrayList<Cuatrimestre> arrayLC1 = new ArrayList<Cuatrimestre>();
-																	arrayLC1 = negC1.comboCuatrimestre();
+																	NGTaller tallerNegocio = new NGTaller();
+																	ArrayList<Cuatrimestre> listaCuatrimestre = new ArrayList<Cuatrimestre>();
+																	listaCuatrimestre = tallerNegocio.comboCuatrimestre();
 															%>
-																<br><label>Cuatrimestre:</label> 
-																<select id="cuatri" name="cuatri" required="required" class="form-control">
+																<br><br><label>Cuatrimestre:</label> 
+																<select id="cuatri" name="cuatri" required="required" class="select2_single form-control">
 																		<option>Seleccione...</option>
-																		<%for(Cuatrimestre entiC1 : arrayLC1)
+																		<%for(Cuatrimestre cuatri : listaCuatrimestre)
 																		  { 
 																		%>
-																			<option value="<%=entiC1.getIdCuatrimestre() %>" ><%=entiC1.getNombre()%></option>
+																			<option value="<%=cuatri.getIdCuatrimestre() %>" ><%=cuatri.getNombre()%></option>
 																		<%}%>
-																	</select>
+																</select>
 																<!--<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">-->
-																<label>Nombre:</label> 
+																<br><label>Nombre:</label> 
 																<input id="nombre" name="nombre" required="required" class="form-control" placeholder="">
-																<label>Descripción:</label> 
+																<br><label>Descripción:</label> 
 																<textarea id="descripcion" name="descripcion" required="required" class="form-control" placeholder=""></textarea>
-																<label>Fecha inicio:</label> 
+																<!-- <input type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="Fecha de inicio" aria-describedby="inputSuccess2Status4"> -->
+                                                            	<!-- <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span> -->
+                                                            	<!-- <span id="inputSuccess2Status4" class="sr-only">(success)</span> -->
+																 <br><label>Fecha inicio:</label> 
 																<input type="date" id="fechaini" name="fechaini" required="required" class="form-control" placeholder="">
-																<label>Fecha final:</label> 
+																
+																<br><label>Fecha final:</label> 
 																<input type="date" id="fechafin" name="fechafin" required="required" class="form-control" placeholder="">
 															</div>
 															<div class="modal-footer">
 			                                                	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 			                                                	<button type="submit" class="btn btn-primary">Guardar</button>
-		                                           			 </div>
+		                                           			</div>
 		                                                </form>
 		                                            </div>
 		                                            
@@ -237,20 +340,19 @@
 										
 										<!-- Final del modal para guardar nuevo registro -->
 										
+										
 											<!-- Inicio del modal para editar registro -->
-											
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modalEditar">Editar</button> 
-		
+										
 		                                <div class="modal fade modalEditar" tabindex="-1" role="dialog" aria-hidden="true">
-		                                    <div class="modal-dialog modal-sm">
+		                                    <div class="modal-dialog ">
 		                                        <div class="modal-content">
 		                                            <div class="modal-header">
-		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span>
 		                                                </button>
-		                                                <h5 class="modal-title">Editar Taller de Reforzamiento</h5>
+		                                                <h5 class="modal-title"><b>Editar Taller de Reforzamiento</b></h5>
 		                                            </div>
 		                                            <div class="modal-body">
-		                                                <h4>Complete los campos</h4>
+		                                                <h4><b>Complete los campos</b></h4>
 		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLTaller?opc=2">
 		                                                	<div class="item form-group">
 		                                                		<%
@@ -258,8 +360,12 @@
 																	ArrayList<Cuatrimestre> arrayt = new ArrayList<Cuatrimestre>();
 																	arrayt = negt.comboCuatrimestre();
 																%>
+																<br><br>
+																<label>Código del Taller: </label>
+																<input class="form-control" id="IdTaller" name="IdTaller" disabled="disabled">
+																<input class="form-control" type="hidden" id="IdTallerEditar" name="IdTallerEditar">
 																<label>Cuatrimestre:</label> 
-																<select id="cuatri" name="cuatri" required="required" class="form-control">
+																<select id="cuatri_TallerEditado" name="cuatri_TallerEditado" required="required" class="select2_single form-control" tabindex="-1">
 																		<option>Seleccione...</option>
 																		<%for(Cuatrimestre negtw : arrayt)
 																		  { 
@@ -269,13 +375,13 @@
 																	</select>
 																<!--<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">-->
 																<label>Nombre:</label> 
-																<input id="nombre" name="nombre" required="required" class="form-control" placeholder="">
+																<input id="nombre_TallerEditado" name="nombre_TallerEditado" required="required" class="form-control" placeholder="">
 																<label>Descripción:</label> 
-																<input id="descripcion" name="descripcion" required="required" class="form-control" placeholder="">
+																<textarea id="descripcion_TallerEditado" name="descripcion_TallerEditado" required="required" class="form-control" placeholder=""></textarea>
 																<label>Fecha inicio:</label> 
-																<input type="date" id="fechaini" name="fechaini" required="required" class="form-control" placeholder="">
+																<input type="date" id="fechaini_TallerEditado" name="fechaini_TallerEditado" required="required" class="form-control" placeholder="">
 																<label>Fecha final:</label> 
-																<input type="date" id="fechafin" name="fechafin" required="required" class="form-control" placeholder="">
+																<input type="date" id="fechafin_TallerEditado" name="fechafin_TallerEditado" required="required" class="form-control" placeholder="">
 															</div>
 															<div class="modal-footer">
 			                                                	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -290,17 +396,17 @@
 		                                
 		                                <!-- Fin del modal de editar  -->
 		                                
+		                                
 		                                <!-- Inicio del modal para eliminar registro -->
 											
-										 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEliminar">eliminar</button>  
 		
 		                                <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-hidden="true">
 		                                    <div class="modal-dialog modal-sm">
 		                                        <div class="modal-content">
 		                                            <div class="modal-header">
-		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span>
 		                                                </button>
-		                                                <h5 class="modal-title">Eliminar Taller de Reforzamiento</h5>
+		                                                <h5 class="modal-title"><b>Eliminar Taller de Reforzamiento</b></h5>
 		                                            </div>
 		                                            <div class="modal-body">
 		                                               
@@ -308,6 +414,7 @@
 		                                                	<div class="item form-group">
 		                                                		<div class="col-md-12 col-sm-12 col-xs-12">
 																	<input type="hidden" name="idTallerEliminar" id="idTallerEliminar">
+																	<!-- <input type="text" name="nombre_TallerEliminado" id="nombre_TallerEliminado" disabled="disabled"> -->
 																	<p>¿Seguro que desea eliminar este taller?</p>
 																</div>
 															</div>
@@ -322,20 +429,39 @@
 		                                    </div>
 		                                </div>
 		                                
-		                                <!-- Fin del modal de eliminar  -->
-										
-										
-										
-										<!-- Mostrar registros -->
-										<%
+		                                <!-- Fin del modal de eliminar  -->   
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Catálogo de Taller</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Settings 1</a>
+                                            </li>
+                                            <li><a href="#">Settings 2</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Guardar</button>
+							<%
 											
 											NGTaller neg = new NGTaller();
-											ArrayList<Taller> arrayL = new ArrayList<Taller>(); 
-											arrayL = neg.cargarDPTaller();
+											ArrayList<Taller> lista = new ArrayList<Taller>(); 
+											lista = neg.cargarDPTaller();
 										
-										%>
-										
-                                	<table id="example" class="table table-striped responsive-utilities jambo_table">
+							%>
+							<table id="example" class="table table-striped responsive-utilities jambo_table">
                                         <thead>
                                             <tr class="headings">
                                                 <th>
@@ -352,24 +478,25 @@
                                         </thead>
 
                                         <tbody>
-                                        		<%
-													for(Taller enti: arrayL)
+                                        
+                                        <%
+													for(Taller t: lista)
 													{
 												%>
                                             		<tr class="even pointer">
                                                 		<td class="a-center ">
                                                     		<input type="checkbox" class="tableflat">
                                                 		</td>
-			                                                <td class=""><%=enti.getIdTaller() %></td>
-			                                                <td class=""><%=enti.getNombreCuatrimestre() %></td>
-			                                                <td class=""><%=enti.getNombre() %>
+			                                                <td class=""><%=t.getIdTaller() %></td>
+			                                                <td class=""><%=t.getNombreCuatrimestre() %></td>
+			                                                <td class=""><%=t.getNombre() %>
 		                                                </td>
-			                                                <td class=""><%=enti.getDescripcion() %></td>
-			                                                <td class=""><%=enti.getFechaInicio() %></td>
-			                                                <td class=""><%=enti.getFechaFinal()%></td>
+			                                                <td class=""><%=t.getDescripcion() %></td>
+			                                                <td class=""><%=t.getFechaInicio() %></td>
+			                                                <td class=""><%=t.getFechaFinal()%></td>
 		                                                <td> 
-		                                                    <a class="btn btn-info btn-xs" data-toogle="modal" data-target=".modalEditar"><i class="fa fa-pencil"></i></a>
-		                                                    <a class="btn btn-danger btn-xs" data-toogle="modal" data-target="#modalEliminar"><i class="fa fa-trash-o"></i></a>
+		                                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar" onclick="cargarDatos('<%=t.getIdTaller()%>', '<%=t.getIdCuatrimestre()%>','<%=t.getNombre()%>','<%=t.getDescripcion()%>','<%=t.getFechaInicio()%>','<%=t.getFechaFinal()%>');"><i class="fa fa-pencil"></i></button>
+		                                                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modalEliminar" onclick="cargarDatos('<%=t.getIdTaller()%>', '<%=t.getIdCuatrimestre()%>','<%=t.getNombre()%>','<%=t.getDescripcion()%>','<%=t.getFechaInicio()%>','<%=t.getFechaFinal()%>');"><i class="fa fa-trash-o"></i></button>
 		                                                </td>
 		                                            </tr>
                                             
@@ -377,94 +504,225 @@
 													} 
 												%>
                                            
-                                            </tbody>
-                                          </table>
+                                        </tbody>
+                          			</table>
                                 
-                              
-                        </div>
-                    </div>
-                                   <!-- Fin del formulario -->
                             </div>
                         </div>
-                    </div>							
-		</div>
-        </div><!-- /main_container -->
+                    </div>
 
-   <!--   </div> -->  <!-- /container body-->
 
-	    <script src="../../js/bootstrap.min.js"></script>
-	    <script src="../../js/jquery.min.js"></script>
-	    <script src="../../js/custom.js"></script>
-        <!-- icheck -->
-        <script src="../../js/icheck.min.js"></script>
+                </div>
+                <div class="clearfix"></div>
 
+                <!-- footer content -->
+                <footer>
+                    <div class="">
+                        <p class="pull-right">Programa de Acompañamiento y Seguimiento a Nuevo Ingreso <a> | Asistencia de Pregrado</a>.
+                            
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+
+            </div>
+            <!-- /page content -->
+        </div>
+
+    </div>
+
+    <div id="custom_notifications" class="custom-notifications dsp_none">
+        <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+        </ul>
+        <div class="clearfix"></div>
+        <div id="notif-group" class="tabbed_notifications"></div>
+    </div>
+
+    </div>
+       
+	    
 </body>
-	<script>
-   		$(function () { $('#modalEliminar').modal('show')});
-	</script>
-	
-	<script type="text/javascript">
-		function validarFecha(inicio, fin)
-		{
-			
-		}
-	</script>
 
-	<script type="text/javascript">
-	
-		function cargarDatos(id, idc, nombre, descripcion, fechaini, fechafin){
-			$("#IdTaller").val(id);
-			//$("#Id_PaisE").val(id);
-			$("#cuatri").val(idc);
-			$("#nombre").val(nombre);
-			$("#descripcion").val(descripcion);
-			$("#fechaini").val(fechaini);
-			$("#fechafin").val(fechafin);
-			
-		}
+<script src="../../js/bootstrap.min.js"></script>
 
-	<%
-		String msj ="";
-		msj = request.getParameter("msj");
-	
-	%>
-	<script type="text/javascript">
-		function cargarNotify()
-		{
-			var mensaje = "<%=msj%>";
-			if(mensaje=="1")
-			{
-				new PNotify({
-	                title: "Registro Guardado",
-	                type: "info",
-	                text: "El pais fue almacenado exitosamente!!!",
-	                nonblock: {
-                              nonblock: true,
-                              nonblock_opacity: .9}
-				});
-			}
-			 if(mensaje=="2")
-			 {
-				 new PNotify({
-		                title: "Registro Modificado",
-		                type: "success",
-		                text: "El pais se edito  exitosamente!!!",
-		                nonblock: {
-                               nonblock: true,
-                               nonblock_opacity: .9}
-					}); 
-			 }
-			 if(mensaje=="3")
-			{
-				 new PNotify({
-		                title: "Registro Eliminado",
-		                type: "error",
-		                text: "El pais se elimino exitosamente!!!",
-		                nonblock: {
-                               nonblock: true,
-                               nonblock_opacity: .9}
-					}); 
-			}
+    <!-- chart js -->
+    <script src="../../js/chartjs/chart.min.js"></script>
+    <!-- bootstrap progress js -->
+    <script src="../../js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="../../js/nicescroll/jquery.nicescroll.min.js"></script>
+    <!-- icheck -->
+    <script src="../../js/icheck/icheck.min.js"></script>
+
+    <script src="../../js/custom.js"></script>
+	<script src="../../js/select/select2.full.js"></script>
+    
+
+     <!-- Datatables -->
+     
+        <script src="../../js/datatables/js/jquery.dataTables.js"></script>
+        <script src="../../js/datatables/js/jquery.js"></script>
+        <script src="../../js/datatables/src/DataTables.js"></script>
+        <script src="../../js/datatables/tools/js/dataTables.tableTools.js"></script>
+        
+         <!-- PNotify -->
+	    <script type="text/javascript" src="../../js/notify/pnotify.core.js"></script>
+	    <script type="text/javascript" src="../../js/notify/pnotify.buttons.js"></script>
+	    <script type="text/javascript" src="../../js/notify/pnotify.nonblock.js"></script>
+	    
+	    <!-- Datepicker -->
+	    <script type="text/javascript" src="../../js/datepicker/daterangepicker.js"></script>
+        
+        <!-- Cargar datos -->
+        <script type="text/javascript">
+		
+        	function cargarDatos(id, idc, nombre, descripcion, fechaini, fechafin){
+				
+        		$("#IdTaller").val(id);
+				$("#IdTallerEditar").val(id);
+				$("#idTallerEliminar").val(id);
+				$("#cuatri_TallerEditado").val(idc);
+				$("#nombre_TallerEditado").val(nombre);
+				$("#nombre_TallerEliminado").val(nombre);
+				$("#descripcion_TallerEditado").val(descripcion);
+				$("#fechaini_TallerEditado").val(fechaini);
+				$("#fechafin_TallerEditado").val(fechafin);
+				
 		}
 	</script>
+        
+           <!-- avisos de CRUD -->
+    	<%
+    		String msj ="";
+    		msj = request.getParameter("msj");
+    	
+    	%>
+        
+        <script type="text/javascript">
+    		function cargarNotify()
+    		{
+    			var mensaje = "<%=msj%>";
+    			if(mensaje=="1")
+    			{
+    				new PNotify({
+    	                title: "Registro Guardado",
+    	                type: "info",
+    	                text: "El taller fue almacenado exitosamente!!!",
+    	                nonblock: {
+                                  nonblock: true,
+                                  nonblock_opacity: .9}
+    				});
+    			}
+    			 if(mensaje=="2")
+    			 {
+    				 new PNotify({
+    		                title: "Registro Modificado",
+    		                type: "success",
+    		                text: "El taller se editó  exitosamente!!!",
+    		                nonblock: {
+                                   nonblock: true,
+                                   nonblock_opacity: .9}
+    					}); 
+    			 }
+    			 if(mensaje=="3")
+    			{
+    				 new PNotify({
+    		                title: "Registro Eliminado",
+    		                type: "error",
+    		                text: "El taller se elimino exitosamente!!!",
+    		                nonblock: {
+                                   nonblock: true,
+                                   nonblock_opacity: .9}
+    					}); 
+    			}
+    		}
+        </script>
+        
+    
+        <script>
+        var asInitVals = new Array();
+            
+        $(document).ready(function () {
+            var oTable = $('#example').dataTable({
+                "oLanguage": {
+                    "sSearch": "Search all columns:"
+                },
+                "aoColumnDefs": [
+                    {
+                        'bSortable': false,
+                        'aTargets': [0]
+                    } //disables sorting for column one
+        ],
+                'iDisplayLength': 12,
+                "sPaginationType": "full_numbers",
+                "dom": 'T<"clear">lfrtip',
+                "tableTools": {
+                    "sSwfPath": "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
+                }
+            });
+            $("tfoot input").keyup(function () {
+                /* Filter on the column based on the index of this element's parent <th> */
+                oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
+            });
+            $("tfoot input").each(function (i) {
+                asInitVals[i] = this.value;
+            });
+            $("tfoot input").focus(function () {
+                if (this.className == "search_init") {
+                    this.className = "";
+                    this.value = "";
+                }
+            });
+            $("tfoot input").blur(function (i) {
+                if (this.value == "") {
+                    this.className = "search_init";
+                    this.value = asInitVals[$("tfoot input").index(this)];
+                }
+            }); 
+            });
+           
+       
+        </script>
+        
+        <script>
+        	
+        $(document).ready(function () {
+            cargarNotify();
+                $(".select2_single").select2({
+                    placeholder: "Seleccione un cuatrimestre",
+                    allowClear: true
+                });
+        });
+        
+        </script>
+        
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $('#single_cal1').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_1"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+            $('#single_cal2').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_2"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+            $('#single_cal3').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_3"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+            $('#single_cal4').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_4"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+
 </html>

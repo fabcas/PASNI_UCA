@@ -3,6 +3,7 @@ package controlador;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,6 +50,8 @@ public class SLTaller extends HttpServlet {
 			
 			 String opc ="";
 			 String idTaller = "";
+			 String idTallerEditado = "";
+			 String idTallerEliminado = "";
 			 String idCuat ="";
 			 String fecha_Inicio="";
 			 String Fecha_Fin="";
@@ -56,7 +59,7 @@ public class SLTaller extends HttpServlet {
 			 
 			 if(opc.isEmpty() == true)
 			 {
-				 response.sendRedirect("../../modulos/taller/taller.jsp");
+				 response.sendRedirect("./modulos/taller/taller.jsp");
 			 }
 			 
 			 else if(opc.equals("1"))
@@ -80,20 +83,25 @@ public class SLTaller extends HttpServlet {
 								
 				g = ngt.guardarNGTaller(t);
 				if(g == true)
-					response.sendRedirect("../../modulos/taller/taller.jsp?msj=1");
+				{
+					response.sendRedirect("./modulos/taller/taller.jsp?msj=1");
+				}
+					
 				else
-					response.sendRedirect("../../modulos/taller/taller.jsp");
+				{
+					response.sendRedirect("./modulos/taller/taller.jsp");
+				}
 			}
 			else if(opc.equals("2"))
 			{
-				idTaller = request.getParameter("idTaller");
+				idTaller = request.getParameter("IdTallerEditar");
 				t.setIdTaller(Integer.parseInt(idTaller));
-				idCuat = request.getParameter("cuatri");
+				idCuat = request.getParameter("cuatri_TallerEditado");
 				t.setIdCuatrimestre(Integer.parseInt(idCuat));
-				t.setNombre(request.getParameter("nombre"));
-				t.setDescripcion(request.getParameter("descripcion"));
-				fecha_Inicio = request.getParameter("fechaini");
-				Fecha_Fin = request.getParameter("fechafin");
+				t.setNombre(request.getParameter("nombre_TallerEditado"));
+				t.setDescripcion(request.getParameter("descripcion_TallerEditado"));
+				fecha_Inicio = request.getParameter("fechaini_TallerEditado");
+				Fecha_Fin = request.getParameter("fechafin_TallerEditado");
 				
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				java.util.Date parsed = null;
@@ -108,20 +116,29 @@ public class SLTaller extends HttpServlet {
 				a = ngt.actualizarNGTaller(t);
 				
 				if(a == true)
-					response.sendRedirect("./taller.jsp?msj=2");
+				{
+					response.sendRedirect("./modulos/taller/taller.jsp?msj=2");
+				}
 				else
-					response.sendRedirect("./taller.jsp");
-				
+				{
+					response.sendRedirect("./modulos/taller/taller.jsp");
+				}
 			}
 			else if(opc.equals("3"))
 			{
-				idTaller = request.getParameter("idTaller");
+				idTaller = request.getParameter("idTallerEliminar");
 				t.setIdTaller(Integer.parseInt(idTaller));
 				e = ngt.eliminarNGTaller(t);
 				if(e == true)
-					response.sendRedirect("./taller.jsp?msj=3");
+				{
+					response.sendRedirect("./modulos/taller/taller.jsp?msj=3");
+				}
+					
 				else
-					response.sendRedirect("./taller.jsp");
+				{
+					response.sendRedirect("./modulos/taller/taller.jsp");
+				}
+					
 			}
 			 
 		}
@@ -129,7 +146,7 @@ public class SLTaller extends HttpServlet {
 		 {
 			 e.printStackTrace();
 			 System.out.println("Servlet: Error en el catch al verificar los datos del taller: -> " + e.getMessage());
-			 response.sendRedirect("./taller.jsp");
+			 response.sendRedirect("./modulos/taller/taller.jsp");
 		 }
 		
 

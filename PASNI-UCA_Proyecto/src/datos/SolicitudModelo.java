@@ -1,9 +1,9 @@
-package modelo;
+package datos;
 
-import datos.DetalleSolicitud;
-import datos.Monitor;
-import modelo.Conexion;
-import datos.Error;
+import datos.Conexion;
+import entidades.DetalleSolicitud;
+import entidades.Error;
+import entidades.Monitor;
 
 import java.sql.*;
 import java.util.List;

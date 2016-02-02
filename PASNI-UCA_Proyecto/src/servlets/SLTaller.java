@@ -1,4 +1,4 @@
-package controlador;
+package servlets;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import negocio.NGTaller;
-import datos.Taller;
+import entidades.Taller;
 
 /**
  * Servlet implementation class SLTaller

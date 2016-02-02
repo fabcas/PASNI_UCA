@@ -1,10 +1,10 @@
-package modelo;
+package datos;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-import datos.Cuatrimestre;
-import datos.Taller;
+import entidades.Cuatrimestre;
+import entidades.Taller;
 
 public class MDTaller extends Conexion
 {
@@ -75,7 +75,7 @@ public class MDTaller extends Conexion
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			System.out.println("DATOS: ERROR AL ACTUALIZAR LOS DATOS -> "+ e.getMessage());
+			System.out.println("Datos: Error al actualizar los datos -> "+ e.getMessage());
 		}
 			
 		return g;
@@ -84,6 +84,7 @@ public class MDTaller extends Conexion
 
 	//metodo para eliminar logico
 	public boolean eliminarTaller(Taller t){
+		
 		int x = 0;
 		boolean el = false;
 		

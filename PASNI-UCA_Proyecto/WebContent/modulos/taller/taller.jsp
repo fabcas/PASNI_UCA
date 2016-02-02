@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
-    import = "controlador.*, datos.*, modelo.*, negocio.*, java.util.*"
+    import = "servlets.*,entidades.*,datos.*, negocio.*, java.util.*"
  %>
  
 <!DOCTYPE html>
@@ -28,6 +28,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../css/progressbar/bootstrap-progressbar-3.3.0.css">
     <script src="../../js/jquery.min.js"></script>
+    <!-- Drop down list -->
     <link href="../../css/select/select2.min.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
@@ -365,8 +366,8 @@
 																<input class="form-control" id="IdTaller" name="IdTaller" disabled="disabled">
 																<input class="form-control" type="hidden" id="IdTallerEditar" name="IdTallerEditar">
 																<label>Cuatrimestre:</label> 
-																<select id="cuatri_TallerEditado" name="cuatri_TallerEditado" required="required" class="select2_single form-control" tabindex="-1">
-																		<option>Seleccione...</option>
+																<select class="select2_single form-control" id="cuatri_TallerEditado" name="cuatri_TallerEditado" required="required" tabindex="-1">
+																		<option >Seleccione...</option>
 																		<%for(Cuatrimestre negtw : arrayt)
 																		  { 
 																		%>
@@ -385,7 +386,7 @@
 															</div>
 															<div class="modal-footer">
 			                                                	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-			                                                	<button type="submit" class="btn btn-primary">Guardar</button>
+			                                                	<button type="submit" class="btn btn-primary">Guardar cambios</button>
 		                                           			 </div>
 		                                                </form>
 		                                            </div>
@@ -458,7 +459,7 @@
 											
 											NGTaller neg = new NGTaller();
 											ArrayList<Taller> lista = new ArrayList<Taller>(); 
-											lista = neg.cargarDPTaller();
+											lista = neg.cargarTalleres();
 										
 							%>
 							<table id="example" class="table table-striped responsive-utilities jambo_table">
@@ -555,9 +556,7 @@
     <script src="../../js/icheck/icheck.min.js"></script>
 
     <script src="../../js/custom.js"></script>
-	<script src="../../js/select/select2.full.js"></script>
-    
-
+	
      <!-- Datatables -->
      
         <script src="../../js/datatables/js/jquery.dataTables.js"></script>
@@ -589,6 +588,12 @@
 				$("#fechafin_TallerEditado").val(fechafin);
 				
 		}
+        	
+        	function cargarIdEliminar(id)
+        	{
+        		$("#IdTaller").val(id);
+        		$("#idTallerEliminar").val(id);
+        	}
 	</script>
         
            <!-- avisos de CRUD -->
@@ -684,13 +689,15 @@
        
         </script>
         
+        <script src="../../js/select/select2.full.js"></script>
         <script>
         	
         $(document).ready(function () {
             cargarNotify();
                 $(".select2_single").select2({
                     placeholder: "Seleccione un cuatrimestre",
-                    allowClear: true
+                    allowClear: true,
+                    language: "es"
                 });
         });
         

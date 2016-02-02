@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
-    import = "controlador.*, datos.*, modelo.*, negocio.*, java.util.*"
+    import = "servlets.*,entidades.*,datos.*, negocio.*, java.util.*"
  %>
  
 <!DOCTYPE html>
@@ -28,7 +28,11 @@
 
     <link rel="stylesheet" type="text/css" href="../../css/progressbar/bootstrap-progressbar-3.3.0.css">
     <script src="../../js/jquery.min.js"></script>
-
+    <link href="../../css/select/select2.min.css" rel="stylesheet">
+  
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="../../js/folder/table.js"></script>
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
         <![endif]-->
@@ -304,7 +308,7 @@
 																	arrayLC1 = negC1.comboCuatrimestre();
 															%>
 																<br><label>Cuatrimestre:</label> 
-																<select id="cuatri" name="cuatri" required="required" class="form-control">
+																<select id="cuatri" name="cuatri" required="required" class="select2_single form-control">
 																		<option>Seleccione...</option>
 																		<%for(Cuatrimestre entiC1 : arrayLC1)
 																		  { 
@@ -452,10 +456,10 @@
 											
 											NGTaller neg = new NGTaller();
 											ArrayList<Taller> arrayL = new ArrayList<Taller>(); 
-											arrayL = neg.cargarDPTaller();
+											arrayL = neg.cargarTalleres();
 										
 							%>
-							<table id="example" class="table table-striped responsive-utilities jambo_table">
+							<table id="tabla" class="table table-striped responsive-utilities jambo_table display">
                                         <thead>
                                             <tr class="headings">
                                                 <th>
@@ -601,6 +605,20 @@
                 }
             }); 
             });
+        </script>
+        
+        <script src="../../js/select/select2.full.js"></script>
+        <script>
+        	
+        $(document).ready(function () {
+            cargarNotify();
+                $(".select2_single").select2({
+                    placeholder: "Seleccione un cuatrimestre",
+                    allowClear: true,
+                    language: "es"
+                });
+        });
+        
         </script>
 
 </html>

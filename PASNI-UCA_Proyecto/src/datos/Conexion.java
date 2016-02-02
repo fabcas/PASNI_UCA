@@ -1,4 +1,4 @@
-package modelo;
+package datos;
 
 import java.sql.*;
 

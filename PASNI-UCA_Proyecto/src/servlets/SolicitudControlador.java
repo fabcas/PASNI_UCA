@@ -1,12 +1,12 @@
-package controlador;
+package servlets;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import datos.DetalleSolicitud;
-import datos.Error;
-import datos.Monitor;
-import modelo.SolicitudModelo;
+import datos.SolicitudModelo;
+import entidades.DetalleSolicitud;
+import entidades.Error;
+import entidades.Monitor;
 
 public class SolicitudControlador {
 	

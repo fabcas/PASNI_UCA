@@ -1,9 +1,9 @@
-package modelo;
+package datos;
 
 import java.sql.*;
 
-import datos.*;
-import datos.Error;
+import entidades.*;
+import entidades.Error;
 
 public class MDUsuario extends Conexion{
 	

@@ -1,4 +1,4 @@
-package controlador;
+package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import negocio.NGTaller;
-import datos.Cuatrimestre;
+import entidades.Cuatrimestre;
+
 import org.apache.commons.lang3.StringEscapeUtils;
 
 /**

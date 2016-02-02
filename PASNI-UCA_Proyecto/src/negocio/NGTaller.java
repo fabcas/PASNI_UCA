@@ -2,9 +2,9 @@ package negocio;
 
 import java.util.ArrayList;
 
-import modelo.MDTaller;
-import datos.Cuatrimestre;
-import datos.Taller;
+import datos.MDTaller;
+import entidades.Cuatrimestre;
+import entidades.Taller;
 
 public class NGTaller {
 	
@@ -72,7 +72,7 @@ public class NGTaller {
 					
 		}
 		
-		public ArrayList<Taller> cargarDPTaller()
+		public ArrayList<Taller> cargarTalleres()
 		{
 			ArrayList < Taller > array = new ArrayList<Taller>();
 			MDTaller datos = new MDTaller();

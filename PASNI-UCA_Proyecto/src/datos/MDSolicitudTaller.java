@@ -1,31 +1,32 @@
 package datos;
 
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-
-import entidades.Cuatrimestre;
+import entidades.SolicitudTaller;
 import entidades.Taller;
 
-public class MDTaller extends Conexion
-{
+public class MDSolicitudTaller extends Conexion{
 	
-	public boolean guardarDt_Taller(Taller t) throws SQLException
+	public boolean guardarSolicitudTaller(SolicitudTaller st) throws SQLException
 	{
 		boolean g = false;
 		int y = 0;
 		
 		Connection cn = getConnection();
 		CallableStatement cstmt = null;	
-		String sql = "{call dbo.SPAgregarTaller(?,?,?,?,?,'true')}";
+		String sql = "{call dbo.SPAgregarSolicitudTaller(?,'true',?,?)}";
 		cstmt = cn.prepareCall(sql);			
 					
 		try {
 			
-			cstmt.setInt(1,t.getIdCuatrimestre());
-			cstmt.setString(2,t.getNombre());
-			cstmt.setString(3,t.getDescripcion());
-			cstmt.setDate(4, (Date) t.getFechaInicio());
-			cstmt.setDate(5, (Date) t.getFechaFinal());
+			cstmt.setDate(1, (Date) st.getFechaSolicitud());
+			cstmt.setInt(2, st.getEstado());
+			cstmt.setInt(3, st.getIdProfesor());
+			cstmt.setInt(4, st.getIdTaller());
 			y = cstmt.executeUpdate();
 			g = y > 0;
 			
@@ -44,7 +45,7 @@ public class MDTaller extends Conexion
 	
 	
 	//M?todo Actualizar
-	public boolean actualizarTaller(Taller t)
+	public boolean actualizarSolicitudTaller(Taller t)
 	{
 		int x = 0;
 		boolean g = false;
@@ -115,32 +116,30 @@ public class MDTaller extends Conexion
 	}//eliminar
 	
 	//Cargar datos
-	public ArrayList < Taller  > cargarDatos()
+	public ArrayList < SolicitudTaller  > cargarDatos() throws SQLException
 	{
-		ArrayList <Taller> array = new ArrayList <Taller>();
+		Connection cn = getConnection();
 		CallableStatement s = null;	
-		String sql = ("{call dbo.SPListaDeTalleresDeFormacion}");
+		ArrayList < SolicitudTaller > lista = new ArrayList < SolicitudTaller>();
+		String sql = "{call dbo.SPListaSolicitudesDeTalleres}";
+		s = cn.prepareCall(sql);
 		
 		try
 		{
-			Connection cn = getConnection();
-			s = cn.prepareCall(sql);
 			ResultSet rs = s.executeQuery();
 											
 			while(rs.next())		
 			{					    					
-				Taller  enti = new Taller();
+				SolicitudTaller  st = new SolicitudTaller();
 				
 				
-				enti.setIdTaller(rs.getInt("IdTaller"));
+				st.setIdTaller(rs.getInt("IdSolicitudTaller"));
 				//enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
-				enti.setNombreCuatrimestre(rs.getString("Cuatrimestre"));
-				enti.setNombre(rs.getString("Nombre"));
-				enti.setDescripcion(rs.getString("Descripcion"));
-				enti.setFechaInicio(rs.getDate("FechaInicio"));
-				enti.setFechaFinal(rs.getDate("FechaFin"));				
+				st.setNombreProfesor(rs.getString("Profesor Guia"));
+				st.setNombreTaller(rs.getString("Taller"));
+				st.setEstado(rs.getInt("Estado"));				
 					
-				array.add(enti);
+				lista.add(st);
 			}
 			
 			//Cerramos la conexion
@@ -153,41 +152,29 @@ public class MDTaller extends Conexion
 			e.printStackTrace();
 		}
 		
-		return array;
+		return lista;
 	}
 	
-	//Combo cuatrimestre
-		public ArrayList <Cuatrimestre> comboCuatrimestre()
-		{
-			ArrayList <Cuatrimestre> arrayCuatrimestre = new ArrayList <Cuatrimestre>();
-			String sql = ("SELECT idCuatrimestre, nombre FROM Cuatrimestre;");
+	public int cantidadSolicitadaDelTaller(SolicitudTaller st) throws SQLException
+	{
+		int x = 0;
+		Connection cn = getConnection();
+		CallableStatement s = null;	
+		
+		String sql = "{call dbo.SPTotalDeSolicitudesDeUnTaller_PorCuatrimestre(?)}";
+		s = cn.prepareCall(sql);
+		
 			
-			try
-			{
-				Connection cn = getConnection();
-				PreparedStatement ps = cn.prepareStatement(sql);
-				ResultSet rs = ps.executeQuery();
-												
-				while(rs.next())		
-				{					    					
-					Cuatrimestre  enti = new Cuatrimestre();
-					
-					enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
-					enti.setNombre(rs.getString("nombre"));
-					arrayCuatrimestre.add(enti);
-				}
-				
-				//Cerramos la conexion
-				ps.close();
-				cn.close();
-			}
-			catch(Exception e)
-			{
-				System.out.println("Datos: Error al cargar la lista de cuatrimestre -> "+e.getMessage());
-				e.printStackTrace();
-			}
-			
-			return arrayCuatrimestre;
-		}//combo cuatrimestre
+		
+		x = s.executeUpdate(sql);
+		
+		
+		
+		return x;
+		
+	}
+	
+	
+	
 
 }

@@ -307,7 +307,7 @@
 															%>
 																<br><br><label>Cuatrimestre:</label> 
 																<select id="cuatri" name="cuatri" required="required" class="select2_single form-control">
-																		<option>Seleccione...</option>
+																		<option>Seleccione</option>
 																		<%for(Cuatrimestre cuatri : listaCuatrimestre)
 																		  { 
 																		%>
@@ -731,5 +731,8 @@
             });
         });
     </script>
+    
+    
+    
 
 </html>

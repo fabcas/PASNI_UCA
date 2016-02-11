@@ -3,6 +3,7 @@ package datos;
 import java.sql.*;
 import java.util.ArrayList;
 
+import entidades.CategoriaTaller;
 import entidades.Cuatrimestre;
 import entidades.Taller;
 
@@ -188,6 +189,39 @@ public class MDTaller extends Conexion
 			}
 			
 			return arrayCuatrimestre;
+		}//combo cuatrimestre
+		
+		public ArrayList <CategoriaTaller> comboCategoria()
+		{
+			ArrayList <CategoriaTaller> arrayCategoria = new ArrayList <CategoriaTaller>();
+			String sql = ("SELECT IdCategoria, Nombre FROM CategoriaTaller WHERE Activo = 'True';");
+			
+			try
+			{
+				Connection cn = getConnection();
+				PreparedStatement ps = cn.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery();
+												
+				while(rs.next())		
+				{					    					
+					CategoriaTaller  enti = new CategoriaTaller();
+					
+					enti.setIdCategoria(rs.getInt("IdCategoria"));
+					enti.setNombre(rs.getString("Nombre"));
+					arrayCategoria.add(enti);
+				}
+				
+				//Cerramos la conexion
+				ps.close();
+				cn.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("Datos: Error al cargar la lista de categoría -> "+e.getMessage());
+				e.printStackTrace();
+			}
+			
+			return arrayCategoria;
 		}//combo cuatrimestre
 
 }

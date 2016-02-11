@@ -3,13 +3,17 @@ package datos;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import entidades.SolicitudTaller;
 import entidades.Taller;
 
 public class MDSolicitudTaller extends Conexion{
+	
+	
 	
 	public boolean guardarSolicitudTaller(SolicitudTaller st) throws SQLException
 	{
@@ -83,45 +87,47 @@ public class MDSolicitudTaller extends Conexion{
 	}//actualizar
 
 
-	//metodo para eliminar logico
-	public boolean eliminarTaller(Taller t){
-		
+	
+	/** Métodos **/
+	
+	public boolean aprobarSolicitud(SolicitudTaller st)
+	{
 		int x = 0;
 		boolean el = false;
 		
 		try{
+			String sql = "UPDATE SolicitudTaller SET Estado = ? WHERE IdSolicitudTaller = ?";
 			Connection cn = getConnection();
-			CallableStatement s = null;	
-			String sql = "{call dbo.SPEliminarTaller(?)}";
-			s = cn.prepareCall(sql);
+			PreparedStatement ps = cn.prepareStatement(sql);
 			
-			//s.setBoolean(1, false);
-			s.setInt(1, t.getIdTaller());
-			 
-			x = s.executeUpdate();
+			ps.setInt(1, st.getEstado());
+			ps.setInt(2, st.getIdSolicitudTaller());
+			
+			
+			x = ps.executeUpdate();
 			el = x > 0;
 			
 			//Cerramos la conexion
-			s.close();
+			ps.close();
 			cn.close();
-		
+			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			System.out.println("Error al eliminar los datos -> " + e.getMessage());
+			System.out.println("Error al aprobar la solicitud -> " + e.getMessage());
 		}
-		
 		return el;
-	}//eliminar
+	}
 	
-	//Cargar datos
-	public ArrayList < SolicitudTaller  > cargarDatos() throws SQLException
+	
+	//Solicitudes pendientes
+	public ArrayList < SolicitudTaller  > cargarSolicitudesPendientes() throws SQLException
 	{
 		Connection cn = getConnection();
 		CallableStatement s = null;	
 		ArrayList < SolicitudTaller > lista = new ArrayList < SolicitudTaller>();
-		String sql = "{call dbo.SPListaSolicitudesDeTalleres}";
+		String sql = "{call dbo.SPListaSolicitudesPendientes}";
 		s = cn.prepareCall(sql);
 		
 		try
@@ -133,11 +139,12 @@ public class MDSolicitudTaller extends Conexion{
 				SolicitudTaller  st = new SolicitudTaller();
 				
 				
-				st.setIdTaller(rs.getInt("IdSolicitudTaller"));
+				st.setIdSolicitudTaller(rs.getInt("IdSolicitudTaller"));
 				//enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
-				st.setNombreProfesor(rs.getString("Profesor Guia"));
+				st.setNombreProfesor(rs.getString("Profesor"));
 				st.setNombreTaller(rs.getString("Taller"));
-				st.setEstado(rs.getInt("Estado"));				
+				st.setFechaSolicitud((Date) rs.getDate("Fecha"));
+				st.setCadenaEstado(rs.getString("Estado"));				
 					
 				lista.add(st);
 			}
@@ -155,6 +162,90 @@ public class MDSolicitudTaller extends Conexion{
 		return lista;
 	}
 	
+	//Solicitudes aprobadas
+	public ArrayList < SolicitudTaller  > cargarSolicitudesAprobadas() throws SQLException
+	{
+		Connection cn = getConnection();
+		CallableStatement s = null;	
+		ArrayList < SolicitudTaller > lista = new ArrayList < SolicitudTaller>();
+		String sql = "{call dbo.SPListaSolicitudesAprobadas}";
+		s = cn.prepareCall(sql);
+		
+		try
+		{
+			ResultSet rs = s.executeQuery();
+											
+			while(rs.next())		
+			{					    					
+				SolicitudTaller  st = new SolicitudTaller();
+				
+				
+				st.setIdSolicitudTaller(rs.getInt("IdSolicitudTaller"));
+				//enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
+				st.setNombreProfesor(rs.getString("Profesor"));
+				st.setNombreTaller(rs.getString("Taller"));
+				st.setFechaSolicitud((Date) rs.getDate("Fecha"));
+				st.setCadenaEstado(rs.getString("Estado"));				
+					
+				lista.add(st);
+			}
+			
+			//Cerramos la conexion
+			s.close();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("DATOS: ERROR AL CONSULTAR LOS DATOS "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
+	
+	//Solicitudes desaprobadas
+	public ArrayList < SolicitudTaller  > cargarSolicitudesDesaprobadas() throws SQLException
+	{
+		Connection cn = getConnection();
+		CallableStatement s = null;	
+		ArrayList < SolicitudTaller > lista = new ArrayList < SolicitudTaller>();
+		String sql = "{call dbo.SPListaSolicitudesDesaprobadas}";
+		s = cn.prepareCall(sql);
+		
+		try
+		{
+			ResultSet rs = s.executeQuery();
+											
+			while(rs.next())		
+			{					    					
+				SolicitudTaller  st = new SolicitudTaller();
+				
+				
+				st.setIdSolicitudTaller(rs.getInt("IdSolicitudTaller"));
+				//enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
+				st.setNombreProfesor(rs.getString("Profesor"));
+				st.setNombreTaller(rs.getString("Taller"));
+				st.setFechaSolicitud((Date) rs.getDate("Fecha"));
+				st.setCadenaEstado(rs.getString("Estado"));				
+					
+				lista.add(st);
+			}
+			
+			//Cerramos la conexion
+			s.close();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("DATOS: ERROR AL CONSULTAR LOS DATOS "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
+	
+	
+	/** Calcula cuántas veces se repite un mismo taller. **/
 	public int cantidadSolicitadaDelTaller(SolicitudTaller st) throws SQLException
 	{
 		int x = 0;

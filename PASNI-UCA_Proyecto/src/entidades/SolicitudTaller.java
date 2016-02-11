@@ -7,6 +7,7 @@ public class SolicitudTaller {
 	private int idSolicitudTaller;
 	private Date fechaSolicitud;
 	private int estado;
+	private String cadenaEstado;
 	private int idTaller;
 	private String nombreTaller;
 	private int idProfesor;
@@ -14,13 +15,14 @@ public class SolicitudTaller {
 	
 	
 	public SolicitudTaller(int idSolicitudTaller, Date fechaSolicitud,
-			int estado, int idTaller, String nombreTaller, int idProfesor,
+			int estado, String cadenaEstado, int idTaller, String nombreTaller, int idProfesor,
 			String nombreProfesor) {
 		super();
 		this.idSolicitudTaller = idSolicitudTaller;
 		this.fechaSolicitud = fechaSolicitud;
 		this.estado = estado;
 		this.idTaller = idTaller;
+		this.cadenaEstado = cadenaEstado;
 		this.nombreTaller = nombreTaller;
 		this.idProfesor = idProfesor;
 		this.nombreProfesor = nombreProfesor;
@@ -79,6 +81,15 @@ public class SolicitudTaller {
 
 	public void setNombreTaller(String nombreTaller) {
 		this.nombreTaller = nombreTaller;
+	}
+	
+	public String getCadenaEstado() {
+		return cadenaEstado;
+	}
+
+
+	public void setCadenaEstado(String cadenaEstado) {
+		this.cadenaEstado = cadenaEstado;
 	}
 
 

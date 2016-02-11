@@ -94,11 +94,11 @@
                                 </li>
                                 <li><a><i class="fa fa-edit"></i> Profesor Guía <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="index.html">Dashboard</a>
+                                        <li><a href="../profesorGuia/inscripcion-profesor.jsp">Inscribir profesor guía</a>
                                         </li>
-                                        <li><a href="index2.html">Dashboard2</a>
+                                        <li><a href="../profesorGuia/lista-profesores.jsp">Lista de profesores guías</a>
                                         </li>
-                                        <li><a href="index3.html">Dashboard3</a>
+                                        <li><a href="../profesorGuia/informe-guiatura.jsp">Enviar informe guiatura</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -108,7 +108,9 @@
                                         </li>
                                         <li><a href="taller.jsp">Catálogo de Taller</a>
                                         </li>
-                                        <li><a href="index3.html">Dashboard3</a>
+                                        <li><a href="bandejaSolicitudesTaller.jsp">Bandeja de Solicitudes</a>
+                                        </li>
+                                        <li><a href="categoria-taller.jsp">Catálogo de Categoría</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -283,8 +285,6 @@
 
                     <div class="">
                        
-                              
-                          
                        <!-- Inicio del modal para agregar nuevo registro -->
 											
 									<!-- button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Guardar</button> -->
@@ -451,7 +451,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Guardar</button>
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Nueva solicitud</button>
 							<%
 											
 											NGTaller neg = new NGTaller();
@@ -459,7 +459,7 @@
 											arrayL = neg.cargarTalleres();
 										
 							%>
-							<table id="tabla" class="table table-striped responsive-utilities jambo_table display">
+							<table id="table" class="table table-striped responsive-utilities jambo_table display">
                                         <thead>
                                             <tr class="headings">
                                                 <th>
@@ -561,51 +561,58 @@
      <!-- Datatables -->
      
         <script src="../../js/datatables/js/jquery.dataTables.js"></script>
-        <script src="../../js/datatables/js/jquery.js"></script>
+        <!-- <script src="../../js/datatables/js/jquery.js"></script> -->
         <script src="../../js/datatables/src/DataTables.js"></script>
         <script src="../../js/datatables/tools/js/dataTables.tableTools.js"></script>
         
-        <script>
-        var asInitVals = new Array();
-        $(document).ready(function () {
-            var oTable = $('#example').dataTable({
-                "oLanguage": {
-                    "sSearch": "Search all columns:"
-                },
-                "aoColumnDefs": [
-                    {
-                        'bSortable': false,
-                        'aTargets': [0]
-                    } //disables sorting for column one
-        ],
-                'iDisplayLength': 12,
-                "sPaginationType": "full_numbers",
-                "dom": 'T<"clear">lfrtip',
-                "tableTools": {
-                    "sSwfPath": "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
-                }
-            });
-            $("tfoot input").keyup(function () {
-                /* Filter on the column based on the index of this element's parent <th> */
-                oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
-            });
-            $("tfoot input").each(function (i) {
-                asInitVals[i] = this.value;
-            });
-            $("tfoot input").focus(function () {
-                if (this.className == "search_init") {
-                    this.className = "";
-                    this.value = "";
-                }
-            });
-            $("tfoot input").blur(function (i) {
-                if (this.value == "") {
-                    this.className = "search_init";
-                    this.value = asInitVals[$("tfoot input").index(this)];
-                }
-            }); 
-            });
-        </script>
+        <script type="text/javascript">
+
+			$(document).ready(function()
+			{
+				cargarNotify();
+				$('#table').dataTable(
+						{
+							// "dom": 'T<"clear">lfrtip',
+				           // "tableTools": {
+				            //    "sSwfPath": "js/datatables/tools/swf/copy_csv_xls_pdf.swf",
+				             //   "aButtons": ["pdf", "xls"]
+				            //}
+							
+							"sPaginationType": "full_numbers",
+							"oLanguage": {
+								"sSearch": "Buscar: ",
+								"sEmptyTable": "No hay registros disponibles",
+								"sInfo": "Mostrando un total de _TOTAL_ registros (_START_ de _END_)",
+								"sInfoEmpty": "No hay registros disponibles",
+								"sInfoFiltered": " - filtrando de _MAX_ registros",
+								 "sLengthMenu": "Mostrar _MENU_ registros",
+								 "sLoadingRecords": "Por favor esperar - cargando...",
+								 "sProcessing": "Por favor, espere un momento mientras se procesa su petición",
+								 "sZeroRecords": "No se encontró ningún registro",
+								 "pagingType": "full_numbers",
+									 "oPaginate": {
+										   "sFirst": "Primero",
+								           "sLast": "Último",
+								           "sPrevious": "Atrás",
+								           "sNext": "Siguiente"
+								         }
+							}	
+						}	
+				)
+				.columnFilter({
+					aoColumns: [ { type: "text" },
+					             { type: "text" },
+					 			 { type: "text" },
+					 			 { type: "text" },
+					 			 { type: "text" },
+					 			 { type: "text" },
+					 			 null
+					 			]
+				});
+				
+			});
+		</script>
+		
         
         <script src="../../js/select/select2.full.js"></script>
         <script>

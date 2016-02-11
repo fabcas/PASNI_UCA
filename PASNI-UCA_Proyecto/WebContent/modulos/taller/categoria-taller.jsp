@@ -1,49 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
     import = "servlets.*,entidades.*,datos.*, negocio.*, java.util.*"
- %>
- 
-<!DOCTYPE html>
-<html lang="en">
-
+    %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>PASNI-UCA | Categoría</title>
+	
+	<!-- Librerías -->
+		
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
 
-    <title>PASNI-UCA | Catálogo de Taller </title>
+	    <link href="../../fonts/css/font-awesome.min.css" rel="stylesheet">
+	    <link href="../../css/animate.min.css" rel="stylesheet">
+	    <script src="../../js/jquery.min.js"></script>
+	
+	    <!-- Custom styling plus plugins -->
+	    <link href="../../css/custom.css" rel="stylesheet">
+	    <link href="../../css/icheck/flat/green.css" rel="stylesheet">
+	
+	    <link rel="stylesheet" type="text/css" href="../../css/progressbar/bootstrap-progressbar-3.3.0.css">
+	    
+	<!-- Fin de las librerías -->
 
-    <!-- Bootstrap core CSS -->
-
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="../../fonts/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../../css/animate.min.css" rel="stylesheet">
-
-    <!-- Custom styling plus plugins -->
-    <link href="../../css/custom.css" rel="stylesheet">
-    <link href="../../css/icheck/flat/green.css" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="../../css/progressbar/bootstrap-progressbar-3.3.0.css">
-    <script src="../../js/jquery.min.js"></script>
-    <!-- select2 -->
-    <link href="../../css/select/select2.min.css" rel="stylesheet">
-
-    <!--[if lt IE 9]>
-        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
-        <![endif]-->
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
 
 </head>
-
-
 <body class="nav-md">
 
     <div class="container body">
@@ -92,11 +74,11 @@
                                 </li>
                                 <li><a><i class="fa fa-edit"></i> Profesor Guía <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="inscripcion-profesor.jsp">Inscribir profesor guía</a>
+                                        <li><a href="../profesorGuia/inscripcion-profesor.jsp">Inscribir profesor guía</a>
                                         </li>
-                                        <li><a href="lista-profesores.jsp">Lista de profesores guías</a>
+                                        <li><a href="../profesorGuia/lista-profesores.jsp">Lista de profesores guías</a>
                                         </li>
-                                        <li><a href="uu.html">Aún pensando....</a>
+                                        <li><a href="../profesorGuia/informe-guiatura.jsp">Enviar informe guiatura</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -287,7 +269,7 @@
                           
                        <!-- Inicio del modal para agregar nuevo registro -->
 											
-									<!-- button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Guardar</button> -->
+									<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Nueva categoría</button> --> 
 		
 		                                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
 		                                    <div class="modal-dialog">
@@ -296,42 +278,16 @@
 		                                            <div class="modal-header">
 		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span>
 		                                                </button>
-		                                                <h5 class="modal-title"><b>Agregar Taller de Reforzamiento</b></h5>
+		                                                <h5 class="modal-title"><b>Agregar Categoría</b></h5>
 		                                            </div>
 		                                            <div class="modal-body">
 		                                                <h4><b>Complete los campos</b></h4>
-		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLTaller?opc=1">
+		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLCategoriaTaller?opc=1">
 		                                                	<div class="item form-group">
-		                                                		<%
-																	NGTaller tallerNegocio = new NGTaller();
-																	ArrayList<Cuatrimestre> listaCuatrimestre = new ArrayList<Cuatrimestre>();
-																	listaCuatrimestre = tallerNegocio.comboCuatrimestre();
-															%>
-																<br><br><label>Cuatrimestre:</label> 
-																<select id="cuatri" class="select2_single form-control" name="cuatri" required="required"  tabindex="-1">
-																		<option value="0">Seleccione..</option>
-																		<%
-																			for(Cuatrimestre cuatri : listaCuatrimestre)
-																		  	{ 
-																		%>
-																				<option value="<%=cuatri.getIdCuatrimestre() %>" ><%=cuatri.getNombre()%></option>
-																		<%	
-																			}
-																		%>	
-																</select>
-																<!--<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">-->
 																<br><label>Nombre:</label> 
-																<input id="nombre" name="nombre" required="required" class="form-control" placeholder="">
+																<input id="nombre" name="nombre" required="required" class="form-control" placeholder="Nombre">
 																<br><label>Descripción:</label> 
-																<textarea id="descripcion" name="descripcion" required="required" class="form-control" placeholder=""></textarea>
-																<!-- <input type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="Fecha de inicio" aria-describedby="inputSuccess2Status4"> -->
-                                                            	<!-- <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span> -->
-                                                            	<!-- <span id="inputSuccess2Status4" class="sr-only">(success)</span> -->
-																 <br><label>Fecha inicio:</label> 
-																<input type="date" id="fechaini" name="fechaini" required="required" class="form-control" placeholder="">
-																
-																<br><label>Fecha final:</label> 
-																<input type="date" id="fechafin" name="fechafin" required="required" class="form-control" placeholder="">
+																<textarea id="descripcion" rows="5" name="descripcion" required="required" class="form-control" placeholder="Descripción"></textarea>
 															</div>
 															<div class="modal-footer">
 			                                                	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -355,39 +311,20 @@
 		                                            <div class="modal-header">
 		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span>
 		                                                </button>
-		                                                <h5 class="modal-title"><b>Editar Taller de Reforzamiento</b></h5>
+		                                                <h5 class="modal-title"><b>Editar Categoría</b></h5>
 		                                            </div>
 		                                            <div class="modal-body">
 		                                                <h4><b>Complete los campos</b></h4>
-		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLTaller?opc=2">
+		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLCategoriaTaller?opc=2">
 		                                                	<div class="item form-group">
-		                                                		<%
-																	NGTaller negt = new NGTaller();
-																	ArrayList<Cuatrimestre> arrayt = new ArrayList<Cuatrimestre>();
-																	arrayt = negt.comboCuatrimestre();
-																%>
-																<br><br>
-																<label>Código del Taller: </label>
-																<input class="form-control" id="IdTaller" name="IdTaller" disabled="disabled">
-																<input class="form-control" type="hidden" id="IdTallerEditar" name="IdTallerEditar">
-																<label>Cuatrimestre:</label> 
-																<select class="select2_single form-control" id="cuatri_TallerEditado" name="cuatri_TallerEditado" required="required" tabindex="-1">
-																		<option >Seleccione...</option>
-																		<%for(Cuatrimestre negtw : arrayt)
-																		  { 
-																		%>
-																			<option value="<%=negtw.getIdCuatrimestre() %>" ><%=negtw.getNombre()%></option>
-																		<%}%>
-																	</select>
-																<!--<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">-->
+		                                                		<br><br>
+																<label>Código de la categoría: </label>
+																<input class="form-control" id="IdCategoria" name="IdCategoria" disabled="disabled">
+																<input class="form-control" type="hidden" id="IdCategoriaEditar" name="IdCategoriaEditar">
 																<label>Nombre:</label> 
-																<input id="nombre_TallerEditado" name="nombre_TallerEditado" required="required" class="form-control" placeholder="">
+																<input id="nombre_CategoriaEditado" name="nombre_CategoriaEditado" required="required" class="form-control" placeholder="">
 																<label>Descripción:</label> 
-																<textarea id="descripcion_TallerEditado" name="descripcion_TallerEditado" required="required" class="form-control" placeholder=""></textarea>
-																<label>Fecha inicio:</label> 
-																<input type="date" id="fechaini_TallerEditado" name="fechaini_TallerEditado" required="required" class="form-control" placeholder="">
-																<label>Fecha final:</label> 
-																<input type="date" id="fechafin_TallerEditado" name="fechafin_TallerEditado" required="required" class="form-control" placeholder="">
+																<textarea id="descripcion_CategoriaEditado" name="descripcion_CategoriaEditado" rows="5" required="required" class="form-control" placeholder=""></textarea>
 															</div>
 															<div class="modal-footer">
 			                                                	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -412,16 +349,16 @@
 		                                            <div class="modal-header">
 		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span>
 		                                                </button>
-		                                                <h5 class="modal-title"><b>Eliminar Taller de Reforzamiento</b></h5>
+		                                                <h5 class="modal-title"><b>Eliminar Categoría</b></h5>
 		                                            </div>
 		                                            <div class="modal-body">
 		                                               
-		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLTaller?opc=3">
+		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLCategoriaTaller?opc=3">
 		                                                	<div class="item form-group">
 		                                                		<div class="col-md-12 col-sm-12 col-xs-12">
-																	<input type="hidden" name="idTallerEliminar" id="idTallerEliminar">
+																	<input type="hidden" name="IdCategoriaEliminar" id="IdCategoriaEliminar">
 																	<!-- <input type="text" name="nombre_TallerEliminado" id="nombre_TallerEliminado" disabled="disabled"> -->
-																	<p>¿Seguro que desea eliminar este taller?</p>
+																	<p>¿Seguro que desea eliminar esta categoría?</p>
 																</div>
 															</div>
 															<div class="modal-footer">
@@ -430,7 +367,6 @@
 		                                           			</div>
 		                                                </form>
 		                                            </div>
-		                                            
 		                                        </div>
 		                                    </div>
 		                                </div>
@@ -440,7 +376,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Catálogo de Taller</h2>
+                                <h2>Catálogo de Categoría</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -459,27 +395,23 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                            	<button type="button" id="botonNuevo" title="Nuevo registro" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Ingresar nuevo taller</button>
-							
-							<%
+								<button type="button" id="botonNuevo" title="Nuevo registro" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Ingresar nueva categoría</button>
+										<%
 											
-											NGTaller neg = new NGTaller();
-											ArrayList<Taller> lista = new ArrayList<Taller>(); 
-											lista = neg.cargarTalleres();
+											NGCategoriaTaller neg = new NGCategoriaTaller();
+											ArrayList<CategoriaTaller> lista = new ArrayList<CategoriaTaller>(); 
+											lista = neg.cargarCategorias();
 										
-							%>
+										%>
 							<table id="table" class="table table-striped responsive-utilities jambo_table">
                                         <thead>
                                             <tr class="headings">
                                                 <th>
                                                     <input type="checkbox" class="tableflat">
                                                 </th>
-                                                <th>Id Taller </th>
-                                                <th>Cuatrimestre </th>
+                                                <th>Id Categoría </th>
                                                 <th>Nombre </th>
                                                 <th>Descripción </th>
-                                                <th>Fecha Inicio </th>
-                                                <th>Fecha Fin </th>
                                                 <th><span class="nobr">Acción</span></th>
                                             </tr>
                                         </thead>
@@ -487,23 +419,20 @@
                                         <tbody>
                                         
                                         <%
-													for(Taller t: lista)
+													for(CategoriaTaller ct: lista)
 													{
 												%>
                                             		<tr class="even pointer">
                                                 		<td class="a-center ">
                                                     		<input type="checkbox" class="tableflat">
                                                 		</td>
-			                                                <td class=""><%=t.getIdTaller() %></td>
-			                                                <td class=""><%=t.getNombreCuatrimestre() %></td>
-			                                                <td class=""><%=t.getNombre() %>
+			                                                <td class=""><%=ct.getIdCategoria() %></td>
+			                                                <td class=""><%=ct.getNombre() %></td>
+			                                                <td class=""><%=ct.getDescripcion() %>
 		                                                </td>
-			                                                <td class=""><%=t.getDescripcion() %></td>
-			                                                <td class=""><%=t.getFechaInicio() %></td>
-			                                                <td class=""><%=t.getFechaFinal()%></td>
 		                                                <td> 
-		                                                    <button type="button" id="botonModificar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar" onclick="cargarDatos('<%=t.getIdTaller()%>', '<%=t.getIdCuatrimestre()%>','<%=t.getNombre()%>','<%=t.getDescripcion()%>','<%=t.getFechaInicio()%>','<%=t.getFechaFinal()%>');"><i class="fa fa-pencil"></i></button>
-		                                                    <button type="button" id="botonEliminar" title="Eliminar registro" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modalEliminar" onclick="cargarDatos('<%=t.getIdTaller()%>', '<%=t.getIdCuatrimestre()%>','<%=t.getNombre()%>','<%=t.getDescripcion()%>','<%=t.getFechaInicio()%>','<%=t.getFechaFinal()%>');"><i class="fa fa-trash-o"></i></button>
+		                                                    <button type="button" id="botonModificar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar" onclick="cargarDatos('<%=ct.getIdCategoria() %>', '<%=ct.getNombre() %>', '<%=ct.getDescripcion() %>')"><i class="fa fa-pencil"></i></button>
+		                                                    <button type="button" id="botonEliminar" title="Eliminar registro" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modalEliminar" onclick="cargarDatos('<%=ct.getIdCategoria() %>', '<%=ct.getNombre() %>', '<%=ct.getDescripcion() %>')"><i class="fa fa-trash-o"></i></button>
 		                                                </td>
 		                                            </tr>
                                             
@@ -550,65 +479,49 @@
        
 	    
 </body>
+	<script src="../../js/bootstrap.min.js"></script>
 
-		<script src="../../js/bootstrap.min.js"></script>
-	
-	    <!-- chart js -->
-	    <script src="../../js/chartjs/chart.min.js"></script>
-	    <!-- bootstrap progress js -->
-	    <script src="../../js/progressbar/bootstrap-progressbar.min.js"></script>
-	    <script src="../../js/nicescroll/jquery.nicescroll.min.js"></script>
-	    <!-- icheck -->
-	    <script src="../../js/icheck/icheck.min.js"></script>
-	
-	    <script src="../../js/custom.js"></script>
-	
-     	<!-- Datatables -->
-     
-        <script src="../../js/datatables/js/jquery.js"></script>
+    <!-- chart js -->
+    <script src="../../js/chartjs/chart.min.js"></script>
+    <!-- bootstrap progress js -->
+    <script src="../../js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="../../js/nicescroll/jquery.nicescroll.min.js"></script>
+    <!-- icheck -->
+    <script src="../../js/icheck/icheck.min.js"></script>
+
+    <script src="../../js/custom.js"></script>
+    
+    
+    
+    <!-- Datatables -->
+    	<script src="../../js/datatables/js/jquery.js"></script>
     	<script src="../../js/datatables/js/jquery.dataTables.js"></script>
 		<script src="../../js/datatables/tools/js/dataTables.tableTools.js"></script>
     	<script src="../../js/pluging-datatable/jquery.dataTables.columnFilter.js"></script>
-        <!-- Fin Datatables -->
-        
-        <!-- PNotify -->
+    <!-- END Datatables -->
+    
+    <!-- PNotify -->
 	    <script type="text/javascript" src="../../js/notify/pnotify.core.js"></script>
 	    <script type="text/javascript" src="../../js/notify/pnotify.buttons.js"></script>
 	    <script type="text/javascript" src="../../js/notify/pnotify.nonblock.js"></script>
-	    <!-- Fin PNotify -->
-	    
-	    <!-- Datepicker -->
-	    <script type="text/javascript" src="../../js/datepicker/daterangepicker.js"></script>
-        
-        <!-- Select2 -->
-        	<script src="../../js/select/select2.full.js"></script>
-        <!-- Fin Select2 -->
-        
-        <!-- Cargar datos -->
-        <script type="text/javascript">
-		
-        	function cargarDatos(id, idc, nombre, descripcion, fechaini, fechafin){
-				
-        		$("#IdTaller").val(id);
-				$("#IdTallerEditar").val(id);
-				$("#idTallerEliminar").val(id);
-				$("#cuatri_TallerEditado").val(idc);
-				$("#nombre_TallerEditado").val(nombre);
-				$("#nombre_TallerEliminado").val(nombre);
-				$("#descripcion_TallerEditado").val(descripcion);
-				$("#fechaini_TallerEditado").val(fechaini);
-				$("#fechafin_TallerEditado").val(fechafin);
-				
-		}
-        	
-        	function cargarIdEliminar(id)
-        	{
-        		$("#IdTaller").val(id);
-        		$("#idTallerEliminar").val(id);
-        	}
-	</script>
-        
-           <!-- avisos de CRUD -->
+    <!-- End PNotify -->
+    
+    <script>
+    	
+    	function cargarDatos(id, nombre, descripcion)
+    	{
+    		$("#IdCategoria").val(id);
+    		$("#IdCategoriaEditar").val(id);
+    		$("#IdCategoriaEliminar").val(id);
+    		$("#nombre").val(nombre);
+    		$("#nombre_CategoriaEditado").val(nombre);
+    		$("#descripcion").val(descripcion);
+    		$("#descripcion_CategoriaEditado").val(descripcion);
+    	}
+    
+    </script>
+    
+       <!-- avisos de CRUD -->
     	<%
     		String msj ="";
     		msj = request.getParameter("msj");
@@ -656,18 +569,18 @@
         </script>
         
     
-       <script type="text/javascript">
+    <script type="text/javascript">
 
 			$(document).ready(function()
 			{
-				//cargarNotify();
+				
 				$('#table').dataTable(
 						{
 							// "dom": 'T<"clear">lfrtip',
 				            //"tableTools": {
-				             //   "sSwfPath": "js/datatables/tools/swf/copy_csv_xls_pdf.swf",
-				              //  "aButtons": ["pdf", "xls"]
-				           //},
+				            //    "sSwfPath": "../../js/datatables/tools/swf/copy_csv_xls_pdf.swf",
+				            //    "aButtons": ["pdf", "xls"]
+				            //},
 							
 							"sPaginationType": "full_numbers",
 							"oLanguage": {
@@ -703,22 +616,13 @@
 				
 			});
 		</script>
-        
-        <script>
-        $(document).ready(function () {
-        	cargarNotify();
-            $(".select2_single").select2({
-                placeholder: "Seleccione un cuatrimestre",
-                allowClear: true
-            })
-        });
-        </script>
-        
-        <script>
+		
+		<script>
          $(function() {
         	$("#botonNuevo").tooltip();
             $("#botonModificar").tooltip();
             $("#botonEliminar").tooltip();
          });
       </script>
+    
 </html>

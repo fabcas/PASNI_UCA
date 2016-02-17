@@ -94,16 +94,13 @@
                     <!-- /menu footer buttons -->
                     <div class="sidebar-footer hidden-small">
                         <a data-toggle="tooltip" data-placement="top" >
-                            <img class="imgsize" src="img/logos/lg_uca.png">
+                            <img class="imgsize" src="img/logos/uca.png">
                         </a>
                         <a data-toggle="tooltip" data-placement="top" >
-                            <img class="s5s" src="img/logos/55.png">
+                            <img class="imgsize" src="img/logos/js.png" >
                         </a>
                         <a data-toggle="tooltip" data-placement="top" >
-                            <img class="imgsize" src="img/logos/lg_js.png" >
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" >
-                             <img class="imgsize" src="img/logos/lg_ausjal.png">
+                             <img class="imgsize" src="img/logos/asj.png">
                         </a>
                     </div> <!-- /menu footer buttons -->
                 </div>
@@ -124,7 +121,7 @@
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="index.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="index.jsp"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesión</a>
                                     </li>
                                 </ul>
                             </li>

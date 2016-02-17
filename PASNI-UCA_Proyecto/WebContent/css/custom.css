@@ -1918,9 +1918,9 @@ span.right {
 }
 
 .sidebar-footer a {
-    padding: 7px 0 5px;
+    padding: 10px 0 10px;
     text-align: center;
-    width: 50%;
+    width: 33%;
     font-size: 17px;
     display: block;
     float: left;
@@ -6345,8 +6345,7 @@ ul.notifications {
 }
 
 .imgsize{
-    height: 55px;
-    width: 65px;
+    height: 70px;
 }
 
 .s5s{

@@ -37,7 +37,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse">
               <ul class="navi navbar-nav navbar-right main-nav">
-                <li><a href="http://www.uca.edu.ni/" target="_blank"><img class="img-style" src="img/logo/uca.png"></a></li>
+                  <li><a href="http://www.uca.edu.ni/" target="_blank"><img class="img-style" src="img/logo/uca.png"></a></li>
                   <li><a href="#"><img class="img-style" src="img/logo/js.png"></a></li>
                   <li><a href="http://www.ausjal.org/" target="_blank"><img class="img-style" src="img/logo/asj.png"></a></li>
               </ul>
@@ -57,7 +57,7 @@
               <div class="team text-center">
                 <div class="cover" style="background:url('img/est.jpg'); background-size:cover;">
                   <div class="overlay text-center">
-                    <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Sé Monitor</a>
+                    <a href="modulos/monitor/inscripcion.jsp" class="btn btn-white-fill">Sé Monitor</a>
                   </div>
 
                 </div>
@@ -68,7 +68,7 @@
               <div class="team text-center">
                 <div class="cover" style="background:url('img/doc.jpg'); background-size:cover;">
                   <div class="overlay text-center">
-                    <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Solo para Profesores</a>
+                    <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Para Profesores</a>
                   </div>
                 </div>
                 <p class="par">Profesores Guías</p>
@@ -99,7 +99,7 @@
           <div class="modal-content modal-popup">
             <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
             <h3 class="white">Iniciá Sesión</h3>
-            <form action="" class="popup-form">
+            <form action="SLInicioSesion" method="post" name="InicioSesion" class="popup-form">
               <input type="text" class="form-control form-white" placeholder="Correo o Usuario">
               <input type="text" class="form-control form-white" placeholder="Contraseña">
               <button type="submit" class="btn btn-submit">Enviar</button>

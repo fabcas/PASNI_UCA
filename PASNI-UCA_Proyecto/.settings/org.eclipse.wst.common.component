@@ -2,7 +2,7 @@
     <wb-module deploy-name="PASNI-UCA_Proyecto">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="PASNI-UCA_(1)"/>
         <property name="java-output-path" value="/PASNI-UCA_Proyecto/build/classes"/>
+        <property name="context-root" value="PASNI-UCA_Proyecto"/>
     </wb-module>
 </project-modules>

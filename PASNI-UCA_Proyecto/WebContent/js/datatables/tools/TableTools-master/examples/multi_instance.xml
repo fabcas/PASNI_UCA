@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-example table-type="html" order="1">
 
-<css lib="datatables tabletools" />
-<js lib="jquery datatables tabletools">
+	<css lib="datatables tabletools" />
+	<js lib="jquery datatables tabletools">
 <![CDATA[
 $(document).ready(function() {
 	$('#example').DataTable( {
@@ -13,11 +13,11 @@ $(document).ready(function() {
 	} );
 } );
 ]]>
-</js>
+	</js>
 
-<title lib="TableTools">Multiple toolbars</title>
+	<title lib="TableTools">Multiple toolbars</title>
 
-<info><![CDATA[
+	<info><![CDATA[
 
 Like all DataTables control elements, TableTools can have multiple instances specified in the `dt-init dom` parameter of DataTables. This will create two TableTools toolbars next to the table, providing the same functions.
 

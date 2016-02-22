@@ -12,15 +12,15 @@
 
 <title>PASNI-UCA | Menú</title>
 
-<!-- Bootstrap core CSS-->
+<!-- Bootstrap core CSS
 
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../fonts/css/font-awesome.min.css" rel="stylesheet">
 
-<!-- Custom styling plus plugins -->
+<!-- Custom styling plus plugins 
 <link href="../css/custom.css" rel="stylesheet">
 
-<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery.min.js"></script>-->
 
 </head>
 
@@ -121,9 +121,9 @@
 
 		<!-- /main_container -->
 
-	<!-- /container body-->
+	<!-- /container body
 
 	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/custom.js"></script>
+	<script src="../js/custom.js"></script>-->
 </body>
 </html>

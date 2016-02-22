@@ -82,8 +82,6 @@
 
 						<!-- Inicio del modal para agregar nuevo registro -->
 
-						<!-- button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Guardar</button> -->
-
 						<div class="modal fade bs-example-modal-lg" tabindex="-1"
 							role="dialog" aria-hidden="true">
 							<div class="modal-dialog">
@@ -143,12 +141,7 @@
 
 						<!-- Final del modal para guardar nuevo registro -->
 
-
-						<!-- Final del modal para guardar nuevo registro -->
-
 						<!-- Inicio del modal para editar registro -->
-
-
 
 						<div class="modal fade modalEditar" tabindex="-1" role="dialog"
 							aria-hidden="true">
@@ -206,9 +199,7 @@
 
 						<!-- Fin del modal de editar  -->
 
-
 						<!-- Inicio del modal para eliminar registro -->
-
 
 						<div class="modal fade" id="modalEliminar" tabindex="-1"
 							role="dialog" aria-hidden="true">
@@ -250,19 +241,6 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>Catálogo de Taller</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
@@ -333,14 +311,12 @@
 					</div>
 					<div class="clearfix"></div>
 
-					<!-- footer content -->
-					<jsp:include page="../footer.jsp" flush="true" />
-					<!-- /footer content -->
-
 				</div>
 				<!-- /page content -->
 			</div>
-
+			<!-- footer content -->
+				<jsp:include page="../footer.jsp" flush="true" />
+			<!-- /footer content -->
 		</div>
 
 		<div id="custom_notifications" class="custom-notifications dsp_none">
@@ -356,6 +332,7 @@
 </body>
 
 <script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/custom.js"></script>
 
 <!-- chart js -->
 <script src="../../js/chartjs/chart.min.js"></script>
@@ -364,8 +341,6 @@
 <script src="../../js/nicescroll/jquery.nicescroll.min.js"></script>
 <!-- icheck -->
 <script src="../../js/icheck/icheck.min.js"></script>
-
-<script src="../../js/custom.js"></script>
 
 <!-- PNotify -->
 <script type="text/javascript" src="../../js/notify/pnotify.core.js"></script>

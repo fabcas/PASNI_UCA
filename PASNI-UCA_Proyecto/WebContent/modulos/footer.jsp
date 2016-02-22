@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<!--<link href="../../css/bootstrap.min.css" rel="stylesheet">
 <link href="../../fonts/css/font-awesome.min.css" rel="stylesheet">
 
 <link href="../../css/custom.css" rel="stylesheet">
 <link href="../../css/green.css" rel="stylesheet">
 
-<script src="../../js/jquery.min.js"></script>
+<script src="../../js/jquery.min.js"></script>-->
 </head>
 <body>
 
@@ -24,18 +24,18 @@
 		</div>
 		<div class="clearfix"></div>
 	</footer>
-	<!-- /footer content -->
+	<!-- /footer content 
 
 <script src="../../js/bootstrap.min.js"></script>
 
-<!-- chart js -->
+<!-- chart js 
 <script src="../../js/chartjs/chart.min.js"></script>
-<!-- bootstrap progress js -->
+<!-- bootstrap progress js 
 <script src="../../js/progressbar/bootstrap-progressbar.min.js"></script>
 <script src="../../js/nicescroll/jquery.nicescroll.min.js"></script>
-<!-- icheck -->
+<!-- icheck 
 <script src="../../js/icheck/icheck.min.js"></script>
 
-<script src="../../js/custom.js"></script>
+<script src="../../js/custom.js"></script>-->
 </body>
 </html>

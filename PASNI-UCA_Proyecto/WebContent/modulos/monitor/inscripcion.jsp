@@ -222,15 +222,28 @@
 											<label class="control-label col-md-3 col-sm-3 col-xs-12"
 												for="first-name">Asignatura</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" class="form-control has-feedback-left"
-													id="inputSuccess3"> <span
-													class="fa fa-book form-control-feedback left"
-													aria-hidden="true"></span>
+											<%
+												NGAsignatura nga = new NGAsignatura();
+												ArrayList<Asignatura> listac = new ArrayList<Asignatura>();
+												listac = nga.comboAsignatura();
+											%>
+												<select class="form-control has-feedback-left">
+													<option>Seleccione una asignatura</option>
+													<%
+														for(Asignatura asig: listac)
+ 														{
+													%>
+														<option value="<%=asig.getIdAsigntatura()%>"><%=asig.getNombre()%></option>
+													<%
+ 														}
+													%>
+												</select>
+												<span class="fa fa-book form-control-feedback left" aria-hidden="true"></span>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name">Calificación</label>
+												for="first-name">Calificación (Obtenida en la asignatura seleccionada)</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<input type="text" class="form-control has-feedback-left"
 													id="inputSuccess3"> <span

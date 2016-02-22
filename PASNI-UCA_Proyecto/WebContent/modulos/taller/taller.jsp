@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>PASNI-UCA | Catálogo de Taller</title>
+<title>PASNI-UCA | Talleres de Formación</title>
 
 <!-- Bootstrap core CSS -->
 
@@ -48,180 +48,16 @@
 
 	<div class="container body">
 
-
 		<div class="main_container">
 
-			<div class="col-md-3 left_col">
-				<div class="left_col scroll-view">
-
-					<div class="navbar nav_title" style="border: 0;">
-						<a href="../../index.jsp" class="site_title"> <span>PASNI-UCA</span></a>
-					</div>
-					<div class="clearfix"></div>
-
-					<br />
-
-					<!-- menu prile quick info -->
-					<!--  <div class="profile">
-                        <div class="profile_pic">
-                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-                        </div>
-                        <div class="profile_info">
-                            <span>Welcome,</span>
-                            <h2>Anthony Fernando</h2>
-                        </div>
-                    </div>
-                    <!-- /menu prile quick info -->
-
-					<br />
-
-					<!-- sidebar menu -->
-					<div id="sidebar-menu"
-						class="main_menu_side hidden-print main_menu">
-
-						<div class="menu_section">
-							<ul class="nav side-menu">
-								<li><a><i class="fa fa-graduation-cap"></i> Alumno
-										Monitor <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu" style="display: none">
-										<li><a href="index.html">Dashboard</a></li>
-										<li><a href="index2.html">Dashboard2</a></li>
-										<li><a href="index3.html">Dashboard3</a></li>
-									</ul></li>
-								<li><a><i class="fa fa-edit"></i> Profesor Guía <span
-										class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu" style="display: none">
-										<li><a href="inscripcion-profesor.jsp">Inscribir
-												profesor guía</a></li>
-										<li><a href="lista-profesores.jsp">Lista de
-												profesores guías</a></li>
-										<li><a href="uu.html">Aún pensando....</a></li>
-									</ul></li>
-								<li><a><i class="fa fa-desktop"></i> Taller de
-										Formación <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu" style="display: none">
-										<li><a href="solicitarTaller.jsp">Solicitar Taller de
-												Reforzamiento</a></li>
-										<li><a href="taller.jsp">Catálogo de Taller</a></li>
-										<li><a href="bandejaSolicitudesTaller.jsp">Bandeja de
-												Solicitudes de Talleres</a></li>
-										<li><a href="categoria-taller.jsp">Catálogo de
-												Categoría</a></li>
-									</ul></li>
-								<li><a><i class="fa fa-magic"></i> Administración <span
-										class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu" style="display: none">
-										<li><a href="index.html">Dashboard</a></li>
-										<li><a href="index2.html">Dashboard2</a></li>
-										<li><a href="index3.html">Dashboard3</a></li>
-									</ul></li>
-							</ul>
-						</div>
-
-					</div>
-					<!-- /sidebar menu -->
-
-					<!-- /menu footer buttons -->
-					<div class="sidebar-footer hidden-small">
-						<a data-toggle="tooltip" data-placement="top"> <img
-							class="imgsize" src="../../img/logos/lg_uca.png">
-						</a> <a data-toggle="tooltip" data-placement="top"> <img
-							class="s5s" src="../../img/logos/55.png">
-						</a> <a data-toggle="tooltip" data-placement="top"> <img
-							class="imgsize" src="../../img/logos/lg_js.png">
-						</a> <a data-toggle="tooltip" data-placement="top"> <img
-							class="imgsize" src="../../img/logos/lg_ausjal.png">
-						</a>
-					</div>
-					<!-- /menu footer buttons -->
-				</div>
-			</div>
-
-			<!-- top navigation -->
-			<div class="top_nav">
-
-				<div class="nav_menu">
-					<nav class="" role="navigation">
-						<div class="nav toggle">
-							<a id="menu_toggle"><i class="fa fa-bars"></i></a>
-						</div>
-
-						<ul class="nav navbar-nav navbar-right">
-							<li class=""><a href="javascript:;"
-								class="user-profile dropdown-toggle" data-toggle="dropdown"
-								aria-expanded="false"> <img src="images/img.jpg" alt="">John
-									Doe <span class=" fa fa-angle-down"></span>
-							</a>
-								<ul
-									class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-									<li><a href="javascript:;"> Profile</a></li>
-									<li><a href="javascript:;"> <span
-											class="badge bg-red pull-right">50%</span> <span>Settings</span>
-									</a></li>
-									<li><a href="javascript:;">Help</a></li>
-									<li><a href="login.html"><i
-											class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-								</ul></li>
-
-							<li role="presentation" class="dropdown"><a
-								href="javascript:;" class="dropdown-toggle info-number"
-								data-toggle="dropdown" aria-expanded="false"> <i
-									class="fa fa-envelope-o"></i> <span class="badge bg-green">6</span>
-							</a>
-								<ul id="menu1"
-									class="dropdown-menu list-unstyled msg_list animated fadeInDown"
-									role="menu">
-									<li><a> <span class="image"> <img
-												src="images/img.jpg" alt="Profile Image" />
-										</span> <span> <span>John Smith</span> <span class="time">3
-													mins ago</span>
-										</span> <span class="message"> Film festivals used to be
-												do-or-die moments for movie makers. They were where... </span>
-									</a></li>
-									<li><a> <span class="image"> <img
-												src="images/img.jpg" alt="Profile Image" />
-										</span> <span> <span>John Smith</span> <span class="time">3
-													mins ago</span>
-										</span> <span class="message"> Film festivals used to be
-												do-or-die moments for movie makers. They were where... </span>
-									</a></li>
-									<li><a> <span class="image"> <img
-												src="images/img.jpg" alt="Profile Image" />
-										</span> <span> <span>John Smith</span> <span class="time">3
-													mins ago</span>
-										</span> <span class="message"> Film festivals used to be
-												do-or-die moments for movie makers. They were where... </span>
-									</a></li>
-									<li><a> <span class="image"> <img
-												src="images/img.jpg" alt="Profile Image" />
-										</span> <span> <span>John Smith</span> <span class="time">3
-													mins ago</span>
-										</span> <span class="message"> Film festivals used to be
-												do-or-die moments for movie makers. They were where... </span>
-									</a></li>
-									<li>
-										<div class="text-center">
-											<a> <strong>See All Alerts</strong> <i
-												class="fa fa-angle-right"></i>
-											</a>
-										</div>
-									</li>
-								</ul></li>
-
-						</ul>
-					</nav>
-				</div>
-
-			</div>
-			<!-- /top navigation -->
-
+			<jsp:include page="../menu.jsp" flush="true" />
 			<!-- page content -->
 			<div class="right_col" role="main">
 
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Taller de Formación</h3>
+							<h3>Catálogo de Talleres de Formación</h3>
 						</div>
 
 						<div class="title_right">
@@ -229,9 +65,9 @@
 								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 								<div class="input-group">
 									<input type="text" class="form-control"
-										placeholder="Search for..."> <span
+										placeholder="Buscar..."> <span
 										class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
+										<button class="btn btn-default" type="button">Ir!</button>
 									</span>
 								</div>
 							</div>
@@ -441,26 +277,13 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>Catálogo de Taller</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
 									<button type="button" id="botonNuevo" title="Nuevo registro"
 										class="btn btn-primary" data-toggle="modal"
 										data-target=".bs-example-modal-lg">Ingresar nuevo
-										taller</button>
+										taller</button><br><br>
 
 									<%
 											
@@ -531,16 +354,7 @@
 					<div class="clearfix"></div>
 
 					<!-- footer content -->
-					<footer>
-						<div class="">
-							<p class="pull-right">
-								Programa de Acompañamiento y Seguimiento a Nuevo Ingreso <a>
-									| Asistencia de Pregrado</a>.
-
-							</p>
-						</div>
-						<div class="clearfix"></div>
-					</footer>
+					<jsp:include page="../footer.jsp" flush="true" />
 					<!-- /footer content -->
 
 				</div>
@@ -558,8 +372,6 @@
 		</div>
 
 	</div>
-
-
 </body>
 
 <script src="../../js/bootstrap.min.js"></script>

@@ -7,22 +7,24 @@ import java.util.ArrayList;
 
 import entidades.Carrera;
 
+
 public class MDCarrera extends Conexion{
 	
 	public ArrayList <Carrera> comboCarrera(int id)
 	{
 		ArrayList <Carrera> arrayCarrera = new ArrayList <Carrera>();
-		String sql = ("SELECT idCarrera, nombre FROM Carrera WHERE idFacultad = ?" + id);
+		String sql = ("SELECT idCarrera, nombre FROM Carrera WHERE idFacultad = ?");
 		
 		try
 		{
 			Connection cn = getConnection();
 			PreparedStatement ps = cn.prepareStatement(sql);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 											
 			while(rs.next())		
 			{					    					
-				Carrera  enti = new Carrera();
+				Carrera enti = new Carrera();
 				
 				enti.setIdCarrera(rs.getInt("idCarrera"));
 				enti.setNombre(rs.getString("nombre"));

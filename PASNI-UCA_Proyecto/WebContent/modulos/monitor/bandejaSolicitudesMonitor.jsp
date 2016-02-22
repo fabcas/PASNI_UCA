@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PASNI-UCA | Profesores Guías</title>
-
+<title>PASNI-UCA | Alumnos Monitores</title>
 <!-- Bootstrap core CSS -->
 
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +33,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Profesores Guías</h3>
+							<h3>Alumnos Monitores</h3>
 						</div>
 
 						<div class="title_right">

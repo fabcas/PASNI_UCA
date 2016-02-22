@@ -42,17 +42,17 @@ public class SLComboCarreras extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id=request.getParameter("facultad");
-		String out = "";
+		
 		try
 		{
-			NGCarrera ndm = new NGCarrera();
+			String out = "";
+			int id= Integer.parseInt(request.getParameter("idFacultad"));
+			NGCarrera ngc = new NGCarrera();
 			ArrayList<Carrera> listCar = new ArrayList<Carrera>();
-			listCar = ndm.comboCarrera(Integer.parseInt(id));
-			out += "<option value=''>SELECCIONE</option>";
-			for (Carrera vam : listCar)
+			listCar = ngc.comboCarrera(id);
+			for (Carrera car : listCar)
 			{
-				out +="<option value=\""+vam.getIdCarrera()+"\">"+StringEscapeUtils.escapeHtml4(vam.getNombre())+"</option>";
+				out +="<option value=\""+car.getIdCarrera()+"\">"+StringEscapeUtils.escapeHtml4(car.getNombre())+"</option>";
 			}
 			PrintWriter pw = response.getWriter();
 			pw.write(out);
@@ -61,7 +61,7 @@ public class SLComboCarreras extends HttpServlet {
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			System.err.println("SL AJAX: EL ERROR ES: "+e.getMessage());
+			System.err.println("SL: EL ERROR ES: "+e.getMessage());
 		}
 	}
 

@@ -42,11 +42,11 @@
 							<nav>
 								<ul class="nav masthead-nav">
 									<li><a href="http://www.uca.edu.ni/" target="_blank"><img
-									class="img-style" src="img/logos/uca.png"></a></li>
+									class="img-style" src="../../img/logos/uca.png"></a></li>
 									<li><a href="#"><img class="img-style"
-											src="img/logos/js.png"></a></li>
+											src="../../img/logos/js.png"></a></li>
 									<li><a href="http://www.ausjal.org/" target="_blank"><img
-									class="img-style" src="img/logos/asj.png"></a></li>
+									class="img-style" src="../../img/logos/asj.png"></a></li>
 								</ul>
 							</nav>
 						</div>
@@ -149,7 +149,17 @@
 									<form class="form-horizontal form-label-left input_mask" method="post">
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name">Carrera</label>
+												for="first-name">Carné</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" class="form-control has-feedback-left"
+													id="inputSuccess3"> <span
+													class="fa fa-credit-card form-control-feedback left"
+													aria-hidden="true"></span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12"
+												for="first-name">Facultad</label>
 												<% 
 													NGFacultad fac = new NGFacultad();
 													ArrayList<Facultad> lista = new ArrayList<Facultad>();
@@ -180,7 +190,7 @@
 												<select id="carrera" name="carrera" class="form-control has-feedback-left">
 													<option value="0">Seleccione una carrera</option>
 												</select>
-												 <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
+												 <span class="fa fa-list form-control-feedback left" aria-hidden="true"></span>
 											</div>
 										</div>
 										<div class="form-group">
@@ -286,22 +296,22 @@
 	<script type="text/javascript">
 	$("#facultad").change(function()
 			{
-				var facultad = $("#facultad").val();
+				var facultad=$("#facultad").val();
 				console.log(facultad);
-				if (facultad == "0")
+				if (facultad=="0")
 				{
 					$("#carrera").val("0");
-					$("#carrera").prop('disabled', true);
+					$("#carrera").prop('disabled',true);
 				}
 				else 
 				{
-					$("#carrera").prop('disabled', false);
+					$("#carrera").prop('disabled',false);
 					$.ajax({		    
-				          url: "../../SLComboCarreras",
-				          type: "post",
+				          url:"../../SLComboCarreras",
+				          type:"post",
 				          datatype:"html",
-				          data: {'carreras':facultad},
-				          success: function(data) 
+				          data:{'idFacultad':facultad},
+				          success:function(data) 
 				          {
 				        		$('#carrera').html(data);  
 				          }

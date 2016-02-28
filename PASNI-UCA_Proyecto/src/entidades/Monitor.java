@@ -2,7 +2,8 @@ package entidades;
 
 public class Monitor {
 
-	private Integer idUsuario;
+	private int idMonitor;
+	private int idUsuario;
 	private String primerNombre;
 	private String email;
 	private String segundoNombre;
@@ -11,13 +12,19 @@ public class Monitor {
 	private String segundoApellido;
 	private String carne;
 	private float promedio;
-	private boolean estipendio;
 	private int idCarrera;
+	private boolean estipendio;
 	
-	public Integer getIdUsuario() {
+	public int getIdMonitor() {
+		return idMonitor;
+	}
+	public void setIdMonitor(int idMonitor) {
+		this.idMonitor = idMonitor;
+	}
+	public int getIdUsuario() {
 		return idUsuario;
 	}
-	public void setIdUsuario(Integer idUsuario) {
+	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 	public String getPrimerNombre() {
@@ -68,16 +75,39 @@ public class Monitor {
 	public void setPromedio(float promedio) {
 		this.promedio = promedio;
 	}
+	public int getIdCarrera() {
+		return idCarrera;
+	}
+	public void setIdCarrera(int idCarrera) {
+		this.idCarrera = idCarrera;
+	}
 	public boolean isEstipendio() {
 		return estipendio;
 	}
 	public void setEstipendio(boolean estipendio) {
 		this.estipendio = estipendio;
 	}
-	public int getIdCarrera() {
-		return idCarrera;
+	
+	public Monitor() {
+		super();
 	}
-	public void setIdCarrera(int idCarrera) {
+	
+	public Monitor(int idMonitor, int idUsuario, String primerNombre,
+			String email, String segundoNombre, String telefono,
+			String primerApellido, String segundoApellido, String carne,
+			float promedio, int idCarrera, boolean estipendio) {
+		super();
+		this.idMonitor = idMonitor;
+		this.idUsuario = idUsuario;
+		this.primerNombre = primerNombre;
+		this.email = email;
+		this.segundoNombre = segundoNombre;
+		this.telefono = telefono;
+		this.primerApellido = primerApellido;
+		this.segundoApellido = segundoApellido;
+		this.carne = carne;
+		this.promedio = promedio;
 		this.idCarrera = idCarrera;
+		this.estipendio = estipendio;
 	}
 }

@@ -33,20 +33,16 @@
 
 		<div class="main_container">
 
-			<!-- page content -->
 			<div class="right_colinsc" role="main">
-				<div class="">
+	
 					<div class="masthead ">
 						<div class="inner">
 							<h3 class="masthead-brand white">PASNI-UCA</h3>
 							<nav>
 								<ul class="nav masthead-nav">
-									<li><a href="http://www.uca.edu.ni/" target="_blank"><img
-									class="img-style" src="../../img/logos/uca.png"></a></li>
-									<li><a href="#"><img class="img-style"
-											src="../../img/logos/js.png"></a></li>
-									<li><a href="http://www.ausjal.org/" target="_blank"><img
-									class="img-style" src="../../img/logos/asj.png"></a></li>
+									<li><a href="http://www.uca.edu.ni/" target="_blank"><img class="img-style" src="../../img/logos/uca.png"></a></li>
+									<li><a href="#"><img class="img-style" src="../../img/logos/js.png"></a></li>
+									<li><a href="http://www.ausjal.org/" target="_blank"><img class="img-style" src="../../img/logos/asj.png"></a></li>
 								</ul>
 							</nav>
 						</div>
@@ -67,245 +63,247 @@
 							<h4>Período</h4>
 						</div>
 					</div>
+								
 					<div class="clearfix"></div>
-
-
+					
 					<div class="row">
+					
 						<div class="col-md-12 col-sm-12 col-xs-12">
-							<!--Datos Personales-->
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>Datos personales</h2>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-									<br />
-									<form class="form-horizontal form-label-left input_mask">
-
-										<div
-											class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-											<input type="text" class="form-control has-feedback-left"
-												id="inputSuccess2" placeholder="Primer Nombre"> <span
-												class="fa fa-user form-control-feedback left"
-												aria-hidden="true"></span>
-										</div>
-
-										<div
-											class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-											<input type="text" class="form-control has-feedback-left"
-												id="inputSuccess3" placeholder="Segundo Nombre"> <span
-												class="fa fa-user form-control-feedback left"
-												aria-hidden="true"></span>
-										</div>
-
-										<div
-											class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-											<input type="text" class="form-control has-feedback-left"
-												id="inputSuccess4" placeholder="Primer Apellido"> <span
-												class="fa fa-user form-control-feedback left"
-												aria-hidden="true"></span>
-										</div>
-
-										<div
-											class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-											<input type="text" class="form-control has-feedback-left"
-												id="inputSuccess5" placeholder="Segundo Apellido"> <span
-												class="fa fa-user form-control-feedback left"
-												aria-hidden="true"></span>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name">Teléfono</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text"
-													class="form-control has-feedback-left inputTelefono"
-													id="inputTelefono"> <span
-													class="fa fa-mobile form-control-feedback left"
-													aria-hidden="true"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name">Correo</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="email" class="form-control has-feedback-left"
-													id="inputCorreo" onblur="validarCorreo(this.value);">
-												<span class="fa fa-envelope-o form-control-feedback left"
-													aria-hidden="true"></span>
-											</div>
-										</div>
-										<div class="ln_solid"></div>
-									</form>
-								</div>
-							</div>
-							<!--Datos Académicos-->
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>Datos académicos</h2>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-									<br />
-									<form class="form-horizontal form-label-left input_mask" method="post">
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name">Carné</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" class="form-control has-feedback-left"
-													id="inputSuccess3"> <span
-													class="fa fa-credit-card form-control-feedback left"
-													aria-hidden="true"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name">Facultad</label>
-												<% 
-													NGFacultad fac = new NGFacultad();
-													ArrayList<Facultad> lista = new ArrayList<Facultad>();
-													lista = fac.comboFacultad();
-												%>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<select id="facultad" name="facultad" class="form-control has-feedback-left">
-													<option>Seleccion una Facultad</option>
-													<%
-														for(Facultad facu: lista)
- 														{
-													%>
-														<option value="<%=facu.getIdFacultad()%>"><%=facu.getNombre()%></option>
-													<%
- 														}
-													%>
-												</select>
-												 <span class="fa fa-list form-control-feedback left" aria-hidden="true"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Carrera </label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-											<%
-												NGCarrera nc = new NGCarrera();
-												ArrayList<Carrera> list = new ArrayList<Carrera>();	
-											%>
-												<select id="carrera" name="carrera" class="form-control has-feedback-left">
-													<option value="0">Seleccione una carrera</option>
-												</select>
-												 <span class="fa fa-list form-control-feedback left" aria-hidden="true"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name">Promedio</br>
-											<small>(Cuatrimestre anterior)</small></label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" class="form-control has-feedback-left"
-													id="inputSuccess3"> <span
-													class="fa fa-pencil-square-o form-control-feedback left"
-													aria-hidden="true"></span>
-											</div>
-										</div>
-										<div class="ln_solid"></div>
-									</form>
-								</div>
-							</div>
-
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>Asignatura a monitorear</h2>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-									<br />
-									<form class="form-horizontal form-label-left input_mask">
-
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name">Asignatura</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-											<%
-												NGAsignatura nga = new NGAsignatura();
-												ArrayList<Asignatura> listac = new ArrayList<Asignatura>();
-												listac = nga.comboAsignatura();
-											%>
-												<select class="form-control has-feedback-left">
-													<option>Seleccione una asignatura</option>
-													<%
-														for(Asignatura asig: listac)
- 														{
-													%>
-														<option value="<%=asig.getIdAsigntatura()%>"><%=asig.getNombre()%></option>
-													<%
- 														}
-													%>
-												</select>
-												<span class="fa fa-book form-control-feedback left" aria-hidden="true"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name">Calificación (Obtenida en la asignatura seleccionada)</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" class="form-control has-feedback-left"
-													id="inputSuccess3"> <span
-													class="fa fa-pencil-square-o form-control-feedback left"
-													aria-hidden="true"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name"><span class="required">Turno</span>
-											</label>
-											<div class="radio">
-												<input type="radio" class="flat" checked name="iCheck">
-												Diurno <input type="radio" class="flat" checked
-													name="iCheck"> Vespertino <input type="radio"
-													class="flat" checked name="iCheck"> Sabatino
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="last-name"><span class="required">¿Por
-													qué quiere pertenecer al programa?</span> </label>
-											<div
-												class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-												<textarea id="message" required="required"
-													class="form-control" name="message"
-													data-parsley-trigger="keyup" data-parsley-minlength="10"
-													data-parsley-maxlength="200"
-													data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
-													data-parsley-validation-threshold="10"></textarea>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="estipendio"><span class="required">Goza
-													de estipendio</span> </label>
-											<div class="radio">
-												<input type="radio" class="flat" checked name="iCheck1">
-												Si <input type="radio" class="flat" checked name="iCheck1">
-												No
-											</div>
-										</div>
-										<div class="ln_solid"></div>
-										<div class="form-group">
-											<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
-												<label>Recuerda! Todos los datos son requeridos.</label>
-												<button type="submit" class="btn btn-primary">Cancelar</button>
-												<button type="submit" class="btn btn-success">Enviar</button>
-											</div>
-										</div>
-
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /page content -->
-		</div>
-	</div>
+						
+							<form method="post" action="../../SLInscripcion?opc=1">
+							
+								<div class="x_panel">
+								
+									<div class="x_title">
+										<h2>Datos personales</h2>
+										<div class="clearfix"></div>
+									</div>
+									
+									<div class="x_content">
+										<br />
+										<div class="form-horizontal form-label-left input_mask" >
 	
+											<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+												<input type="text" class="form-control has-feedback-left" id="primerN" name="primerN" placeholder="Primer Nombre"> <span
+												class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+											</div>
+	
+											<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+												<input type="text" class="form-control has-feedback-left" id="segundN" name="segundoN" placeholder="Segundo Nombre"> <span
+													class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+											</div>
+	
+											<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+												<input type="text" class="form-control has-feedback-left" id="primerA" name="primerA" placeholder="Primer Apellido"> <span
+													class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+											</div>
+	
+											<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+												<input type="text" class="form-control has-feedback-left" id="segundoA" name="segundoA" placeholder="Segundo Apellido"> <span
+													class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+											</div>
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Teléfono</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" class="form-control has-feedback-left inputTelefono" id="telefono" name="telefono"> <span
+													class="fa fa-mobile form-control-feedback left" aria-hidden="true"></span>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Correo</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="email" class="form-control has-feedback-left" id="email" name="email" onblur="validarCorreo(this.value);">
+													<span class="fa fa-envelope-o form-control-feedback left" aria-hidden="true"></span>
+												</div>
+											</div>
+											
+											<div class="ln_solid"></div>
+											
+										</div>
+										
+									</div>
+									
+								</div><!-- x_panel Datos Personales -->
+								
+								<div class="x_panel">
+								
+									<div class="x_title">
+										<h2>Datos académicos</h2>
+										<div class="clearfix"></div>
+									</div>
+									
+									<div class="x_content">
+										<br />
+										<div class="form-horizontal form-label-left input_mask">
+										
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Carné</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" class="form-control has-feedback-left" id="carne" name="carne"> <span
+														class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Facultad</label>
+													<% 
+														NGFacultad fac = new NGFacultad();
+														ArrayList<Facultad> lista = new ArrayList<Facultad>();
+														lista = fac.comboFacultad();
+													%>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<select id="facultad" name="facultad" class="form-control has-feedback-left">
+														<option>Seleccion una Facultad</option>
+														<%
+															for(Facultad facu: lista)
+	 														{
+														%>
+															<option value="<%=facu.getIdFacultad()%>"><%=facu.getNombre()%></option>
+														<%
+	 														}
+														%>
+													</select>
+													 <span class="fa fa-list form-control-feedback left" aria-hidden="true"></span>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Carrera </label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<%
+														NGCarrera nc = new NGCarrera();
+														ArrayList<Carrera> list = new ArrayList<Carrera>();	
+													%>
+													<select id="carrera" name="carrera" class="form-control has-feedback-left">
+														<option value="0">Seleccione una carrera</option>
+														<%
+															for(Carrera carr: list)
+	 														{
+														%>
+															<option value="<%=carr.getIdCarrera()%>"><%=carr.getNombre()%></option>
+														<%
+	 														}
+														%>
+													</select>
+													<span class="fa fa-list form-control-feedback left" aria-hidden="true"></span>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Promedio</br>
+												<small>(Cuatrimestre anterior)</small></label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" class="form-control has-feedback-left" id="promedio" name="promedio"> <span
+														class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="estipendio"><span class="required">Goza de estipendio</span> </label>
+												<div class="radio">
+													<input type="radio" class="flat" checked name="estipendio" id="estipendio" value="true">Si 
+													<input type="radio" class="flat" checked name="estipendio" id="estipendio" value="false">No
+												</div>
+											</div>
+											
+											<div class="ln_solid"></div>
+										
+										</div>
+										
+									</div>
+									
+								</div><!-- x_panel Datos Académicos -->
+	
+								<div class="x_panel">
+								
+									<div class="x_title">
+										<h2>Asignatura a monitorear</h2>
+										<div class="clearfix"></div>
+									</div>
+									
+									<div class="x_content">
+										<br />
+										<div class="form-horizontal form-label-left input_mask" >
+										
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Asignatura</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<%
+														NGAsignatura nga = new NGAsignatura();
+														ArrayList<Asignatura> listac = new ArrayList<Asignatura>();
+														listac = nga.comboAsignatura();
+													%>
+													<select id="asignatura" name="asignatura" class="form-control has-feedback-left">
+														<option>Seleccione una asignatura</option>
+														<%
+															for(Asignatura asig: listac)
+	 														{
+														%>
+															<option value="<%=asig.getIdAsigntatura()%>"><%=asig.getNombre()%></option>
+														<%
+	 														}
+														%>
+													</select>
+													<span class="fa fa-book form-control-feedback left" aria-hidden="true"></span>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Calificación (Obtenida en la asignatura seleccionada)</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" class="form-control has-feedback-left" id="calificacion" name="calificacion"> <span
+														class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><span class="required">Turno</span></label>
+												<div class="radio">
+													<input type="radio" class="flat" checked name="turno" id="turno" value="diurno">Diurno
+													<input type="radio" class="flat" checked name="turno" id="turno" value="vespertino">Vespertino
+													<input type="radio" class="flat" checked name="turno" id="turno" value="sabatino"> Sabatino
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"><span class="required">¿Por qué quiere pertenecer al programa?</span> </label>
+												<div
+													class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+													<textarea id="motivo" name="motivo" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10"
+														data-parsley-maxlength="200" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+												</div>
+											</div>
+											
+											<div class="ln_solid"></div>
+											
+											<div class="form-group">
+												<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
+													<label>Recuerda! Todos los datos son requeridos.</label>
+													<button type="submit" class="btn btn-primary">Cancelar</button>
+													<button type="submit" class="btn btn-success">Enviar</button>
+												</div>
+											</div>
+										</div>
+										
+									</div> 
+									
+								</div> <!-- x_panel -->
+								
+							</form><!-- method post -->
+							
+						</div><!-- xpanel -->
+												
+					</div><!-- row -->
+				
+			</div><!-- /page content -->
+			
+		</div> <!-- main_container -->
+		
+	</div> <!-- container body -->
+	
+	<!-- Select Facultad y Carrera -->
 	<script type="text/javascript">
 	$("#facultad").change(function()
 			{
@@ -333,7 +331,38 @@
 			});
 		
 	</script>
+	
+	<!-- Mensajes CRUD -->
+	<%
+    		String msj ="";
+    		msj = request.getParameter("msj");
+    %>
 
+	<script type="text/javascript">
+    		function cargarNotify()
+    		{
+    			var mensaje = <%=msj%>;
+    			if(mensaje=="1")
+    			{
+    				new PNotify({
+    	                title: "Inscripción Enviada",
+    	                type: "info",
+    	                text: "Su inscripción se ha enviado exitosamente!!!",
+    	                nonblock: {
+                                  nonblock: true,
+                                  nonblock_opacity: .9}
+    				});
+    			}
+    		}
+	</script>
+	
+	<!-- Mensajes CRUD -->
+	<script>
+		$(function() {
+	    	$("#botonEnviar").tooltip();
+	     });
+	</script>
+	
 	<script src="../../js/bootstrap.min.js"></script>
 	<script src="../../js/custom.js"></script>
 	<!-- icheck -->

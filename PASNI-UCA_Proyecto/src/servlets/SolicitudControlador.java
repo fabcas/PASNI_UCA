@@ -17,7 +17,7 @@ public class SolicitudControlador {
 	private void RegistrarSolicitud(){
 		
 		try {
-			Monitor m = new Monitor();
+			/*Monitor m = new Monitor();
 			SolicitudModelo sm = new SolicitudModelo();
 			List<DetalleSolicitud> ds = new ArrayList<DetalleSolicitud>();
 			m.setIdUsuario(null);
@@ -51,7 +51,7 @@ public class SolicitudControlador {
 			ds.add(d3);
 			
 			Error r = sm.RegistrarSolicitud(m, ds);
-			System.out.println(r.getCodError() + " -- " + r.getMensajeError());
+			System.out.println(r.getCodError() + " -- " + r.getMensajeError());*/
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

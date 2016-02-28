@@ -101,8 +101,7 @@
 										<h4>
 											<b>Complete los campos</b>
 										</h4>
-										<form class="form-horizontal form-label-left" name="form"
-											method="post" action="../../SLTaller?opc=1">
+										<form class="form-horizontal form-label-left" name="form" method="post" action="../../SLTaller?opc=1">
 											<div class="item form-group">
 												<%
 																	NGTaller tallerNegocio = new NGTaller();

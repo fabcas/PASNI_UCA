@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entidades.Inscripcion;
+import entidades.InscripcionMonitor;
 import entidades.Monitor;
 import entidades.Taller;
 
@@ -56,11 +57,11 @@ public class MDInscripcion extends Conexion{
 	}
 	
 	//Cargar datos
-	public ArrayList <Inscripcion> cargarDatosI()
+	public ArrayList <InscripcionMonitor> cargarDatosI()
 	{
-		ArrayList <Inscripcion> array = new ArrayList <Inscripcion>();
+		ArrayList <InscripcionMonitor> array = new ArrayList <InscripcionMonitor>();
 		CallableStatement s = null;	
-		String sql = ("{call dbo.SPListaInscripcionMonitor}");
+		String sql = ("{call dbo.SPListaSolicitudMonitor}");
 		
 		try
 		{
@@ -70,15 +71,25 @@ public class MDInscripcion extends Conexion{
 											
 			while(rs.next())		
 			{					    					
-				Inscripcion  i = new Inscripcion();
+				InscripcionMonitor  i = new InscripcionMonitor();
 				
 				i.setIdInscripcion(rs.getInt("idInscripcion"));
 				i.setIdMonitor(rs.getInt("idMonitor"));
-				i.setIdAsignatura(rs.getInt("idAsignatura"));
-				i.setFecha(rs.getDate("fecha"));
+				i.setPrimerNombre(rs.getString("primerNombre"));
+				i.setSegundoNombre(rs.getString("segundoNombre"));
+				i.setPrimerApellido(rs.getString("primerApellido"));
+				i.setSegundoApellido(rs.getString("segundoNombre"));
+				i.setCarne(rs.getString("carne"));
+				i.setTelefono(rs.getString("telefono"));
+				i.setEmail(rs.getString("email"));
+				i.setNombreC(rs.getString("nombre"));
+				i.setPromedio(rs.getFloat("promedio"));
+				i.setEstipendio(rs.getBoolean("estipendio"));
+				i.setNombreA(rs.getString("nombre"));
+				i.setCalificacion(rs.getInt("calificacion"));
 				i.setMotivo(rs.getString("motivo"));
-				i.setCalificación(rs.getInt("calificacion"));
 				i.setTurno(rs.getString("turno"));
+				i.setFecha(rs.getDate("fecha"));
 				i.setEstado(rs.getBoolean("estado"));					
 				array.add(i);
 			}

@@ -79,8 +79,8 @@
 				
 													 <%
 							                            NGInscripcion ngi = new NGInscripcion();
-							                            ArrayList<Inscripcion> lista = new ArrayList<Inscripcion>();
-							                            lista = ngi.cargarInscripcion();
+							                            ArrayList<InscripcionMonitor> lista = new ArrayList<InscripcionMonitor>();
+							                            lista = ngi.cargarInscripcionMonitor();
 							                        %>
 				                                    <table class="table table-striped responsive-utilities jambo_table bulk_action">
 				                                        <thead>
@@ -89,32 +89,38 @@
 				                                                    <input type="checkbox" id="check-all" class="flat">
 				                                                </th>
 				                                                <th class="column-title">IdInscripcion </th>
-				                                                <th class="column-title">IdMonitor</th>
+				                                                <th class="column-title">Nombre</th>
+				                                                <th class="column-title">Apellido</th>
+				                                                <th class="column-title">Carrera</th>
 				                                                <th class="column-title">Asignatura</th>
-				                                                <th class="column-title">Calificación</th>
-				                                                <th class="column-title">Turno</th>
 				                                                <th class="column-title">Motivo</th>
 				                                                <th class="column-title">Estado</th>
 				                                                <th class="column-title">Fecha Envío</th>
+				                                                <th class="column-title">Acción</th>
 				                                           	</tr>
 				                            			</thead>
 				                            			
 							                            <tbody>
 							                            <%
-							                            	for(Inscripcion i : lista)
+							                            	for(InscripcionMonitor i : lista)
 							                            	{
 							                            %>
 							                           
 							                                <tr class="even pointer">
 							                                    <td class="a-center "><input type="checkbox" class="flat" name="table_records" ></td>
 							                                    <td class=" "><%=i.getIdInscripcion()%></td>
-							                                    <td class=" "><%=i.getIdMonitor()%></td>
-							                                    <td class=" "><%=i.getIdAsignatura()%></td>
-							                                    <td class=" "><%=i.getCalificación()%></td>
-							                                    <td class=" "><%=i.getTurno()%></td>
+							                                   	<td class=" "><%=i.getPrimerNombre()%></td>
+							                                    <td class=" "><%=i.getPrimerApellido()%></td>
+							                                    <td class=" "><%=i.getNombreC()%></td>
+							                                    <td class=" "><%=i.getNombreA()%></td>
 							                                    <td class=" "><%=i.getMotivo()%></td>
 							                                    <td class=" "><%=i.isEstado()%></td>
 							                                    <td class=" "><%=i.getFecha()%></td>
+							                                    <td>
+								                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar">
+								                                    	<i class="fa fa-folder"></i>Ver
+								                                    </button>
+							                                    </td>
 							                               </tr>
 							                             <%}%>
 							                           </tbody>

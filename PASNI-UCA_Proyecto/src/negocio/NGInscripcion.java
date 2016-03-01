@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import datos.MDInscripcion;
 import datos.MDTaller;
 import entidades.Inscripcion;
+import entidades.InscripcionMonitor;
 import entidades.Monitor;
 import entidades.Taller;
 
@@ -31,9 +32,9 @@ public class NGInscripcion {
 		return bl;
 	}
 	
-	public ArrayList<Inscripcion> cargarInscripcion()
+	public ArrayList<InscripcionMonitor> cargarInscripcionMonitor()
 	{
-		ArrayList < Inscripcion > array = new ArrayList<Inscripcion>();
+		ArrayList < InscripcionMonitor > array = new ArrayList<InscripcionMonitor>();
 		MDInscripcion datos = new MDInscripcion();
 		try
 		{

@@ -14,8 +14,8 @@
 
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="fonts/eleganticons/et-icons.css">
+<link href="fonts/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="fonts/eleganticons/et-icons.css">
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <link href="js/ie10-viewport-bug-workaround.js" rel="stylesheet">
@@ -28,7 +28,7 @@
 </head>
 
 <body>
-	<div class="site-wrapper">
+	<div class="site-wrapper"> 
 		<nav class="navbar">
 			<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -54,8 +54,7 @@
 			<div class="container">
 				<div class="row title text-center">
 					<h3 class="margin-top white">Asistencia a Pregrado</h3>
-					<h4 class="yellow ">Programas de Acompañamiento y Seguimiento
-						a Nuevo Ingreso</h4>
+					<h4 class="yellow ">Programas de Acompañamiento y Seguimiento a Nuevo Ingreso</h4>
 				</div>
 				<div class="row">
 					<div class="col-md-4">
@@ -63,8 +62,7 @@
 							<div class="cover"
 								style="background: url('img/est.jpg'); background-size: cover;">
 								<div class="overlay text-center">
-									<a href="modulos/monitor/inscripcion.jsp"
-										class="btn btn-white-fill">Sé Monitor</a>
+									<a href="modulos/monitor/inscripcion.jsp" class="btn btn-white-fill">Sé Monitor</a>
 								</div>
 
 							</div>
@@ -76,8 +74,7 @@
 							<div class="cover"
 								style="background: url('img/doc.jpg'); background-size: cover;">
 								<div class="overlay text-center">
-									<a href="#" data-toggle="modal" data-target="#modal1"
-										class="btn btn-white-fill">Para Profesores</a>
+									<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Para Profesores</a>
 								</div>
 							</div>
 							<p class="par">Profesores Guías</p>
@@ -88,8 +85,7 @@
 							<div class="cover"
 								style="background: url('img/tal.jpg'); background-size: cover;">
 								<div class="overlay text-center">
-									<a href="#" data-toggle="modal" data-target="#modal1"
-										class="btn btn-white-fill">Infórmate</a>
+									<a href="modulos/taller/vista-taller.jsp" class="btn btn-white-fill">Infórmate</a>
 								</div>
 							</div>
 							<p class="par">Talleres de Formación</p>
@@ -102,25 +98,31 @@
 			<div class="white text-center">
 				<p>&copy; Copyright 2016, Todos los Derechos Reservados</p>
 				<p>Universidad Centroamericana</p>
-			</div>
+			</div>            
 		</div>
 
-		<div class="modal fade" id="modal1" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content modal-popup">
 					<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-					<h3 class="white">Iniciá Sesión</h3>
+					<h3 class="white">Iniciar Sesión</h3>
 					<form action="SLInicioSesion" method="post" name="InicioSesion"
 						class="popup-form">
-						<input type="text" class="form-control form-white"
-							placeholder="Correo o Usuario"> <input type="text"
-							class="form-control form-white" placeholder="Contraseña">
-						<button type="submit" class="btn btn-submit">Enviar</button>
+						<input type="text" class="form-control form-white" placeholder="Usuario"> 
+						<input type="text" class="form-control form-white" placeholder="Contraseña">
+						<button type="submit" class="btn btn-submit">Ingresar</button>
 					</form>
 				</div>
 			</div>
 		</div>
+	
+	<div id="custom_notifications" class="custom-notifications">
+        <div class="tabbed_notifications">
+            <div class="text">
+                 <a href="#" data-toggle="modal" data-target="#modal1" class="ctext"><i class="fa fa-user"></i> Iniciar Sesión</a>
+            </div>
+        </div>
+    </div>
 	</div>
 
 	<!-- Bootstrap core JavaScript

@@ -551,3 +551,25 @@ section {
 	width: 65px;
 }
 
+.custom-notifications {
+    position: fixed;
+    margin: 15px;
+    right: 0;
+    float: right;
+    width: 250px;
+    z-index: 4000;
+    bottom: 0;
+}
+
+.tabbed_notifications .text {
+	font-weight: bold;
+	font-size:20px;
+    padding: 5px 15px;
+    /* border-radius: 7px; */
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.3);
+    background-color: #66b318;
+}
+
+.ctext{
+    color: #ffffff;
+}

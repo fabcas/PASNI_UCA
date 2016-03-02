@@ -50,7 +50,7 @@
 
 					<div class="row ">
 						<div class="col-md-12 text-center white headf">
-							<h3>Coordinación de Asistencia a Pregrado</h3>
+							<h3>Asistencia a Pregrado</h3>
 							<h4>Programa de Alumnos Monitores</h4>
 						</div>
 					</div>

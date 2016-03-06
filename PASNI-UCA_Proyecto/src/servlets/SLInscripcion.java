@@ -55,10 +55,10 @@ public class SLInscripcion extends HttpServlet {
 			
 			opc = request.getParameter("opc");
 			
-			if(opc.isEmpty() == true){
+			/*if(opc.isEmpty() == true){
 				response.sendRedirect("./modulos/monitor/inscripcion.jsp");
 			}
-			else if(opc.equals("1")){
+			else*/ if(opc.equals("1")){
 				
 				/*Monitor*/
 				
@@ -96,12 +96,11 @@ public class SLInscripcion extends HttpServlet {
 				}
 				
 				g = ni.guardarNGTaller(i,m);
-				if(g == true){
-					response.sendRedirect("./modulos/monitor/inscripcion.jsp?msj=1");
-				}
-				else{
-					response.sendRedirect("./modulos/monitor/inscripcion.jsp");
-				}
+				response.sendRedirect("./modulos/monitor/inscripcion.jsp?msj=1");
+				
+			}
+			else{
+				response.sendRedirect("./modulos/monitor/inscripcion.jsp");
 			}
 		}	
 		catch(Exception e)

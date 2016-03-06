@@ -33,29 +33,28 @@
 			<div class="right_col" role="main">
 
 				<div class="page-title">
-						<div class="title_left">
-							<h3>Período de Inscripción de Alumnos Monitores</h3>
-						</div>
+					<div class="title_left">
+						<h3>Período de Inscripción de Alumnos Monitores</h3>
+					</div>
 
-						<div class="title_right">
-							<div
-								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-								<div class="input-group">
-									<input type="text" class="form-control"
-										placeholder="Buscar..."> <span
-										class="input-group-btn">
+					<div class="title_right">
+						<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Buscar..."> 
+									<span class="input-group-btn">
 										<button class="btn btn-default" type="button">Ir!</button>
 									</span>
-								</div>
 							</div>
 						</div>
+					</div>
 				</div>
 				
 				<div class="col-md-12 col-sm-12 col-xs-12">
                 	<div class="x_panel">
                     	<div class="x_title">
                         	<h2>Período</h2>
-                            	<div class="clearfix"></div>
+                           <div class="clearfix"></div>
+                           <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAgregar">Agregar Período</button>
                         </div>
                         <div class="x_content">
 							<div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -169,6 +168,48 @@
                     </div><!-- /x-panel -->
                  </div><!-- /col m12 -->
 				<div class="clearfix"></div>
+				
+				<!-- Modal Agregar Periodo -->
+
+				<div class="modal fade bs-example-modal-lg"  id="modalAgregar" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">x</span>
+								</button>
+								<h5 class="modal-title">
+									<b>Agregar Período Inscripción</b>
+								</h5>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal form-label-left" name="form" method="post" action="../../SLPeriodoInscripcion?opc=1">
+									<div class="item form-group">
+										<%
+											NGTaller tallerNegocio = new NGTaller();
+											ArrayList<Cuatrimestre> listaCuatrimestre = new ArrayList<Cuatrimestre>();
+											listaCuatrimestre = tallerNegocio.comboCuatrimestre();
+										%>
+										<label>Cuatrimestre:</label> 
+										<select id="cuatri" class="select2_single form-control" name="cuatri" required="required" tabindex="-1">
+											<option value="0">Seleccione..</option>
+												<%for(Cuatrimestre cuatri : listaCuatrimestre){%>
+													<option value="<%=cuatri.getIdCuatrimestre() %>"><%=cuatri.getNombre()%></option>
+												<%}%>
+										</select>
+										<label>Fecha inicio:</label> <input type="date" id="fechaini" name="fechaini" required="required" class="form-control" placeholder=""> <br>
+										<label>Fecha final:</label> <input type="date" id="fechafin" name="fechafin" required="required" class="form-control" placeholder="">
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+										<button type="submit" class="btn btn-primary">Guardar</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			    <!-- Modal Agregar -->
 
 			</div><!-- /main -->
 			 
@@ -176,8 +217,11 @@
 
 			<jsp:include page="../footer.jsp" flush="true" /><!-- /footer content -->
 
-		</div><!-- /page content -->
-	</div>
+			</div><!-- /page content -->
+			
+		</div><!-- /main container-->
+		
+	</div> <!-- /container -->
 
 	<div id="custom_notifications" class="custom-notifications dsp_none">
 		<ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>

@@ -45,28 +45,34 @@
 								<li><a><i class="fa fa-graduation-cap"></i> Alumno
 										Monitor <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="index.html">Dashboard</a></li>
-										<li><a href="index2.html">Dashboard2</a></li>
+										<li><a href="../monitor/bandejaSolicitudesMonitor.jsp">Bandeja Inscripciones Monitor</a></li>
+										<li><a href="../monitor/inscripcion.jsp">Período Inscripción</a></li>
 										<li><a href="index3.html">Dashboard3</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-edit"></i> Profesor Guía <span
 										class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="index.html">Dashboard</a></li>
-										<li><a href="index2.html">Dashboard2</a></li>
-										<li><a href="index3.html">Dashboard3</a></li>
+										<li><a href="../profesorGuia/informe-guiatura.jsp">Informe Guiatura</a></li>
+										<li><a href="../profesorGuia/inscripcion-profesor.jsp">Inscripcion Profesor</a></li>
+										<li><a href="../profesorGuia/lista-profesores.jsp">Dashboard3</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-desktop"></i> Taller de
 										Formación <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="index.html">Dashboard</a></li>
-										<li><a href="index2.html">Dashboard2</a></li>
-										<li><a href="index3.html">Dashboard3</a></li>
+										<li><a href="../taller/bandejaSolicitudesTaller.jsp">Bandeja Solicitud Taller</a></li>
+										<li><a href="../taller/taller.jsp">Taller</a></li>
+										<li><a href="../taller/">Dashboard3</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-magic"></i> Administración <span
 										class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="index.html">Dashboard</a></li>
+										<li><a href="index.html">Dashboard</a>
+											<ul class="nav child_menu" style="display: none">
+												<li><a href="index.html">Dashboard</a></li>
+												<li><a href="index2.html">Dashboard2</a></li>
+												<li><a href="index3.html">Dashboard3</a></li>
+											</ul>
+										</li>
 										<li><a href="index2.html">Dashboard2</a></li>
 										<li><a href="index3.html">Dashboard3</a></li>
 									</ul></li>

@@ -339,29 +339,32 @@
 		
 	</script>
 	
-	<!-- Mensajes CRUD -->
-	<%
-    		String msj ="";
-    		msj = request.getParameter("msj");
-    %>
-
-	<script type="text/javascript">
-    		function cargarNotify()
-    		{
-    			var mensaje = <%=msj%>;
-    			if(mensaje=="1")
-    			{
-    				new PNotify({
-    	                title: "Inscripción Enviada",
-    	                type: "info",
-    	                text: "Su inscripción se ha enviado exitosamente!!!",
-    	                nonblock: {
-                                  nonblock: true,
-                                  nonblock_opacity: .9}
-    				});
-    			}
-    		}
-	</script>
+			
+			<!-- notificaciones de CRUD -->
+		<%
+			String msj ="";
+			msj = request.getParameter("msj");
+		
+		%>
+		<script type="text/javascript">
+		
+		  function cargarNotify()
+			{
+				var mensaje = "<%=msj%>";
+				
+					if(mensaje=="1" )
+					{
+							new PNotify({
+				                title: "Inscripción Guardado",
+				                type: "info",
+				                text: "¡Su inscripción se ha enviado!",
+				                nonblock: {
+	                                nonblock: true,
+	                                nonblock_opacity: .2}
+							});
+					}
+			}	 
+		</script>
 	
 	<!-- Mensajes CRUD -->
 	<script>
@@ -374,5 +377,10 @@
 	<script src="../../js/custom.js"></script>
 	<!-- icheck -->
 	<script src="../../js/icheck.min.js"></script>
+	<!-- librerias externas -->
+	<script src="assets/js/custom.js"></script>
+	<script type="text/javascript" src="../../js/notify/pnotify.core.js"></script>
+    <script type="text/javascript" src="../../js/notify/pnotify.buttons.js"></script>
+    <script type="text/javascript" src="../../js/notify/pnotify.nonblock.js"></script>
 </body>
 </html>

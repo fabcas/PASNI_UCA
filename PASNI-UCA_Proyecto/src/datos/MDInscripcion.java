@@ -29,7 +29,7 @@ public class MDInscripcion extends Conexion{
 			cstmt.setString("primerNombre", m.getPrimerNombre());
 			cstmt.setString("segundoNombre", m.getSegundoNombre());
 			cstmt.setString("primerApellido", m.getPrimerApellido());
-			cstmt.setString("segundoApellido", m.getPrimerApellido());
+			cstmt.setString("segundoApellido", m.getSegundoApellido());
 			cstmt.setString("email", m.getEmail());
 			cstmt.setString("telefono", m.getTelefono());
 			cstmt.setString("carne", m.getCarne());

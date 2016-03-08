@@ -48,19 +48,19 @@
 						</div>
 					</div>
 
-					<div class="row ">
-						<div class="col-md-12 text-center white headf">
-							<h3>Asistencia a Pregrado</h3>
-							<h4>Programa de Alumnos Monitores</h4>
+					<div class="row">
+						<div class="col-md-12 text-center headf">
+							<h3 class="white">Asistencia a Pregrado</h3>
+							<h3 class="yellow">Programa de Alumnos Monitores</h3>
 						</div>
 					</div>
 
 					<div class="page-title">
 						<div class="title_right">
-							<h4>Inscripción al programa</h4>
+							<h4 class="white">Inscripción al programa</h4>
 						</div>
 						<div class="title_left">
-							<h4>Período</h4>
+							<h4 class="white">Período</h4>
 						</div>
 					</div>
 								
@@ -286,7 +286,6 @@
 												</div>
 											</div>
 										</div>
-										
 									</div> 
 									
 								</div> <!-- x_panel -->

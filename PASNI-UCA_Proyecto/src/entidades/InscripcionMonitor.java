@@ -21,7 +21,7 @@ public class InscripcionMonitor {
 	private String motivo;
 	private String turno;
 	private Date fecha;
-	private boolean estado;
+	private int estado;
 	
 	public int getIdMonitor() {
 		return idMonitor;
@@ -125,10 +125,10 @@ public class InscripcionMonitor {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public boolean isEstado() {
+	public int getEstado() {
 		return estado;
 	}
-	public void setEstado(boolean estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 	public InscripcionMonitor() {
@@ -139,7 +139,7 @@ public class InscripcionMonitor {
 			String segundoApellido, String carne, String telefono,
 			String email, String nombreC, float promedio, boolean estipendio,
 			int idInscripcion, String nombreA, int calificacion, String motivo,
-			String turno, Date fecha, boolean estado) {
+			String turno, Date fecha, int estado) {
 		super();
 		this.idMonitor = idMonitor;
 		this.primerNombre = primerNombre;

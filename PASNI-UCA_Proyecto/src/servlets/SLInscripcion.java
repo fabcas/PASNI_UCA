@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import negocio.NGInscripcion;
+import negocio.NGPeriodoInscripcion;
 import entidades.Inscripcion;
 import entidades.Monitor;
 
@@ -38,6 +39,9 @@ public class SLInscripcion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		NGPeriodoInscripcion pi = new NGPeriodoInscripcion();
+		
+		
 		try{
 			
 			Inscripcion i = new Inscripcion();

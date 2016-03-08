@@ -84,10 +84,8 @@
                                                     <table class="table table-bordered">
                                                         <thead>
                                                             <tr>
-                                                                <th>#</th>
                                                                 <th>Taller</th>
                                                                 <th>Descripción</th>
-                                                                <th>Cuatrimestre</th>
                                                                 <th>Fecha inicio</th>
                                                                 <th>Fecha fin</th>
                                                             </tr>
@@ -95,10 +93,8 @@
                                                         <tbody>
                                                             <%for(Taller t: lista){%>
 															<tr class="even pointer">
-																<td class=""><%=t.getIdTaller()%></td>
 																<td class=""><%=t.getNombre()%></td>
 																<td class=""><%=t.getDescripcion()%></td>
-																<td class=""><%=t.getNombreCuatrimestre()%></td>
 																<td class=""><%=t.getFechaInicio()%></td>
 																<td class=""><%=t.getFechaFinal()%></td>
 															</tr>

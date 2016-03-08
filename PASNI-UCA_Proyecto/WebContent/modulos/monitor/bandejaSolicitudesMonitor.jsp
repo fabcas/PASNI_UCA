@@ -36,19 +36,6 @@
 						<div class="title_left">
 							<h3>Alumnos Monitores</h3>
 						</div>
-
-						<div class="title_right">
-							<div
-								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-								<div class="input-group">
-									<input type="text" class="form-control"
-										placeholder="Buscar..."> <span
-										class="input-group-btn">
-										<button class="btn btn-default" type="button">Ir!</button>
-									</span>
-								</div>
-							</div>
-						</div>
 				</div>
 				
 				<div class="col-md-12 col-sm-12 col-xs-12">
@@ -82,7 +69,7 @@
 							                            ArrayList<InscripcionMonitor> lista = new ArrayList<InscripcionMonitor>();
 							                            lista = ngi.cargarInscripcionMonitor();
 							                        %>
-				                                    <table class="table table-striped responsive-utilities jambo_table bulk_action">
+				                                    <table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
 				                                        <thead>
 				                                            <tr class="headings">
 				                                                <th>
@@ -94,7 +81,6 @@
 				                                                <th class="column-title">Carrera</th>
 				                                                <th class="column-title">Asignatura</th>
 				                                                <th class="column-title">Motivo</th>
-				                                                <th class="column-title">Estado</th>
 				                                                <th class="column-title">Fecha Envío</th>
 				                                                <th class="column-title">Acción</th>
 				                                           	</tr>
@@ -114,7 +100,6 @@
 							                                    <td class=" "><%=i.getNombreC()%></td>
 							                                    <td class=" "><%=i.getNombreA()%></td>
 							                                    <td class=" "><%=i.getMotivo()%></td>
-							                                    <td class=" "><%=i.isEstado()%></td>
 							                                    <td class=" "><%=i.getFecha()%></td>
 							                                    <td>
 								                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar">
@@ -130,11 +115,128 @@
                       					</div>
                                     </div>
                                    	<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip</p>
+		                                 <div class="col-md-12 col-sm-12 col-xs-12">
+				                            <div class="x_panel">
+				                                <div class="x_title">
+				                                    <h2>Todas las Inscripciones</h2>
+				                                    <div class="clearfix"></div>
+				                                </div>
+				
+				                                <div class="x_content">
+				
+				                                    <p>Lista de todas las inscripciones</p>
+				
+													 <%
+							                            NGInscripcion ngi1 = new NGInscripcion();
+							                            ArrayList<InscripcionMonitor> lista1 = new ArrayList<InscripcionMonitor>();
+							                            lista1 = ngi1.cargarDatosIaprobados();
+							                        %>
+				                                    <table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
+				                                        <thead>
+				                                            <tr class="headings">
+				                                                <th>
+				                                                    <input type="checkbox" id="check-all" class="flat">
+				                                                </th>
+				                                                <th class="column-title">IdInscripcion </th>
+				                                                <th class="column-title">Nombre</th>
+				                                                <th class="column-title">Apellido</th>
+				                                                <th class="column-title">Carrera</th>
+				                                                <th class="column-title">Asignatura</th>
+				                                                <th class="column-title">Motivo</th>
+				                                                <th class="column-title">Fecha Envío</th>
+				                                                <th class="column-title">Acción</th>
+				                                           	</tr>
+				                            			</thead>
+				                            			
+							                            <tbody>
+							                            <%
+							                            	for(InscripcionMonitor i1 : lista1)
+							                            	{
+							                            %>
+							                           
+							                                <tr class="even pointer">
+							                                    <td class="a-center "><input type="checkbox" class="flat" name="table_records" ></td>
+							                                    <td class=" "><%=i1.getIdInscripcion()%></td>
+							                                   	<td class=" "><%=i1.getPrimerNombre()%></td>
+							                                    <td class=" "><%=i1.getPrimerApellido()%></td>
+							                                    <td class=" "><%=i1.getNombreC()%></td>
+							                                    <td class=" "><%=i1.getNombreA()%></td>
+							                                    <td class=" "><%=i1.getMotivo()%></td>
+							                                    <td class=" "><%=i1.getFecha()%></td>
+							                                    <td>
+								                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar">
+								                                    	<i class="fa fa-folder"></i>Ver
+								                                    </button>
+							                                    </td>
+							                               </tr>
+							                             <%}%>
+							                           </tbody>
+				                  					</table>
+				                                </div>
+				                            </div>
+                      					</div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                                        <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk </p>
-                                    </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+				                            <div class="x_panel">
+				                                <div class="x_title">
+				                                    <h2>Todas las Inscripciones</h2>
+				                                    <div class="clearfix"></div>
+				                                </div>
+				
+				                                <div class="x_content">
+				
+				                                    <p>Lista de todas las inscripciones</p>
+				
+													 <%
+							                            NGInscripcion ngi2 = new NGInscripcion();
+							                            ArrayList<InscripcionMonitor> lista2 = new ArrayList<InscripcionMonitor>();
+							                            lista2 = ngi2.cargarDatosIReprobados();
+							                        %>
+				                                    <table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
+				                                        <thead>
+				                                            <tr class="headings">
+				                                                <th>
+				                                                    <input type="checkbox" id="check-all" class="flat">
+				                                                </th>
+				                                                <th class="column-title">IdInscripcion </th>
+				                                                <th class="column-title">Nombre</th>
+				                                                <th class="column-title">Apellido</th>
+				                                                <th class="column-title">Carrera</th>
+				                                                <th class="column-title">Asignatura</th>
+				                                                <th class="column-title">Motivo</th>
+				                                                <th class="column-title">Fecha Envío</th>
+				                                                <th class="column-title">Acción</th>
+				                                           	</tr>
+				                            			</thead>
+				                            			
+							                            <tbody>
+							                            <%
+							                            	for(InscripcionMonitor i2 : lista2)
+							                            	{
+							                            %>
+							                           
+							                                <tr class="even pointer">
+							                                    <td class="a-center "><input type="checkbox" class="flat" name="table_records" ></td>
+							                                    <td class=" "><%=i2.getIdInscripcion()%></td>
+							                                   	<td class=" "><%=i2.getPrimerNombre()%></td>
+							                                    <td class=" "><%=i2.getPrimerApellido()%></td>
+							                                    <td class=" "><%=i2.getNombreC()%></td>
+							                                    <td class=" "><%=i2.getNombreA()%></td>
+							                                    <td class=" "><%=i2.getMotivo()%></td>
+							                                    <td class=" "><%=i2.getFecha()%></td>
+							                                    <td>
+								                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar">
+								                                    	<i class="fa fa-folder"></i>Ver
+								                                    </button>
+							                                    </td>
+							                               </tr>
+							                             <%}%>
+							                           </tbody>
+				                  					</table>
+				                                </div>
+				                            </div>
+                      					</div></div>
                                 </div>
                            </div>
 						</div><!-- /x-content -->
@@ -159,4 +261,50 @@
 </body>
 <script src="../../js/custom.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
+
+<!-- Datatables -->
+<script src="../../js/datatables/js/jquery.js"></script>
+<script src="../../js/datatables/js/jquery.dataTables.js"></script>
+<script src="../../js/datatables/tools/js/dataTables.tableTools.js"></script>
+<script src="../../js/datatables/js/jquery.dataTables.columnFilter.js"></script>
+<!-- Fin Datatables -->
+
+<script type="text/javascript">
+			$(document).ready(function()
+			{
+				$('table.display').dataTable(
+						{							
+							"sPaginationType": "full_numbers",
+							"oLanguage": {
+								"sSearch": "Buscar: ",
+								"sEmptyTable": "No hay registros disponibles",
+								"sInfo": "Mostrando un total de _TOTAL_ registros (_START_ de _END_)",
+								"sInfoEmpty": "No hay registros disponibles",
+								"sInfoFiltered": " - filtrando de _MAX_ registros",
+								 "sLengthMenu": "Mostrar _MENU_ registros",
+								 "sLoadingRecords": "Por favor esperar - cargando...",
+								 "sProcessing": "Por favor, espere un momento mientras se procesa su petición",
+								 "sZeroRecords": "No se encontró ningún registro",
+								 "pagingType": "full_numbers",
+									 "oPaginate": {
+										   "sFirst": "Primero",
+								           "sLast": "Último",
+								           "sPrevious": "Atrás",
+								           "sNext": "Siguiente"
+								         }
+							}	
+						}	
+				)
+				.columnFilter({
+					aoColumns: [ { type: "text" },
+					             { type: "text" },
+					 			 { type: "text" },
+					 			 { type: "text" },
+					 			 { type: "text" },
+					 			 { type: "text" },
+					 			 null
+					 			]
+				});
+			});
+		</script>
 </html>

@@ -7,7 +7,7 @@ public class Inscripcion {
 	private int idInscripcion;
 	private int idMonitor;
 	private Date fecha;
-	private boolean estado;
+	private int estado;
 	private int idAsignatura; 
 	private String motivo; 
 	private int calificación;
@@ -31,10 +31,10 @@ public class Inscripcion {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public boolean isEstado() {
+	public int getEstado() {
 		return estado;
 	}
-	public void setEstado(boolean estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 	public int getIdAsignatura() {
@@ -66,7 +66,7 @@ public class Inscripcion {
 		super();
 	}
 	
-	public Inscripcion(int idInscripcion, int idMonitor, Date fecha, boolean estado,
+	public Inscripcion(int idInscripcion, int idMonitor, Date fecha, int estado,
 			int idAsignatura, String motivo, int calificación, String turno) {
 		super();
 		this.idInscripcion = idInscripcion;

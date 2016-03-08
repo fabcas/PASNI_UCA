@@ -41,7 +41,7 @@
 						class="main_menu_side hidden-print main_menu">
 
 						<div class="menu_section">
-							<ul class="nav side-menu">
+							<ul class="nav side-menu yellow">
 								<li><a><i class="fa fa-graduation-cap"></i> Alumno
 										Monitor <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">

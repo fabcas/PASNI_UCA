@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"
+	import="java.util.Date,java.text.SimpleDateFormat"
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +30,11 @@
 </head>
 
 <body>
+<%
+	Date date = new Date();
+	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	String f_actual = format.format(date);
+%>
 	<div class="site-wrapper"> 
 		<nav class="navbar">
 			<div class="container">
@@ -62,7 +69,10 @@
 							<div class="cover"
 								style="background: url('img/est.jpg'); background-size: cover;">
 								<div class="overlay text-center">
-									<a href="modulos/monitor/inscripcion.jsp" class="btn btn-white-fill">Sé Monitor</a>
+									<form  method="post" action="SLInicioSesion">
+										<button type="submit" class="btn btn-white-fill">Sé Monitor</button><br>
+										<input type="hidden" id="fecha" name="fecha" value="<%=f_actual%>">
+									</form>
 								</div>
 
 							</div>

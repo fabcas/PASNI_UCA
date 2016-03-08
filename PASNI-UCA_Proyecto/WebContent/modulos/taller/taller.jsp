@@ -77,8 +77,6 @@
 
 					<div class="">
 
-
-
 						<!-- Inicio del modal para agregar nuevo registro -->
 
 						<!-- button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Guardar</button> -->
@@ -103,7 +101,7 @@
 										</h4>
 										<form class="form-horizontal form-label-left" name="form" method="post" action="../../SLTaller?opc=1">
 											<div class="item form-group">
-												<%
+															<%
 																	NGTaller tallerNegocio = new NGTaller();
 																	ArrayList<Cuatrimestre> listaCuatrimestre = new ArrayList<Cuatrimestre>();
 																	listaCuatrimestre = tallerNegocio.comboCuatrimestre();
@@ -117,11 +115,11 @@
 													<%
 																			for(Cuatrimestre cuatri : listaCuatrimestre)
 																		  	{ 
-																		%>
-													<option value="<%=cuatri.getIdCuatrimestre() %>"><%=cuatri.getNombre()%></option>
+																				%>
+																				<option value="<%=cuatri.getIdCuatrimestre() %>"><%=cuatri.getNombre()%></option>
 													<%	
 																			}
-																		%>
+																				%>
 												</select>
 												<!--<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">-->
 												<br>

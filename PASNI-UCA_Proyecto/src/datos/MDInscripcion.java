@@ -2,8 +2,10 @@ package datos;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import entidades.Inscripcion;
@@ -56,7 +58,7 @@ public class MDInscripcion extends Conexion{
 		return g;
 	}
 	
-	//Cargar datos
+	//Cargar datos todas las inscripciones
 	public ArrayList <InscripcionMonitor> cargarDatosI()
 	{
 		ArrayList <InscripcionMonitor> array = new ArrayList <InscripcionMonitor>();
@@ -90,7 +92,57 @@ public class MDInscripcion extends Conexion{
 				i.setMotivo(rs.getString("motivo"));
 				i.setTurno(rs.getString("turno"));
 				i.setFecha(rs.getDate("fecha"));
-				i.setEstado(rs.getBoolean("estado"));					
+				i.setEstado(rs.getInt("estado"));					
+				array.add(i);
+			}
+			
+			//Cerramos la conexion 
+			s.close();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("DATOS: ERROR AL CONSULTAR LOS DATOS "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return array;
+	}
+	
+	public ArrayList <InscripcionMonitor> cargarDatosIaprobados()
+	{
+		ArrayList <InscripcionMonitor> array = new ArrayList <InscripcionMonitor>();
+		CallableStatement s = null;	
+		String sql = ("{call dbo.SPListaInscripcionMonitorAprobado}");
+		
+		try
+		{
+			Connection cn = getConnection();
+			s = cn.prepareCall(sql);
+			ResultSet rs = s.executeQuery();
+											
+			while(rs.next())		
+			{					    					
+				InscripcionMonitor  i = new InscripcionMonitor();
+				
+				i.setIdInscripcion(rs.getInt("idInscripcion"));
+				i.setIdMonitor(rs.getInt("idMonitor"));
+				i.setPrimerNombre(rs.getString("primerNombre"));
+				i.setSegundoNombre(rs.getString("segundoNombre"));
+				i.setPrimerApellido(rs.getString("primerApellido"));
+				i.setSegundoApellido(rs.getString("segundoNombre"));
+				i.setCarne(rs.getString("carne"));
+				i.setTelefono(rs.getString("telefono"));
+				i.setEmail(rs.getString("email"));
+				i.setNombreC(rs.getString("nombre"));
+				i.setPromedio(rs.getFloat("promedio"));
+				i.setEstipendio(rs.getBoolean("estipendio"));
+				i.setNombreA(rs.getString("nombre"));
+				i.setCalificacion(rs.getInt("calificacion"));
+				i.setMotivo(rs.getString("motivo"));
+				i.setTurno(rs.getString("turno"));
+				i.setFecha(rs.getDate("fecha"));
+				i.setEstado(rs.getInt("estado"));				
 				array.add(i);
 			}
 			
@@ -107,5 +159,82 @@ public class MDInscripcion extends Conexion{
 		return array;
 	}
 	
-
+	public ArrayList <InscripcionMonitor> cargarDatosIReprobados()
+	{
+		ArrayList <InscripcionMonitor> array = new ArrayList <InscripcionMonitor>();
+		CallableStatement s = null;	
+		String sql = ("{call dbo.SPListaSolicitudMonitorRechazado}");
+		
+		try
+		{
+			Connection cn = getConnection();
+			s = cn.prepareCall(sql);
+			ResultSet rs = s.executeQuery();
+											
+			while(rs.next())		
+			{					    					
+				InscripcionMonitor  i = new InscripcionMonitor();
+				
+				i.setIdInscripcion(rs.getInt("idInscripcion"));
+				i.setIdMonitor(rs.getInt("idMonitor"));
+				i.setPrimerNombre(rs.getString("primerNombre"));
+				i.setSegundoNombre(rs.getString("segundoNombre"));
+				i.setPrimerApellido(rs.getString("primerApellido"));
+				i.setSegundoApellido(rs.getString("segundoNombre"));
+				i.setCarne(rs.getString("carne"));
+				i.setTelefono(rs.getString("telefono"));
+				i.setEmail(rs.getString("email"));
+				i.setNombreC(rs.getString("nombre"));
+				i.setPromedio(rs.getFloat("promedio"));
+				i.setEstipendio(rs.getBoolean("estipendio"));
+				i.setNombreA(rs.getString("nombre"));
+				i.setCalificacion(rs.getInt("calificacion"));
+				i.setMotivo(rs.getString("motivo"));
+				i.setTurno(rs.getString("turno"));
+				i.setFecha(rs.getDate("fecha"));
+				i.setEstado(rs.getInt("estado"));				
+				array.add(i);
+			}
+			
+			//Cerramos la conexion
+			s.close();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("DATOS: ERROR AL CONSULTAR LOS DATOS "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return array;
+	}
+	
+	public boolean modificarInscripcion(Inscripcion i){
+		
+		int x = 0;
+		boolean g = false;
+				
+		try{
+			Connection cn = getConnection();
+			CallableStatement s = null;	
+			String sql = "{call dbo.SPModificarInscripcionMonitor(?,?,?,?)}";
+			s = cn.prepareCall(sql);
+			
+			s.setString("turno", i.getTurno());
+			s.setInt("estado", i.getEstado());
+			s.setInt("idAsignatura", i.getIdAsignatura());
+			s.setInt("idInscripcion", i.getIdInscripcion());
+			
+			x = s.executeUpdate();
+			g = x > 0;
+			
+			s.close();
+			cn.close();
+		} 
+		catch (Exception e){
+			System.out.println("Datos: Error al actualizar los datos -> "+ e.getMessage());
+		}
+		
+		return g;
+	}
 }

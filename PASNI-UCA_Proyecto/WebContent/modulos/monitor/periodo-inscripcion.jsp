@@ -166,6 +166,7 @@
                            </div>
 						</div><!-- /x-content -->
                     </div><!-- /x-panel -->
+                 	</div><!-- /panel -->
                  </div><!-- /col m12 -->
 				<div class="clearfix"></div>
 				
@@ -191,14 +192,14 @@
 											listaCuatrimestre = tallerNegocio.comboCuatrimestre();
 										%>
 										<label>Cuatrimestre:</label> 
-										<select id="cuatri" class="select2_single form-control" name="cuatri" required="required" tabindex="-1">
-											<option value="0">Seleccione..</option>
+										<select id="idCuatrimestre" class="select2_single form-control" name="idCuatrimestre" required="required" tabindex="-1">
+											<option>Seleccione..</option>
 												<%for(Cuatrimestre cuatri : listaCuatrimestre){%>
 													<option value="<%=cuatri.getIdCuatrimestre() %>"><%=cuatri.getNombre()%></option>
 												<%}%>
 										</select>
-										<label>Fecha inicio:</label> <input type="date" id="fechaini" name="fechaini" required="required" class="form-control" placeholder=""> <br>
-										<label>Fecha final:</label> <input type="date" id="fechafin" name="fechafin" required="required" class="form-control" placeholder="">
+										<label>Fecha inicio:</label> <input type="date" id="fechaInicio" name="fechaInicio" required="required" class="form-control" placeholder=""> <br>
+										<label>Fecha final:</label> <input type="date" id="fechaFin" name="fechaFin" required="required" class="form-control" placeholder="">
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -211,13 +212,13 @@
 				</div>
 			    <!-- Modal Agregar -->
 
-			</div><!-- /main -->
+			
 			 
 			<div class="clearfix"></div>
 
 			<jsp:include page="../footer.jsp" flush="true" /><!-- /footer content -->
 
-			</div><!-- /page content -->
+			</div><!-- /right-col -->
 			
 		</div><!-- /main container-->
 		

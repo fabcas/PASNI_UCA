@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,43 +39,39 @@ public class SLPeriodoInscripcion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		NGPeriodoInscripcion ngpi = new NGPeriodoInscripcion();
-		PeriodoInscripcion pi = new PeriodoInscripcion();
-		boolean g = false; //Verificar si guardó
-		
-		String opc = "";
-		String idIP = "";
-		String idC = "";
-		String fechaI = "";
-		String fechaF = "";
-		opc = request.getParameter("opc");
-		
 		try{
-		
-			opc = request.getParameter("opc");
 			
+			NGPeriodoInscripcion ngpi = new NGPeriodoInscripcion();
+			PeriodoInscripcion pi = new PeriodoInscripcion();
+			boolean g = false; //Verificar si guardó
+			
+			String opc = "";
+			String idC = "";
+			String fechaI = "";
+			String fechaF = "";
+			opc = request.getParameter("opc");
+		
 			if(opc.isEmpty() == true){
 				response.sendRedirect("./modulos/monitor/periodo-inscripcion.jsp");
 			}
 			else if(opc.equals("1")){
 				
-				idIP = request.getParameter("idPeriodoInscripcion");
-				pi.setIdPeriodoInscripcion(Integer.parseInt(idIP));
 				idC = request.getParameter("idCuatrimestre");
 				pi.setIdCuatrimestre(Integer.parseInt(idC));
 				
 				fechaI = request.getParameter("fechaInicio");
+				fechaF = request.getParameter("fechaFin");
+				
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				java.util.Date parsed = null;
 				parsed = format.parse(fechaI);
 				pi.setFechaInicio((new java.sql.Date(parsed.getTime())));
 				
-				fechaF = request.getParameter("fechaFin");
-
-				SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-				java.util.Date parsed1 = null;
-				parsed1 = format1.parse(fechaF);
-				pi.setFechaInicio((new java.sql.Date(parsed1.getTime())));
+				SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+				java.util.Date parsed2 = null;
+				parsed2 = format2.parse(fechaF);
+				pi.setFechaFin((new java.sql.Date(parsed2.getTime())));
+				
 				g = ngpi.guardarPI(pi);
 				if(g == true)
 				{

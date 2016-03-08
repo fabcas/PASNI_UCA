@@ -3,11 +3,9 @@ package negocio;
 import java.util.ArrayList;
 
 import datos.MDInscripcion;
-import datos.MDTaller;
 import entidades.Inscripcion;
 import entidades.InscripcionMonitor;
 import entidades.Monitor;
-import entidades.Taller;
 
 public class NGInscripcion {
 
@@ -32,6 +30,23 @@ public class NGInscripcion {
 		return bl;
 	}
 	
+	public boolean modificarInscripcion(Inscripcion i){
+		
+		boolean bl = false;
+		try{
+			
+			MDInscripcion MDi = new MDInscripcion();
+			bl = MDi.modificarInscripcion(i);
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			System.out.println("NEGOCIO: ERROR AL GUARDAR LOS DATOS " + e.getMessage());
+		
+		}
+		return bl;
+	}
+	
 	public ArrayList<InscripcionMonitor> cargarInscripcionMonitor()
 	{
 		ArrayList < InscripcionMonitor > array = new ArrayList<InscripcionMonitor>();
@@ -39,6 +54,38 @@ public class NGInscripcion {
 		try
 		{
 			array = datos.cargarDatosI();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Negocio, el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+		return array;
+	}
+	
+	public ArrayList <InscripcionMonitor> cargarDatosIaprobados()
+	{
+		ArrayList < InscripcionMonitor > array = new ArrayList<InscripcionMonitor>();
+		MDInscripcion datos = new MDInscripcion();
+		try
+		{
+			array = datos.cargarDatosIaprobados();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Negocio, el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+		return array;
+	}
+	
+	public ArrayList <InscripcionMonitor> cargarDatosIReprobados()
+	{
+		ArrayList < InscripcionMonitor > array = new ArrayList<InscripcionMonitor>();
+		MDInscripcion datos = new MDInscripcion();
+		try
+		{
+			array = datos.cargarDatosIReprobados();
 		}
 		catch(Exception e)
 		{

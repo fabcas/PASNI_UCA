@@ -9,6 +9,7 @@ public class PeriodoInscripcion {
 	private String nombreC;
 	private Date fechaInicio;
 	private Date fechaFin;
+	private Date fechaActual;
 	private boolean estado;
 	
 	public int getIdPeriodoInscripcion() {
@@ -41,6 +42,12 @@ public class PeriodoInscripcion {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}	
+	public Date getFechaActual() {
+		return fechaActual;
+	}
+	public void setFechaActual(Date fechaActual) {
+		this.fechaActual = fechaActual;
+	}
 	public boolean isEstado() {
 		return estado;
 	}
@@ -52,13 +59,14 @@ public class PeriodoInscripcion {
 	}
 	
 	public PeriodoInscripcion(int idPeriodoInscripcion, int idCuatrimestre,
-			String nombreC, Date fechaInicio, Date fechaFin, boolean estado) {
+			String nombreC, Date fechaInicio, Date fechaFin, Date fechaActual, boolean estado) {
 		super();
 		this.idPeriodoInscripcion = idPeriodoInscripcion;
 		this.idCuatrimestre = idCuatrimestre;
 		this.nombreC = nombreC;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
+		this.fechaActual = fechaActual;
 		this.estado = estado;
 	}
 	

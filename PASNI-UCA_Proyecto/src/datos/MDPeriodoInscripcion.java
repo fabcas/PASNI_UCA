@@ -3,10 +3,13 @@ package datos;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import entidades.CategoriaTaller;
 import entidades.PeriodoInscripcion;;
 
 public class MDPeriodoInscripcion extends Conexion{
@@ -18,12 +21,10 @@ public class MDPeriodoInscripcion extends Conexion{
 		
 		Connection cn = getConnection();
 		CallableStatement cstmt = null;	
-		String sql = "{call dbo.SPInsertarPeriodInscripcion(?,?,?,?)}";
+		String sql = "{call dbo.SPInsertarPeriodInscripcion(?,?,?)}";
 		cstmt = cn.prepareCall(sql);			
 					
 		try {
-			
-			cstmt.setInt("idPeriodoInscripcion",pi.getIdPeriodoInscripcion());
 			cstmt.setInt("idCuatrimestre", pi.getIdCuatrimestre());
 			cstmt.setDate("fechaInicio", (Date) pi.getFechaInicio());
 			cstmt.setDate("fechaFin", (Date) pi.getFechaFin());
@@ -68,4 +69,42 @@ public class MDPeriodoInscripcion extends Conexion{
 		}
 		return array;		
 	}
+	
+	public boolean verificarPeriodo(PeriodoInscripcion PI) throws SQLException
+	{	
+		String sql = ("select fechaFin from PeriodoInscripcion where estado = 1");
+		
+		Connection cn = getConnection();
+		PreparedStatement ps = cn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		PeriodoInscripcion pi = new PeriodoInscripcion();						
+		while(rs.next())		
+		{			    					
+			pi.setFechaFin(rs.getDate("fechaFin"));
+		}
+		ps.close();
+		cn.close();
+		if(PI.getFechaActual().after(pi.getFechaFin())){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

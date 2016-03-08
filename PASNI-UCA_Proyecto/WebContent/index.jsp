@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
 	import="java.util.Date,java.text.SimpleDateFormat"
+	//Prueba
 %>
 <!DOCTYPE html>
 <html>
@@ -84,7 +85,7 @@
 							<div class="cover"
 								style="background: url('img/doc.jpg'); background-size: cover;">
 								<div class="overlay text-center">
-									<a href="modulos/profesorGuia/profesores.jsp" class="btn btn-white-fill">Para Profesores</a>
+									<a href="#" data-toggle="modal" data-target="#modal2" class="btn btn-white-fill">Para Profesores</a>
 								</div>
 							</div>
 							<p class="par">Profesores Guías</p>
@@ -116,12 +117,28 @@
 				<div class="modal-content modal-popup">
 					<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
 					<h3 class="white">Iniciar Sesión</h3>
-					<form action="SLInicioSesion" method="post" name="InicioSesion"
-						class="popup-form">
+					<form action="SLInicioSesion" method="post" name="InicioSesion" class="popup-form">
 						<input type="text" class="form-control form-white" placeholder="Usuario"> 
 						<input type="text" class="form-control form-white" placeholder="Contraseña">
 						<button type="submit" class="btn btn-submit">Ingresar</button>
 					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content modal-popup">
+					<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+					<h4 class="white">Profesor Guía</h4>
+					<p class="white">
+						Cada cuatrimestre del primer año como estudiante de nuevo ingreso, tendrás el acompañamiento 
+						de un profesor o profesora guía, quien estará comprometido con tu crecimiento personal y 
+						desempeño académico. Es importane que lo identifiques desde la primera semana de clases, pues
+						su figura representa un papel fundamental en tu adaptación a la universidad. Ya sea en tus 
+						tiempos de clases o en las horas de consulta, puedes preguntarle sobre el reglamento académico,
+						tu plan de estudios, tus inquietudes académicas y las instancias de servicio en la UCA.
+					</p>
 				</div>
 			</div>
 		</div>

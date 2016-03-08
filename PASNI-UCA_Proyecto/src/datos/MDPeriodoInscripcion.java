@@ -41,6 +41,34 @@ public class MDPeriodoInscripcion extends Conexion{
 		cn.close();
 		return g;
 	}
+	
+	public boolean editarPI(PeriodoInscripcion pi) throws SQLException
+	{
+		boolean g = false;
+		int y = 0;
+		
+		Connection cn = getConnection();
+		CallableStatement cstmt = null;	
+		String sql = "{call dbo.SPEditarPeriodoI(?,?,?)}";
+		cstmt = cn.prepareCall(sql);			
+					
+		try {
+			cstmt.setInt("idPeriodoInscripcion", pi.getIdPeriodoInscripcion());
+			cstmt.setDate("fechaInicio", (Date) pi.getFechaInicio());
+			cstmt.setDate("fechaFin", (Date) pi.getFechaFin());
+			y = cstmt.executeUpdate();
+			g = y > 0;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Datos: Error al editar los datos -> " + e.getMessage());
+		}	
+		
+		cstmt.close();
+		cn.close();
+		return g;
+	}
 
 	public ArrayList<PeriodoInscripcion> cargarDatosPI()throws SQLException{
 		
@@ -90,6 +118,8 @@ public class MDPeriodoInscripcion extends Conexion{
 			return false;
 		}
 	}
+	
+	
 }
 
 

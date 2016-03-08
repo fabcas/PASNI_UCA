@@ -40,5 +40,20 @@ public class NGPeriodoInscripcion {
 		}
 		return array;
 	}
+	
+	public boolean editarPI(PeriodoInscripcion pi){
+		boolean bl = false;
+		
+		try{
+			MDPeriodoInscripcion mdpi = new MDPeriodoInscripcion();
+			bl = mdpi.editarPI(pi);System.out.println("NEGOCIO: El periodo se ha editado con éxito!!! ");
+			
+		}catch(Exception e){
+			 
+			 e.printStackTrace();
+			 System.out.println("NEGOCIO: ERROR AL EDITAR LOS DATOS " + e.getMessage());
+		 }
+		 return bl;
+	}
 
 }

@@ -83,9 +83,6 @@
 				                                    <table class="table table-striped responsive-utilities jambo_table bulk_action">
 				                                        <thead>
 				                                            <tr class="headings">
-				                                                <th>
-				                                                    <input type="checkbox" id="check-all" class="flat">
-				                                                </th>
 				                                                <th class="column-title">IdPeriodo </th>
 				                                                <th class="column-title">Cuatrimestre</th>
 				                                                <th class="column-title">Fecha Inicio</th>
@@ -101,15 +98,15 @@
 							                            %>
 							                           
 							                                <tr class="even pointer">
-							                                    <td class="a-center "><input type="checkbox" class="flat" name="table_records" ></td>
 							                                    <td class=" "><%=pi.getIdPeriodoInscripcion()%></td>
 							                                   	<td class=" "><%=pi.getNombreC() %></td>
 							                                    <td class=" "><%=pi.getFechaInicio() %></td>
 							                                    <td class=" "><%=pi.getFechaFin()%></td>
 							                                    <td>
-								                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar">
-								                                    	<i class="fa fa-folder"></i>Ver
-								                                    </button>
+							                                    <button type="button" id="botonModificar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalEditar"
+																onclick="cargarDatos('<%=pi.getIdPeriodoInscripcion()%>', '<%=pi.getNombreC()%>','<%=pi.getFechaInicio()%>', '<%=pi.getFechaFin()%>');">
+																	<i class="fa fa-pencil"></i>
+																</button>
 							                                    </td>
 							                               </tr>
 							                             <%}%>
@@ -134,10 +131,7 @@
 				                                    <table class="table table-striped responsive-utilities jambo_table bulk_action">
 				                                        <thead>
 				                                            <tr class="headings">
-				                                                <th>
-				                                                    <input type="checkbox" id="check-all" class="flat">
-				                                                </th>
-				                                                <th class="column-title">IdPeriodo </th>
+				                                               <th class="column-title">IdPeriodo </th>
 				                                                <th class="column-title">Cuatrimestre</th>
 				                                                <th class="column-title">Fecha Inicio</th>
 				                                                <th class="column-title">Fecha Fin</th>
@@ -146,13 +140,11 @@
 				                            			
 							                            <tbody>							                           
 							                                <tr class="even pointer">
-							                                    <td class="a-center "><input type="checkbox" class="flat" name="table_records" ></td>
 							                                    <td class=" "></td>
 							                                   	<td class=" "></td>
 							                                    <td class=" "></td>
 							                                    <td class=" "></td>
 							                               </tr>
-							                             <%%>
 							                           </tbody>
 				                  					</table>
 				                                </div>
@@ -211,6 +203,38 @@
 					</div>
 				</div>
 			    <!-- Modal Agregar -->
+			    
+			    <!-- Modal Modificar Periodo -->
+
+				<div class="modal fade bs-example-modal-lg"  id="modalEditar" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">x</span>
+								</button>
+								<h5 class="modal-title">
+									<b>Editar Período Inscripción</b>
+								</h5>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal form-label-left" name="form" method="post" action="../../SLPeriodoInscripcion?opc=2">
+									<div class="item form-group">
+										<label >idPeriodo:</label> <input type="text" id="idPeriodoInscripcionE" name="idPeriodoInscripcionE" disabled="disabled" required="required" class="form-control" placeholder=""> <br>
+										<label >Cuatrimestre:</label> <input type="text" id="idCuatrimestreE" name="idCuatrimestreE" disabled="disabled" required="required" class="form-control" placeholder=""> <br>
+										<label>Fecha inicio:</label> <input type="date" id="fechaInicioE" name="fechaInicioE" required="required" class="form-control" placeholder=""> <br>
+										<label>Fecha final:</label> <input type="date" id="fechaFinE" name="fechaFinE" required="required" class="form-control" placeholder="">
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+										<button type="submit" class="btn btn-primary">Guardar</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			    <!-- Modal Agregar -->
 
 			
 			 
@@ -230,6 +254,25 @@
 			<div id="notif-group" class="tabbed_notifications"></div>
 	</div>
 </body>
+
+<!-- Cargar datos -->
+<script type="text/javascript">
+		
+        	function cargarDatos(idPeriodoInscripcion, idCuatrimestre, fechaInicio, fechaFin){
+				
+        		$("#idPeriodoInscripcionE").val(idPeriodoInscripcion);
+        		$("#idCuatrimestreE").val(idCuatrimestre);
+				$("#fechaInicioE").val(fechaInicio);
+				$("#fechaFinE").val(fechaFin);
+				
+		}
+        	
+        	<!-- function cargarIdEliminar(id)
+        	{
+        		$("#IdTaller").val(id);
+        		$("#idTallerEliminar").val(id);
+        	}-->
+	</script>
 <script src="../../js/custom.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 </html>

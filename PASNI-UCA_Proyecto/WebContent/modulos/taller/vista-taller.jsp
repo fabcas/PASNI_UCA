@@ -49,15 +49,15 @@
 					</div>
 
 					<div class="row ">
-						<div class="col-md-12 text-center white headf">
-							<h3>Asistencia a Pregrado</h3>
-							<h4>Talleres de Formación</h4>
+						<div class="col-md-12 text-center headf">
+							<h3 class="white">Asistencia a Pregrado</h3>
+							<h3 class="yellow">Talleres de Formación</h3>
 						</div>
 					</div>	
 					
 					<div class="page-title">
 						<div class="text-center">
-							<h4>Destinado a estudiantes de nuevo ingreso</h4>
+							<h4 class="white">Destinado a estudiantes de nuevo ingreso</h4>
 						</div>
 					</div>
 					
@@ -72,9 +72,9 @@
 
                                     <!-- start accordion -->
                                     <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
-                                        <div class="panel">
+                                      <!-- <div class="panel">
                                             <a class="panel-heading" ><h4 class="panel-title">Reforzamiento académico</h4></a>
-                                            <div >
+                                         <div >-->
                                                 <div class="panel-body">
 	                                                <%
 														NGTaller neg = new NGTaller();
@@ -92,7 +92,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <%for(Taller t: lista){%>
-															<tr class="even pointer">
+															<tr class="even pointer dark">
 																<td class=""><%=t.getNombre()%></td>
 																<td class=""><%=t.getDescripcion()%></td>
 																<td class=""><%=t.getFechaInicio()%></td>

@@ -56,11 +56,11 @@ public class SLPeriodoInscripcion extends HttpServlet {
 			}
 			else if(opc.equals("1")){
 				
-				idC = request.getParameter("idCuatrimestre");
+				idC = request.getParameter("idCuatrimestreE");
 				pi.setIdCuatrimestre(Integer.parseInt(idC));
 				
-				fechaI = request.getParameter("fechaInicio");
-				fechaF = request.getParameter("fechaFin");
+				fechaI = request.getParameter("fechaInicioE");
+				fechaF = request.getParameter("fechaFinE");
 				
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				java.util.Date parsed = null;
@@ -83,6 +83,31 @@ public class SLPeriodoInscripcion extends HttpServlet {
 					response.sendRedirect("./modulos/monitor/periodo-inscripcion.jsp");
 				}
 				
+			}else if (opc.equalsIgnoreCase("2")){
+				
+				fechaI = request.getParameter("fechaInicio");
+				fechaF = request.getParameter("fechaFin");
+				
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				java.util.Date parsed = null;
+				parsed = format.parse(fechaI);
+				pi.setFechaInicio((new java.sql.Date(parsed.getTime())));
+				
+				SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+				java.util.Date parsed2 = null;
+				parsed2 = format2.parse(fechaF);
+				pi.setFechaFin((new java.sql.Date(parsed2.getTime())));
+				
+				g = ngpi.editarPI(pi);
+				if(g == true)
+				{
+					response.sendRedirect("./modulos/monitor/periodo-inscripcion.jsp?msj=2");
+				}
+					
+				else
+				{
+					response.sendRedirect("./modulos/monitor/periodo-inscripcion.jsp");
+				}
 			}
 		}catch(Exception e){
 			e.printStackTrace();

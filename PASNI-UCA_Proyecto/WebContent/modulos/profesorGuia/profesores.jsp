@@ -69,14 +69,14 @@
 							<div class="x_panel">
                                 
                                 <div class="x_content">
-									<p>
+									<div class="dropzone" style="border: 1px solid #e5e5e5; height: 300px; ">
 										Cada cuatrimestre del primer año como estudiante de nuevo ingreso, tendrás el acompañamiento 
 										de un profesor o profesora guía, quien estará comprometido con tu crecimiento personal y 
 										desempeño académico. Es importane que lo identifiques desde la primera semana de clases, pues
 										su figura representa un papel fundamental en tu adaptación a la universidad. Ya sea en tus 
 										tiempos de clases o en las horas de consulta, puedes preguntarle sobre el reglamento académico,
 										tu plan de estudios, tus inquietudes académicas y las instancias de servicio en la UCA.
-									</p>
+									</div>
                                 </div>
                             </div>
 							

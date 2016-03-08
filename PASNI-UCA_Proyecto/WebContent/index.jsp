@@ -84,7 +84,7 @@
 							<div class="cover"
 								style="background: url('img/doc.jpg'); background-size: cover;">
 								<div class="overlay text-center">
-									<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Para Profesores</a>
+									<a href="modulos/profesorGuia/profesores.jsp" class="btn btn-white-fill">Para Profesores</a>
 								</div>
 							</div>
 							<p class="par">Profesores Guías</p>

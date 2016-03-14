@@ -223,5 +223,55 @@ public class MDTaller extends Conexion
 			
 			return arrayCategoria;
 		}//combo cuatrimestre
+		
+		/** Lista de talleres de formación, pero con fecha convertida al formato adecuado. **/
+		
+		
+		//Cargar datos
+		public ArrayList < Taller  > cargarDatos2()
+		{
+			ArrayList <Taller> array = new ArrayList <Taller>();
+			CallableStatement s = null;	
+			String sql = ("SELECT t.IdTaller, t.Nombre, t.Descripcion, c.nombre [Cuatrimestre], ct.Nombre [Categoria], (Select convert(varchar(10), t.FechaInicio, 103))  AS [FechaInicio], (Select convert (varchar(10), t.FechaFin, 103)) AS [FechaFin] "+
+						 " FROM Taller t, Cuatrimestre c, CategoriaTaller ct"+ 
+							 " WHERE t.idCuatrimestre = c.idCuatrimestre"+ 
+							 " AND ct.IdCategoria = t.IdCategoria "+
+								 " AND t.Estado = 'True' ORDER BY t.IdTaller ASC;");
+			
+			try
+			{
+				Connection cn = getConnection();
+				s = cn.prepareCall(sql);
+				ResultSet rs = s.executeQuery();
+												
+				while(rs.next())		
+				{					    					
+					Taller  enti = new Taller();
+					
+					
+					enti.setIdTaller(rs.getInt("IdTaller"));
+					//enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
+					enti.setNombreCuatrimestre(rs.getString("Cuatrimestre"));
+					enti.setNombre(rs.getString("Nombre"));
+					enti.setDescripcion(rs.getString("Descripcion"));
+					enti.setFechaInicio(rs.getDate("FechaInicio"));
+					enti.setFechaFinal(rs.getDate("FechaFin"));				
+						
+					array.add(enti);
+				}
+				
+				//Cerramos la conexion
+				s.close();
+				cn.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("DATOS: ERROR AL CONSULTAR LOS DATOS "+e.getMessage());
+				e.printStackTrace();
+			}
+			
+			return array;
+		}
+		
 
 }

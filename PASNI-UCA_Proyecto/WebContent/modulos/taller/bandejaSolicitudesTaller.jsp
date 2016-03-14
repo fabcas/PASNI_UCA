@@ -132,8 +132,7 @@
 													lista = neg.cargarSolicitudesPendientes();
 										
 												%>
-												<table id="table"
-													class="table table-striped responsive-utilities jambo_table">
+												<table id="" class="display table table-striped responsive-utilities jambo_table">
 													<thead>
 														<tr class="headings">
 															<th><input type="checkbox" class="tableflat">
@@ -192,8 +191,7 @@
 													listaAprobados = neg2.cargarSolicitudesAprobadas();
 										
 												%>
-												<table id="table"
-													class="table table-striped responsive-utilities jambo_table">
+												<table id="" class="display table table-striped responsive-utilities jambo_table">
 													<thead>
 														<tr class="headings">
 															<th><input type="checkbox" class="tableflat">
@@ -244,8 +242,7 @@
 													listaDesaprobados = neg3.cargarSolicitudesDesaprobadas();
 										
 												%>
-												<table id="table"
-													class="table table-striped responsive-utilities jambo_table">
+												<table id="" class="display table table-striped responsive-utilities jambo_table">
 													<thead>
 														<tr class="headings">
 															<th><input type="checkbox" class="tableflat">
@@ -408,11 +405,12 @@
         </script>
 
 <script type="text/javascript">
-
+			
+			cargarNotify();
 			$(document).ready(function()
 			{
 				
-				$('#table').dataTable(
+				$('table.display').dataTable(
 						{
 							// "dom": 'T<"clear">lfrtip',
 				            //"tableTools": {

@@ -90,6 +90,24 @@ public class NGTaller {
 			return array;
 		}
 		
+		public ArrayList<Taller> cargarTalleres2()
+		{
+			ArrayList < Taller > array = new ArrayList<Taller>();
+			MDTaller datos = new MDTaller();
+			try
+			{
+				array = datos.cargarDatos2();
+			}
+			catch(Exception e)
+			{
+				System.out.println("Negocio, el error es: "+e.getMessage());
+				e.printStackTrace();
+			}
+			
+			
+			return array;
+		}
+		
 		public ArrayList<Cuatrimestre> comboCuatrimestre()
 		{
 			ArrayList<Cuatrimestre> combo = new ArrayList<Cuatrimestre>();

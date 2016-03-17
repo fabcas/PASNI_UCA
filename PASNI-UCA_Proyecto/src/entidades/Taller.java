@@ -7,6 +7,8 @@ public class Taller {
 	private int idTaller;
 	private int idCuatrimestre;
 	private String nombreCuatrimestre;
+	private int idCategoria;
+	private String nombreCategoria;
 	private String nombre;
 	private String descripcion;
 	private Date fechaInicio;
@@ -91,7 +93,22 @@ public class Taller {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-	
+
+	public int getIdCategoria() {
+		return idCategoria;
+	}
+
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
+	}
+
+	public String getNombreCategoria() {
+		return nombreCategoria;
+	}
+
+	public void setNombreCategoria(String nombreCategoria) {
+		this.nombreCategoria = nombreCategoria;
+	}
 	
 
 }

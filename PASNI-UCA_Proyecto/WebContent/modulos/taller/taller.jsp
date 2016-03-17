@@ -121,6 +121,24 @@
 																			}
 																				%>
 												</select>
+												
+												<%
+															NGCategoriaTaller negt2 = new NGCategoriaTaller();
+															ArrayList<CategoriaTaller> arrayc = new ArrayList<CategoriaTaller>();
+															arrayc = negt2.cargarCategorias();
+												%>
+												<label>Categoría:</label> 
+												<select
+													class="select2_single form-control"
+													id="categoria" name="categoria"
+													required="required" tabindex="-1">
+													<option>Seleccione...</option>
+													<%for(CategoriaTaller negtw : arrayc)
+													  { 
+													%>
+													<option value="<%=negtw.getIdCategoria() %>"><%=negtw.getNombre()%></option>
+													<%}%>
+												</select>
 												<!--<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">-->
 												<br>
 												<label>Nombre:</label> <input id="nombre" name="nombre"
@@ -178,10 +196,10 @@
 											method="post" action="../../SLTaller?opc=2">
 											<div class="item form-group">
 												<%
-																	NGTaller negt = new NGTaller();
-																	ArrayList<Cuatrimestre> arrayt = new ArrayList<Cuatrimestre>();
-																	arrayt = negt.comboCuatrimestre();
-																%>
+															NGTaller negt = new NGTaller();
+															ArrayList<Cuatrimestre> arrayt = new ArrayList<Cuatrimestre>();
+															arrayt = negt.comboCuatrimestre();
+												%>
 												<br>
 												<br> <label>Código del Taller: </label> <input
 													class="form-control" id="IdTaller" name="IdTaller"
@@ -193,9 +211,26 @@
 													required="required" tabindex="-1">
 													<option>Seleccione...</option>
 													<%for(Cuatrimestre negtw : arrayt)
-																		  { 
-																		%>
+													  { 
+													%>
 													<option value="<%=negtw.getIdCuatrimestre() %>"><%=negtw.getNombre()%></option>
+													<%}%>
+												</select>
+												<%
+															NGCategoriaTaller neg = new NGCategoriaTaller();
+															ArrayList<CategoriaTaller> array = new ArrayList<CategoriaTaller>();
+															array = neg.cargarCategorias();
+												%>
+												<label>Categoría:</label> 
+												<select
+													class="select2_single form-control"
+													id="categoria_Editado" name="categoria_Editado"
+													required="required" tabindex="-1">
+													<option>Seleccione...</option>
+													<%for(CategoriaTaller ct : array)
+													  { 
+													%>
+													<option value="<%=ct.getIdCategoria() %>"><%=ct.getNombre()%></option>
 													<%}%>
 												</select>
 												<!--<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">-->
@@ -284,9 +319,9 @@
 
 									<%
 											
-											NGTaller neg = new NGTaller();
+											NGTaller negtt = new NGTaller();
 											ArrayList<Taller> lista = new ArrayList<Taller>(); 
-											lista = neg.cargarTalleres();
+											lista = negtt.cargarTalleres();
 										
 							%>
 									<table id="table"
@@ -296,6 +331,7 @@
 												<th><input type="checkbox" class="tableflat"></th>
 												<th>Id Taller</th>
 												<th>Cuatrimestre</th>
+												<th>Categoría</th>
 												<th>Nombre</th>
 												<th>Descripción</th>
 												<th>Fecha Inicio</th>
@@ -315,6 +351,7 @@
 													class="tableflat"></td>
 												<td class=""><%=t.getIdTaller() %></td>
 												<td class=""><%=t.getNombreCuatrimestre() %></td>
+												<td class=""><%=t.getNombreCategoria() %></td>
 												<td class=""><%=t.getNombre() %></td>
 												<td class=""><%=t.getDescripcion() %></td>
 												<td class=""><%=t.getFechaInicio() %></td>
@@ -323,13 +360,13 @@
 													<button type="button" id="botonModificar"
 														title="Modificar registro" class="btn btn-success btn-xs"
 														data-toggle="modal" data-target=".modalEditar"
-														onclick="cargarDatos('<%=t.getIdTaller()%>', '<%=t.getIdCuatrimestre()%>','<%=t.getNombre()%>','<%=t.getDescripcion()%>','<%=t.getFechaInicio()%>','<%=t.getFechaFinal()%>');">
+														onclick="cargarDatos('<%=t.getIdTaller()%>', '<%=t.getIdCuatrimestre()%>', '<%=t.getIdCategoria() %>', '<%=t.getNombre()%>','<%=t.getDescripcion()%>','<%=t.getFechaInicio()%>','<%=t.getFechaFinal()%>');">
 														<i class="fa fa-pencil"></i>
 													</button>
 													<button type="button" id="botonEliminar"
 														title="Eliminar registro" class="btn btn-danger btn-xs"
 														data-toggle="modal" data-target="#modalEliminar"
-														onclick="cargarDatos('<%=t.getIdTaller()%>', '<%=t.getIdCuatrimestre()%>','<%=t.getNombre()%>','<%=t.getDescripcion()%>','<%=t.getFechaInicio()%>','<%=t.getFechaFinal()%>');">
+														onclick="cargarDatos('<%=t.getIdTaller()%>', '<%=t.getIdCuatrimestre()%>', '<%=t.getIdCategoria() %>', '<%=t.getNombre()%>','<%=t.getDescripcion()%>','<%=t.getFechaInicio()%>','<%=t.getFechaFinal()%>');">
 														<i class="fa fa-trash-o"></i>
 													</button>
 												</td>
@@ -409,12 +446,13 @@
 <!-- Cargar datos -->
 <script type="text/javascript">
 		
-        	function cargarDatos(id, idc, nombre, descripcion, fechaini, fechafin){
+        	function cargarDatos(id, idc, idcat, nombre, descripcion, fechaini, fechafin){
 				
         		$("#IdTaller").val(id);
 				$("#IdTallerEditar").val(id);
 				$("#idTallerEliminar").val(id);
 				$("#cuatri_TallerEditado").val(idc);
+				$("#categoria_Editado").val(idcat);
 				$("#nombre_TallerEditado").val(nombre);
 				$("#nombre_TallerEliminado").val(nombre);
 				$("#descripcion_TallerEditado").val(descripcion);
@@ -431,7 +469,7 @@
 	</script>
 
 <!-- avisos de CRUD -->
-<%
+		<%
     		String msj ="";
     		msj = request.getParameter("msj");
     	

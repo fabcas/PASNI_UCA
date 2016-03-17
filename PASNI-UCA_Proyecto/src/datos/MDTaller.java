@@ -17,16 +17,17 @@ public class MDTaller extends Conexion
 		
 		Connection cn = getConnection();
 		CallableStatement cstmt = null;	
-		String sql = "{call dbo.SPAgregarTaller(?,?,?,?,?,'true')}";
+		String sql = "{call dbo.SPAgregarTaller(?,?,?,?,?,?,1)}";
 		cstmt = cn.prepareCall(sql);			
 					
 		try {
 			
 			cstmt.setInt(1,t.getIdCuatrimestre());
-			cstmt.setString(2,t.getNombre());
-			cstmt.setString(3,t.getDescripcion());
-			cstmt.setDate(4, (Date) t.getFechaInicio());
-			cstmt.setDate(5, (Date) t.getFechaFinal());
+			cstmt.setInt(2, t.getIdCategoria());
+			cstmt.setString(3,t.getNombre());
+			cstmt.setString(4,t.getDescripcion());
+			cstmt.setDate(5, (Date) t.getFechaInicio());
+			cstmt.setDate(6, (Date) t.getFechaFinal());
 			y = cstmt.executeUpdate();
 			g = y > 0;
 			
@@ -55,16 +56,17 @@ public class MDTaller extends Conexion
 		
 			Connection cn = getConnection();
 			CallableStatement s = null;	
-			String sql = "{call dbo.SPActualizarTaller2(?,?,?,?,?,?)}";
+			String sql = "{call dbo.SPActualizarTaller2(?,?,?,?,?,?,?)}";
 			s = cn.prepareCall(sql);
 			
 						//System.out.println(t.getIdCuatrimestre() + ", " + enti.getNombre() + ", " + enti.getDescripcion() + ", " + enti.getFechaInicio() + ", " + enti.getFechaFinal() + ", " + enti.getIdTaller());
 						s.setInt(1, t.getIdCuatrimestre());
-						s.setString(2, t.getNombre());
-						s.setString(3, t.getDescripcion());
-						s.setDate(4, (Date) t.getFechaInicio());
-						s.setDate(5, (Date) t.getFechaFinal());
-						s.setInt(6, t.getIdTaller());
+						s.setInt(2, t.getIdCategoria());
+						s.setString(3, t.getNombre());
+						s.setString(4, t.getDescripcion());
+						s.setDate(5, (Date) t.getFechaInicio());
+						s.setDate(6, (Date) t.getFechaFinal());
+						s.setInt(7, t.getIdTaller());
 			
 			x = s.executeUpdate();
 			g = x > 0;
@@ -136,6 +138,7 @@ public class MDTaller extends Conexion
 				enti.setIdTaller(rs.getInt("IdTaller"));
 				//enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
 				enti.setNombreCuatrimestre(rs.getString("Cuatrimestre"));
+				enti.setNombreCategoria(rs.getString("Categoria"));
 				enti.setNombre(rs.getString("Nombre"));
 				enti.setDescripcion(rs.getString("Descripcion"));
 				enti.setFechaInicio(rs.getDate("FechaInicio"));
@@ -194,7 +197,7 @@ public class MDTaller extends Conexion
 		public ArrayList <CategoriaTaller> comboCategoria()
 		{
 			ArrayList <CategoriaTaller> arrayCategoria = new ArrayList <CategoriaTaller>();
-			String sql = ("SELECT IdCategoria, Nombre FROM CategoriaTaller WHERE Activo = 'True';");
+			String sql = ("SELECT IdCategoria, Nombre FROM CategoriaTaller WHERE Activo = 1;");
 			
 			try
 			{

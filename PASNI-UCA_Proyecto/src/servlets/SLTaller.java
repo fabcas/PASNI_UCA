@@ -52,6 +52,7 @@ public class SLTaller extends HttpServlet {
 			 String idTallerEditado = "";
 			 String idTallerEliminado = "";
 			 String idCuat ="";
+			 String idCategoria = "";
 			 String fecha_Inicio="";
 			 String Fecha_Fin="";
 			 opc = request.getParameter("opc"); //Obtiene el parámetro 1, 2 ó 3 según la acción realizada.
@@ -65,6 +66,8 @@ public class SLTaller extends HttpServlet {
 			 {
 				idCuat = request.getParameter("cuatri");
 				t.setIdCuatrimestre(Integer.parseInt(idCuat));
+				idCategoria = request.getParameter("categoria");
+				t.setIdCategoria(Integer.parseInt(idCategoria));
 				t.setNombre(request.getParameter("nombre"));
 				t.setDescripcion(request.getParameter("descripcion"));
 				fecha_Inicio = request.getParameter("fechaini");
@@ -97,6 +100,8 @@ public class SLTaller extends HttpServlet {
 				t.setIdTaller(Integer.parseInt(idTaller));
 				idCuat = request.getParameter("cuatri_TallerEditado");
 				t.setIdCuatrimestre(Integer.parseInt(idCuat));
+				idCategoria = request.getParameter("categoria_Editado");
+				t.setIdCategoria(Integer.parseInt(idCategoria));
 				t.setNombre(request.getParameter("nombre_TallerEditado"));
 				t.setDescripcion(request.getParameter("descripcion_TallerEditado"));
 				fecha_Inicio = request.getParameter("fechaini_TallerEditado");

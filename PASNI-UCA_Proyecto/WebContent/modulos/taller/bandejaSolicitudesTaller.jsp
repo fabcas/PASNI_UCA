@@ -84,13 +84,16 @@
 												<div class="modal-body">
 
 													<form class="form-horizontal form-label-left" name="form"
-														method="post" action="../../SLSolicitudTaller?opc=1">
+														method="post" action="../../SLSolicitudTaller?opc=2">
 														<div class="item form-group">
 															<div class="col-md-12 col-sm-12 col-xs-12">
+																<label><b>¿A dónde desea enviar la siguiente solicitud?</b></label><br>
+																Aprobadas: <input type="radio" name="estado"><br><br>
+																Desaprobada: <input type="radio" name="estado">
 																<input type="hidden" name="idSolicitudTaller"
 																	id="idSolicitudTaller">
 																<!-- <input type="text" name="nombre_TallerEliminado" id="nombre_TallerEliminado" disabled="disabled"> -->
-																<p>¿Seguro que desea aprobar ésta solicitud?</p>
+																<!-- <p>¿Seguro que desea aprobar ésta solicitud?</p> -->
 															</div>
 														</div>
 														<div class="modal-footer">

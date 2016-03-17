@@ -90,11 +90,9 @@
                                 </li>
                                 <li><a><i class="fa fa-magic"></i> Administración <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="Seg_Usuario.jsp">Administradores</a>
+                                        <li><a href="Seg_CuentasUsuarios.jsp">Cuentas de usuarios</a>
                                         </li>
-                                        <li><a href="Seg_Monitores.jsp">Monitores</a>
-                                        </li>
-                                        <li><a href="Seg_Profesores.jsp">Profesores</a>
+                                        <li><a href="Seg_Rol.jsp">Roles</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -422,8 +420,6 @@
                             </div>
                             <div class="x_content">
                             	
-                            	<button type="button" id="botonNuevo" title="Nuevo registro" class="btn btn-primary glyphicon glyphicon-plus" data-toggle="modal" data-target=".bs-example-modal-lg"></button>
-								
 								<div class="" role="tabpanel" data-example-id="togglable-tabs">
                                         <ul id="myTab1" class="nav nav-tabs bar_tabs left" role="tablist">
                                             <li role="presentation" class="active"><a href="#tab_content11" id="home-tabb" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Administradores</a>
@@ -435,7 +431,8 @@
                                         </ul>
                                         <div id="myTabContent2" class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
-                                                
+                                                <button type="button" id="botonNuevo" title="Nuevo registro" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Ingresar nuevo administrador</button>
+                                                <br><br>
                                                 <%
 											
 													NGUsuario neg = new NGUsuario();

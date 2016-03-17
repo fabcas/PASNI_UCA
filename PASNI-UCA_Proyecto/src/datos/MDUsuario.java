@@ -267,8 +267,223 @@ public class MDUsuario extends Conexion{
 		
 		return arrayRoles;
 	}//combo cuatrimestre
-
 	
+	
+	public boolean validarInicioSesionAdministrador(String user, String pass){
+		
+		boolean encontrado = false;
+		String sql = "SELECT idUsuario "+
+					"FROM Usuario" +
+						" WHERE usuario = ? AND password = ? AND estado = 1 ";
+		
+		try
+		{
+			Connection cn = getConnection();
+			PreparedStatement ps = cn.prepareStatement(sql);
+			
+			ps.setString(1, user);
+			ps.setString(2, pass);
+			
+			ResultSet rs = null;
+			rs = ps.executeQuery();
+			
+			if(rs.next())
+			{
+				encontrado=true;
+			}
+				
+			ps.close();
+			cn.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Datos: Error al validar el usuario "+ e.getMessage());
+			e.printStackTrace();
+		}
+			
+		return encontrado;
+		
+	}
+	
+	public int devolverIdAdministrador(String user, String pass){
+		
+		int id = 0;
+		String sql = "SELECT idUsuario FROM Usuario WHERE usuario = ? AND password = ? AND estado = 1;";
+	
+		try
+		{
+			Connection cn = getConnection();
+			PreparedStatement ps = cn.prepareStatement(sql);
+			
+			ps.setString(1, user);
+			ps.setString(2, pass);
+			
+			ResultSet rs = null;
+			rs = ps.executeQuery();
+			
+			if(rs.next())
+			{
+				id = rs.getInt("idUsuario");
+			}
+				
+			ps.close();
+			cn.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Datos: Error al validar el usuario "+ e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return id;
+		
+	}
+	
+	//Devuelve el id del Monitor.
+	public boolean validarInicioSesionMonitor(String user, String pass){
+		
+		boolean encontrado = false;
+		String sql = "SELECT m.IdMonitor, m.primerNombre + ' ' + m.primerApellido [Monitor] "+
+					"FROM Monitor m, Usuario u" +
+						" WHERE u.idUsuario = m.idUsuario " +
+						" AND u.usuario = ? AND u.password = ? AND u.estado = 1 ";
+		
+		try
+		{
+			Connection cn = getConnection();
+			PreparedStatement ps = cn.prepareStatement(sql);
+			
+			ps.setString(1, user);
+			ps.setString(2, pass);
+			
+			ResultSet rs = null;
+			rs = ps.executeQuery();
+			
+			if(rs.next())
+			{
+				encontrado=true;
+			}
+				
+			ps.close();
+			cn.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Datos: Error al validar el usuario "+ e.getMessage());
+			e.printStackTrace();
+		}
+			
+		return encontrado;
+		
+	}
+	
+	public int devolverIdProfesorGuia(String user, String pass){
+		
+		int id = 0;
+		String sql = "SELECT pg.IdProfesor "+
+				"FROM ProfesorGuia pg, Usuario u" +
+					" WHERE u.idUsuario = pg.idUsuario " +
+					" AND u.usuario = ? AND u.password = ? AND u.estado = 1 ";
+		try
+		{
+			Connection cn = getConnection();
+			PreparedStatement ps = cn.prepareStatement(sql);
+			
+			ps.setString(1, user);
+			ps.setString(2, pass);
+			
+			ResultSet rs = null;
+			rs = ps.executeQuery();
+			
+			if(rs.next())
+			{
+				id = rs.getInt("IdProfesor");
+			}
+				
+			ps.close();
+			cn.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Datos: Error al validar el usuario "+ e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return id;
+		
+	}
+	
+	//Devuelve el Id del Profesor guia
+	public boolean validarInicioSesionProfesorGuia(String user, String pass){
+		
+		boolean encontrado = false;
+		String sql = "SELECT pg.IdProfesor "+
+					"FROM ProfesorGuia pg, Usuario u" +
+						" WHERE u.idUsuario = pg.idUsuario " +
+						" AND u.usuario = ? AND u.password = ? AND u.estado = 1 ";
+		
+		try
+		{
+			Connection cn = getConnection();
+			PreparedStatement ps = cn.prepareStatement(sql);
+			
+			ps.setString(1, user);
+			ps.setString(2, pass);
+			
+			ResultSet rs = null;
+			rs = ps.executeQuery();
+			
+			if(rs.next())
+			{
+				encontrado=true;
+			}
+				
+			ps.close();
+			cn.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Datos: Error al validar el usuario "+ e.getMessage());
+			e.printStackTrace();
+		}
+			
+		return encontrado;
+		
+	} 
+	
+	public int verificarRol(String user, String pass){
+		
+		int id = 0;
+		String sql = "SELECT u.idRol FROM Usuario u WHERE u.usuario = ? AND u.password = ? AND u.estado = 1;";
+	
+		try
+		{
+			Connection cn = getConnection();
+			PreparedStatement ps = cn.prepareStatement(sql);
+			
+			ps.setString(1, user);
+			ps.setString(2, pass);
+			
+			ResultSet rs = null;
+			rs = ps.executeQuery();
+			
+			if(rs.next())
+			{
+				id = rs.getInt("idRol");
+			}
+				
+			ps.close();
+			cn.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Datos: Error al validar el usuario "+ e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return id;
+		
+	}
 	
 	
 	public Usuario InicioSesion(Usuario s){

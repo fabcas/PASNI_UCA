@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"
+	import = "servlets.*,entidades.*,datos.*, negocio.*, java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +10,41 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<%
+	//String email = "";
+	int rol = 0;
+	int idUsuario = 0;
+	
+	ArrayList <UsuarioGenerico> listadmin = new ArrayList <UsuarioGenerico>();
+	listadmin = (ArrayList <UsuarioGenerico>) session.getAttribute("login");
+	
+	if(listadmin != null)
+    {
+		for (UsuarioGenerico user: listadmin)
+		{
+			//email = vsadmin.getCorreo();
+			rol = user.getIdRol();
+			idUsuario = user.getIdUsuario();
+		}
+		System.out.println("Rol: " + rol + ", idUsuario: "+ idUsuario);
+    }
+	else
+	{
+ 		response.sendRedirect("index.jsp");
+ 		return;
+		
+	}
+	
+	/*ArrayList <V_SS_Seg_RolOpciones> lvsro = new  ArrayList <V_SS_Seg_RolOpciones>();
+	DT_SS_Rol_Opciones_Seguridad dsros = new DT_SS_Rol_Opciones_Seguridad();
+	
+	lvsro = dsros.rolOpciones(rol);
+	HttpSession hts2 = request.getSession(true);
+	hts2.setAttribute("listOpciones", lvsro);*/
+	
+%>
+
 
 <title>PASNI-UCA | Menú</title>
 
@@ -58,25 +94,21 @@
 										class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
 										<li><a href="modulos/profesorGuia/informe-guiatura.jsp">Informe Guiatura</a></li>
-										<li><a href="modulos/profesorGuia/inscripcion-profesor.jsp">Inscripcion Profesor/a></li>
+										<li><a href="modulos/profesorGuia/inscripcion-profesor.jsp">Inscripcion Profesor</a></li>
 										<li><a href="modulos/profesorGuia/lista-profesores.jsp">Dashboard3</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-desktop"></i> Taller de
 										Formación <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
+										<li><a href="modulos/taller/solicitarTaller.jsp">Solicitar taller</a></li>
 										<li><a href="modulos/taller/bandejaSolicitudesTaller.jsp">Bandeja Solicitud Taller</a></li>
 										<li><a href="modulos/taller/taller.jsp">Taller</a></li>
-										<li><a href="modulos/taller/">Dashboard3</a></li>
+										<li><a href="modulos/taller/categoria-taller.jsp">Categoría taller</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-magic"></i> Administración <span
 										class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
 										<li><a href="index.html">Dashboard</a>
-											<ul class="nav child_menu" style="display: none">
-												<li><a href="index.html">Dashboard</a></li>
-												<li><a href="index2.html">Dashboard2</a></li>
-												<li><a href="index3.html">Dashboard3</a></li>
-											</ul>
 										</li>
 										<li><a href="index2.html">Dashboard2</a></li>
 										<li><a href="index3.html">Dashboard3</a></li>

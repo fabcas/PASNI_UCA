@@ -89,11 +89,9 @@
                                 </li>
                                 <li><a><i class="fa fa-magic"></i> Administración <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                       	 <li><a href="#">Usuarios</a>
+                                       	 <li><a href="Seg_CuentasUsuarios.jsp">Cuentas de usuarios</a>
                                          </li>
                                          <li><a href="Seg_Rol.jsp">Rol</a>
-                                         </li>
-                                         <li><a href="Seg_Usuario.jsp">Asignar permisos</a>
                                          </li>
                                     </ul>
                                 </li>

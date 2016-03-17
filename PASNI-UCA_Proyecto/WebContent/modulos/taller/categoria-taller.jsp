@@ -214,6 +214,7 @@
 										class="btn btn-primary" data-toggle="modal"
 										data-target=".bs-example-modal-lg">Ingresar nueva
 										categoría</button>
+										<br><br>
 									<%
 											
 											NGCategoriaTaller neg = new NGCategoriaTaller();

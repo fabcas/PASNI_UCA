@@ -117,9 +117,9 @@
 				<div class="modal-content modal-popup">
 					<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
 					<h3 class="white">Iniciar Sesión</h3>
-					<form action="SLInicioSesion" method="post" name="InicioSesion" class="popup-form">
-						<input type="text" class="form-control form-white" placeholder="Usuario"> 
-						<input type="text" class="form-control form-white" placeholder="Contraseña">
+					<form action="./SLIngresarSistema" method="post" name="InicioSesion" class="popup-form">
+						<input type="text" class="form-control form-white" id="user" name="user" placeholder="Usuario"> 
+						<input type="password" class="form-control form-white" id="pass" name="pass" placeholder="Contraseña">
 						<button type="submit" class="btn btn-submit">Ingresar</button>
 					</form>
 				</div>

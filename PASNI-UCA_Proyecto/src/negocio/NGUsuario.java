@@ -143,5 +143,127 @@ public class NGUsuario {
 		
 		return array;
 	}
+	
+	
+	/** Inicios de sesión **/
+		
+	public boolean validarInicioSesionAdministrador(String user, String pass){
+		
+		boolean valido = false;
+		MDUsuario datos = new MDUsuario();
+		
+		try
+		{
+			valido = datos.validarInicioSesionAdministrador(user, pass);
+		}
+		catch(Exception e)
+		{
+			System.out.println("NG: el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+				
+		return valido;
+		
+	}
+	
+	public boolean validarInicioSesionMonitor(String user, String pass){
+		
+		boolean valido = false;
+		MDUsuario datos = new MDUsuario();
+		
+		try
+		{
+			valido = datos.validarInicioSesionMonitor(user, pass);
+		}
+		catch(Exception e)
+		{
+			System.out.println("NG: el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+				
+		return valido;
+		
+	}
+	
+	//
+	public boolean validarInicioSesionProfesorGuia(String user, String pass){
+		
+		boolean valido = false;
+		MDUsuario datos = new MDUsuario();
+		
+		try
+		{
+			valido = datos.validarInicioSesionProfesorGuia(user, pass);
+		}
+		catch(Exception e)
+		{
+			System.out.println("NG: el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+				
+		return valido;
+		
+	}
+	
+	//Obtiene el rol de un usuario
+	public int verificarRol(String user, String pass){
+		
+		int rol = 0;
+		MDUsuario datos = new MDUsuario();
+		
+		try
+		{
+			rol = datos.verificarRol(user, pass);
+		}
+		catch(Exception e)
+		{
+			System.out.println("NG: el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+				
+		return rol;
+		
+	}
+	
+	//Obtiene el id de un usuario
+		public int devolverIdAdministrador(String user, String pass){
+			
+			int id = 0;
+			MDUsuario datos = new MDUsuario();
+			
+			try
+			{
+				id = datos.devolverIdAdministrador(user, pass);
+			}
+			catch(Exception e)
+			{
+				System.out.println("NG: el error es: "+e.getMessage());
+				e.printStackTrace();
+			}
+					
+			return id;
+			
+		}
+		
+	public int devolverIdProfesorGuia(String user, String pass){
+			
+			int id = 0;
+			MDUsuario datos = new MDUsuario();
+			
+			try
+			{
+				id = datos.devolverIdProfesorGuia(user, pass);
+			}
+			catch(Exception e)
+			{
+				System.out.println("NG: el error es: "+e.getMessage());
+				e.printStackTrace();
+			}
+					
+			return id;
+			
+		}
+	
+	/** Fin **/
 
 }

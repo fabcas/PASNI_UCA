@@ -9,9 +9,8 @@ public class Usuario {
 	private int IdRol;
 	private String nombreRol;
 	private String nombreMonitor;
-	
-	
-	
+	private Monitor m;
+	private ProfesorGuia pg;
 	
 	public Usuario() {
 		
@@ -84,6 +83,24 @@ public class Usuario {
 	public void setNombreMonitor(String nombreMonitor) {
 		this.nombreMonitor = nombreMonitor;
 	}
+
+	public Monitor getM() {
+		return m;
+	}
+
+	public void setM(Monitor m) {
+		this.m = m;
+	}
+
+	public ProfesorGuia getPg() {
+		return pg;
+	}
+
+	public void setPg(ProfesorGuia pg) {
+		this.pg = pg;
+	}
+	
+	
 	
 	
 	

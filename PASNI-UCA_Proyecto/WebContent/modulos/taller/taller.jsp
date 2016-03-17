@@ -482,7 +482,7 @@
 
 			$(document).ready(function()
 			{
-				//cargarNotify();
+				cargarNotify();
 				$('#table').dataTable(
 						{
 							// "dom": 'T<"clear">lfrtip',
@@ -527,7 +527,9 @@
 		</script>
 
 <script>
+		
         $(document).ready(function () {
+        	cargarNotify();
         	cargarNotify();
             $(".select2_single").select2({
                 placeholder: "Seleccione un cuatrimestre",

@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,26 +46,41 @@ public class SLSolicitudTaller extends HttpServlet {
 		String opc = "";
 		String idSolicitud = "";
 		String estado = "";
-		
+		Date fechaActual = new Date();
+		String idTaller = "";
+		String idProfesor = "";
+		String fecha = "";
 		
 		try{
 			opc = request.getParameter("opc");
 			
 			if(opc.equals("1"))
 			{
-				idSolicitud = request.getParameter("idSolicitudTaller");
-				st.setIdSolicitudTaller(Integer.parseInt(idSolicitud));
-				st.setEstado(1);
 				
-				a = ngs.aprobarNGSolicitudTaller(st);
+				idTaller = request.getParameter("taller");
+				st.setIdTaller(Integer.parseInt(idTaller));
+				idProfesor = request.getParameter("idUsuario");
+				st.setIdProfesor(Integer.parseInt(idProfesor));
+				fecha = request.getParameter("fecha");
+				
+				
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				java.util.Date parsed = null;
+				parsed = format.parse(fecha);
+				st.setFechaSolicitud((new java.sql.Date(parsed.getTime())));
+				
+				st.setHorarioPropuesto(request.getParameter("horario"));
+				//st.setEstado(1);
+				
+				a = ngs.guardarSolicitudTaller(st);
 				
 				if(a == true)
 				{
-					response.sendRedirect("./modulos/taller/bandejaSolicitudesTaller.jsp?msj=1");
+					response.sendRedirect("./modulos/taller/solicitarTaller.jsp?msj=1");
 				}
 				else
 				{
-					response.sendRedirect("./modulos/taller/bandejaSolicitudesTaller.jsp");
+					response.sendRedirect("./modulos/taller/solicitarTaller.jsp");
 				}
 			}
 			
@@ -72,7 +89,7 @@ public class SLSolicitudTaller extends HttpServlet {
 		{
 			 e.printStackTrace();
 			 System.out.println("Servlet: Error en el catch al verificar los datos del taller: -> " + e.getMessage());
-			 response.sendRedirect("./modulos/taller/bandejaSolicitudesTaller.jsp");
+			 response.sendRedirect("./modulos/taller/solicitarTaller.jsp");
 		}
 
 		

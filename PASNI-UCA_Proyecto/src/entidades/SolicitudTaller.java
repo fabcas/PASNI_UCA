@@ -12,6 +12,7 @@ public class SolicitudTaller {
 	private String nombreTaller;
 	private int idProfesor;
 	private String nombreProfesor;
+	private String horarioPropuesto;
 	
 	
 	public SolicitudTaller(int idSolicitudTaller, Date fechaSolicitud,
@@ -111,11 +112,17 @@ public class SolicitudTaller {
 	public void setNombreProfesor(String nombreProfesor) {
 		this.nombreProfesor = nombreProfesor;
 	}
+
+
+	public String getHorarioPropuesto() {
+		return horarioPropuesto;
+	}
+
+
+	public void setHorarioPropuesto(String horarioPropuesto) {
+		this.horarioPropuesto = horarioPropuesto;
+	}
 	
 	
-	
-	
-	
-	
-	
+		
 }

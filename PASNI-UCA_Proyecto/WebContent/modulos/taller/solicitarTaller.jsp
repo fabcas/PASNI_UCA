@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
-	import="servlets.*,entidades.*,datos.*, negocio.*, java.util.*"%>
+	import="servlets.*,entidades.*,datos.*, negocio.*, java.util.*,
+	java.util.Date,java.text.SimpleDateFormat"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +12,47 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<%
+	//String email = "";
+	int rol = 0;
+	int idUsuario = 0;
+	
+	ArrayList <UsuarioGenerico> listadmin = new ArrayList <UsuarioGenerico>();
+	listadmin = (ArrayList <UsuarioGenerico>) session.getAttribute("login");
+	
+	if(listadmin != null)
+    {
+		for (UsuarioGenerico user: listadmin)
+		{
+			//email = vsadmin.getCorreo();
+			rol = user.getIdRol();
+			idUsuario = user.getIdUsuario();
+		}
+		System.out.println("Rol en solicitar taller: " + rol + ", idUsuario: "+ idUsuario);
+    }
+	else
+	{
+ 		response.sendRedirect("index.jsp");
+ 		return;
+		
+	}
+	
+	/*ArrayList <V_SS_Seg_RolOpciones> lvsro = new  ArrayList <V_SS_Seg_RolOpciones>();
+	DT_SS_Rol_Opciones_Seguridad dsros = new DT_SS_Rol_Opciones_Seguridad();
+	
+	lvsro = dsros.rolOpciones(rol);
+	HttpSession hts2 = request.getSession(true);
+	hts2.setAttribute("listOpciones", lvsro);*/
+	
+%>
+
+<%
+	Date date = new Date();
+	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	String f_actual = format.format(date);
+%>
+
 
 <title>PASNI-UCA | Talleres de Formación</title>
 
@@ -60,7 +102,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Solicitar Taller de Formación</h3>
+							<h3>Solicitar Taller de Formación</h3><br>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -227,68 +269,55 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Catálogo de Taller</h2>
+									<h2>Solicitar taller de formación</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
-									<button type="button" class="btn btn-primary"
-										data-toggle="modal" data-target=".bs-example-modal-lg">Nueva
-										solicitud</button><br><br>
-									<%
-											
-											NGTaller neg = new NGTaller();
-											ArrayList<Taller> arrayL = new ArrayList<Taller>(); 
-											arrayL = neg.cargarTalleres();
-										
-							%>
-									<table id="table"
-										class="table table-striped responsive-utilities jambo_table display">
-										<thead>
-											<tr class="headings">
-												<th><input type="checkbox" class="tableflat"></th>
-												<th>Id Taller</th>
-												<th>Cuatrimestre</th>
-												<th>Nombre</th>
-												<th>Descripción</th>
-												<th>Fecha Inicio</th>
-												<th>Fecha Fin</th>
-												<th><span class="nobr">Acción</span></th>
-											</tr>
-										</thead>
+									<br />
+                                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="../../SLSolicitudTaller?opc=1">
+										<%
+											NGSolicitudTaller st = new NGSolicitudTaller();
+											ArrayList<Taller> lista = new ArrayList<Taller>();
+											lista = st.cargarTalleres();
+										%>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Taller de formación: <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <select id="taller" class="select2_single form-control col-md-7 col-xs-12 has-feedback-left" name="taller" required="required"  tabindex="-1">
+													<option value="0">Seleccione..</option>
+														<%
+															for(Taller t : lista)
+														  	{ 
+														%>
+													<option value="<%=t.getIdTaller() %>" ><%=t.getNombre()%></option>
+														<%	
+															}
+														%>	
+												</select>
+												<span class="fa fa-list-ul form-control-feedback left" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Horario propuesto <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <textarea id="horario" name="horario" rows="3" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+                                                <input type="hidden" id="idUsuario" name="idUsuario" value="<%=idUsuario%>">
+                                                <input type="hidden" id="fecha" name="fecha" value="<%=f_actual%>">
+                                                <!-- <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>-->
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                                <button type="submit" class="btn btn-primary">Cancelar</button>
+                                                <button type="submit" class="btn btn-success">Enviar solicitud</button>
+                                            </div>
+                                        </div>
 
-										<tbody>
-
-											<%
-													for(Taller enti: arrayL)
-													{
-												%>
-											<tr class="even pointer">
-												<td class="a-center "><input type="checkbox"
-													class="tableflat"></td>
-												<td class=""><%=enti.getIdTaller() %></td>
-												<td class=""><%=enti.getNombreCuatrimestre() %></td>
-												<td class=""><%=enti.getNombre() %></td>
-												<td class=""><%=enti.getDescripcion() %></td>
-												<td class=""><%=enti.getFechaInicio() %></td>
-												<td class=""><%=enti.getFechaFinal()%></td>
-												<td>
-													<button type="button" class="btn btn-success btn-xs"
-														data-toggle="modal" data-target=".modalEditar">
-														<i class="fa fa-pencil"></i>
-													</button>
-													<button type="button" class="btn btn-danger btn-xs"
-														data-toggle="modal" data-target="#modalEliminar">
-														<i class="fa fa-trash-o"></i>
-													</button>
-												</td>
-											</tr>
-
-											<%
-													} 
-												%>
-
-										</tbody>
-									</table>
+                                    </form>
 
 								</div>
 							</div>
@@ -341,12 +370,73 @@
 <script src="../../js/datatables/src/DataTables.js"></script>
 <script src="../../js/datatables/tools/js/dataTables.tableTools.js"></script>
 
+
+<!-- avisos de CRUD -->
+    	<%
+    		String msj ="";
+    		msj = request.getParameter("msj");
+    		System.out.println(msj);
+    	%>
+        
+        <script type="text/javascript">
+    		function cargarNotify()
+    		{
+    			var mensaje = "<%=msj%>";
+    			
+    			if(mensaje=="1")
+    			{
+    				new PNotify({
+    	                title: "Registro Guardado",
+    	                type: "info",
+    	                text: "El usuario fue almacenado exitosamente!!!",
+    	                nonblock: {
+                                  nonblock: true,
+                                  nonblock_opacity: .9}
+    				});
+    			}
+    			 if(mensaje=="2")
+    			 {
+    				 new PNotify({
+    		                title: "Registro Modificado",
+    		                type: "success",
+    		                text: "El usuario se editó  exitosamente!!!",
+    		                nonblock: {
+                                   nonblock: true,
+                                   nonblock_opacity: .9}
+    					}); 
+    			 }
+    			 if(mensaje=="3")
+    			{
+    				 new PNotify({
+    		                title: "Registro Eliminado",
+    		                type: "error",
+    		                text: "El usuario se eliminó exitosamente!!!",
+    		                nonblock: {
+                                   nonblock: true,
+                                   nonblock_opacity: .9}
+    					}); 
+    			}
+    			 
+    			 if(mensaje=="4")
+     			{
+     				 new PNotify({
+     		                title: "Registro no Encontrado",
+     		                type: "error",
+     		                text: "Hubo un problema!!",
+     		                nonblock: {
+                                    nonblock: true,
+                                    nonblock_opacity: .9}
+     					}); 
+     			}
+    		}
+        </script>
+
 <script type="text/javascript">
 
 			$(document).ready(function()
 			{
 				cargarNotify();
-				$('#table').dataTable(
+				$('table.display').dataTable(
 						{
 							// "dom": 'T<"clear">lfrtip',
 				           // "tableTools": {
@@ -402,6 +492,6 @@
                 });
         });
         
-        </script>
+</script>
 
 </html>

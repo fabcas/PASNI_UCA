@@ -9,6 +9,33 @@ import entidades.Taller;
 
 public class NGSolicitudTaller {
 	
+	/** Métodos de agregar, modificar, eliminar **/
+		
+	public boolean guardarSolicitudTaller(SolicitudTaller st)
+	{
+		
+		boolean bl = false;
+		
+		try
+		{
+			MDSolicitudTaller datos = new MDSolicitudTaller();
+			bl = datos.guardarSolicitudTaller(st);
+			System.out.println("Negocio: Solicitud aprobada!!!");
+		}
+				
+	
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("Negocio: Error al aprobar la solicitud " + e.getMessage());
+		}
+		
+		return bl;
+	}
+	
+	/** FIN **/
+	
+	
 	/** Métodos de aprobación, desaprobación **/
 	
 			public boolean aprobarNGSolicitudTaller(SolicitudTaller st)
@@ -77,6 +104,24 @@ public class NGSolicitudTaller {
 		try
 		{
 			array = datos.cargarSolicitudesDesaprobadas();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Negocio, el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
+		return array;
+	}
+	
+	public ArrayList<Taller> cargarTalleres()
+	{
+		ArrayList < Taller > array = new ArrayList<Taller>();
+		MDTaller datos = new MDTaller();
+		try
+		{
+			array = datos.cargarDatos();
 		}
 		catch(Exception e)
 		{

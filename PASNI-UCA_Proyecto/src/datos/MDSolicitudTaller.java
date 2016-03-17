@@ -20,18 +20,24 @@ public class MDSolicitudTaller extends Conexion{
 		boolean g = false;
 		int y = 0;
 		
+		
+		String sql = "INSERT INTO SolicitudTaller (IdProfesor, IdTaller, Fecha, Estado, HorarioPropuesto) "
+				+ "VALUES (?,?,?,0,?);";
+		
 		Connection cn = getConnection();
-		CallableStatement cstmt = null;	
-		String sql = "{call dbo.SPAgregarSolicitudTaller(?,'true',?,?)}";
-		cstmt = cn.prepareCall(sql);			
+		PreparedStatement s = cn.prepareStatement(sql);
+		   
+		s = cn.prepareCall(sql);			
 					
 		try {
 			
-			cstmt.setDate(1, (Date) st.getFechaSolicitud());
-			cstmt.setInt(2, st.getEstado());
-			cstmt.setInt(3, st.getIdProfesor());
-			cstmt.setInt(4, st.getIdTaller());
-			y = cstmt.executeUpdate();
+			s.setInt(1, st.getIdProfesor());
+			s.setInt(2, st.getIdTaller());
+			s.setDate(3, (Date) st.getFechaSolicitud());
+			//s.setInt(4, st.getEstado());
+			s.setString(4, st.getHorarioPropuesto());
+			
+			y = s.executeUpdate();
 			g = y > 0;
 			
 		} catch (SQLException e) {
@@ -41,7 +47,7 @@ public class MDSolicitudTaller extends Conexion{
 		}
 	
 		
-		cstmt.close();
+		s.close();
 		cn.close();
 		return g;
 	}//guardar

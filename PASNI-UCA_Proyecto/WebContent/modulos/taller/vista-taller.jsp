@@ -72,18 +72,15 @@
 
                                     <!-- start accordion -->
                                     <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
-                                      <!-- <div class="panel">
-                                            <a class="panel-heading" ><h4 class="panel-title">Reforzamiento académico</h4></a>
-                                         <div >-->
-                                                <div class="panel-body">
+                                         <div class="panel-body">
 	                                                <%
 														NGTaller neg = new NGTaller();
 														ArrayList<Taller> lista = new ArrayList<Taller>(); 
 														lista = neg.cargarTalleres();
 													%>
-                                                    <table class="table table-bordered">
+                                                    <table class="table table-bordered ">
                                                         <thead>
-                                                            <tr>
+                                                            <tr class="table-green text-center">
                                                                 <th>Taller</th>
                                                                 <th>Descripción</th>
                                                                 <th>Categoría</th>
@@ -102,23 +99,21 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- end of accordion -->
+                                    </div><!-- end of accordion -->
 
                                 </div>
+                                
                             </div>
-							
-									
-							
-						</div><!-- xpanel -->
-												
-					</div><!-- row -->
-				
-			</div><!-- /page content -->
-			
+                    <div class=" text-center">
+						<p>&copy; Copyright 2016, Todos los Derechos Reservados</p>
+						<p>Universidad Centroamericana</p>
+					</div>
+                            
 		</div> <!-- main_container -->
 		
 	</div> <!-- container body -->
+				
+			</div><!-- /page content -->
 	 <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/custom.js"></script>
 </body>

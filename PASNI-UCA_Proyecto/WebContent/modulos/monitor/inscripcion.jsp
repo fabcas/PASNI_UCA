@@ -307,7 +307,12 @@
 						</div><!-- xpanel -->
 												
 					</div><!-- row -->
-				
+
+					<div class=" text-center">
+						<p>&copy; Copyright 2016, Todos los Derechos Reservados</p>
+						<p>Universidad Centroamericana</p>
+					</div>
+					
 			</div><!-- /page content -->
 			
 		</div> <!-- main_container -->

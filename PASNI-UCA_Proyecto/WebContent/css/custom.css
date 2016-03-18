@@ -6343,6 +6343,11 @@ ul.notifications {
 	margin-bottom: 20px;
 }
 
+tr.table-green {
+    background: #66b318;
+    color:white;
+}
+
 body .container.body .right_colinsc {
 	background: #172D44;
 }

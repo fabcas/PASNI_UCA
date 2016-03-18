@@ -90,12 +90,17 @@ public class SLIngresarSistema extends HttpServlet {
 				{
 					//Monitor
 					autenticado = ng.validarInicioSesionMonitor(user, pass);
-					
+					idUsuario = ng.devolverIdMonitor(user, pass);
+					ArrayList<UsuarioGenerico> listaMonitor = new ArrayList<UsuarioGenerico>();
+					UsuarioGenerico m = new UsuarioGenerico();
+					m.setIdUsuario(idUsuario);
+					m.setIdRol(rol);
+					listaMonitor.add(m);
 					
 					if(autenticado == true){
 						
 						HttpSession hts = request.getSession(true);
-						//hts.setAttribute("login", );
+						hts.setAttribute("login", listaMonitor);
 						response.sendRedirect("modulos/menu.jsp");
 					}
 					else{

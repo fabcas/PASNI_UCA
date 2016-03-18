@@ -52,9 +52,21 @@
 						<div class="col-md-12 text-center headf">
 							<h3 class="white">Asistencia a Pregrado</h3>
 							<h3 class="yellow">Programa de Alumnos Monitores</h3>
-						</div>
+						<br>
+						
+						<div class="white">En asignaturas de primer año que representan un mayor desafío, como
+							Matemática Fundamental, Química
+							General y Taller de Redacción, podrás
+							disponer del apoyo de un monitor o
+							monitora, es decir, un estudiante de año
+							superior con alto índice académico y
+							dispuesto a colaborar con tu aprendizaje.
+							Dos veces a la semana, en períodos de
+							dos horas, formarás círculos de estudios
+							y colaboración para afianzar los saberes
+							que has aprendido en tus clases titulares. </div>
 					</div>
-
+</div>
 					<div class="page-title">
 						<div class="title_right">
 							<h4 class="white">Inscripción al programa</h4>

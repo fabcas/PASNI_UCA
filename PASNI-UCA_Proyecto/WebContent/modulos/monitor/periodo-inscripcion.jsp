@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Período Inscripcion de Monitor</title>
+	<title>PASNI-UCA | Período Inscripción </title>
 	
 	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	
@@ -34,25 +34,14 @@
 
 				<div class="page-title">
 					<div class="title_left">
-						<h3>Período de Inscripción de Alumnos Monitores</h3>
-					</div>
-
-					<div class="title_right">
-						<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Buscar..."> 
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">Ir!</button>
-									</span>
-							</div>
-						</div>
+						<h3>Alumno Monitor</h3>
 					</div>
 				</div>
 				
 				<div class="col-md-12 col-sm-12 col-xs-12">
                 	<div class="x_panel">
                     	<div class="x_title">
-                        	<h2>Período</h2>
+                        	<h2>Período de Inscripción Alumno Monitor</h2>
                            <div class="clearfix"></div>
                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAgregar">Agregar Período</button>
                         </div>
@@ -80,7 +69,7 @@
 							                            ArrayList<PeriodoInscripcion> lista = new ArrayList<PeriodoInscripcion>();
 							                            lista = ngpi.cargarPI();
 							                        %>
-				                                    <table class="table table-striped responsive-utilities jambo_table bulk_action">
+				                                    <table class="display table table-striped responsive-utilities jambo_table bulk_action">
 				                                        <thead>
 				                                            <tr class="headings">
 				                                                <th class="column-title">IdPeriodo </th>
@@ -103,9 +92,13 @@
 							                                    <td class=" "><%=pi.getFechaInicio() %></td>
 							                                    <td class=" "><%=pi.getFechaFin()%></td>
 							                                    <td>
-							                                    <button type="button" id="botonModificar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalEditar"
+							                                    <button type="button" id="modalEditar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar"
 																onclick="cargarDatos('<%=pi.getIdPeriodoInscripcion()%>', '<%=pi.getNombreC()%>','<%=pi.getFechaInicio()%>', '<%=pi.getFechaFin()%>');">
 																	<i class="fa fa-pencil"></i>
+																</button>
+																<button type="button" id="modalEliminar" title="Modificar registro" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".modalEliminar"
+																onclick="cargarDatos('<%=pi.getIdPeriodoInscripcion()%>', '<%=pi.getNombreC()%>','<%=pi.getFechaInicio()%>', '<%=pi.getFechaFin()%>');">
+																	<i class="fa fa-trash-o"></i>
 																</button>
 							                                    </td>
 							                               </tr>
@@ -127,8 +120,12 @@
 				                                <div class="x_content">
 				
 				                                    <p>Listado de Períodos</p>
-				
-				                                    <table class="table table-striped responsive-utilities jambo_table bulk_action">
+													 <%
+							                            NGPeriodoInscripcion ngpif = new NGPeriodoInscripcion();
+							                            ArrayList<PeriodoInscripcion> listaf = new ArrayList<PeriodoInscripcion>();
+							                            listaf = ngpif.cargarPIF();
+							                        %>
+				                                    <table class="display table table-striped responsive-utilities jambo_table bulk_action">
 				                                        <thead>
 				                                            <tr class="headings">
 				                                               <th class="column-title">IdPeriodo </th>
@@ -137,22 +134,24 @@
 				                                                <th class="column-title">Fecha Fin</th>
 				                                           	</tr>
 				                            			</thead>
-				                            			
-							                            <tbody>							                           
+				                            			<tbody>
+							                             <%
+							                            	for(PeriodoInscripcion pif : listaf)
+							                            	{
+							                            %>
+							                           
 							                                <tr class="even pointer">
-							                                    <td class=" "></td>
-							                                   	<td class=" "></td>
-							                                    <td class=" "></td>
-							                                    <td class=" "></td>
+							                                    <td class=" "><%=pif.getIdPeriodoInscripcion()%></td>
+							                                   	<td class=" "><%=pif.getNombreC() %></td>
+							                                    <td class=" "><%=pif.getFechaInicio() %></td>
+							                                    <td class=" "><%=pif.getFechaFin()%></td>
 							                               </tr>
+							                             <%}%>
 							                           </tbody>
 				                  					</table>
 				                                </div>
 				                            </div>
                                    	
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                                        <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk </p>
                                     </div>
                                 </div>
                            </div>
@@ -206,7 +205,7 @@
 			    
 			    <!-- Modal Modificar Periodo -->
 
-				<div class="modal fade bs-example-modal-lg"  id="modalEditar" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal fade modalEditar"  id="modalEditar" tabindex="-1" role="dialog" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -220,10 +219,11 @@
 							<div class="modal-body">
 								<form class="form-horizontal form-label-left" name="form" method="post" action="../../SLPeriodoInscripcion?opc=2">
 									<div class="item form-group">
-										<label >idPeriodo:</label> <input type="text" id="idPeriodoInscripcionE" name="idPeriodoInscripcionE" disabled="disabled" required="required" class="form-control" placeholder=""> <br>
+										<label >idPeriodo:</label> <input type="text" id="IdPI" name="IdPIEditar" disabled="disabled" required="required" class="form-control" placeholder=""> <br>
+																	<input type="hidden" id="IdPIEditar" name="IdPIEditar" class="form-control" placeholder=""> <br>
 										<label >Cuatrimestre:</label> <input type="text" id="idCuatrimestreE" name="idCuatrimestreE" disabled="disabled" required="required" class="form-control" placeholder=""> <br>
-										<label>Fecha inicio:</label> <input type="date" id="fechaInicioE" name="fechaInicioE" required="required" class="form-control" placeholder=""> <br>
-										<label>Fecha final:</label> <input type="date" id="fechaFinE" name="fechaFinE" required="required" class="form-control" placeholder="">
+										<label>Fecha inicio:</label> <input type="date" id="fechaIEditar" name="fechaIEditar" required="required" class="form-control" placeholder=""> <br>
+										<label>Fecha final:</label> <input type="date" id="fechaFEditar" name="fechaFEditar" required="required" class="form-control" placeholder="">
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -235,14 +235,44 @@
 					</div>
 				</div>
 			    <!-- Modal Agregar -->
+			    
+			    <div class="modal fade modalEliminar"  id="modalEliminar" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">x</span>
+								</button>
+								<h5 class="modal-title">
+									<b>Eliminar Período Inscripción</b>
+								</h5>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal form-label-left" name="form" method="post" action="../../SLPeriodoInscripcion?opc=3">
+											<div class="item form-group">
+												<div class="col-md-12 col-sm-12 col-xs-12">
+													<input type="hidden" name=IdPIEliminar
+														id="IdPIEliminar">
+													<p>¿Seguro que desea eliminar este período de inscripción?</p>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal">Cancelar</button>
+												<button type="submit" class="btn btn-primary">Eliminar</button>
+											</div>
+										</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			    <!-- Modal Eliminar -->
 
+			</div><!-- /right-col -->
 			
-			 
 			<div class="clearfix"></div>
 
 			<jsp:include page="../footer.jsp" flush="true" /><!-- /footer content -->
-
-			</div><!-- /right-col -->
 			
 		</div><!-- /main container-->
 		
@@ -254,25 +284,65 @@
 			<div id="notif-group" class="tabbed_notifications"></div>
 	</div>
 </body>
+<script src="../../js/custom.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
 
+<!-- Datatables -->
+<script src="../../js/datatables/js/jquery.js"></script>
+<script src="../../js/datatables/js/jquery.dataTables.js"></script>
+<script src="../../js/datatables/tools/js/dataTables.tableTools.js"></script>
+<script src="../../js/datatables/js/jquery.dataTables.columnFilter.js"></script>
+<!-- Fin Datatables -->
 <!-- Cargar datos -->
 <script type="text/javascript">
 		
         	function cargarDatos(idPeriodoInscripcion, idCuatrimestre, fechaInicio, fechaFin){
-				
-        		$("#idPeriodoInscripcionE").val(idPeriodoInscripcion);
+        		$("#IdPI").val(idPeriodoInscripcion);
+        		$("#IdPIEditar").val(idPeriodoInscripcion);
+        		$("#IdPIEliminar").val(idPeriodoInscripcion);
         		$("#idCuatrimestreE").val(idCuatrimestre);
-				$("#fechaInicioE").val(fechaInicio);
-				$("#fechaFinE").val(fechaFin);
+				$("#fechaIEditar").val(fechaInicio);
+				$("#fechaFEditar").val(fechaFin);
 				
 		}
-        	
-        	<!-- function cargarIdEliminar(id)
-        	{
-        		$("#IdTaller").val(id);
-        		$("#idTallerEliminar").val(id);
-        	}-->
 	</script>
-<script src="../../js/custom.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
+	
+	<script type="text/javascript">
+			$(document).ready(function()
+			{
+				$('table.display').dataTable(
+						{							
+							"sPaginationType": "full_numbers",
+							"oLanguage": {
+								"sSearch": "Buscar: ",
+								"sEmptyTable": "No hay registros disponibles",
+								"sInfo": "Mostrando un total de _TOTAL_ registros (_START_ de _END_)",
+								"sInfoEmpty": "No hay registros disponibles",
+								"sInfoFiltered": " - filtrando de _MAX_ registros",
+								 "sLengthMenu": "Mostrar _MENU_ registros",
+								 "sLoadingRecords": "Por favor esperar - cargando...",
+								 "sProcessing": "Por favor, espere un momento mientras se procesa su petición",
+								 "sZeroRecords": "No se encontró ningún registro",
+								 "pagingType": "full_numbers",
+									 "oPaginate": {
+										   "sFirst": "Primero",
+								           "sLast": "Último",
+								           "sPrevious": "Atrás",
+								           "sNext": "Siguiente"
+								         }
+							}	
+						}	
+				)
+				.columnFilter({
+					aoColumns: [ { type: "text" },
+					             { type: "text" },
+					 			 { type: "text" },
+					 			 { type: "text" },
+					 			 { type: "text" },
+					 			 { type: "text" },
+					 			 null
+					 			]
+				});
+			});
+		</script>
 </html>

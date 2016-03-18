@@ -43,10 +43,13 @@ public class SLPeriodoInscripcion extends HttpServlet {
 			
 			NGPeriodoInscripcion ngpi = new NGPeriodoInscripcion();
 			PeriodoInscripcion pi = new PeriodoInscripcion();
-			boolean g = false; //Verificar si guardó
+			boolean g = false; //Agregar
+			boolean a = false; //Editar
+			boolean e = false; //Eliminar
 			
 			String opc = "";
 			String idC = "";
+			String idPI = "";
 			String fechaI = "";
 			String fechaF = "";
 			opc = request.getParameter("opc");
@@ -56,11 +59,11 @@ public class SLPeriodoInscripcion extends HttpServlet {
 			}
 			else if(opc.equals("1")){
 				
-				idC = request.getParameter("idCuatrimestreE");
+				idC = request.getParameter("idCuatrimestre");
 				pi.setIdCuatrimestre(Integer.parseInt(idC));
 				
-				fechaI = request.getParameter("fechaInicioE");
-				fechaF = request.getParameter("fechaFinE");
+				fechaI = request.getParameter("fechaInicio");
+				fechaF = request.getParameter("fechaFin");
 				
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				java.util.Date parsed = null;
@@ -83,23 +86,26 @@ public class SLPeriodoInscripcion extends HttpServlet {
 					response.sendRedirect("./modulos/monitor/periodo-inscripcion.jsp");
 				}
 				
-			}else if (opc.equalsIgnoreCase("2")){
+			}else if (opc.equals("2")){
 				
-				fechaI = request.getParameter("fechaInicio");
-				fechaF = request.getParameter("fechaFin");
+				idPI = request.getParameter("IdPIEditar");
+				pi.setIdPeriodoInscripcion(Integer.parseInt(idPI));
+				
+				fechaI = request.getParameter("fechaIEditar");
 				
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				java.util.Date parsed = null;
 				parsed = format.parse(fechaI);
 				pi.setFechaInicio((new java.sql.Date(parsed.getTime())));
 				
+				fechaF = request.getParameter("fechaFEditar");
 				SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
 				java.util.Date parsed2 = null;
 				parsed2 = format2.parse(fechaF);
 				pi.setFechaFin((new java.sql.Date(parsed2.getTime())));
 				
-				g = ngpi.editarPI(pi);
-				if(g == true)
+				a = ngpi.editarPI(pi);
+				if(a == true)
 				{
 					response.sendRedirect("./modulos/monitor/periodo-inscripcion.jsp?msj=2");
 				}
@@ -108,6 +114,23 @@ public class SLPeriodoInscripcion extends HttpServlet {
 				{
 					response.sendRedirect("./modulos/monitor/periodo-inscripcion.jsp");
 				}
+			}
+			else if(opc.equals("3"))
+			{
+				idPI = request.getParameter("IdPIEliminar");
+				pi.setIdPeriodoInscripcion(Integer.parseInt(idPI));
+				
+				e = ngpi.eliminarPI(pi);
+				if(e == true)
+				{
+					response.sendRedirect("./modulos/monitor/periodo-inscripcion.jsp?msj=3");
+				}
+					
+				else
+				{
+					response.sendRedirect("./modulos/monitor/periodo-inscripcion.jsp");
+				}
+					
 			}
 		}catch(Exception e){
 			e.printStackTrace();

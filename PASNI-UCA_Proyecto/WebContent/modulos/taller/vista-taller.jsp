@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>PASNI-UCA | Inscripción</title>
+<title>PASNI-UCA | Taller de Formación</title>
 
 <!-- Bootstrap core CSS-->
 
@@ -86,8 +86,7 @@
                                                             <tr>
                                                                 <th>Taller</th>
                                                                 <th>Descripción</th>
-                                                                <th>Fecha inicio</th>
-                                                                <th>Fecha fin</th>
+                                                                <th>Categoría</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -95,8 +94,7 @@
 															<tr class="even pointer dark">
 																<td class=""><%=t.getNombre()%></td>
 																<td class=""><%=t.getDescripcion()%></td>
-																<td class=""><%=t.getFechaInicio()%></td>
-																<td class=""><%=t.getFechaFinal()%></td>
+																<td class=""><%=t.getNombreCategoria()%></td>
 															</tr>
 															<%}%>
                                                         </tbody>

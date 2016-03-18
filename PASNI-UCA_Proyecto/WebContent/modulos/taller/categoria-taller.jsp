@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PASNI-UCA | Talleres de Formación</title>
+<title>PASNI-UCA | Categoría Taller Formación</title>
 
 <!-- Librerías -->
 
@@ -40,7 +40,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Talleres de Formación</h3>
+							<h3>Taller de Formación</h3>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -194,19 +194,6 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>Catálogo de Categoría</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
@@ -275,16 +262,16 @@
 
 
 					</div>
-					<div class="clearfix"></div>
-
-					<!-- footer content -->
-					<jsp:include page="../footer.jsp" flush="true" />
-					<!-- /footer content -->
+					
 
 				</div>
 				<!-- /page content -->
 			</div>
 
+			<div class="clearfix"></div>
+	
+			<jsp:include page="../footer.jsp" flush="true" /><!-- /footer content -->
+		
 		</div>
 
 		<div id="custom_notifications" class="custom-notifications dsp_none">

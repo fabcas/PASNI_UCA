@@ -264,6 +264,25 @@ public class NGUsuario {
 			
 		}
 	
+	public int devolverIdMonitor(String user, String pass){
+		
+		int id = 0;
+		MDUsuario datos = new MDUsuario();
+		
+		try
+		{
+			id = datos.devolverIdMonitor(user, pass);
+		}
+		catch(Exception e)
+		{
+			System.out.println("NG: el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+				
+		return id;
+		
+	}
+	
 	/** Fin **/
 
 }

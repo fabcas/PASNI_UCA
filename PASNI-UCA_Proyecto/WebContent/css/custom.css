@@ -51,7 +51,7 @@ body.nav-sm .nav.side-menu li a {
 }
 
 body.nav-sm .nav.side-menu li.active-sm {
-	border-right: 5px solid #1ABB9C;
+	border-right: 5px solid #66b318;
 }
 
 body.nav-sm>.nav.side-menu>li.active-sm>a {

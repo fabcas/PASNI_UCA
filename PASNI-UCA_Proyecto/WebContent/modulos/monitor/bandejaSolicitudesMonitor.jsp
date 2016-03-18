@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PASNI-UCA | Alumnos Monitores</title>
+<title>PASNI-UCA | Solicitud Alumno Monitor</title>
 <!-- Bootstrap core CSS -->
 
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -34,14 +34,14 @@
 
 				<div class="page-title">
 						<div class="title_left">
-							<h3>Alumnos Monitores</h3>
+							<h3>Alumno Monitor</h3>
 						</div>
 				</div>
 				
 				<div class="col-md-12 col-sm-12 col-xs-12">
                 	<div class="x_panel">
                     	<div class="x_title">
-                        	<h2>Inscripciones</h2>
+                        	<h2>Lista de Inscripciones Alumno Monitor</h2>
                             	<div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -72,10 +72,7 @@
 				                                    <table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
 				                                        <thead>
 				                                            <tr class="headings">
-				                                                <th>
-				                                                    <input type="checkbox" id="check-all" class="flat">
-				                                                </th>
-				                                                <th class="column-title">IdInscripcion </th>
+				                                               <th class="column-title">IdInscripcion </th>
 				                                                <th class="column-title">Nombre</th>
 				                                                <th class="column-title">Apellido</th>
 				                                                <th class="column-title">Carrera</th>
@@ -93,7 +90,6 @@
 							                            %>
 							                           
 							                                <tr class="even pointer">
-							                                    <td class="a-center "><input type="checkbox" class="flat" name="table_records" ></td>
 							                                    <td class=" "><%=i.getIdInscripcion()%></td>
 							                                   	<td class=" "><%=i.getPrimerNombre()%></td>
 							                                    <td class=" "><%=i.getPrimerApellido()%></td>
@@ -103,7 +99,7 @@
 							                                    <td class=" "><%=i.getFecha()%></td>
 							                                    <td>
 								                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar">
-								                                    	<i class="fa fa-folder"></i>Ver
+								                                    	<i class="fa fa-pencil"></i>
 								                                    </button>
 							                                    </td>
 							                               </tr>
@@ -134,9 +130,6 @@
 				                                    <table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
 				                                        <thead>
 				                                            <tr class="headings">
-				                                                <th>
-				                                                    <input type="checkbox" id="check-all" class="flat">
-				                                                </th>
 				                                                <th class="column-title">IdInscripcion </th>
 				                                                <th class="column-title">Nombre</th>
 				                                                <th class="column-title">Apellido</th>
@@ -155,7 +148,6 @@
 							                            %>
 							                           
 							                                <tr class="even pointer">
-							                                    <td class="a-center "><input type="checkbox" class="flat" name="table_records" ></td>
 							                                    <td class=" "><%=i1.getIdInscripcion()%></td>
 							                                   	<td class=" "><%=i1.getPrimerNombre()%></td>
 							                                    <td class=" "><%=i1.getPrimerApellido()%></td>
@@ -165,7 +157,7 @@
 							                                    <td class=" "><%=i1.getFecha()%></td>
 							                                    <td>
 								                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar">
-								                                    	<i class="fa fa-folder"></i>Ver
+								                                    	<i class="fa fa-pencil"></i>
 								                                    </button>
 							                                    </td>
 							                               </tr>
@@ -196,9 +188,6 @@
 				                                    <table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
 				                                        <thead>
 				                                            <tr class="headings">
-				                                                <th>
-				                                                    <input type="checkbox" id="check-all" class="flat">
-				                                                </th>
 				                                                <th class="column-title">IdInscripcion </th>
 				                                                <th class="column-title">Nombre</th>
 				                                                <th class="column-title">Apellido</th>
@@ -217,7 +206,6 @@
 							                            %>
 							                           
 							                                <tr class="even pointer">
-							                                    <td class="a-center "><input type="checkbox" class="flat" name="table_records" ></td>
 							                                    <td class=" "><%=i2.getIdInscripcion()%></td>
 							                                   	<td class=" "><%=i2.getPrimerNombre()%></td>
 							                                    <td class=" "><%=i2.getPrimerApellido()%></td>
@@ -227,7 +215,7 @@
 							                                    <td class=" "><%=i2.getFecha()%></td>
 							                                    <td>
 								                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar">
-								                                    	<i class="fa fa-folder"></i>Ver
+								                                    	<i class="fa fa-pencil"></i>
 								                                    </button>
 							                                    </td>
 							                               </tr>
@@ -241,8 +229,73 @@
                            </div>
 						</div><!-- /x-content -->
                     </div><!-- /x-panel -->
-                 </div><!-- /col m12 -->
+                 </div><!-- /col m12 -->                 
 				<div class="clearfix"></div>
+					    
+			    <!-- Modal Modificar Inscripcion -->
+
+				<div class="modal fade modalEditar"  id="modalEditar" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">x</span>
+								</button>
+								<h5 class="modal-title">
+									<b>Editar Período Inscripción</b>
+								</h5>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal form-label-left" name="form" method="post" action="../../SLInscripcion?opc=2">
+									<div class="item form-group">
+										<label >idInscripción:</label> <input type="text" id="IdInscripcion" name="IdInscripcion" disabled="disabled" required="required" class="form-control" placeholder=""> <br>
+																	<input type="hidden" id="IdInscripcionEditar" name="IdInscripcionEditar" class="form-control" placeholder=""> <br>
+										<label >Cuatrimestre:</label> <input type="text" id="idCuatrimestreE" name="idCuatrimestreE" disabled="disabled" required="required" class="form-control" placeholder=""> <br>
+										<label>Fecha inicio:</label> <input type="date" id="fechaIEditar" name="fechaIEditar" required="required" class="form-control" placeholder=""> <br>
+										<label>Fecha final:</label> <input type="date" id="fechaFEditar" name="fechaFEditar" required="required" class="form-control" placeholder="">
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+										<button type="submit" class="btn btn-primary">Guardar</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			    <!-- Modal Agregar -->
+			    
+			    <div class="modal fade modalEliminar"  id="modalEliminar" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">x</span>
+								</button>
+								<h5 class="modal-title">
+									<b>Eliminar Período Inscripción</b>
+								</h5>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal form-label-left" name="form" method="post" action="../../SLPeriodoInscripcion?opc=3">
+											<div class="item form-group">
+												<div class="col-md-12 col-sm-12 col-xs-12">
+													<input type="hidden" name=IdPIEliminar
+														id="IdPIEliminar">
+													<p>¿Seguro que desea eliminar este período de inscripción?</p>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal">Cancelar</button>
+												<button type="submit" class="btn btn-primary">Eliminar</button>
+											</div>
+										</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			    <!-- Modal Eliminar -->
 
 			</div><!-- /main -->
 			 

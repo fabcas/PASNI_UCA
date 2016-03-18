@@ -54,7 +54,7 @@
 %>
 
 
-<title>PASNI-UCA | Talleres de Formación</title>
+<title>PASNI-UCA | Solicitar Taller de Formación</title>
 
 <!-- Bootstrap core CSS -->
 
@@ -102,7 +102,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Solicitar Taller de Formación</h3><br>
+							<h3>Taller de Formación</h3><br>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -269,7 +269,7 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Solicitar taller de formación</h2>
+									<h2>Solicitar Taller de Formación</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">

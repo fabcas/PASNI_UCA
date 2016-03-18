@@ -7,7 +7,7 @@ public class Conexion {
 	private Connection cn = null;
 	private static String url = "jdbc:sqlserver://localhost:1433;databaseName=PASNI_UCA;";//Persist Security Info=True;";
 	private static String user = "sa";
-	private static String password = "123";
+	private static String password = "12345";
 	
 	  
     public Conexion()

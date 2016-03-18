@@ -115,7 +115,7 @@
 		<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content modal-popup">
-					<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+					<a class="close-link"><i class="icon_close_alt2"></i></a>
 					<h3 class="white">Iniciar Sesión</h3>
 					<form action="./SLIngresarSistema" method="post" name="InicioSesion" class="popup-form">
 						<input type="text" class="form-control form-white" id="user" name="user" placeholder="Usuario"> 
@@ -129,16 +129,16 @@
 		<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content modal-popup">
-					<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+					<a class="close-link"><i class="icon_close_alt2"></i></a>
 					<h4 class="white">Profesor Guía</h4>
-					<p class="white">
-						Cada cuatrimestre del primer año como estudiante de nuevo ingreso, tendrás el acompañamiento 
-						de un profesor o profesora guía, quien estará comprometido con tu crecimiento personal y 
-						desempeño académico. Es importane que lo identifiques desde la primera semana de clases, pues
-						su figura representa un papel fundamental en tu adaptación a la universidad. Ya sea en tus 
-						tiempos de clases o en las horas de consulta, puedes preguntarle sobre el reglamento académico,
-						tu plan de estudios, tus inquietudes académicas y las instancias de servicio en la UCA.
-					</p>
+							<p class="white">
+								Cada cuatrimestre del primer año como estudiante de nuevo ingreso, tendrás el acompañamiento 
+								de un profesor o profesora guía, quien estará comprometido con tu crecimiento personal y 
+								desempeño académico. Es importane que lo identifiques desde la primera semana de clases, pues
+								su figura representa un papel fundamental en tu adaptación a la universidad. Ya sea en tus 
+								tiempos de clases o en las horas de consulta, puedes preguntarle sobre el reglamento académico,
+								tu plan de estudios, tus inquietudes académicas y las instancias de servicio en la UCA.
+							</p>
 				</div>
 			</div>
 		</div>

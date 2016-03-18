@@ -217,13 +217,14 @@ public class MDInscripcion extends Conexion{
 		try{
 			Connection cn = getConnection();
 			CallableStatement s = null;	
-			String sql = "{call dbo.SPModificarInscripcionMonitor(?,?,?,?)}";
+			String sql = "{call dbo.SPModificarInscripcionMonitor(?,?,?,?,?)}";
 			s = cn.prepareCall(sql);
 			
 			s.setString("turno", i.getTurno());
 			s.setInt("estado", i.getEstado());
 			s.setInt("idAsignatura", i.getIdAsignatura());
 			s.setInt("idInscripcion", i.getIdInscripcion());
+			s.setString("motivo", i.getMotivo());
 			
 			x = s.executeUpdate();
 			g = x > 0;

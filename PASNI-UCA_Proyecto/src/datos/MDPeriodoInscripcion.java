@@ -6,11 +6,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import entidades.CategoriaTaller;
-import entidades.PeriodoInscripcion;;
+import entidades.PeriodoInscripcion;
 
 public class MDPeriodoInscripcion extends Conexion{
 	
@@ -98,6 +96,34 @@ public class MDPeriodoInscripcion extends Conexion{
 		return array;		
 	}
 	
+public ArrayList<PeriodoInscripcion> cargarDatosPIF()throws SQLException{
+		
+		ArrayList <PeriodoInscripcion> array = new ArrayList <PeriodoInscripcion>();
+		CallableStatement cstmt = null;	
+		String sql = "{call dbo.SPListarPIFinalizados}";
+		
+		try{
+			
+			Connection cn = getConnection();
+			cstmt = cn.prepareCall(sql);
+			ResultSet rs = cstmt.executeQuery();
+			
+			while(rs.next()){
+				PeriodoInscripcion pi = new PeriodoInscripcion();
+				pi.setIdPeriodoInscripcion(rs.getInt("idPeriodoInscripcion"));
+				pi.setNombreC(rs.getString("nombre"));
+				pi.setFechaInicio(rs.getDate("fechaInicio"));
+				pi.setFechaFin(rs.getDate("fechaFin"));
+				array.add(pi);				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Datos: Error al cargar los datos -> " + e.getMessage());
+		}
+		return array;		
+	}
+
 	public boolean verificarPeriodo(PeriodoInscripcion PI) throws SQLException
 	{	
 		String sql = ("select fechaFin from PeriodoInscripcion where estado = 1");
@@ -118,6 +144,38 @@ public class MDPeriodoInscripcion extends Conexion{
 			return false;
 		}
 	}
+	
+	//metodo para eliminar logico
+		public boolean eliminarPeriodo(PeriodoInscripcion PI){
+			
+			int x = 0;
+			boolean el = false;
+			
+			try{
+				Connection cn = getConnection();
+				CallableStatement s = null;	
+				String sql = "{call dbo.SPEliminarPeriodoInscripcion(?)}";
+				s = cn.prepareCall(sql);
+				
+				//s.setBoolean(1, false);
+				s.setInt("idPeriodoInscripcion", PI.getIdPeriodoInscripcion());
+				 
+				x = s.executeUpdate();
+				el = x > 0;
+				
+				//Cerramos la conexion
+				s.close();
+				cn.close();
+			
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				System.out.println("Error al eliminar los datos -> " + e.getMessage());
+			}
+			
+			return el;
+		}//eliminar
 	
 	
 }

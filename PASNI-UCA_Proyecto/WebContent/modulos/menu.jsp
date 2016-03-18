@@ -46,29 +46,24 @@
 										Monitor <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
 										<li><a href="../monitor/bandejaSolicitudesMonitor.jsp">Bandeja Inscripciones Monitor</a></li>
-										<li><a href="../monitor/inscripcion.jsp">Período Inscripción</a></li>
-										<li><a href="index3.html">Dashboard3</a></li>
+										<li><a href="../monitor/periodo-inscripcion.jsp">Período de Inscripción</a></li>
 									</ul></li>
-								<li><a><i class="fa fa-edit"></i> Profesor Guía <span
-										class="fa fa-chevron-down"></span></a>
+								<li><a><i class="fa fa-edit"></i> Profesor Guía <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="../profesorGuia/informe-guiatura.jsp">Informe Guiatura</a></li>
-										<li><a href="../profesorGuia/inscripcion-profesor.jsp">Inscripcion Profesor</a></li>
-										<li><a href="../profesorGuia/lista-profesores.jsp">Lista de profesores guías</a></li>
+										<li><a href="../profesorGuia/informe-guiatura.jsp">Informes de Guiatura</a></li>
+										<li><a href="../profesorGuia/inscripcion-profesor.jsp">Inscripciones de Profesores</a></li>
+										<li><a href="../profesorGuia/lista-profesores.jsp">Lista de Profesores</a></li>
 									</ul></li>
-								<li><a><i class="fa fa-desktop"></i> Taller de
-										Formación <span class="fa fa-chevron-down"></span></a>
+								<li><a><i class="fa fa-desktop"></i> Taller de Formación <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="modulos/taller/solicitarTaller.jsp">Solicitar taller</a>
+										<li><a href="../taller/solicitarTaller.jsp">Solicitar taller</a>
 										<li><a href="../taller/bandejaSolicitudesTaller.jsp">Bandeja Solicitud Taller</a></li>
-										<li><a href="../taller/taller.jsp">Taller</a></li>
-										<li><a href="../taller/">Categoría de taller</a></li>
+										<li><a href="../taller/categoria-taller.jsp">Categoría de taller</a></li>
 									</ul></li>
-								<li><a><i class="fa fa-magic"></i> Administración <span
-										class="fa fa-chevron-down"></span></a>
+								<li><a><i class="fa fa-magic"></i> Administración <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="Seg_CuentasUsuarios.jsp">Cuentas de usuarios</a></li>
-										<li><a href="Seg_Rol.jsp">Roles</a></li>
+										<li><a href="../../Seg_CuentasUsuarios.jsp">Cuentas de usuarios</a></li>
+										<li><a href="../../Seg_Rol.jsp">Roles</a></li>
 										<!--<li><a href="index3.html">Dashboard3</a></li>-->
 									</ul></li>
 							</ul>

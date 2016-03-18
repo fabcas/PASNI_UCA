@@ -65,7 +65,7 @@ public class SLPeriodoInscripcion extends HttpServlet {
 				fechaI = request.getParameter("fechaInicio");
 				fechaF = request.getParameter("fechaFin");
 				
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 				java.util.Date parsed = null;
 				parsed = format.parse(fechaI);
 				pi.setFechaInicio((new java.sql.Date(parsed.getTime())));

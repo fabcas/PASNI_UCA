@@ -77,7 +77,7 @@ public class SLIngresarSistema extends HttpServlet {
 						
 						HttpSession hts = request.getSession(true);
 						hts.setAttribute("login", listaAdmin);
-						response.sendRedirect("menu.jsp");
+						response.sendRedirect("menu-principal.jsp");
 					}
 					else{
 						//Agregar notify
@@ -101,7 +101,7 @@ public class SLIngresarSistema extends HttpServlet {
 						
 						HttpSession hts = request.getSession(true);
 						hts.setAttribute("login", listaMonitor);
-						response.sendRedirect("modulos/menu.jsp");
+						response.sendRedirect("menu-principal.jsp");
 					}
 					else{
 						response.sendRedirect("index.jsp");
@@ -130,7 +130,7 @@ public class SLIngresarSistema extends HttpServlet {
 						
 						HttpSession hts = request.getSession(true);
 						hts.setAttribute("login", listaAdmin);
-						response.sendRedirect("menu.jsp");
+						response.sendRedirect("menu-principal.jsp");
 					}
 					else{
 						//Agregar notify

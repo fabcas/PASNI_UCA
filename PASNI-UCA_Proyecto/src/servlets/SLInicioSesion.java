@@ -55,7 +55,7 @@ public class SLInicioSesion extends HttpServlet {
 				
 				g = pi.verificarPeriodo(PI);
 				if(g == true){
-					response.sendRedirect("index.jsp");
+					response.sendRedirect("modulos/monitor/inscripcions.jsp");
 				}else{
 					response.sendRedirect("modulos/monitor/inscripcion.jsp");
 				}

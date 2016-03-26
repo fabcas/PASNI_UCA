@@ -14,7 +14,6 @@ public class InscripcionMonitor {
 	private String email;
 	private String nombreC;
 	private float promedio;
-	private boolean estipendio;
 	private int idInscripcion; 
 	private String nombreA; 
 	private int calificacion; 
@@ -83,12 +82,6 @@ public class InscripcionMonitor {
 	public void setPromedio(float promedio) {
 		this.promedio = promedio;
 	}
-	public boolean isEstipendio() {
-		return estipendio;
-	}
-	public void setEstipendio(boolean estipendio) {
-		this.estipendio = estipendio;
-	}
 	public int getIdInscripcion() {
 		return idInscripcion;
 	}
@@ -137,8 +130,8 @@ public class InscripcionMonitor {
 	public InscripcionMonitor(int idMonitor, String primerNombre,
 			String segundoNombre, String primerApellido,
 			String segundoApellido, String carne, String telefono,
-			String email, String nombreC, float promedio, boolean estipendio,
-			int idInscripcion, String nombreA, int calificacion, String motivo,
+			String email, String nombreC, float promedio,int idInscripcion, 
+			String nombreA, int calificacion, String motivo,
 			String turno, Date fecha, int estado) {
 		super();
 		this.idMonitor = idMonitor;
@@ -151,7 +144,6 @@ public class InscripcionMonitor {
 		this.email = email;
 		this.nombreC = nombreC;
 		this.promedio = promedio;
-		this.estipendio = estipendio;
 		this.idInscripcion = idInscripcion;
 		this.nombreA = nombreA;
 		this.calificacion = calificacion;

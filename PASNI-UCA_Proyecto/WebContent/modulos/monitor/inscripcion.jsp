@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"
 	import="datos.*, entidades.*,servlets.*,negocio.*, java.util.*"
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -50,29 +51,30 @@
 
 					<div class="row">
 						<div class="col-md-12 text-center headf">
-							<h3 class="white">Asistencia a Pregrado</h3>
-							<h3 class="yellow">Programa de Alumnos Monitores</h3>
-						<br>
-						
-						<div class="white">En asignaturas de primer año que representan un mayor desafío, como
-							Matemática Fundamental, Química
-							General y Taller de Redacción, podrás
-							disponer del apoyo de un monitor o
-							monitora, es decir, un estudiante de año
-							superior con alto índice académico y
-							dispuesto a colaborar con tu aprendizaje.
-							Dos veces a la semana, en períodos de
-							dos horas, formarás círculos de estudios
-							y colaboración para afianzar los saberes
-							que has aprendido en tus clases titulares. </div>
+							<h3 class="white">Asistencia de Pregrado</h3>
+							<h3 class="yellow">Programa de Estudiantes Monitores</h3>
+							<br>
+							<div class="white">
+								Si eres estudiante de un año superior, con alto índice académico, dispuesto a ayudar a los demás y con un sólido
+								conocimiento en asignaturas como Matemática Fundamental, Química General y Taller de Redacción, es tu oportunidad 
+								para ser <b>¡Estudiante Monitor (a)!</b> Llena la inscripción a continuación y en caso de ser admitido en el programa, 
+								recibirás una beca que equivale a un estipendio de C$ 1,000.00 mensuales durante el cuatrimestre correspondiente. 
+							</div>
+						</div>
 					</div>
-</div>
 					<div class="page-title">
 						<div class="title_right">
 							<h4 class="white">Inscripción al programa</h4>
 						</div>
-						<div class="title_left">
-							<h4 class="white">Período</h4>
+						<%
+							NGPeriodoInscripcion ngpi = new NGPeriodoInscripcion();
+							ArrayList<PeriodoInscripcion> lis = ngpi.cargarPI();
+						%>
+						<div class="title_left white">
+						<%for(PeriodoInscripcion pi : lis)
+						{%>
+							<h4 class="white">Periodo <%=pi.getNombreC()%> | Del <fmt:formatDate type="date" value="<%=pi.getFechaInicio() %>"/> al <fmt:formatDate type="date" value="<%=pi.getFechaFin()%>"/></h4>
+						<%}%>
 						</div>
 					</div>
 								
@@ -116,7 +118,7 @@
 											</div>
 											
 											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Teléfono</label>
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Celular</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<input type="text" class="form-control has-feedback-left inputTelefono" id="telefono" name="telefono"> <span
 													class="fa fa-mobile form-control-feedback left" aria-hidden="true"></span>
@@ -210,16 +212,7 @@
 													<input type="text" class="form-control has-feedback-left" id="promedio" name="promedio"> <span
 														class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
 												</div>
-											</div>
-											
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="estipendio"><span class="required">Goza de estipendio</span> </label>
-												<div class="radio">
-													<input type="radio" class="flat" checked name="estipendio" id="estipendio" value="true">Si 
-													<input type="radio" class="flat" checked name="estipendio" id="estipendio" value="false">No
-												</div>
-											</div>
-											
+											</div>											
 											<div class="ln_solid"></div>
 										
 										</div>
@@ -271,7 +264,7 @@
 											</div>
 											
 											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><span class="required">Turno</span></label>
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><span class="required">¿En qué turno podrías impartir monitoreo?</span></label>
 												<div class="radio">
 													<input type="radio" class="flat" checked name="turno" id="turno" value="diurno">Diurno
 													<input type="radio" class="flat" checked name="turno" id="turno" value="vespertino">Vespertino
@@ -394,7 +387,6 @@
 	<!-- icheck -->
 	<script src="../../js/icheck.min.js"></script>
 	<!-- librerias externas -->
-	<script src="assets/js/custom.js"></script>
 	<script type="text/javascript" src="../../js/notify/pnotify.core.js"></script>
     <script type="text/javascript" src="../../js/notify/pnotify.buttons.js"></script>
     <script type="text/javascript" src="../../js/notify/pnotify.nonblock.js"></script>

@@ -61,7 +61,7 @@
 		<section id="team" class=" blue-bg-service">
 			<div class="container">
 				<div class="row title text-center">
-					<h3 class="margin-top white">Asistencia a Pregrado</h3>
+					<h3 class="margin-top white">Asistencia de Pregrado</h3>
 					<h4 class="yellow ">Programas de Acompañamiento y Seguimiento a Nuevo Ingreso</h4>
 				</div>
 				<div class="row">
@@ -77,7 +77,7 @@
 								</div>
 
 							</div>
-							<p class="par">Alumnos Monitores</p>
+							<p class="par">Estudiantes Monitores</p>
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -85,7 +85,7 @@
 							<div class="cover"
 								style="background: url('img/doc.jpg'); background-size: cover;">
 								<div class="overlay text-center">
-									<a href="#" data-toggle="modal" data-target="#modal2" class="btn btn-white-fill">Para Profesores</a>
+									<a href="#" data-toggle="modal" data-target="#modal2" class="btn btn-white-fill">Conoce más</a>
 								</div>
 							</div>
 							<p class="par">Profesores Guías</p>
@@ -130,7 +130,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content modal-popup">
 					<a class="close-link"><i class="icon_close_alt2"></i></a>
-					<h4 class="white">Profesor Guía</h4>
+					<h4 class="white">Profesores Guías</h4>
 							<p class="white">
 								Cada cuatrimestre del primer año como estudiante de nuevo ingreso, tendrás el acompañamiento 
 								de un profesor o profesora guía, quien estará comprometido con tu crecimiento personal y 

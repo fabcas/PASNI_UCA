@@ -2,19 +2,17 @@ package datos;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import entidades.Inscripcion;
 import entidades.InscripcionMonitor;
 import entidades.Monitor;
-import entidades.Taller;
 
 public class MDInscripcion extends Conexion{
 	
+	//Agregar
 	public boolean ingresarSolicitud(Inscripcion i, Monitor m) throws SQLException 
 	{
 		boolean g = false;
@@ -22,7 +20,7 @@ public class MDInscripcion extends Conexion{
 		
 		Connection cn = getConnection();
 		CallableStatement cstmt = null;	
-		String sql = "{call dbo.SPInsertarInscripcion(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+		String sql = "{call dbo.SPInsertarInscripcion(?,?,?,?,?,?,?,?,?,?,?,?,?)}";
 		cstmt = cn.prepareCall(sql);
 					
 		try {
@@ -37,7 +35,6 @@ public class MDInscripcion extends Conexion{
 			cstmt.setString("carne", m.getCarne());
 			cstmt.setFloat("promedio", m.getPromedio());
 			cstmt.setInt("idCarrera", m.getIdCarrera());
-			cstmt.setBoolean("estipendio", m.isEstipendio());
 			
 			/*Inscripcion*/
 			
@@ -58,12 +55,43 @@ public class MDInscripcion extends Conexion{
 		return g;
 	}
 	
-	//Cargar datos todas las inscripciones
+	//Editar
+	public boolean modificarInscripcion(Inscripcion i){
+			
+			int x = 0;
+			boolean g = false;
+					
+			try{
+				Connection cn = getConnection();
+				CallableStatement s = null;	
+				String sql = "{call dbo.SPModificarInscripcionMonitor(?,?,?,?,?)}";
+				s = cn.prepareCall(sql);
+				
+				s.setInt("idAsignatura", i.getIdAsignatura());
+				s.setInt("idInscripcion", i.getIdInscripcion());
+				s.setInt("calificacion", i.getCalificación());
+				s.setString("turno", i.getTurno());
+				s.setInt("estado", i.getEstado());
+				
+				x = s.executeUpdate();
+				g = x > 0;
+				
+				s.close();
+				cn.close();
+			} 
+			catch (Exception e){
+				System.out.println("Datos: Error al actualizar los datos -> "+ e.getMessage());
+			}
+			
+			return g;
+		}
+	
+	//Cargar Todas las Inscripciones
 	public ArrayList <InscripcionMonitor> cargarDatosI()
 	{
 		ArrayList <InscripcionMonitor> array = new ArrayList <InscripcionMonitor>();
 		CallableStatement s = null;	
-		String sql = ("{call dbo.SPListaSolicitudMonitor}");
+		String sql = ("{call dbo.SPListaInscripcionMonitor}");
 		
 		try
 		{
@@ -86,8 +114,7 @@ public class MDInscripcion extends Conexion{
 				i.setEmail(rs.getString("email"));
 				i.setNombreC(rs.getString("nombre"));
 				i.setPromedio(rs.getFloat("promedio"));
-				i.setEstipendio(rs.getBoolean("estipendio"));
-				i.setNombreA(rs.getString("nombre"));
+				i.setNombreA(rs.getString("nombreA"));
 				i.setCalificacion(rs.getInt("calificacion"));
 				i.setMotivo(rs.getString("motivo"));
 				i.setTurno(rs.getString("turno"));
@@ -109,6 +136,7 @@ public class MDInscripcion extends Conexion{
 		return array;
 	}
 	
+	//Cargar Inscripciones Aprobadas
 	public ArrayList <InscripcionMonitor> cargarDatosIaprobados()
 	{
 		ArrayList <InscripcionMonitor> array = new ArrayList <InscripcionMonitor>();
@@ -136,8 +164,7 @@ public class MDInscripcion extends Conexion{
 				i.setEmail(rs.getString("email"));
 				i.setNombreC(rs.getString("nombre"));
 				i.setPromedio(rs.getFloat("promedio"));
-				i.setEstipendio(rs.getBoolean("estipendio"));
-				i.setNombreA(rs.getString("nombre"));
+				i.setNombreA(rs.getString("nombreA"));
 				i.setCalificacion(rs.getInt("calificacion"));
 				i.setMotivo(rs.getString("motivo"));
 				i.setTurno(rs.getString("turno"));
@@ -159,6 +186,7 @@ public class MDInscripcion extends Conexion{
 		return array;
 	}
 	
+	//Cargar Inscripciones Desaprobadas
 	public ArrayList <InscripcionMonitor> cargarDatosIReprobados()
 	{
 		ArrayList <InscripcionMonitor> array = new ArrayList <InscripcionMonitor>();
@@ -186,8 +214,7 @@ public class MDInscripcion extends Conexion{
 				i.setEmail(rs.getString("email"));
 				i.setNombreC(rs.getString("nombre"));
 				i.setPromedio(rs.getFloat("promedio"));
-				i.setEstipendio(rs.getBoolean("estipendio"));
-				i.setNombreA(rs.getString("nombre"));
+				i.setNombreA(rs.getString("nombreA"));
 				i.setCalificacion(rs.getInt("calificacion"));
 				i.setMotivo(rs.getString("motivo"));
 				i.setTurno(rs.getString("turno"));
@@ -209,33 +236,4 @@ public class MDInscripcion extends Conexion{
 		return array;
 	}
 	
-	public boolean modificarInscripcion(Inscripcion i){
-		
-		int x = 0;
-		boolean g = false;
-				
-		try{
-			Connection cn = getConnection();
-			CallableStatement s = null;	
-			String sql = "{call dbo.SPModificarInscripcionMonitor(?,?,?,?,?)}";
-			s = cn.prepareCall(sql);
-			
-			s.setString("turno", i.getTurno());
-			s.setInt("estado", i.getEstado());
-			s.setInt("idAsignatura", i.getIdAsignatura());
-			s.setInt("idInscripcion", i.getIdInscripcion());
-			s.setString("motivo", i.getMotivo());
-			
-			x = s.executeUpdate();
-			g = x > 0;
-			
-			s.close();
-			cn.close();
-		} 
-		catch (Exception e){
-			System.out.println("Datos: Error al actualizar los datos -> "+ e.getMessage());
-		}
-		
-		return g;
-	}
 }

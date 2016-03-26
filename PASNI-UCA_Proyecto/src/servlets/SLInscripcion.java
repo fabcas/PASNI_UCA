@@ -47,15 +47,18 @@ public class SLInscripcion extends HttpServlet {
 			Inscripcion i = new Inscripcion();
 			Monitor m = new Monitor();
 			NGInscripcion ni = new NGInscripcion();
-			boolean g = false; //Verificar si guardó
+			boolean a = false; //agregar
+			boolean e = false; //editar
+			boolean el = false; //eliminar
 			
 			String opc ="";
 			String idAsignatura ="";
 			String idCarrera= "";
 			String promedio =""; 
-			String estipendio =""; 
 			String calificacion ="";
 			String turno =""; 
+			String estado= "";
+			String idInscripcion = "";
 			
 			opc = request.getParameter("opc");
 			
@@ -77,12 +80,6 @@ public class SLInscripcion extends HttpServlet {
 				m.setPromedio(Float.parseFloat(promedio));
 				idCarrera = request.getParameter("carrera");
 				m.setIdCarrera(Integer.parseInt(idCarrera));
-				estipendio = request.getParameter("estipendio");
-				if("true".equals(estipendio)){
-					m.setEstipendio(Boolean.parseBoolean("true"));
-				}else{
-					m.setEstipendio(Boolean.parseBoolean("false"));
-				}
 				
 				/*Inscripción*/
 				idAsignatura = request.getParameter("asignatura");
@@ -99,19 +96,46 @@ public class SLInscripcion extends HttpServlet {
 					i.setTurno("sabatino");
 				}
 				
-				g = ni.guardarNGTaller(i,m);
-				response.sendRedirect("./modulos/monitor/inscripcion.jsp?msj=1");
-				
+				a = ni.guardarNGTaller(i,m);
+				if(a == true)
+					response.sendRedirect("./modulos/monitor/inscripcion.jsp?msj=1");
+				else
+					response.sendRedirect("./modulos/monitor/inscripcion.jsp");
 			}
-			else{
-				response.sendRedirect("./modulos/monitor/inscripcion.jsp");
+			else if(opc.equals("2")){
+				
+				/*Inscripción*/
+				idInscripcion = request.getParameter("idInscripcionE");
+				i.setIdInscripcion(Integer.parseInt(idInscripcion));
+				idAsignatura = request.getParameter("asignaturaE");
+				i.setIdAsignatura(Integer.parseInt(idAsignatura));
+				calificacion = request.getParameter("calificacionE");
+				i.setCalificación(Integer.parseInt(calificacion));
+				turno = request.getParameter("turnoE");
+				if("diurno".equals(turno)){
+					i.setTurno("diurno");
+				}else if("vespertino".equals(turno)){
+					i.setTurno("vespertino");
+				}else if("sabatino".equals(turno)){
+					i.setTurno("sabatino");
+				}
+				estado = request.getParameter("estadoE");
+				if("1".equals(estado)){
+					i.setEstado(1);
+				}else if("2".equals(estado)){
+					i.setEstado(2);
+				}
+				e = ni.modificarInscripcion(i);
+				if(e == true)
+					response.sendRedirect("./modulos/monitor/bandejaSolicitudesMonitor.jsp?msj=2");
+				else
+					response.sendRedirect("./modulos/monitor/bandejaSolicitudesMonitor.jsp");
 			}
 		}	
 		catch(Exception e)
 		{
 			e.printStackTrace();
 			System.out.println("Servlet: Error en el catch al verificar los datos de la inscripción: -> " + e.getMessage());
-			response.sendRedirect("./modulos/monitor/inscripcion.jsp");
 		}
 	}
 

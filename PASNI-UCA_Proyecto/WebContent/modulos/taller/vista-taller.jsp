@@ -52,15 +52,17 @@
 						<div class="col-md-12 text-center headf">
 							<h3 class="white">Asistencia a Pregrado</h3>
 							<h3 class="yellow">Talleres de Formación</h3>
+							<br>
+							<div class="white">
+								En la universidad no todo lo aprenderás dentro del aula, también hay experiencias que se cultivan en otros espacios
+								académicos y mediante actividades extracurriculares. En tu primer año, tienes una gran oportunidad de aprendizaje en
+								los talleres de formación que ofrecemos. Cada cuatrimestre, junto a los estudiantes de primer año de tu carrera y bajo 
+								la coordinación de los profesores guías, puedes seleccionar un taller en el que estés interesado de recibir. Las temáticas
+								están clasificadas en tres enfoques: <br><b>reforzamiento académico, habilidades para la vida e identidad ignaciana.</b>
+							</div><br>
 						</div>
 					</div>	
-					
-					<div class="page-title">
-						<div class="text-center">
-							<h4 class="white">Destinado a estudiantes de nuevo ingreso</h4>
-						</div>
-					</div>
-					
+									
 					<div class="clearfix"></div>
 					
 					<div class="row">

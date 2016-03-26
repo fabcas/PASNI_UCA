@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import entidades.VwCatalogoTurno;
 import entidades.VwMaestroAulas;
 
 public class MD_VwMaestroAulas extends Conexion {

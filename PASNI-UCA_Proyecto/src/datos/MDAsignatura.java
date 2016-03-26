@@ -12,7 +12,7 @@ public class MDAsignatura extends Conexion{
 	public ArrayList <Asignatura> comboAsignatura()
 	{
 		ArrayList <Asignatura> arrayAsignatura = new ArrayList <Asignatura>();
-		String sql = ("SELECT idAsignatura, nombre FROM Asignatura");
+		String sql = ("SELECT idAsignatura, nombreA FROM Asignatura");
 		
 		try
 		{
@@ -25,7 +25,7 @@ public class MDAsignatura extends Conexion{
 				Asignatura enti = new Asignatura();
 				
 				enti.setIdAsigntatura(rs.getInt("idAsignatura"));
-				enti.setNombre(rs.getString("nombre"));
+				enti.setNombre(rs.getString("nombreA"));
 				arrayAsignatura.add(enti);
 			}
 			

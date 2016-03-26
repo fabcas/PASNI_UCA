@@ -2,11 +2,12 @@
     pageEncoding="ISO-8859-1"
     import="servlets.*,entidades.*,datos.*, negocio.*, java.util.*"
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PASNI-UCA | Solicitud Alumno Monitor</title>
+<title>PASNI-UCA | Solicitud Estudiante Monitor</title>
 <!-- Bootstrap core CSS -->
 
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -16,11 +17,10 @@
 
 <!-- Custom styling plus plugins -->
 <link href="../../css/custom.css" rel="stylesheet">
-<link href="../../css/icheck/flat/green.css" rel="stylesheet">
+<link href="../../css/green.css" rel="stylesheet">
 
-<link rel="stylesheet" type="text/css"
-	href="../../css/progressbar/bootstrap-progressbar-3.3.0.css">
 <script src="../../js/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body class="nav-md">
 
@@ -34,25 +34,26 @@
 
 				<div class="page-title">
 						<div class="title_left">
-							<h3>Alumno Monitor</h3>
+							<h3>Estudiante Monitor</h3>
 						</div>
 				</div>
 				
 				<div class="col-md-12 col-sm-12 col-xs-12">
                 	<div class="x_panel">
                     	<div class="x_title">
-                        	<h2>Lista de Inscripciones Alumno Monitor</h2>
+                        	<h2>Lista de Inscripciones Estudiante Monitor</h2>
                             	<div class="clearfix"></div>
+                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAgregar">Agregar Inscripción</button>
                         </div>
                         <div class="x_content">
 							<div class="" role="tabpanel" data-example-id="togglable-tabs">
                             	<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                  	<li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Todas</a></li>
-                                    <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab"  aria-expanded="false">Pendientes</a></li>
+                                    <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab"  aria-expanded="false">Aceptadas</a></li>
                                     <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Rechazadas</a></li>
                                 </ul>
                             	<div id="myTabContent" class="tab-content">
-                                	<div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                	<div role="tabpanel" class="tab-pane fade active in" id="tab_content1">
                                     	<div class="col-md-12 col-sm-12 col-xs-12">
 				                            <div class="x_panel">
 				                                <div class="x_title">
@@ -72,12 +73,13 @@
 				                                    <table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
 				                                        <thead>
 				                                            <tr class="headings">
-				                                               <th class="column-title">IdInscripcion </th>
+				                                               <th class="column-title">Carné </th>
 				                                                <th class="column-title">Nombre</th>
 				                                                <th class="column-title">Apellido</th>
 				                                                <th class="column-title">Carrera</th>
 				                                                <th class="column-title">Asignatura</th>
-				                                                <th class="column-title">Motivo</th>
+				                                                <th class="column-title">Calificación</th>
+				                                                <th class="column-title">Promedio</th>
 				                                                <th class="column-title">Fecha Envío</th>
 				                                                <th class="column-title">Acción</th>
 				                                           	</tr>
@@ -90,17 +92,19 @@
 							                            %>
 							                           
 							                                <tr class="even pointer">
-							                                    <td class=" "><%=i.getIdInscripcion()%></td>
+							                                    <td class=" "><%=i.getCarne()%></td>
 							                                   	<td class=" "><%=i.getPrimerNombre()%></td>
 							                                    <td class=" "><%=i.getPrimerApellido()%></td>
 							                                    <td class=" "><%=i.getNombreC()%></td>
 							                                    <td class=" "><%=i.getNombreA()%></td>
-							                                    <td class=" "><%=i.getMotivo()%></td>
+							                                    <td class=" "><%=i.getCalificacion() %></td>
+							                                    <td class=" "><%=i.getPromedio() %></td>
 							                                    <td class=" "><%=i.getFecha()%></td>
 							                                    <td>
-								                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar">
-								                                    	<i class="fa fa-pencil"></i>
-								                                    </button>
+								                                    <button type="button" id="modalEditar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar"
+																		onclick="cargarDatos('<%=i.getIdInscripcion() %>','<%=i.getCarne()%>', '<%=i.getPrimerNombre()%>','<%=i.getPrimerApellido()%>', '<%=i.getNombreA()%>','<%=i.getCalificacion()%>','<%=i.getPromedio()%>','<%=i.getTurno()%>');">
+																		<i class="fa fa-pencil"></i>
+																	</button>
 							                                    </td>
 							                               </tr>
 							                             <%}%>
@@ -130,12 +134,13 @@
 				                                    <table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
 				                                        <thead>
 				                                            <tr class="headings">
-				                                                <th class="column-title">IdInscripcion </th>
+				                                                <th class="column-title">Carné </th>
 				                                                <th class="column-title">Nombre</th>
 				                                                <th class="column-title">Apellido</th>
 				                                                <th class="column-title">Carrera</th>
 				                                                <th class="column-title">Asignatura</th>
-				                                                <th class="column-title">Motivo</th>
+				                                                <th class="column-title">Calificación</th>
+				                                                <th class="column-title">Promedio</th>
 				                                                <th class="column-title">Fecha Envío</th>
 				                                                <th class="column-title">Acción</th>
 				                                           	</tr>
@@ -148,17 +153,19 @@
 							                            %>
 							                           
 							                                <tr class="even pointer">
-							                                    <td class=" "><%=i1.getIdInscripcion()%></td>
+							                                    <td class=" "><%=i1.getCarne()%></td>
 							                                   	<td class=" "><%=i1.getPrimerNombre()%></td>
 							                                    <td class=" "><%=i1.getPrimerApellido()%></td>
 							                                    <td class=" "><%=i1.getNombreC()%></td>
 							                                    <td class=" "><%=i1.getNombreA()%></td>
-							                                    <td class=" "><%=i1.getMotivo()%></td>
+							                                    <td class=" "><%=i1.getCalificacion() %></td>
+							                                    <td class=" "><%=i1.getPromedio() %></td>
 							                                    <td class=" "><%=i1.getFecha()%></td>
 							                                    <td>
-								                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar">
-								                                    	<i class="fa fa-pencil"></i>
-								                                    </button>
+								                                    <button type="button" id="modalEditar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar"
+																		onclick="cargarDatos('<%=i1.getIdInscripcion() %>','<%=i1.getCarne()%>', '<%=i1.getPrimerNombre()%>','<%=i1.getPrimerApellido()%>', '<%=i1.getNombreA()%>','<%=i1.getCalificacion()%>','<%=i1.getPromedio()%>','<%=i1.getTurno()%>');">
+																		<i class="fa fa-pencil"></i>
+																	</button>
 							                                    </td>
 							                               </tr>
 							                             <%}%>
@@ -188,12 +195,13 @@
 				                                    <table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
 				                                        <thead>
 				                                            <tr class="headings">
-				                                                <th class="column-title">IdInscripcion </th>
+				                                                <th class="column-title">Carné </th>
 				                                                <th class="column-title">Nombre</th>
 				                                                <th class="column-title">Apellido</th>
 				                                                <th class="column-title">Carrera</th>
 				                                                <th class="column-title">Asignatura</th>
-				                                                <th class="column-title">Motivo</th>
+				                                                <th class="column-title">Calificación</th>
+				                                                <th class="column-title">Promedio</th>
 				                                                <th class="column-title">Fecha Envío</th>
 				                                                <th class="column-title">Acción</th>
 				                                           	</tr>
@@ -206,17 +214,19 @@
 							                            %>
 							                           
 							                                <tr class="even pointer">
-							                                    <td class=" "><%=i2.getIdInscripcion()%></td>
+							                                    <td class=" "><%=i2.getCarne()%></td>
 							                                   	<td class=" "><%=i2.getPrimerNombre()%></td>
 							                                    <td class=" "><%=i2.getPrimerApellido()%></td>
 							                                    <td class=" "><%=i2.getNombreC()%></td>
 							                                    <td class=" "><%=i2.getNombreA()%></td>
-							                                    <td class=" "><%=i2.getMotivo()%></td>
-							                                    <td class=" "><%=i2.getFecha()%></td>
+							                                    <td class=" "><%=i2.getCalificacion() %></td>
+							                                    <td class=" "><%=i2.getPromedio() %></td>
+							                                    <td class=" "><fmt:formatDate type="date" value="<%=i2.getFecha()%>"/></td>
 							                                    <td>
-								                                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar">
-								                                    	<i class="fa fa-pencil"></i>
-								                                    </button>
+								                                    <button type="button" id="modalEditar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar"
+																		onclick="cargarDatos('<%=i2.getIdInscripcion() %>','<%=i2.getCarne()%>', '<%=i2.getPrimerNombre()%>','<%=i2.getPrimerApellido()%>', '<%=i2.getNombreA()%>','<%=i2.getCalificacion()%>','<%=i2.getPromedio()%>','<%=i2.getTurno()%>');">
+																		<i class="fa fa-pencil"></i>
+																	</button>
 							                                    </td>
 							                               </tr>
 							                             <%}%>
@@ -231,9 +241,68 @@
                     </div><!-- /x-panel -->
                  </div><!-- /col m12 -->                 
 				<div class="clearfix"></div>
+				<%
+					NGAsignatura ng = new NGAsignatura();
+					ArrayList<Asignatura> listam = new ArrayList<Asignatura>();
+					listam = ng.comboAsignatura();
+				%>
+				 <!-- Modal Agregar Inscripcion -->
+				<div class="modal fade modalAgregar"  id="modalAgregar" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">x</span>
+								</button>
+								<h5 class="modal-title">
+									<b>Agregar Inscripción de Monitor</b>
+								</h5>
+							</div>
+							<div class="modal-body">
+							
+								<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLInscripcion?opc=3">
+									<div class="item form-group">
+										<label >Carné</label>
+										<div class="form-group">
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="carneA" name="carneA" required="required" class="form-control">
+											</div>
+											<button type="button" id="buscarC" name="buscarC" class="btn btn-success">Buscar Estudiante</button>
+										</div>
+										<div id="monitor">
+										</div>
+										<label>Asignatura</label>
+										<select id="asignaturaA" name="asignaturaA" class="form-control">
+											<option>Seleccione una asignatura</option>
+											<%for( Asignatura asig: listam){%>
+												<option value="<%=asig.getIdAsigntatura()%>"><%=asig.getNombre()%></option>
+											<%}%>
+										</select><br>
+										<label>Calificación</label> <input type="text" id="calificacionA" name="calificacionA" required="required" class="form-control" placeholder=""> <br>
+										<label>Turno</label>
+                                        <p>
+                                           	<input type="radio" class="flat" checked name="turnoA" id="turnoA" value="diurno">Diurno
+											<input type="radio" class="flat" checked name="turnoA" id="turnoA" value="vespertino">Vespertino
+											<input type="radio" class="flat" checked name="turnoA" id="turnoA" value="sabatino"> Sabatino
+										</p>
+										<label>Aprobar</label> 
+										<p>
+                                           	<input type="radio" class="flat"  name="estadoE" id="estadoE" value="1">Si
+											<input type="radio" class="flat"  name="estadoE" id="estadoE" value="2">No
+										</p>
+										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+											<button type="submit" class="btn btn-primary">Agregar</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 					    
-			    <!-- Modal Modificar Inscripcion -->
-
+			    <!-- Modal Editar Inscripcion -->
 				<div class="modal fade modalEditar"  id="modalEditar" tabindex="-1" role="dialog" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -242,29 +311,58 @@
 									<span aria-hidden="true">x</span>
 								</button>
 								<h5 class="modal-title">
-									<b>Editar Período Inscripción</b>
+									<b>Editar Inscripción de Monitor</b>
 								</h5>
 							</div>
 							<div class="modal-body">
-								<form class="form-horizontal form-label-left" name="form" method="post" action="../../SLInscripcion?opc=2">
+							
+								<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLInscripcion?opc=2">
 									<div class="item form-group">
-										<label >idInscripción:</label> <input type="text" id="IdInscripcion" name="IdInscripcion" disabled="disabled" required="required" class="form-control" placeholder=""> <br>
-																	<input type="hidden" id="IdInscripcionEditar" name="IdInscripcionEditar" class="form-control" placeholder=""> <br>
-										<label >Cuatrimestre:</label> <input type="text" id="idCuatrimestreE" name="idCuatrimestreE" disabled="disabled" required="required" class="form-control" placeholder=""> <br>
-										<label>Fecha inicio:</label> <input type="date" id="fechaIEditar" name="fechaIEditar" required="required" class="form-control" placeholder=""> <br>
-										<label>Fecha final:</label> <input type="date" id="fechaFEditar" name="fechaFEditar" required="required" class="form-control" placeholder="">
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-										<button type="submit" class="btn btn-primary">Guardar</button>
+										<label >Carné</label><input type="text" id="carneE" name="carneE" disabled="disabled" required="required" class="form-control">
+															<input type="hidden" id="idInscripcionE" name="idInscripcionE" class="form-control" > <br>
+										<label >Estudiante</label> 
+										<div class="form-group">
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="nombreE" name="nombreE" required="required" class="form-control" disabled="disabled">
+											</div>
+											<label ></label> 
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="apellidoE" name="apellidoE" required="required" class="form-control" disabled="disabled">
+											</div>
+										</div>
+										<label >Promedio</label> <input type="text" id="promedioE" name="promedioE" required="required" class="form-control" disabled="disabled"><br>
+										<label>Asignatura</label>
+										<select id="asignaturaE" name="asignaturaE" class="form-control">
+											<option id="asignaturaEO"></option>
+											<%for(Asignatura asig: listam){%>
+												<option value="<%=asig.getIdAsigntatura()%>"><%=asig.getNombre()%></option>
+											<%}%>
+										</select><br>
+										<label>Calificación</label> <input type="text" id="calificacionE" name="calificacionE" required="required" class="form-control" placeholder=""> <br>
+										<label>Turno</label>
+                                        <p>
+                                           	<input type="radio" class="flat"  name="turnoE" id="turnoED" value="diurno">Diurno
+											<input type="radio" class="flat"  name="turnoE" id="turnoEV" value="vespertino">Vespertino
+											<input type="radio" class="flat"  name="turnoE" id="turnoES" value="sabatino"> Sabatino
+                                        </p>
+										<label>Aprobar</label> 
+										<p>
+                                           	<input type="radio" class="flat"  name="estadoE" id="estadoE" value="1">Si
+											<input type="radio" class="flat"  name="estadoE" id="estadoE" value="2">No
+										</p>
+										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+											<button type="submit" class="btn btn-primary">Editar</button>
+										</div>
 									</div>
 								</form>
 							</div>
 						</div>
 					</div>
 				</div>
-			    <!-- Modal Agregar -->
 			    
+			    <!-- Modal Eliminar -->
 			    <div class="modal fade modalEliminar"  id="modalEliminar" tabindex="-1" role="dialog" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -278,24 +376,20 @@
 							</div>
 							<div class="modal-body">
 								<form class="form-horizontal form-label-left" name="form" method="post" action="../../SLPeriodoInscripcion?opc=3">
-											<div class="item form-group">
-												<div class="col-md-12 col-sm-12 col-xs-12">
-													<input type="hidden" name=IdPIEliminar
-														id="IdPIEliminar">
-													<p>¿Seguro que desea eliminar este período de inscripción?</p>
-												</div>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default"
-													data-dismiss="modal">Cancelar</button>
-												<button type="submit" class="btn btn-primary">Eliminar</button>
-											</div>
-										</form>
+									<div class="item form-group">
+										<div class="col-md-12 col-sm-12 col-xs-12">
+											<input type="hidden" name=IdPIEliminar id="IdPIEliminar"><p>¿Seguro que desea eliminar este período de inscripción?</p>
+										</div>
+									</div>	
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+								<button type="submit" class="btn btn-primary">Eliminar</button>
 							</div>
 						</div>
 					</div>
 				</div>
-			    <!-- Modal Eliminar -->
 
 			</div><!-- /main -->
 			 
@@ -315,6 +409,9 @@
 <script src="../../js/custom.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 
+<!-- icheck -->
+	<script src="../../js/icheck.min.js"></script>
+	
 <!-- Datatables -->
 <script src="../../js/datatables/js/jquery.js"></script>
 <script src="../../js/datatables/js/jquery.dataTables.js"></script>
@@ -322,9 +419,63 @@
 <script src="../../js/datatables/js/jquery.dataTables.columnFilter.js"></script>
 <!-- Fin Datatables -->
 
-<script type="text/javascript">
+	<script type="text/javascript">
+	
+	$('#buscarC').click(function(event) {
+		var carneA = $('#carneA').val();
+		$.ajax({		    
+	          url:"../../SLBuscarMonitorCarne",
+	          type:"post",
+	          datatype:"html",
+	          data:{'carneA':carneA},
+	          success:function(data) 
+	          {
+	        		$('#monitor').html(data);  
+	          }
+	        });
+	});
+	
+	</script>
+	<!-- Cargar datos -->
+	<script type="text/javascript">
+	function limpiar(){
+		$("#idInscripcionE").html('');
+		$("#carneE").html('');;
+		$("#nombreE").html('');
+		$("#apellidoE").html('');
+		$("#calificacionE").html('');
+		$("#promedioE").html('');
+		$('#turnoEV').prop('checked',false);
+		$('#turnoED').prop('checked',false);
+		$('#turnoES').prop('checked',false);
+		
+	}
+	
+	function cargarDatos(IdInscripcionE, carneE, nombreE, apellidoE, asignaturaE,calificacionE,promedioE,turnoE){
+		limpiar();
+		$("#idInscripcionE").val(IdInscripcionE);
+		$("#carneE").val(carneE);
+		$("#nombreE").val(nombreE);
+		$("#apellidoE").val(apellidoE);
+		$('#asignaturaEO').html('');
+		$('#asignaturaEO').append('<option>'+asignaturaE+'</option>');
+		$("#calificacionE").val(calificacionE);
+		$("#promedioE").val(promedioE);
+		if(turnoE == "vespertino"){
+			$('#turnoEV').prop('checked',true);
+		}else if(turnoE == "diurno"){
+			limpiar();
+			$('#turnoED').prop('checked',true);
+		}else if(turnoE == "sabatino"){
+			limpiar();
+			$('#turnoES').prop('checked',true);
+		}
+	}
+	</script>
+	
+	<script type="text/javascript">
 			$(document).ready(function()
-			{
+			{	
 				$('table.display').dataTable(
 						{							
 							"sPaginationType": "full_numbers",
@@ -359,5 +510,5 @@
 					 			]
 				});
 			});
-		</script>
+	</script>
 </html>

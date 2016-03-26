@@ -3,9 +3,11 @@ package negocio;
 import java.util.ArrayList;
 
 import datos.MDInscripcion;
+import datos.MDPeriodoInscripcion;
 import entidades.Inscripcion;
 import entidades.InscripcionMonitor;
 import entidades.Monitor;
+import entidades.PeriodoInscripcion;
 
 public class NGInscripcion {
 

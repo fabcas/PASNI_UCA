@@ -12,6 +12,7 @@ import entidades.PeriodoInscripcion;
 
 public class MDPeriodoInscripcion extends Conexion{
 	
+	//Guardar
 	public boolean guardarPI(PeriodoInscripcion pi) throws SQLException
 	{
 		boolean g = false;
@@ -30,7 +31,6 @@ public class MDPeriodoInscripcion extends Conexion{
 			g = y > 0;
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Datos: Error al guardar los datos -> " + e.getMessage());
 		}	
@@ -40,6 +40,7 @@ public class MDPeriodoInscripcion extends Conexion{
 		return g;
 	}
 	
+	//Editar
 	public boolean editarPI(PeriodoInscripcion pi) throws SQLException
 	{
 		boolean g = false;
@@ -57,8 +58,7 @@ public class MDPeriodoInscripcion extends Conexion{
 			y = cstmt.executeUpdate();
 			g = y > 0;
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Datos: Error al editar los datos -> " + e.getMessage());
 		}	
@@ -67,15 +67,42 @@ public class MDPeriodoInscripcion extends Conexion{
 		cn.close();
 		return g;
 	}
+	
+	 //Eliminar
+	public boolean eliminarPeriodo(PeriodoInscripcion PI){
+			
+	 int x = 0;
+	 boolean el = false;
+			
+		 try{
+				 Connection cn = getConnection();
+				 CallableStatement s = null;	
+				 String sql = "{call dbo.SPEliminarPeriodoInscripcion(?)}";
+				 s = cn.prepareCall(sql);
+						
+				 s.setInt("idPeriodoInscripcion", PI.getIdPeriodoInscripcion());
+						 
+				 x = s.executeUpdate();
+				 el = x > 0;
+						
+				 s.close();
+				 cn.close();
+				
+			}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("Error al eliminar los datos -> " + e.getMessage());
+			}
+			return el;
+	}
 
+	/*Cargar Períodos Activados*/
 	public ArrayList<PeriodoInscripcion> cargarDatosPI()throws SQLException{
 		
 		ArrayList <PeriodoInscripcion> array = new ArrayList <PeriodoInscripcion>();
 		CallableStatement cstmt = null;	
-		String sql = "{call dbo.SPListarPeriodoInscripcion}";
+		String sql = ("select * from Vw_periodo_inscripcion");
 		
 		try{
-			
 			Connection cn = getConnection();
 			cstmt = cn.prepareCall(sql);
 			ResultSet rs = cstmt.executeQuery();
@@ -89,18 +116,18 @@ public class MDPeriodoInscripcion extends Conexion{
 				array.add(pi);				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Datos: Error al cargar los datos -> " + e.getMessage());
 		}
 		return array;		
 	}
 	
-public ArrayList<PeriodoInscripcion> cargarDatosPIF()throws SQLException{
+	/*Cargar Períodos Inactivos*/
+	public ArrayList<PeriodoInscripcion> cargarDatosPIF()throws SQLException{
 		
 		ArrayList <PeriodoInscripcion> array = new ArrayList <PeriodoInscripcion>();
 		CallableStatement cstmt = null;	
-		String sql = "{call dbo.SPListarPIFinalizados}";
+		String sql = ("select * from Vw_periodo_inscripcion_fin");
 		
 		try{
 			
@@ -117,67 +144,34 @@ public ArrayList<PeriodoInscripcion> cargarDatosPIF()throws SQLException{
 				array.add(pi);				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Datos: Error al cargar los datos -> " + e.getMessage());
 		}
 		return array;		
 	}
 
-	public boolean verificarPeriodo(PeriodoInscripcion PI) throws SQLException
-	{	
-		String sql = ("select fechaFin from PeriodoInscripcion where estado = 1");
+	/*Verificar el período con la fecha actual */
+	public boolean verificarPeriodo(PeriodoInscripcion PI) throws SQLException{	
+		
+		String sql = ("select fechaInicio, fechaFin from PeriodoInscripcion where estado = 1");
 		
 		Connection cn = getConnection();
 		PreparedStatement ps = cn.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		PeriodoInscripcion pi = new PeriodoInscripcion();						
 		while(rs.next())		
-		{			    					
+		{	
+			pi.setFechaInicio(rs.getDate("fechaInicio"));
 			pi.setFechaFin(rs.getDate("fechaFin"));
 		}
 		ps.close();
 		cn.close();
-		if(PI.getFechaActual().after(pi.getFechaFin())){
+		if(pi.getFechaInicio().after(PI.getFechaActual()) && pi.getFechaFin().before(PI.getFechaActual())){
 			return true;
 		}else{
 			return false;
 		}
 	}
-	
-	//metodo para eliminar logico
-		public boolean eliminarPeriodo(PeriodoInscripcion PI){
-			
-			int x = 0;
-			boolean el = false;
-			
-			try{
-				Connection cn = getConnection();
-				CallableStatement s = null;	
-				String sql = "{call dbo.SPEliminarPeriodoInscripcion(?)}";
-				s = cn.prepareCall(sql);
-				
-				//s.setBoolean(1, false);
-				s.setInt("idPeriodoInscripcion", PI.getIdPeriodoInscripcion());
-				 
-				x = s.executeUpdate();
-				el = x > 0;
-				
-				//Cerramos la conexion
-				s.close();
-				cn.close();
-			
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-				System.out.println("Error al eliminar los datos -> " + e.getMessage());
-			}
-			
-			return el;
-		}//eliminar
-	
-	
 }
 
 

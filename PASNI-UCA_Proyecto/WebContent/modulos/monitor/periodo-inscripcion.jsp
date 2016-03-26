@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"
     import="datos.*, entidades.*,servlets.*,negocio.*, java.util.*"
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,8 +19,6 @@
 	<link href="../../css/custom.css" rel="stylesheet">
 	<link href="../../css/icheck/flat/green.css" rel="stylesheet">
 	
-	<link rel="stylesheet" type="text/css"
-		href="../../css/progressbar/bootstrap-progressbar-3.3.0.css">
 	<script src="../../js/jquery.min.js"></script>
 </head>
 
@@ -89,8 +89,8 @@
 							                                <tr class="even pointer">
 							                                    <td class=" "><%=pi.getIdPeriodoInscripcion()%></td>
 							                                   	<td class=" "><%=pi.getNombreC() %></td>
-							                                    <td class=" "><%=pi.getFechaInicio() %></td>
-							                                    <td class=" "><%=pi.getFechaFin()%></td>
+							                                    <td><fmt:formatDate type="date" value="<%=pi.getFechaInicio() %>"/> </td>
+							                                    <td><fmt:formatDate type="date" value="<%=pi.getFechaFin() %>"/></td>
 							                                    <td>
 							                                    <button type="button" id="modalEditar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar"
 																onclick="cargarDatos('<%=pi.getIdPeriodoInscripcion()%>', '<%=pi.getNombreC()%>','<%=pi.getFechaInicio()%>', '<%=pi.getFechaFin()%>');">
@@ -143,8 +143,8 @@
 							                                <tr class="even pointer">
 							                                    <td class=" "><%=pif.getIdPeriodoInscripcion()%></td>
 							                                   	<td class=" "><%=pif.getNombreC() %></td>
-							                                    <td class=" "><%=pif.getFechaInicio() %></td>
-							                                    <td class=" "><%=pif.getFechaFin()%></td>
+							                                    <td class=" "><fmt:formatDate type="date" value="<%=pif.getFechaInicio()%>"/></td>
+							                                    <td class=" "><fmt:formatDate type="date" value="<%=pif.getFechaFin()%>"/></td>
 							                               </tr>
 							                             <%}%>
 							                           </tbody>
@@ -219,7 +219,7 @@
 							<div class="modal-body">
 								<form class="form-horizontal form-label-left" name="form" method="post" action="../../SLPeriodoInscripcion?opc=2">
 									<div class="item form-group">
-										<label >idPeriodo:</label> <input type="text" id="IdPI" name="IdPIEditar" disabled="disabled" required="required" class="form-control" placeholder=""> <br>
+										<label >idPeriodo:</label> <input type="text" id="IdPI" name="IdPIEditar" disabled="disabled" required="required" class="form-control" placeholder="">
 																	<input type="hidden" id="IdPIEditar" name="IdPIEditar" class="form-control" placeholder=""> <br>
 										<label >Cuatrimestre:</label> <input type="text" id="idCuatrimestreE" name="idCuatrimestreE" disabled="disabled" required="required" class="form-control" placeholder=""> <br>
 										<label>Fecha inicio:</label> <input type="date" id="fechaIEditar" name="fechaIEditar" required="required" class="form-control" placeholder=""> <br>
@@ -276,16 +276,23 @@
 			
 		</div><!-- /main container-->
 		
-	</div> <!-- /container -->
-
-	<div id="custom_notifications" class="custom-notifications dsp_none">
-		<ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
+		<div id="custom_notifications" class="custom-notifications dsp_none">
+			<ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"> </ul>
 			<div class="clearfix"></div>
 			<div id="notif-group" class="tabbed_notifications"></div>
-	</div>
+		</div>
+		
+	</div> <!-- /container -->
 </body>
+
 <script src="../../js/custom.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
+
+<!-- PNotify -->
+<script type="text/javascript" src="../../js/notify/pnotify.core.js"></script>
+<script type="text/javascript" src="../../js/notify/pnotify.buttons.js"></script>
+<script type="text/javascript" src="../../js/notify/pnotify.nonblock.js"></script>
+<!-- Fin PNotify -->
 
 <!-- Datatables -->
 <script src="../../js/datatables/js/jquery.js"></script>
@@ -293,8 +300,56 @@
 <script src="../../js/datatables/tools/js/dataTables.tableTools.js"></script>
 <script src="../../js/datatables/js/jquery.dataTables.columnFilter.js"></script>
 <!-- Fin Datatables -->
-<!-- Cargar datos -->
-<script type="text/javascript">
+
+	<!-- avisos de CRUD -->
+		<%
+    		String msj ="";
+    		msj = request.getParameter("msj");
+    	
+    	%>
+
+	<script type="text/javascript">
+    		function cargarNotify()
+    		{
+    			var mensaje = <%=msj%>;
+    			if(mensaje=="1")
+    			{
+    				new PNotify({
+    	                title: "Registro Agregado",
+    	                type: "info",
+    	                text: "¡Registro Agregado con Éxito!",
+    	                nonblock: {
+                                  nonblock: true,
+                                  nonblock_opacity: .9}
+    				});
+    			}
+    			 if(mensaje=="2")
+    			 {
+    				 new PNotify({
+    		                title: "Registro Modificado",
+    		                type: "success",
+    		                text: "¡Registro Modificado con Éxito!",
+    		                nonblock: {
+                                   nonblock: true,
+                                   nonblock_opacity: .9}
+    					}); 
+    			 }
+    			 if(mensaje=="3")
+    			{
+    				 new PNotify({
+    		                title: "Registro Eliminado",
+    		                type: "error",
+    		                text: "¡Registro Eliminado con Éxito!",
+    		                nonblock: {
+                                   nonblock: true,
+                                   nonblock_opacity: .9}
+    					}); 
+    			}
+    		}
+    </script>
+	
+	<!-- Cargar datos -->
+	<script type="text/javascript">
 		
         	function cargarDatos(idPeriodoInscripcion, idCuatrimestre, fechaInicio, fechaFin){
         		$("#IdPI").val(idPeriodoInscripcion);
@@ -310,6 +365,7 @@
 	<script type="text/javascript">
 			$(document).ready(function()
 			{
+				cargarNotify();
 				$('table.display').dataTable(
 						{							
 							"sPaginationType": "full_numbers",
@@ -344,5 +400,5 @@
 					 			]
 				});
 			});
-		</script>
+	</script>
 </html>

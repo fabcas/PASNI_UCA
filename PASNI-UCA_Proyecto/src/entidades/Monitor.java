@@ -1,5 +1,7 @@
 package entidades;
 
+import java.sql.Date;
+
 public class Monitor {
 
 	private int idMonitor;
@@ -13,7 +15,9 @@ public class Monitor {
 	private String carne;
 	private float promedio;
 	private int idCarrera;
+	private String carrera;
 	private boolean estipendio;
+	private Date fecha;
 	
 	public int getIdMonitor() {
 		return idMonitor;
@@ -81,13 +85,24 @@ public class Monitor {
 	public void setIdCarrera(int idCarrera) {
 		this.idCarrera = idCarrera;
 	}
+	public String getCarrera() {
+		return carrera;
+	}
+	public void setCarrera(String carrera) {
+		this.carrera = carrera;
+	}
 	public boolean isEstipendio() {
 		return estipendio;
 	}
 	public void setEstipendio(boolean estipendio) {
 		this.estipendio = estipendio;
 	}
-	
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
 	public Monitor() {
 		super();
 	}
@@ -95,7 +110,7 @@ public class Monitor {
 	public Monitor(int idMonitor, int idUsuario, String primerNombre,
 			String email, String segundoNombre, String telefono,
 			String primerApellido, String segundoApellido, String carne,
-			float promedio, int idCarrera, boolean estipendio) {
+			float promedio, int idCarrera, String carrera, boolean estipendio, Date fecha) {
 		super();
 		this.idMonitor = idMonitor;
 		this.idUsuario = idUsuario;
@@ -108,6 +123,8 @@ public class Monitor {
 		this.carne = carne;
 		this.promedio = promedio;
 		this.idCarrera = idCarrera;
+		this.carrera = carrera;
 		this.estipendio = estipendio;
+		this.fecha = fecha;
 	}
 }

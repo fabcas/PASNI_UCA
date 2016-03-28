@@ -60,15 +60,14 @@ public class SLBuscarMonitorCarne extends HttpServlet {
 					out +="<input type='text' id='nombreS' name='nombreS' required='required' class='form-control' disabled='disabled' value=\""+m.getSegundoNombre()+"\">";
 				out +="</div>";
 				out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
-					out +="<input type='text' id='apeliidoP' name='apeliidoP' required='required' class='form-control' disabled='disabled' value=\""+m.getPrimerApellido()+"\">";
+					out +="<input type='text' id='apellidoP' name='apellidoP' required='required' class='form-control' disabled='disabled' value=\""+m.getPrimerApellido()+"\">";
 				out +="</div>";
 				out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
-					out +="<input type='text' id='apeliidoS' name='apeliidoS' required='required' class='form-control' disabled='disabled' value=\""+m.getSegundoApellido()+"\">";
+					out +="<input type='text' id='apellidoS' name='apellidoS' required='required' class='form-control' disabled='disabled' value=\""+m.getSegundoApellido()+"\">";
 				out +="</div>";
-				out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
-					out +="<input type='hidden' id='idMonitor' name='idMonitor' value=\""+m.getIdMonitor()+"\">";
-				out +="</div>";
+				out +="<input type='hidden' id='idMonitor' name='idMonitor' value=\""+m.getIdMonitor()+"\">";
 			}
+			
 			PrintWriter pw = response.getWriter();
 			pw.write(out);
 			pw.flush();

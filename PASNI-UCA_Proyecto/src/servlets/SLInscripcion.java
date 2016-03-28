@@ -49,7 +49,7 @@ public class SLInscripcion extends HttpServlet {
 			NGInscripcion ni = new NGInscripcion();
 			boolean a = false; //agregar
 			boolean e = false; //editar
-			boolean el = false; //eliminar
+			boolean ai = false; //agregar inscripcion
 			
 			String opc ="";
 			String idAsignatura ="";
@@ -59,6 +59,7 @@ public class SLInscripcion extends HttpServlet {
 			String turno =""; 
 			String estado= "";
 			String idInscripcion = "";
+			String idMonitor = "";
 			
 			opc = request.getParameter("opc");
 			
@@ -96,7 +97,7 @@ public class SLInscripcion extends HttpServlet {
 					i.setTurno("sabatino");
 				}
 				
-				a = ni.guardarNGTaller(i,m);
+				a = ni.guardarNGInscripcion(i, m);
 				if(a == true)
 					response.sendRedirect("./modulos/monitor/inscripcion.jsp?msj=1");
 				else
@@ -111,6 +112,7 @@ public class SLInscripcion extends HttpServlet {
 				i.setIdAsignatura(Integer.parseInt(idAsignatura));
 				calificacion = request.getParameter("calificacionE");
 				i.setCalificación(Integer.parseInt(calificacion));
+				i.setMotivo(request.getParameter("motivoE"));
 				turno = request.getParameter("turnoE");
 				if("diurno".equals(turno)){
 					i.setTurno("diurno");
@@ -128,6 +130,36 @@ public class SLInscripcion extends HttpServlet {
 				e = ni.modificarInscripcion(i);
 				if(e == true)
 					response.sendRedirect("./modulos/monitor/bandejaSolicitudesMonitor.jsp?msj=2");
+				else
+					response.sendRedirect("./modulos/monitor/bandejaSolicitudesMonitor.jsp");
+			}
+			else if(opc.equals("3")){
+				
+				idMonitor = request.getParameter("idMonitor");
+				i.setIdMonitor(Integer.parseInt(idMonitor));
+				idAsignatura = request.getParameter("asignaturaA");
+				i.setIdAsignatura(Integer.parseInt(idAsignatura));
+				calificacion = request.getParameter("calificacionA");
+				i.setCalificación(Integer.parseInt(calificacion));
+				i.setMotivo(request.getParameter("motivoA"));
+				turno = request.getParameter("turnoA");
+				if("diurno".equals(turno)){
+					i.setTurno("diurno");
+				}else if("vespertino".equals(turno)){
+					i.setTurno("vespertino");
+				}else{
+					i.setTurno("sabatino");
+				}
+				estado = request.getParameter("estadoA");
+				if("1".equals(estado)){
+					i.setEstado(1);
+				}else if("2".equals(estado)){
+					i.setEstado(2);
+				}
+				
+				ai = ni.agregarInscripcion(i);
+				if(ai == true)
+					response.sendRedirect("./modulos/monitor/bandejaSolicitudesMonitor.jsp?msj=3");
 				else
 					response.sendRedirect("./modulos/monitor/bandejaSolicitudesMonitor.jsp");
 			}

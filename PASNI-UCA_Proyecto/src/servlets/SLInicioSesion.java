@@ -55,9 +55,9 @@ public class SLInicioSesion extends HttpServlet {
 				
 				g = pi.verificarPeriodo(PI);
 				if(g == true){
-					response.sendRedirect("modulos/monitor/inscripcions.jsp");
-				}else{
 					response.sendRedirect("modulos/monitor/inscripcion.jsp");
+				}else{
+					response.sendRedirect("modulos/monitor/inscripcions.jsp");
 				}
 		} catch (ParseException | SQLException e) {
 			// TODO Auto-generated catch block

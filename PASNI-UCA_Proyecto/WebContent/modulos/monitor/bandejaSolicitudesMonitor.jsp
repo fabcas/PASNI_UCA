@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PASNI-UCA | Solicitud Estudiante Monitor</title>
+<title>PASNI-UCA | Inscripción Estudiante Monitor</title>
 <!-- Bootstrap core CSS -->
 
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +20,8 @@
 <link href="../../css/green.css" rel="stylesheet">
 
 <script src="../../js/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="../../js/utilidades.js"></script>
+<script src="../../js/icheck.min.js"></script>
 </head>
 <body class="nav-md">
 
@@ -99,10 +100,10 @@
 							                                    <td class=" "><%=i.getNombreA()%></td>
 							                                    <td class=" "><%=i.getCalificacion() %></td>
 							                                    <td class=" "><%=i.getPromedio() %></td>
-							                                    <td class=" "><%=i.getFecha()%></td>
+							                                    <td class=" "><fmt:formatDate type="date" value="<%=i.getFecha()%>"/></td>
 							                                    <td>
 								                                    <button type="button" id="modalEditar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar"
-																		onclick="cargarDatos('<%=i.getIdInscripcion() %>','<%=i.getCarne()%>', '<%=i.getPrimerNombre()%>','<%=i.getPrimerApellido()%>', '<%=i.getNombreA()%>','<%=i.getCalificacion()%>','<%=i.getPromedio()%>','<%=i.getTurno()%>');">
+																		onclick="cargarDatos('<%=i.getIdInscripcion() %>','<%=i.getCarne()%>', '<%=i.getPrimerNombre()%>','<%=i.getPrimerApellido()%>', '<%=i.getNombreA()%>', '<%=i.getMotivo()%>','<%=i.getCalificacion()%>','<%=i.getPromedio()%>','<%=i.getTurno()%>');">
 																		<i class="fa fa-pencil"></i>
 																	</button>
 							                                    </td>
@@ -160,10 +161,10 @@
 							                                    <td class=" "><%=i1.getNombreA()%></td>
 							                                    <td class=" "><%=i1.getCalificacion() %></td>
 							                                    <td class=" "><%=i1.getPromedio() %></td>
-							                                    <td class=" "><%=i1.getFecha()%></td>
+							                                    <td class=" "><fmt:formatDate type="date" value="<%=i1.getFecha()%>"/></td>
 							                                    <td>
 								                                    <button type="button" id="modalEditar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar"
-																		onclick="cargarDatos('<%=i1.getIdInscripcion() %>','<%=i1.getCarne()%>', '<%=i1.getPrimerNombre()%>','<%=i1.getPrimerApellido()%>', '<%=i1.getNombreA()%>','<%=i1.getCalificacion()%>','<%=i1.getPromedio()%>','<%=i1.getTurno()%>');">
+																		onclick="cargarDatos('<%=i1.getIdInscripcion() %>','<%=i1.getCarne()%>', '<%=i1.getPrimerNombre()%>','<%=i1.getPrimerApellido()%>', '<%=i1.getNombreA()%>', '<%=i1.getMotivo()%>','<%=i1.getCalificacion()%>','<%=i1.getPromedio()%>','<%=i1.getTurno()%>');">
 																		<i class="fa fa-pencil"></i>
 																	</button>
 							                                    </td>
@@ -224,7 +225,7 @@
 							                                    <td class=" "><fmt:formatDate type="date" value="<%=i2.getFecha()%>"/></td>
 							                                    <td>
 								                                    <button type="button" id="modalEditar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar"
-																		onclick="cargarDatos('<%=i2.getIdInscripcion() %>','<%=i2.getCarne()%>', '<%=i2.getPrimerNombre()%>','<%=i2.getPrimerApellido()%>', '<%=i2.getNombreA()%>','<%=i2.getCalificacion()%>','<%=i2.getPromedio()%>','<%=i2.getTurno()%>');">
+																		onclick="cargarDatos('<%=i2.getIdInscripcion() %>','<%=i2.getCarne()%>', '<%=i2.getPrimerNombre()%>','<%=i2.getPrimerApellido()%>', '<%=i2.getNombreA()%>', '<%=i2.getMotivo()%>','<%=i2.getCalificacion()%>','<%=i2.getPromedio()%>','<%=i2.getTurno()%>');">
 																		<i class="fa fa-pencil"></i>
 																	</button>
 							                                    </td>
@@ -269,7 +270,21 @@
 											</div>
 											<button type="button" id="buscarC" name="buscarC" class="btn btn-success">Buscar Estudiante</button>
 										</div>
-										<div id="monitor">
+										<div class="form-group">
+											<div id="monitor">
+												<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+													<input type="text" id="nombreP" name="nombreP" required="required" class="form-control" disabled="disabled">
+												</div>
+												<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+													<input type="text" id="nombreS" name="nombreS" required="required" class="form-control" disabled="disabled">
+												</div>
+												<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+													<input type="text" id="apellidoP" name="apellidoP" required="required" class="form-control" disabled="disabled">
+												</div>
+												<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+													<input type="text" id="apellidoS" name="apellidoS" required="required" class="form-control" disabled="disabled">
+												</div>
+											</div>
 										</div>
 										<label>Asignatura</label>
 										<select id="asignaturaA" name="asignaturaA" class="form-control">
@@ -279,6 +294,12 @@
 											<%}%>
 										</select><br>
 										<label>Calificación</label> <input type="text" id="calificacionA" name="calificacionA" required="required" class="form-control" placeholder=""> <br>
+										<label >Motivo</label>
+										<div class="form-group has-feedback">
+											<textarea id="motivoA" name="motivoA" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" 
+												data-parsley-maxlength="200" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10">
+											</textarea>
+										</div>
 										<label>Turno</label>
                                         <p>
                                            	<input type="radio" class="flat" checked name="turnoA" id="turnoA" value="diurno">Diurno
@@ -287,8 +308,8 @@
 										</p>
 										<label>Aprobar</label> 
 										<p>
-                                           	<input type="radio" class="flat"  name="estadoE" id="estadoE" value="1">Si
-											<input type="radio" class="flat"  name="estadoE" id="estadoE" value="2">No
+                                           	<input type="radio" class="flat"  name="estadoA" id="estadoA" value="1">Si
+											<input type="radio" class="flat"  name="estadoA" id="estadoA" value="2">No
 										</p>
 										
 										<div class="modal-footer">
@@ -315,7 +336,6 @@
 								</h5>
 							</div>
 							<div class="modal-body">
-							
 								<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLInscripcion?opc=2">
 									<div class="item form-group">
 										<label >Carné</label><input type="text" id="carneE" name="carneE" disabled="disabled" required="required" class="form-control">
@@ -339,6 +359,10 @@
 											<%}%>
 										</select><br>
 										<label>Calificación</label> <input type="text" id="calificacionE" name="calificacionE" required="required" class="form-control" placeholder=""> <br>
+										<label >Motivo</label>
+										<textarea id="motivoE" name="motivoE" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" 
+												data-parsley-maxlength="200" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10">
+										</textarea>
 										<label>Turno</label>
                                         <p>
                                            	<input type="radio" class="flat"  name="turnoE" id="turnoED" value="diurno">Diurno
@@ -357,35 +381,6 @@
 										</div>
 									</div>
 								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			    
-			    <!-- Modal Eliminar -->
-			    <div class="modal fade modalEliminar"  id="modalEliminar" tabindex="-1" role="dialog" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">x</span>
-								</button>
-								<h5 class="modal-title">
-									<b>Eliminar Período Inscripción</b>
-								</h5>
-							</div>
-							<div class="modal-body">
-								<form class="form-horizontal form-label-left" name="form" method="post" action="../../SLPeriodoInscripcion?opc=3">
-									<div class="item form-group">
-										<div class="col-md-12 col-sm-12 col-xs-12">
-											<input type="hidden" name=IdPIEliminar id="IdPIEliminar"><p>¿Seguro que desea eliminar este período de inscripción?</p>
-										</div>
-									</div>	
-								</form>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-								<button type="submit" class="btn btn-primary">Eliminar</button>
 							</div>
 						</div>
 					</div>
@@ -418,61 +413,7 @@
 <script src="../../js/datatables/tools/js/dataTables.tableTools.js"></script>
 <script src="../../js/datatables/js/jquery.dataTables.columnFilter.js"></script>
 <!-- Fin Datatables -->
-
-	<script type="text/javascript">
-	
-	$('#buscarC').click(function(event) {
-		var carneA = $('#carneA').val();
-		$.ajax({		    
-	          url:"../../SLBuscarMonitorCarne",
-	          type:"post",
-	          datatype:"html",
-	          data:{'carneA':carneA},
-	          success:function(data) 
-	          {
-	        		$('#monitor').html(data);  
-	          }
-	        });
-	});
-	
-	</script>
-	<!-- Cargar datos -->
-	<script type="text/javascript">
-	function limpiar(){
-		$("#idInscripcionE").html('');
-		$("#carneE").html('');;
-		$("#nombreE").html('');
-		$("#apellidoE").html('');
-		$("#calificacionE").html('');
-		$("#promedioE").html('');
-		$('#turnoEV').prop('checked',false);
-		$('#turnoED').prop('checked',false);
-		$('#turnoES').prop('checked',false);
 		
-	}
-	
-	function cargarDatos(IdInscripcionE, carneE, nombreE, apellidoE, asignaturaE,calificacionE,promedioE,turnoE){
-		limpiar();
-		$("#idInscripcionE").val(IdInscripcionE);
-		$("#carneE").val(carneE);
-		$("#nombreE").val(nombreE);
-		$("#apellidoE").val(apellidoE);
-		$('#asignaturaEO').html('');
-		$('#asignaturaEO').append('<option>'+asignaturaE+'</option>');
-		$("#calificacionE").val(calificacionE);
-		$("#promedioE").val(promedioE);
-		if(turnoE == "vespertino"){
-			$('#turnoEV').prop('checked',true);
-		}else if(turnoE == "diurno"){
-			limpiar();
-			$('#turnoED').prop('checked',true);
-		}else if(turnoE == "sabatino"){
-			limpiar();
-			$('#turnoES').prop('checked',true);
-		}
-	}
-	</script>
-	
 	<script type="text/javascript">
 			$(document).ready(function()
 			{	

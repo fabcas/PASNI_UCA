@@ -51,7 +51,6 @@ public class SLComboCarreras extends HttpServlet {
 			ArrayList<Carrera> listCar = new ArrayList<Carrera>();
 			listCar = ngc.comboCarrera(id);
 			
-			out += "<option value='0'>Seleccione...</option>";
 			for (Carrera car : listCar)
 			{
 				out +="<option value=\""+car.getIdCarrera()+"\">"+StringEscapeUtils.escapeHtml4(car.getNombre())+"</option>";

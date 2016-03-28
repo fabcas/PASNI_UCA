@@ -12,7 +12,7 @@ import entidades.Monitor;
 
 public class MDInscripcion extends Conexion{
 	
-	//Agregar
+	//Agregar SPInsertarInscripcionM
 	public boolean ingresarSolicitud(Inscripcion i, Monitor m) throws SQLException 
 	{
 		boolean g = false;
@@ -55,6 +55,36 @@ public class MDInscripcion extends Conexion{
 		return g;
 	}
 	
+	public boolean agregarInscripcion(Inscripcion i) throws SQLException 
+	{
+		boolean g = false;
+		int y = 0;
+		
+		Connection cn = getConnection();
+		CallableStatement cstmt = null;	
+		String sql = "{call dbo.SPAgregarInscripcion(?,?,?,?,?,?)}";
+		cstmt = cn.prepareCall(sql);
+					
+		try {			
+			cstmt.setInt("idMonitor",i.getIdMonitor());
+			cstmt.setInt("idAsignatura",i.getIdAsignatura());
+			cstmt.setInt("calificacion", i.getCalificación());
+			cstmt.setString("motivo", i.getMotivo());
+			cstmt.setInt("estado", i.getEstado());
+			cstmt.setString("turno", i.getTurno());
+			y = cstmt.executeUpdate();
+			g = y > 0;
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Datos: Error al enviar la solicitud-> " + e.getMessage());
+		}
+		cstmt.close();
+		cn.close();
+		return g;
+	}
+	
 	//Editar
 	public boolean modificarInscripcion(Inscripcion i){
 			
@@ -64,12 +94,13 @@ public class MDInscripcion extends Conexion{
 			try{
 				Connection cn = getConnection();
 				CallableStatement s = null;	
-				String sql = "{call dbo.SPModificarInscripcionMonitor(?,?,?,?,?)}";
+				String sql = "{call dbo.SPModificarInscripcionMonitor(?,?,?,?,?,?)}";
 				s = cn.prepareCall(sql);
 				
 				s.setInt("idAsignatura", i.getIdAsignatura());
 				s.setInt("idInscripcion", i.getIdInscripcion());
 				s.setInt("calificacion", i.getCalificación());
+				s.setString("motivo", i.getMotivo());
 				s.setString("turno", i.getTurno());
 				s.setInt("estado", i.getEstado());
 				

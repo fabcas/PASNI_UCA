@@ -24,7 +24,7 @@
 <link href="../../css/green.css" rel="stylesheet">
 
 <script src="../../js/jquery.min.js"></script>
-
+<script src="../../js/utilidades.js"></script>
 <script src="../../js/validaciones.js" type="text/javascript"></script>
 </head>
 
@@ -317,39 +317,8 @@
         </ul>
         <div class="clearfix"></div>
         <div id="notif-group" class="tabbed_notifications"></div>
-    </div>
-	
-	<!-- Select Facultad y Carrera -->
-	<script type="text/javascript">
-	$("#facultad").change(function()
-			{
-				var facultad=$("#facultad").val();
-				console.log(facultad);
-				if (facultad=="0")
-				{
-					$("#carrera").val("0");
-					$("#carrera").prop('disabled',true);
-				}
-				else 
-				{
-					$("#carrera").prop('disabled',false);
-					$.ajax({		    
-				          url:"../../SLComboCarreras",
-				          type:"post",
-				          datatype:"html",
-				          data:{'idFacultad':facultad},
-				          success:function(data) 
-				          {
-				        		$('#carrera').html(data);  
-				          }
-				        });
-				};			
-			});
-		
-	</script>
-	
-			
-			<!-- notificaciones de CRUD -->
+    </div>	
+	<!-- notificaciones de CRUD -->
 		<%
 			String msj ="";
 			msj = request.getParameter("msj");

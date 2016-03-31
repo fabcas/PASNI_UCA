@@ -126,6 +126,50 @@ public class MDMonitor extends Conexion{
 		return array;
 	}
 
+	public ArrayList <Monitor> cargarMonitorU(int usuario)
+	{
+		ArrayList <Monitor> array= new ArrayList <Monitor>();
+		String sql = ("select dbo.Monitor.idMonitor,  dbo.Monitor.carne,  dbo.Monitor.primerNombre,  dbo.Monitor.SegundoNombre,  dbo.Monitor.primerApellido,  dbo.Monitor.SegundoApellido,  dbo.Monitor.telefono,  dbo.Monitor.email, dbo.Carrera.nombre AS [carrera],  "+
+		"dbo.Monitor.promedio from  Usuario INNER JOIN Monitor ON dbo.Usuario.idUsuario = dbo.Monitor.idUsuario, Carrera where dbo.Carrera.idCarrera = dbo.Monitor.idCarrera and dbo.Usuario.idUsuario = ?");
+		
+		try
+		{
+			Connection cn = getConnection();
+			PreparedStatement ps = cn.prepareStatement(sql);
+			ps.setInt(1, usuario);
+			System.out.println("Usuario asignado: " + usuario);
+			ResultSet rs = ps.executeQuery();
+											
+			while(rs.next())		
+			{					    					
+				Monitor m = new Monitor();
+				
+				m.setIdMonitor(rs.getInt("idMonitor"));
+				m.setCarne(rs.getString("carne"));
+				m.setPrimerNombre(rs.getString("primerNombre"));
+				m.setSegundoNombre(rs.getString("segundoNombre"));
+				m.setPrimerApellido(rs.getString("primerApellido"));
+				m.setSegundoApellido(rs.getString("segundoApellido"));
+				m.setTelefono(rs.getString("telefono"));
+				m.setEmail(rs.getString("email"));
+				m.setCarrera(rs.getString("carrera"));
+				m.setPromedio(rs.getFloat("promedio"));
+				array.add(m);
+			}
+			
+			//Cerramos la conexion
+			ps.close();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Datos: Error al buscar al monitor-> "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return array;
+	}
+
 	public ArrayList <Monitor> buscarMonitorC(String carne)
 	{
 		ArrayList <Monitor> array= new ArrayList <Monitor>();
@@ -161,5 +205,6 @@ public class MDMonitor extends Conexion{
 		}
 		
 		return array;
-	}//combo
+	}
+
 }

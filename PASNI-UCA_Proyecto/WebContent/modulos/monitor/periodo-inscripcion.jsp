@@ -6,6 +6,11 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%
+	response.setHeader("Pragma", "No-cache");
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	response.setDateHeader("Expires", -1);
+%>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>PASNI-UCA | Período Inscripción </title>
@@ -34,14 +39,14 @@
 
 				<div class="page-title">
 					<div class="title_left">
-						<h3>Alumno Monitor</h3>
+						<h3>Período de Inscripción</h3>
 					</div>
 				</div>
 				
 				<div class="col-md-12 col-sm-12 col-xs-12">
                 	<div class="x_panel">
                     	<div class="x_title">
-                        	<h2>Período de Inscripción Alumno Monitor</h2>
+                        	<h2>Período de Inscripción de Estudiante Monitor</h2>
                            <div class="clearfix"></div>
                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAgregar">Agregar Período</button>
                         </div>
@@ -188,9 +193,9 @@
 												<%for(Cuatrimestre cuatri : listaCuatrimestre){%>
 													<option value="<%=cuatri.getIdCuatrimestre() %>"><%=cuatri.getNombre()%></option>
 												<%}%>
-										</select>
-										<label>Fecha inicio:</label> <input type="date" id="fechaInicio" name="fechaInicio" required="required" class="form-control" placeholder=""> <br>
-										<label>Fecha final:</label> <input type="date" id="fechaFin" name="fechaFin" required="required" class="form-control" placeholder="">
+										</select><br>
+										<label>Fecha inicio:</label> <input type="date" id="fechaInicio" name="fechaInicio" required="required" class="form-control"><br>
+										<label>Fecha final:</label> <input type="date" id="fechaFin" name="fechaFin" required="required" class="form-control">
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

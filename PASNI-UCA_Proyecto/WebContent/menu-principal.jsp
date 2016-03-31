@@ -45,6 +45,7 @@
 										Monitor <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
 										<li><a href="modulos/monitor/monitor.jsp">Estudiante Monitor</a></li>
+										<li><a href="modulos/monitor/perfil-monitor.jsp">Perfil Estudiante Monitor</a></li>
 										<li><a href="modulos/monitor/periodo-inscripcion.jsp">Período de Inscripción</a></li>
 										<li><a href="modulos/monitor/bandejaSolicitudesMonitor.jsp">Bandeja Inscripciones Monitor</a></li>
 									</ul></li>

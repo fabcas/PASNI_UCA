@@ -44,14 +44,14 @@
                     	<div class="x_title">
                         	<h2>Lista de Estudiante Monitor</h2>
                             	<div class="clearfix"></div>
-                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAgregar">Agregar Inscripción</button>
+                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAgregar">Agregar Estudiante</button>
                         </div>
                         <div class="x_content">
 							<div class="" role="tabpanel" data-example-id="togglable-tabs">
                             	<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                  	<li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Todos</a></li>
-                                    <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab"  aria-expanded="false">Historial</a></li>
-                                    <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Rechazadas</a></li>
+                                <!--<li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab"  aria-expanded="false">Historial</a></li>
+                                    <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Rechazadas</a></li>  -->
                                 </ul>
                             	<div id="myTabContent" class="tab-content">
                                 	<div role="tabpanel" class="tab-pane fade active in" id="tab_content1">
@@ -155,26 +155,20 @@
 										</div>
 										<label>Correo</label><input type="email" class="form-control" id="emailA" name="emailA"><br>
 										<label>Celular</label><input type="text" class="form-control " id="telefonoA" name="telefonoA"><br>
-										<div class="form-group">
-											<label>Facultad</label>
-											<% 
-												NGFacultad fac = new NGFacultad();
-												ArrayList<Facultad> listaf = new ArrayList<Facultad>();
-												listaf = fac.comboFacultad();
-											%>
-											<select id="facultad" name="facultad" class="form-control">
-												<option>Seleccion una Facultad</option>
-													<%for(Facultad facu: listaf){%>
-														<option value="<%=facu.getIdFacultad()%>"><%=facu.getNombre()%></option>
-													<%}%>
-											</select>
-										</div>
-										<div class="form-group">
-											<label>Carrera </label>
-											<select id="carrera" name="carrera" class="form-control">
-												<option value="0">Seleccione una carrera</option>
-											</select>
-										</div>
+										<% 
+											NGFacultad fac = new NGFacultad();
+											ArrayList<Facultad> lis = new ArrayList<Facultad>();
+											lis = fac.comboFacultad();
+										%>
+										<label >Facultad</label>
+										<select id="facultad" name="facultad" class="form-control ">
+											<option>Seleccion una facultad</option>
+											<%for(Facultad facu: lis){%>
+												<option value="<%=facu.getIdFacultad()%>"><%=facu.getNombre()%></option>
+											<%}%>
+										</select><br>
+										<label >Carrera</label>
+										<select id="carrera" name="carrera" class="form-control"></select> <br>
 										<label >Promedio</label> <input type="text" id="promedioA" name="promedioA" required="required" class="form-control" ><br>
 										
 										<div class="modal-footer">
@@ -225,22 +219,7 @@
 										</div>
 										<label>Correo</label><input type="email" class="form-control" id="emailE" name="emailE"><br>
 										<label>Celular</label><input type="text" class="form-control " id="telefonoE" name="telefonoE"> <br>
-										<div class="form-group">
-											<label>Facultad</label>
-											<select id="facultad" name="facultad" class="form-control">
-												<option>Seleccion una Facultad</option>
-													<%for(Facultad facu: listaf){%>
-														<option value="<%=facu.getIdFacultad()%>"><%=facu.getNombre()%></option>
-													<%}%>
-											</select>
-										</div>
-											
-										<div class="form-group">
-											<label>Carrera </label>
-											<select id="carrera" name="carrera" class="form-control">
-												<option value="0">Seleccione una carrera</option>
-											</select>
-										</div>
+										<label>Carrera</label><input type="text" class="form-control " id="carreraE" name="telefonoE" disabled="disabled"> <br>
 										<label >Promedio</label> <input type="text" id="promedioEM" name="promedioEM" required="required" class="form-control" ><br>
 										
 										<div class="modal-footer">
@@ -281,7 +260,7 @@
 <script src="../../js/datatables/tools/js/dataTables.tableTools.js"></script>
 <script src="../../js/datatables/js/jquery.dataTables.columnFilter.js"></script>
 <!-- Fin Datatables -->
-		
+	
 	<script type="text/javascript">
 			$(document).ready(function()
 			{	

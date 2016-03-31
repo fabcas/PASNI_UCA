@@ -46,6 +46,7 @@
 										Monitor <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
 										<li><a href="../monitor/monitor.jsp">Estudiante Monitor</a></li>
+										<li><a href="../monitor/perfil-monitor.jsp">Perfil Estudiante Monitor</a></li>
 										<li><a href="../monitor/periodo-inscripcion.jsp">Período de Inscripción</a></li>
 										<li><a href="../monitor/bandejaSolicitudesMonitor.jsp">Bandeja Inscripciones Monitor</a></li>
 									</ul></li>
@@ -105,7 +106,7 @@
 							</a>
 								<ul
 									class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-									<li><a href="index.jsp"><i
+									<li><a href="../../index.jsp"><i
 											class="fa fa-sign-out pull-right"></i>Cerrar Sesión</a></li>
 								</ul></li>
 						</ul>

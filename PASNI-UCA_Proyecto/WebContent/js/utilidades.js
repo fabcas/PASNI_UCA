@@ -1,7 +1,7 @@
 	//Limpiar campos bandejaSolicitudesMonitor.jsp
 	function limpiar(){
 		$("#idInscripcionE").html('');
-		$("#carneE").html('');;
+		$("#carneE").html('');
 		$("#nombreE").html('');
 		$("#apellidoE").html('');
 		$("#calificacionE").html('');
@@ -26,6 +26,7 @@
 		$("#apellidoSE").html('');
 		$("#emailE").html('');
 		$("#telefonoE").html('');
+		$("#carreraE").html('');
 		$("#promedioEM").html('');
 	};
 	
@@ -44,6 +45,31 @@
 			          }
 			        });
 			});
+		
+		$("#facultad").change(function()
+				{
+					var facultad=$("#facultad").val();
+					console.log(facultad);
+					if (facultad=="0")
+					{
+						$("#carrera").val("0");
+						$("#carrera").prop('disabled',true);
+					}
+					else 
+					{
+						$("#carrera").prop('disabled',false);
+						$.ajax({		    
+					          url:"../../SLComboCarreras",
+					          type:"post",
+					          datatype:"html",
+					          data:{'idFacultad':facultad},
+					          success:function(data) 
+					          {
+					        		$('#carrera').html(data);  
+					          }
+					        });
+					};			
+				});
 		});
 	
 	//Cargar datos en un modal bandejaSolicitudesMonitor.jsp
@@ -80,35 +106,6 @@
 		$("#apellidoSE").val(apellidoSM);
 		$("#emailE").val(correoM);
 		$("#telefonoE").val(telefonoM);
-		$('#carreraEM').html('');
-		$('#carreraEM').append('<option>'+carreraM+'</option>');
+		$("#carreraE").val(carreraM);
 		$("#promedioEM").val(promedioM);
 	};
-	
-	//Select Facultad y Carrera 
-	$(document).ready(function(){
-		$("#facultad").change(function()
-				{
-					var facultad=$("#facultad").val();
-					console.log(facultad);
-					if (facultad=="0")
-					{
-						$("#carrera").val("0");
-						$("#carrera").prop('disabled',true);
-					}
-					else 
-					{
-						$("#carrera").prop('disabled',false);
-						$.ajax({		    
-					          url:"../../SLComboCarreras",
-					          type:"post",
-					          datatype:"html",
-					          data:{'idFacultad':facultad},
-					          success:function(data) 
-					          {
-					        		$('#carrera').html(data);  
-					          }
-					        });
-					};			
-				});
-	});

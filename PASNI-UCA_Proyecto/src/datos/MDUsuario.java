@@ -413,6 +413,42 @@ public class MDUsuario extends Conexion{
 		
 	}
 	
+	public int devolverIdUsuarioMonitor(String user, String pass){
+		
+		int id = 0;
+		String sql = "SELECT m.IdUsuario "+
+				"FROM Monitor m, Usuario u" +
+					" WHERE u.idUsuario = m.idUsuario " +
+					" AND u.usuario = ? AND u.password = ? AND u.estado = 1 ";
+		try
+		{
+			Connection cn = getConnection();
+			PreparedStatement ps = cn.prepareStatement(sql);
+			
+			ps.setString(1, user);
+			ps.setString(2, pass);
+			
+			ResultSet rs = null;
+			rs = ps.executeQuery();
+			
+			if(rs.next())
+			{
+				id = rs.getInt("IdUsuario");
+			}
+				
+			ps.close();
+			cn.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Datos: Error al validar el usuario "+ e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return id;
+		
+	}
+	
 	public int devolverIdMonitor(String user, String pass){
 		
 		int id = 0;

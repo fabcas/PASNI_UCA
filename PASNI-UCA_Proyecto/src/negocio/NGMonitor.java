@@ -80,4 +80,23 @@ public class NGMonitor {
 		
 		return array;
 	}
+	
+	public ArrayList<Monitor> cargarMonitorU(int usuario){
+		
+		ArrayList<Monitor> array = new ArrayList<Monitor>();
+		MDMonitor datos = new MDMonitor();
+		try
+		{
+			array = datos.cargarMonitorU(usuario);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Negocio, el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return array;
+	}
+	
+	
 }

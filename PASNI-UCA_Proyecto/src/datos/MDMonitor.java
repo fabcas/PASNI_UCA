@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import entidades.InscripcionMonitor;
 import entidades.Monitor;
+import entidades.PerfilMonitor;
 
 public class MDMonitor extends Conexion{
 	
@@ -53,7 +54,7 @@ public class MDMonitor extends Conexion{
 			
 			Connection cn = getConnection();
 			CallableStatement cstmt = null;	
-			String sql = "{call dbo.SPEditarMonitor(?,?,?,?,?,?,?,?,?,?)}";
+			String sql = "{call dbo.SPEditarMonitor(?,?,?,?,?,?,?,?,?)}";
 			cstmt = cn.prepareCall(sql);
 			
 			try{
@@ -65,7 +66,6 @@ public class MDMonitor extends Conexion{
 				cstmt.setString("carne", m.getCarne());
 				cstmt.setString("telefono", m.getTelefono());
 				cstmt.setString("email", m.getEmail());
-				cstmt.setInt("idCarrera", m.getIdCarrera());
 				cstmt.setFloat("promedio", m.getPromedio());
 				
 				y = cstmt.executeUpdate();
@@ -129,7 +129,7 @@ public class MDMonitor extends Conexion{
 	public ArrayList <Monitor> cargarMonitorU(int usuario)
 	{
 		ArrayList <Monitor> array= new ArrayList <Monitor>();
-		String sql = ("select dbo.Monitor.idMonitor,  dbo.Monitor.carne,  dbo.Monitor.primerNombre,  dbo.Monitor.SegundoNombre,  dbo.Monitor.primerApellido,  dbo.Monitor.SegundoApellido,  dbo.Monitor.telefono,  dbo.Monitor.email, dbo.Carrera.nombre AS [carrera],  "+
+		String sql = ("select dbo.Monitor.idMonitor,  dbo.Monitor.carne,  dbo.Monitor.primerNombre,  dbo.Monitor.SegundoNombre,  dbo.Monitor.primerApellido,  dbo.Monitor.SegundoApellido,  dbo.Monitor.telefono,  dbo.Monitor.email, dbo.Monitor.idCarrera, dbo.Carrera.nombre AS [carrera]," +
 		"dbo.Monitor.promedio from  Usuario INNER JOIN Monitor ON dbo.Usuario.idUsuario = dbo.Monitor.idUsuario, Carrera where dbo.Carrera.idCarrera = dbo.Monitor.idCarrera and dbo.Usuario.idUsuario = ?");
 		
 		try
@@ -152,6 +152,7 @@ public class MDMonitor extends Conexion{
 				m.setSegundoApellido(rs.getString("segundoApellido"));
 				m.setTelefono(rs.getString("telefono"));
 				m.setEmail(rs.getString("email"));
+				m.setIdCarrera(rs.getInt("idCarrera"));
 				m.setCarrera(rs.getString("carrera"));
 				m.setPromedio(rs.getFloat("promedio"));
 				array.add(m);
@@ -201,6 +202,71 @@ public class MDMonitor extends Conexion{
 		catch(Exception e)
 		{
 			System.out.println("Datos: Error al buscar al monitor-> "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return array;
+	}
+	
+	public boolean subirArchivo(PerfilMonitor pm) throws SQLException{
+		
+		boolean g = false;
+		int y = 0;
+		
+		Connection cn = getConnection();
+		CallableStatement cstmt = null;	
+		String sql = "{call dbo.SPSubirArchivo(?,?,?,?,?)}";
+		cstmt = cn.prepareCall(sql);
+		
+		try{
+			cstmt.setString("nombre", pm.getNombre());
+			cstmt.setInt("idMonitor", pm.getIdMonitor());
+			cstmt.setInt("semana", pm.getSemana());
+			cstmt.setInt("idCuatrimestre",pm.getIdCuatrimestre());
+			cstmt.setBlob("documento", pm.getImagen());
+			
+			y = cstmt.executeUpdate();
+			g = y > 0;
+			
+		}catch(Exception e ){
+			System.out.println("Datos: Error al subir el archivo-> "+e.getMessage());
+			e.printStackTrace();
+		}
+		cstmt.close();
+		cn.close();
+		return g;
+	}
+	
+	public ArrayList<PerfilMonitor> cargarArchivo(int usuario){
+		
+		ArrayList <PerfilMonitor> array= new ArrayList <PerfilMonitor>();
+		String sql = ("select  dbo.Documento.nombre, dbo.Documento.semana, dbo.Documento.fecha " +
+						"from  Documento INNER JOIN Monitor ON dbo.Documento.idMonitor = dbo.Monitor.idMonitor, Usuario where dbo.Usuario.idUsuario = dbo.Monitor.idUsuario and dbo.Usuario.idUsuario = ?");	
+		try
+		{
+			Connection cn = getConnection();
+			PreparedStatement ps = cn.prepareStatement(sql);
+			ps.setInt(1, usuario);
+			System.out.println("Usuario asignado: " + usuario);
+			ResultSet rs = ps.executeQuery();
+											
+			while(rs.next())		
+			{					    					
+				PerfilMonitor pm = new PerfilMonitor();
+				
+				pm.setNombre(rs.getString("nombre"));
+				pm.setSemana(rs.getInt("semana"));
+				pm.setFecha(rs.getDate("fecha"));
+				array.add(pm);
+			}
+			
+			//Cerramos la conexion
+			ps.close();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Datos: Error al cargar los informes-> "+e.getMessage());
 			e.printStackTrace();
 		}
 		

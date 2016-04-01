@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
-    import="datos.*, entidades.*,servlets.*,negocio.*, java.util.*"
+    import="datos.*, entidades.*,servlets.*,negocio.*, java.util.*,java.text.SimpleDateFormat"
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
@@ -9,12 +9,14 @@
 <%
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-	response.setDateHeader("Expires", 0);
+	response.setDateHeader("Expires", -1);
 	
 	//String email = "";
 	int rol = 0;
 	int idUsuario = 0;
 	int idMonitor = 0;
+	int idCarrera = 0;
+	int semana = 0;
 	String carne = "";
 	String nombreP = "";
 	String nombreS = "";
@@ -24,10 +26,13 @@
 	String celular = "";
 	String carrera = "";
 	float promedio = 0;
+	String nombre = "";
+	Date fecha = new Date();
 	
 	ArrayList <Monitor> listadmin = new ArrayList <Monitor>();
 	listadmin = (ArrayList <Monitor>) session.getAttribute("login");
-	
+	ArrayList <PerfilMonitor> listad= new ArrayList <PerfilMonitor>();
+	listad = (ArrayList <PerfilMonitor>) session.getAttribute("loginp");
 	if(listadmin != null)
  	{
 		for (Monitor user: listadmin)
@@ -40,8 +45,16 @@
 			apellidoS = user.getSegundoApellido();
 			correo = user.getEmail();
 			celular = user.getTelefono();
+			idCarrera = user.getIdCarrera();
 			carrera = user.getCarrera();
 			promedio = user.getPromedio();
+		}
+  	}else if(listad != null){
+  		
+  		for(PerfilMonitor pm : listad){
+			nombre = pm.getNombre();
+			semana = pm.getSemana();
+			fecha = pm.getFecha();
 		}
   	}
 	else
@@ -103,14 +116,12 @@
                                             <!-- end of image cropping -->
 
                                         </div>
-                                        <h3><%= nombreP %> <%= apellidoP %></h3>
+                                        <h3><%=nombreP%> <%=apellidoP%></h3>
 
-                                        <ul class="list-unstyled user_data">
-                                            <li><i class="fa fa-map-marker user-profile-icon"></i> Celular</li>
+                                        <ul class="list-unstyled ">
+                                            <li><i class="fa fa-phone"></i> <%=celular%></li>
 
-                                            <li><i class="fa fa-briefcase user-profile-icon"></i> Carrera</li>
-
-                                            <li class="m-top-xs"><i class="fa fa-external-link user-profile-icon"></i></li>
+                                            <li><i class="fa fa-graduation-cap user-profile-icon"></i><%=carrera%></li>
                                         </ul>
 
                                         <br />
@@ -128,8 +139,36 @@
                                                 </li>
                                             </ul>
                                             <div id="myTabContent" class="tab-content">
+                                            
                                                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-
+													<div class="x_panel">
+						                                <div class="x_title">
+						                                    <h2>Informes Semanales</h2>
+						                                    <div class="clearfix"></div>
+						                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalArchivo">Enviar Informe</button>
+	                     								</div>
+						
+						                                <div class="x_content">
+					
+					                                    <table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
+					                                        <thead>
+					                                            <tr class="headings">
+					                                               <th class="column-title">Nombre </th>
+					                                               <th class="column-title">Semana</th>
+					                                               <th class="column-title">Fecha Envío</th>
+					                                           	</tr>
+					                            			</thead>
+					                            			
+								                            <tbody>
+								                           		<tr class="even pointer">
+								                                    <td class=" "><%=nombre %></td>
+								                                   	<td class=" "><%=semana %></td>
+								                                    <td class=" "><fmt:formatDate type="date" value="<%=fecha%>"/></td>
+								                               </tr>
+								                           </tbody>
+					                  					</table>
+					                                </div>
+					                           		</div>
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
@@ -138,8 +177,8 @@
                                                		<div class="x_title">
 					                                    <h2>Editar Datos Personales</h2>
 					                                    <div class="clearfix"></div>
-				                                	</div>
-                                               		<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLMonitor?opc=2">
+					                                </div>
+                                               		<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLMonitor?opc=3">
 														<div class="item form-group">
 														
 															<label >Carné</label><input type="text" id="carneE" name="carneE" required="required" class="form-control" disabled="disabled" value="<%=carne%>" >
@@ -164,7 +203,8 @@
 															</div>
 															<label>Correo</label><input type="email" class="form-control" id="emailE" name="emailE" value="<%=correo%>"><br>
 															<label>Celular</label><input type="text" class="form-control " id="telefonoE" name="telefonoE" value="<%=celular%>"> <br>
-															<label>Carrera</label><input type="text" class="form-control " id="carreraE" name="telefonoE" disabled="disabled" value="<%=carrera%>"> <br>
+															<label>Carrera</label><input type="text" class="form-control " id="carreraE" name="carreraE" disabled="disabled" value="<%=carrera%>"><br>
+																				<input type="text" id="carrera" name="carrera" class="form-control" value="<%=idCarrera%>"> <br>
 															<label >Promedio</label> <input type="text" id="promedioEM" name="promedioEM" required="required" class="form-control" value="<%=promedio%>"><br>
 															
 															<div class="modal-footer">
@@ -183,6 +223,53 @@
                  </div><!-- /col m12 -->
                  
 				<div class="clearfix"></div>
+				
+				 <!-- Modal Agregar Inscripcion -->
+				<div class="modal fade modalArchivo"  id="modalArchivo" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">x</span>
+								</button>
+								<h5 class="modal-title">
+									<b>Enviar Informe Semanal</b>
+								</h5>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLSubirArchivo" enctype="multipart/form-data">
+						        	<div class="item form-group">
+						        		<label>Nombre</label><input type="text" class="form-control" id="nombreA" name="nombreA"><br>
+						        							<input type="hidden" id="idMonitor" name="idMonitor" class="form-control" value="<%=idMonitor%>"> <br>
+										<select id="semana" class="form-control" name="semana" required="required" tabindex="-1">
+											<option value="1">Semana 1</option>
+											<option value="2">Semana 2</option>
+											<option value="3">Semana 3</option>
+											<option value="4">Semana 4</option>
+										</select><br>
+										<%
+											NGTaller tallerNegocio = new NGTaller();
+											ArrayList<Cuatrimestre> listaCuatrimestre = new ArrayList<Cuatrimestre>();
+											listaCuatrimestre = tallerNegocio.comboCuatrimestre();
+										%>
+										<label>Cuatrimestre</label> 
+										<select id="idCuatrimestre" class="form-control" name="idCuatrimestre" required="required" tabindex="-1">
+											<option value="0">Seleccione..</option>
+											<%for(Cuatrimestre cuatri : listaCuatrimestre){%>
+												<option value="<%=cuatri.getIdCuatrimestre() %>"><%=cuatri.getNombre()%></option>
+											<%}%>
+										</select><br>
+										<label>Archivo</label><input type="file" name="photo" size="50"/><br>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+											<button type="submit" class="btn btn-primary">Enviar</button>
+										</div>
+						        	</div>
+						        </form>
+							</div>
+						</div>
+					</div>
+				</div>
 
 			</div><!-- /right-col -->
 			

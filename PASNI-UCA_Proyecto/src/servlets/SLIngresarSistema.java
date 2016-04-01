@@ -14,6 +14,7 @@ import negocio.NGMonitor;
 import negocio.NGUsuario;
 import datos.MDMonitor;
 import entidades.Monitor;
+import entidades.PerfilMonitor;
 import entidades.Usuario;
 import entidades.UsuarioGenerico;
 
@@ -96,6 +97,7 @@ public class SLIngresarSistema extends HttpServlet {
 					idUsuario = ng.devolverIdUsuarioMonitor(user, pass);
 					//ArrayList<UsuarioGenerico> listaMonitor = new ArrayList<UsuarioGenerico>();
 					ArrayList<Monitor> monitor = new ArrayList<Monitor>();
+					ArrayList<PerfilMonitor> perfil = new ArrayList<PerfilMonitor>();
 					
 					NGMonitor ngmon = new NGMonitor();
 					
@@ -108,12 +110,14 @@ public class SLIngresarSistema extends HttpServlet {
 					*/
 					
 					monitor = ngmon.cargarMonitorU(idUsuario); 
-					
+					perfil = ngmon.cargarArchivo(idUsuario);
 					if(autenticado == true){
 						
 						HttpSession hts = request.getSession(true);
 						hts.setAttribute("login", monitor);
+						hts.setAttribute("loginp", perfil);
 						response.sendRedirect("modulos/monitor/perfil-monitor.jsp");
+						
 					}
 					else{
 						response.sendRedirect("index.jsp");

@@ -8,6 +8,33 @@
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	response.setDateHeader("Expires", -1);
 %>
+
+<%
+	//String email = "";
+	int rol = 0;
+	int idUsuario = 0;
+	
+	ArrayList <UsuarioGenerico> listadmin = new ArrayList <UsuarioGenerico>();
+	listadmin = (ArrayList <UsuarioGenerico>) session.getAttribute("login");
+	
+	if(listadmin != null)
+    {
+		for (UsuarioGenerico user: listadmin)
+		{
+			//email = vsadmin.getCorreo();
+			rol = user.getIdRol();
+			idUsuario = user.getIdUsuario();
+		}
+		System.out.println("Rol en solicitar taller: " + rol + ", idUsuario: "+ idUsuario);
+    }
+	else
+	{
+ 		response.sendRedirect("index.jsp");
+ 		return;
+		
+	}
+%>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>PASNI-UCA | Categoría Taller Formación</title>

@@ -89,8 +89,8 @@ public class SLMonitor extends HttpServlet {
 				m.setSegundoNombre(request.getParameter("nombreSE"));
 				m.setPrimerApellido(request.getParameter("apellidoEP"));
 				m.setSegundoApellido(request.getParameter("apellidoSE"));
-				m.setEmail(request.getParameter("emailA"));
-				m.setTelefono(request.getParameter("telefonoA"));
+				m.setEmail(request.getParameter("emailE"));
+				m.setTelefono(request.getParameter("telefonoE"));
 				idC = request.getParameter("carrera");
 				m.setIdCarrera(Integer.parseInt(idC));
 				promedio = request.getParameter("promedioEM");
@@ -100,11 +100,36 @@ public class SLMonitor extends HttpServlet {
 				if(e == true)
 				{
 					response.sendRedirect("./modulos/monitor/monitor.jsp?msj=2");
-				}
 					
+				}
 				else
 				{
 					response.sendRedirect("./modulos/monitor/monitor.jsp");
+				}
+			}else if (opc.equals("3")){
+				
+				idM = request.getParameter("idMonitorE");
+				m.setIdMonitor(Integer.parseInt(idM));
+				m.setPrimerNombre(request.getParameter("nombrePE"));
+				m.setSegundoNombre(request.getParameter("nombreSE"));
+				m.setPrimerApellido(request.getParameter("apellidoEP"));
+				m.setSegundoApellido(request.getParameter("apellidoSE"));
+				m.setEmail(request.getParameter("emailE"));
+				m.setTelefono(request.getParameter("telefonoE"));
+				idC = request.getParameter("carrera");
+				m.setIdCarrera(Integer.parseInt(idC));
+				promedio = request.getParameter("promedioEM");
+				m.setPromedio(Float.parseFloat(promedio));
+				
+				e = ngm.editarMonitor(m);
+				if(e == true)
+				{
+					response.sendRedirect("./modulos/monitor/perfil-monitor.jsp?msj=3");
+					
+				}
+				else
+				{
+					response.sendRedirect("./modulos/monitor/perfil-monitor.jsp");
 				}
 			}
 		}catch(Exception e){

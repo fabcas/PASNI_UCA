@@ -3,12 +3,20 @@
 	import="java.util.Date,java.text.SimpleDateFormat"
 %>
 <!DOCTYPE html>
-<html>
 <%
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	response.setDateHeader("Expires", -1);
 %>
+<html>
+
+
+<% 
+	HttpSession tas_sesion = request.getSession(false);
+	tas_sesion.invalidate();
+	
+%>
+	
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

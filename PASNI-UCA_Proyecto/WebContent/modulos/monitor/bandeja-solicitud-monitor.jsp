@@ -266,7 +266,7 @@
 							</div>
 							<div class="modal-body">
 							
-								<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLInscripcion?opc=3">
+								<form class="form-horizontal form-label-left " name="form" method="post" >
 									<div class="item form-group">
 										<label >Carné</label>
 										<div class="form-group">

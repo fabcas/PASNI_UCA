@@ -1,17 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
 	import="servlets.*,entidades.*,datos.*, negocio.*, java.util.*"%>
+	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <%
-	response.setHeader("Pragma", "No-cache");
-	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-	response.setDateHeader("Expires", -1);
+response.setHeader("Pragma", "No-cache");
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+response.setDateHeader("Expires", -1);
 %>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PASNI-UCA | Solicitud Taller de Formación</title>
+<title>PASNI-UCA | Talleres de Formación</title>
 
 <!-- Librerías -->
 
@@ -45,7 +49,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Taller de Formación</h3>
+							<h3>Bandeja de Solicitudes</h3>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -55,7 +59,20 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Lista de Solicitudes de Taller de Formación</h2>
+									<h2>Lista de solicitudes de talleres</h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i
+												class="fa fa-chevron-up"></i></a></li>
+										<li class="dropdown"><a href="#" class="dropdown-toggle"
+											data-toggle="dropdown" role="button" aria-expanded="false"><i
+												class="fa fa-wrench"></i></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Settings 1</a></li>
+												<li><a href="#">Settings 2</a></li>
+											</ul></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a>
+										</li>
+									</ul>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
@@ -80,8 +97,8 @@
 														<div class="item form-group">
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<label><b>¿A dónde desea enviar la siguiente solicitud?</b></label><br>
-																Aprobadas: <input type="radio" name="estado"><br><br>
-																Desaprobada: <input type="radio" name="estado">
+																Aprobadas: <input type="radio" id="estado" name="estado" value="Si"><br><br>
+																Desaprobada: <input type="radio" id="estado" name="estado" value="No">
 																<input type="hidden" name="idSolicitudTaller"
 																	id="idSolicitudTaller">
 																<!-- <input type="text" name="nombre_TallerEliminado" id="nombre_TallerEliminado" disabled="disabled"> -->
@@ -91,7 +108,7 @@
 														<div class="modal-footer">
 															<button type="button" class="btn btn-default"
 																data-dismiss="modal">Cancelar</button>
-															<button type="submit" class="btn btn-primary">Aprobar</button>
+															<button type="submit" class="btn btn-primary">Guardar</button>
 														</div>
 													</form>
 												</div>
@@ -135,6 +152,8 @@
 															<th>Id Solicitud</th>
 															<th>Profesor Guía</th>
 															<th>Taller</th>
+															<th>Horario</th>
+															<th>Cantidad de Estudiantes</th>
 															<th>Fecha</th>
 															<th>Estado</th>
 															<th><span class="nobr">Acción</span></th>
@@ -153,7 +172,9 @@
 															<td class=""><%=st.getIdSolicitudTaller() %></td>
 															<td class=""><%=st.getNombreProfesor() %></td>
 															<td class=""><%=st.getNombreTaller() %></td>
-															<td class=""><%=st.getFechaSolicitud() %></td>
+															<td class=""><%=st.getHorarioPropuesto() %></td>
+															<td class=""><%=st.getCantidadEstudiantes() %></td>
+															<td class=""><fmt:formatDate type="date" value="<%=st.getFechaSolicitud()%>"/></td>
 															<td class=""><%=st.getCadenaEstado() %></td>
 															<td>
 																<button type="button" id="botonAprobar"
@@ -195,6 +216,8 @@
 															<th>Profesor Guía</th>
 															<th>Taller</th>
 															<th>Fecha</th>
+															<th>Horario</th>
+															<th>Cantidad de Estudiantes</th>
 															<th>Estado</th>
 															<th><span class="nobr">Acción</span></th>
 														</tr>
@@ -213,6 +236,9 @@
 															<td class=""><%=st.getNombreProfesor() %></td>
 															<td class=""><%=st.getNombreTaller() %></td>
 															<td class=""><%=st.getFechaSolicitud() %></td>
+															<td class=""><%=st.getHorarioPropuesto() %></td>
+															<td class=""><%=st.getCantidadEstudiantes() %></td>
+															<td class=""><fmt:formatDate type="date" value="<%=st.getFechaSolicitud()%>"/></td>
 															<td class=""><%=st.getCadenaEstado() %></td>
 															<td>
 																<!-- <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar" onclick=""><i class="fa fa-check-square-o"></i></button> -->
@@ -246,6 +272,8 @@
 															<th>Profesor Guía</th>
 															<th>Taller</th>
 															<th>Fecha</th>
+															<th>Horario</th>
+															<th>Cantidad de Estudiantes</th>
 															<th>Estado</th>
 															<th><span class="nobr">Acción</span></th>
 														</tr>
@@ -264,6 +292,9 @@
 															<td class=""><%=st.getNombreProfesor() %></td>
 															<td class=""><%=st.getNombreTaller() %></td>
 															<td class=""><%=st.getFechaSolicitud() %></td>
+															<td class=""><%=st.getHorarioPropuesto() %></td>
+															<td class=""><%=st.getCantidadEstudiantes() %></td>
+															<td class=""><fmt:formatDate type="date" value="<%=st.getFechaSolicitud()%>"/></td>
 															<td class=""><%=st.getCadenaEstado() %></td>
 															<td>
 																<!-- <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar" onclick=""><i class="fa fa-check-square-o"></i></button> -->
@@ -287,18 +318,18 @@
 
 
 					</div>
-					
-					
+					<div class="clearfix"></div>
+
+					<!-- footer content -->
+					<jsp:include page="../footer.jsp" flush="true" />
+					<!-- /footer content -->
+
 				</div>
-			
-			</div><!-- /page content -->
-			
-			<div class="clearfix"></div>
-			
-			<jsp:include page="../footer.jsp" flush="true" /><!-- /footer content -->
-			
+				<!-- /page content -->
+			</div>
+
 		</div>
-	</div>
+
 		<div id="custom_notifications" class="custom-notifications dsp_none">
 			<ul class="list-unstyled notifications clearfix"
 				data-tabbed_notifications="notif-group">
@@ -307,7 +338,7 @@
 			<div id="notif-group" class="tabbed_notifications"></div>
 		</div>
 
-	
+	</div>
 
 </body>
 
@@ -366,7 +397,7 @@
     			if(mensaje == "1")
     			{
     				new PNotify({
-    	                title: "Registro aprobado",
+    	                title: "Solicitud aprobada",
     	                type: "info",
     	                text: "La solicitud ha sido aprobada exitosamente.",
     	                nonblock: {
@@ -377,9 +408,9 @@
     			 if(mensaje=="2")
     			 {
     				 new PNotify({
-    		                title: "Registro Modificado",
+    		                title: "Solicitud desaprobada",
     		                type: "success",
-    		                text: "El taller se editó  exitosamente!!!",
+    		                text: "La solicitud ha sido desaprobada!!",
     		                nonblock: {
                                    nonblock: true,
                                    nonblock_opacity: .9}

@@ -68,6 +68,7 @@
 										<li><a href="modulos/taller/bandejaSolicitudesTaller.jsp">Bandeja Solicitud Taller</a></li>
 										<li><a href="modulos/taller/categoria-taller.jsp">Categoría de taller</a></li>
 										<li><a href="modulos/taller/taller.jsp">Talleres de Formación</a></li>
+										<li><a href="modulos/taller/facilitador.jsp">Facilitadores</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-magic"></i> Administración <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">

@@ -35,13 +35,27 @@
 		{	$('#buscarC').click(function(event) {
 				var carneA = $('#carneA').val();
 				$.ajax({		    
-			          url:"../../SLBuscarMonitorCarne",
+			          url:"../../SLBuscarMonitorCarne?opc=1",
 			          type:"post",
 			          datatype:"html",
 			          data:{'carneA':carneA},
 			          success:function(data) 
 			          {
 			        		$('#monitor').html(data);  
+			          }
+			        });
+			});
+		
+			$('#buscar').click(function(event) {
+				var carne = $('#carneA').val();
+				$.ajax({		    
+			          url:"../../SLBuscarMonitorCarne?opc=2",
+			          type:"post",
+			          datatype:"html",
+			          data:{'carneA':carne},
+			          success:function(data) 
+			          {
+			        		$('#monitorC').html(data);  
 			          }
 			        });
 			});

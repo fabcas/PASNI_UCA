@@ -1,15 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
 	import="servlets.*,entidades.*,datos.*, negocio.*, java.util.*,
-	java.util.Date,java.text.SimpleDateFormat"%>
+	java.util.Date,java.text.SimpleDateFormat"
+
+%>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <%
-	response.setHeader("Pragma", "No-cache");
-	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-	response.setDateHeader("Expires", -1);
+
+response.setHeader("Pragma", "No-cache");
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+response.setDateHeader("Expires", -1);
+
 %>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -58,7 +64,7 @@
 %>
 
 
-<title>PASNI-UCA | Solicitar Taller de Formación</title>
+<title>PASNI-UCA | Talleres de Formación</title>
 
 <!-- Bootstrap core CSS -->
 
@@ -106,7 +112,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Taller de Formación</h3><br>
+							<h3>Solicitar Taller de Formación</h3><br>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -273,7 +279,7 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Solicitar Taller de Formación</h2>
+									<h2>Solicitar taller de formación</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
@@ -302,16 +308,30 @@
 												<span class="fa fa-list-ul form-control-feedback left" aria-hidden="true"></span>
                                             </div>
                                         </div>
+                                        
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Horario propuesto <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <textarea id="horario" name="horario" rows="3" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+                                                <select id="horario" name="horario" class="select2_single form-control col-md-7 col-xs-12 has-feedback-left">
+                                                	<option>Seleccione..</option>
+                                                	<option>8:00 a.m. - 11:00 a.m.</option>
+                                                	<option>11:00 a.m. - 02:00 p.m.</option>
+                                                	<option>02:00 p.m. - 05:00 p.m.</option>
+                                                </select>
+                                                <span class="fa fa-list-ul form-control-feedback left" aria-hidden="true"></span>
                                                 <input type="hidden" id="idUsuario" name="idUsuario" value="<%=idUsuario%>">
                                                 <input type="hidden" id="fecha" name="fecha" value="<%=f_actual%>">
                                                 <!-- <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>-->
                                             </div>
                                         </div>
+                                        
+                                        <div class="form-group">
+	                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">Cantidad de estudiantes <span class="required">*</span></label>
+	                                        	<div class="col-md-6 col-sm-6 col-xs-12">        
+	                                                <input class="form-control" type="text" id="cantidadEstudiantes" name="cantidadEstudiantes">
+	                                        	</div>
+	                                    </div>
                                        
                                         <div class="ln_solid"></div>
                                         <div class="form-group">

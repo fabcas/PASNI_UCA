@@ -3,40 +3,13 @@
 	import="servlets.*,entidades.*,datos.*, negocio.*, java.util.*"%>
 
 <!DOCTYPE html>
-
-<%
-	response.setHeader("Pragma", "No-cache");
-	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-	response.setDateHeader("Expires", -1);
-%>
-
-<%
-	//String email = "";
-	int rol = 0;
-	int idUsuario = 0;
-	
-	ArrayList <UsuarioGenerico> listadmin = new ArrayList <UsuarioGenerico>();
-	listadmin = (ArrayList <UsuarioGenerico>) session.getAttribute("login");
-	
-	if(listadmin != null)
-    {
-		for (UsuarioGenerico user: listadmin)
-		{
-			//email = vsadmin.getCorreo();
-			rol = user.getIdRol();
-			idUsuario = user.getIdUsuario();
-		}
-		System.out.println("Rol en solicitar taller: " + rol + ", idUsuario: "+ idUsuario);
-    }
-	else
-	{
- 		response.sendRedirect("index.jsp");
- 		return;
-		
-	}
-%>
-
 <html lang="en">
+
+<%
+response.setHeader("Pragma", "No-cache");
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+response.setDateHeader("Expires", -1);
+%>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -45,7 +18,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>PASNI-UCA | Taller de Formación</title>
+<title>PASNI-UCA | Talleres de Formación</title>
 
 <!-- Bootstrap core CSS -->
 
@@ -90,7 +63,20 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Taller de Formación</h3>
+							<h3>Catálogo de Talleres de Formación</h3>
+						</div>
+
+						<div class="title_right">
+							<div
+								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+								<div class="input-group">
+									<input type="text" class="form-control"
+										placeholder="Buscar..."> <span
+										class="input-group-btn">
+										<button class="btn btn-default" type="button">Ir!</button>
+									</span>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -328,7 +314,7 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Lista de Taller de Formación</h2>
+									<h2>Catálogo de Taller</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
@@ -353,9 +339,9 @@
 												<th>Cuatrimestre</th>
 												<th>Categoría</th>
 												<th>Nombre</th>
-												<th>Descripción</th>
+												<!-- <th>Descripción</th>
 												<th>Fecha Inicio</th>
-												<th>Fecha Fin</th>
+												<th>Fecha Fin</th> -->
 												<th><span class="nobr">Acción</span></th>
 											</tr>
 										</thead>
@@ -373,9 +359,9 @@
 												<td class=""><%=t.getNombreCuatrimestre() %></td>
 												<td class=""><%=t.getNombreCategoria() %></td>
 												<td class=""><%=t.getNombre() %></td>
-												<td class=""><%=t.getDescripcion() %></td>
-												<td class=""><%=t.getFechaInicio() %></td>
-												<td class=""><%=t.getFechaFinal()%></td>
+												<!--<td class=""><//%=t.getDescripcion() %></td>
+												<td class=""><//%=t.getFechaInicio() %></td>
+												<td class=""><//%=t.getFechaFinal()%></td>-->
 												<td>
 													<button type="button" id="botonModificar"
 														title="Modificar registro" class="btn btn-success btn-xs"

@@ -58,11 +58,19 @@
 							<h3 class="white">Asistencia de Pregrado</h3>
 							<h3 class="yellow">Programa de Estudiantes Monitores</h3>
 							<br>
-							<div class="white">
-								Si eres estudiante de un año superior, con alto índice académico, dispuesto a ayudar a los demás y con un sólido
-								conocimiento en asignaturas como Matemática Fundamental, Química General y Taller de Redacción, es tu oportunidad 
-								para ser <b>¡Estudiante Monitor (a)!</b> Llena la inscripción a continuación y en caso de ser admitido en el programa, 
+							<p class="white">
+								Si eres estudiante de un año superior, estas dispuesto a ayudar a los demás y tienes un sólido conocimiento
+								en asignaturas como Matemática Fundamental, Química General y Taller de Redacción, es tu oportunidad para ser 
+								<b>¡Estudiante Monitor(a)!</b> Llena la siguiente inscripción y en caso de ser admitido en el programa, 
 								recibirás una beca que equivale a un estipendio de C$ 1,000.00 mensuales durante el cuatrimestre correspondiente. 
+							</p>
+							<div class="req col-md-6 col-sm-6 col-xs-12">
+								<b>Los requisitos son:</b>
+								<ul> 
+									<li>Promedio mayor o igual a los 80 puntos en el cuatrimestre anterior</li>
+									<li >Haber aprobado con un mínimo de 80 puntos la asignatura que se desea monitorear</li>
+									<li>No tener ninguna asignatura reprobada en el historial académico</li>
+								</ul>
 							</div>
 						</div>
 					</div>

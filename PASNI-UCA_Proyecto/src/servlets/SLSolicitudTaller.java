@@ -70,6 +70,7 @@ public class SLSolicitudTaller extends HttpServlet {
 				st.setFechaSolicitud((new java.sql.Date(parsed.getTime())));
 				
 				st.setHorarioPropuesto(request.getParameter("horario"));
+				st.setCantidadEstudiantes(Integer.parseInt(request.getParameter("cantidadEstudiantes")));
 				//st.setEstado(1);
 				
 				a = ngs.guardarSolicitudTaller(st);

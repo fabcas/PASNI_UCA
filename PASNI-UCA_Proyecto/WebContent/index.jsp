@@ -74,7 +74,7 @@
 			<div class="container">
 				<div class="row title text-center">
 					<h3 class="margin-top white">Asistencia de Pregrado</h3>
-					<h4 class="yellow ">Programas de Acompañamiento y Seguimiento a Nuevo Ingreso</h4>
+					<h4 class="yellow">Programas de Acompañamiento y Seguimiento a Nuevo Ingreso</h4>
 				</div>
 				<div class="row">
 					<div class="col-md-4">

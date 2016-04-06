@@ -46,32 +46,59 @@ public class SLBuscarMonitorCarne extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
+			String opc = "";
 			String out = "";
 			String carne= request.getParameter("carneA");
 			NGMonitor ngm = new NGMonitor();
 			ArrayList<Monitor> list = new ArrayList<Monitor>();
 			list = ngm.buscarMonitorC(carne);
 			
-			for(Monitor m : list){
-				out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
-					out +="<input type='text' id='nombreP' name='nombreP' required='required' class='form-control' disabled='disabled' value=\""+m.getPrimerNombre()+"\">";
-				out +="</div>";
-				out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
-					out +="<input type='text' id='nombreS' name='nombreS' required='required' class='form-control' disabled='disabled' value=\""+m.getSegundoNombre()+"\">";
-				out +="</div>";
-				out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
-					out +="<input type='text' id='apellidoP' name='apellidoP' required='required' class='form-control' disabled='disabled' value=\""+m.getPrimerApellido()+"\">";
-				out +="</div>";
-				out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
-					out +="<input type='text' id='apellidoS' name='apellidoS' required='required' class='form-control' disabled='disabled' value=\""+m.getSegundoApellido()+"\">";
-				out +="</div>";
-				out +="<input type='hidden' id='idMonitor' name='idMonitor' value=\""+m.getIdMonitor()+"\">";
+			opc = request.getParameter("opc");
+			
+			 if(opc.equals("1")){
+			
+				for(Monitor m : list){
+					out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
+						out +="<input type='text' id='nombreP' name='nombreP' required='required' class='form-control' disabled='disabled' value=\""+m.getPrimerNombre()+"\">";
+					out +="</div>";
+					out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
+						out +="<input type='text' id='nombreS' name='nombreS' required='required' class='form-control' disabled='disabled' value=\""+m.getSegundoNombre()+"\">";
+					out +="</div>";
+					out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
+						out +="<input type='text' id='apellidoP' name='apellidoP' required='required' class='form-control' disabled='disabled' value=\""+m.getPrimerApellido()+"\">";
+					out +="</div>";
+					out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
+						out +="<input type='text' id='apellidoS' name='apellidoS' required='required' class='form-control' disabled='disabled' value=\""+m.getSegundoApellido()+"\">";
+					out +="</div>";
+					out +="<input type='hidden' id='idMonitor' name='idMonitor' value=\""+m.getIdMonitor()+"\">";
+				}
+				
+				PrintWriter pw = response.getWriter();
+				pw.write(out);
+				pw.flush();
+			}else if(opc.equals("2")){
+				for(Monitor mo : list){
+                    out +="<div>";
+                        out +="<input type='text' id='nombreS' name='nombreS' required='required' class='form-control' disabled='disabled' value=\""+mo.getPrimerNombre()+ " " + mo.getPrimerApellido()+"\">";
+                    out +="</div>";
+                    out +="<div>";
+                        out +="<input type='email' class='form-control' placeholder='Correo'  disabled='disabled' value=\""+mo.getEmail()+"\">";
+                    out +="</div>";
+                    out +="<div>";
+                        out +="<input type='text' id='usuario' name='usuario' class='form-control' placeholder='Usuario'>";
+                    out +="</div>";
+                    out +="<div>";
+                        out +="<input type='password' id='pass' name='pass' class='form-control' placeholder='Contraseña'>";
+                    out +="</div>";
+                    out +="<input type='hidden' id='idMonitor' name='idMonitor' value=\""+mo.getIdMonitor()+"\">";
+                    out +="<button type='submit' class='btn btn-success'>Enviar</button>";
+                }
+                
+                PrintWriter pw = response.getWriter();
+                pw.write(out);
+                pw.flush();
 			}
-			
-			PrintWriter pw = response.getWriter();
-			pw.write(out);
-			pw.flush();
-			
+		
 		}
 		catch (Exception e)
 		{

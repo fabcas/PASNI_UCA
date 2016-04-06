@@ -174,7 +174,7 @@ public class MDMonitor extends Conexion{
 	public ArrayList <Monitor> buscarMonitorC(String carne)
 	{
 		ArrayList <Monitor> array= new ArrayList <Monitor>();
-		String sql = ("select idMonitor, primerNombre, segundoNombre, primerApellido, segundoApellido from Monitor WHERE carne = ?");
+		String sql = ("select idMonitor, primerNombre, segundoNombre, primerApellido, segundoApellido, email from Monitor WHERE carne = ?");
 		
 		try
 		{
@@ -192,9 +192,10 @@ public class MDMonitor extends Conexion{
 				m.setSegundoNombre(rs.getString("segundoNombre"));
 				m.setPrimerApellido(rs.getString("primerApellido"));
 				m.setSegundoApellido(rs.getString("segundoApellido"));
+				m.setEmail(rs.getString("email"));
 				array.add(m);
 			}
-			
+		
 			//Cerramos la conexion
 			ps.close();
 			cn.close();

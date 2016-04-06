@@ -21,8 +21,8 @@ public class MDSolicitudTaller extends Conexion{
 		int y = 0;
 		
 		
-		String sql = "INSERT INTO SolicitudTaller (IdProfesor, IdTaller, Fecha, Estado, HorarioPropuesto) "
-				+ "VALUES (?,?,?,0,?);";
+		String sql = "INSERT INTO SolicitudTaller (IdProfesor, IdTaller, Fecha, Estado, HorarioPropuesto, CantidadEstudiantes) "
+				+ "VALUES (?,?,?,0,?,?);";
 		
 		Connection cn = getConnection();
 		PreparedStatement s = cn.prepareStatement(sql);
@@ -36,6 +36,7 @@ public class MDSolicitudTaller extends Conexion{
 			s.setDate(3, (Date) st.getFechaSolicitud());
 			//s.setInt(4, st.getEstado());
 			s.setString(4, st.getHorarioPropuesto());
+			s.setInt(5, st.getCantidadEstudiantes());
 			
 			y = s.executeUpdate();
 			g = y > 0;
@@ -150,6 +151,8 @@ public class MDSolicitudTaller extends Conexion{
 				st.setNombreProfesor(rs.getString("Profesor"));
 				st.setNombreTaller(rs.getString("Taller"));
 				st.setFechaSolicitud((Date) rs.getDate("Fecha"));
+				st.setHorarioPropuesto(rs.getString("Horario"));
+				st.setCantidadEstudiantes(rs.getInt("CantidadEstudiantes"));
 				st.setCadenaEstado(rs.getString("Estado"));				
 					
 				lista.add(st);
@@ -191,6 +194,8 @@ public class MDSolicitudTaller extends Conexion{
 				st.setNombreProfesor(rs.getString("Profesor"));
 				st.setNombreTaller(rs.getString("Taller"));
 				st.setFechaSolicitud((Date) rs.getDate("Fecha"));
+				st.setHorarioPropuesto(rs.getString("Horario"));
+				st.setCantidadEstudiantes(rs.getInt("CantidadEstudiantes"));
 				st.setCadenaEstado(rs.getString("Estado"));				
 					
 				lista.add(st);
@@ -232,6 +237,8 @@ public class MDSolicitudTaller extends Conexion{
 				st.setNombreProfesor(rs.getString("Profesor"));
 				st.setNombreTaller(rs.getString("Taller"));
 				st.setFechaSolicitud((Date) rs.getDate("Fecha"));
+				st.setHorarioPropuesto(rs.getString("Horario"));
+				st.setCantidadEstudiantes(rs.getInt("CantidadEstudiantes"));
 				st.setCadenaEstado(rs.getString("Estado"));				
 					
 				lista.add(st);

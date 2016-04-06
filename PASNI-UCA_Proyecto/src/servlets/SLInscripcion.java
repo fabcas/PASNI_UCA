@@ -129,9 +129,9 @@ public class SLInscripcion extends HttpServlet {
 				}
 				e = ni.modificarInscripcion(i);
 				if(e == true)
-					response.sendRedirect("./modulos/monitor/bandejaSolicitudesMonitor.jsp?msj=2");
+					response.sendRedirect("./modulos/monitor/bandeja-solicitud-monitor.jsp?msj=2");
 				else
-					response.sendRedirect("./modulos/monitor/bandejaSolicitudesMonitor.jsp");
+					response.sendRedirect("./modulos/monitor/bandeja-solicitud-monitor.jsp");
 			}
 			else if(opc.equals("3")){
 				
@@ -159,9 +159,9 @@ public class SLInscripcion extends HttpServlet {
 				
 				ai = ni.agregarInscripcion(i);
 				if(ai == true)
-					response.sendRedirect("./modulos/monitor/bandejaSolicitudesMonitor.jsp?msj=3");
+					response.sendRedirect("./modulos/monitor/bandeja-solicitud-monitor.jsp?msj=3");
 				else
-					response.sendRedirect("./modulos/monitor/bandejaSolicitudesMonitor.jsp");
+					response.sendRedirect("./modulos/monitor/bandeja-solicitud-monitor.jsp");
 			}
 		}	
 		catch(Exception e)

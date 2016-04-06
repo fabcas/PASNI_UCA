@@ -13,6 +13,7 @@ public class SolicitudTaller {
 	private int idProfesor;
 	private String nombreProfesor;
 	private String horarioPropuesto;
+	private int cantidadEstudiantes;
 	
 	
 	public SolicitudTaller(int idSolicitudTaller, Date fechaSolicitud,
@@ -122,6 +123,18 @@ public class SolicitudTaller {
 	public void setHorarioPropuesto(String horarioPropuesto) {
 		this.horarioPropuesto = horarioPropuesto;
 	}
+
+
+	public int getCantidadEstudiantes() {
+		return cantidadEstudiantes;
+	}
+
+
+	public void setCantidadEstudiantes(int cantidadEstudiantes) {
+		this.cantidadEstudiantes = cantidadEstudiantes;
+	}
+	
+	
 	
 	
 		

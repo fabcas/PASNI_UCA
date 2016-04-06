@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <system-libraries>
-    <library path="C:/Users/USER/Desktop/glassfish4/glassfish/modules/javax.servlet-api.jar" source="/PASNI-UCA_Proyecto/WebContent/WEB-INF/lib/sqljdbc4.jar"/>
+    <library path="C:/Users/USER/Desktop/glassfish4/glassfish/modules/javax.servlet-api.jar" source="C:/proyecto_git/PASNI_UCA/PASNI-UCA_Proyecto/WebContent/WEB-INF/lib/sqljdbc4.jar"/>
 </system-libraries>

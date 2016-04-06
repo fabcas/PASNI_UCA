@@ -10,12 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import negocio.NGCarrera;
 import negocio.NGMonitor;
 
-import org.apache.commons.lang3.StringEscapeUtils;
-
-import entidades.Carrera;
 import entidades.Monitor;
 
 /**
@@ -30,14 +26,12 @@ public class SLBuscarMonitorCarne extends HttpServlet {
      */
     public SLBuscarMonitorCarne() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -91,7 +85,7 @@ public class SLBuscarMonitorCarne extends HttpServlet {
                         out +="<input type='password' id='pass' name='pass' class='form-control' placeholder='Contraseña'>";
                     out +="</div>";
                     out +="<input type='hidden' id='idMonitor' name='idMonitor' value=\""+mo.getIdMonitor()+"\">";
-                    out +="<button type='submit' class='btn btn-success'>Enviar</button>";
+                    out += "<button type='submit' class='btn btn-primary'>Enviar</button>";
                 }
                 
                 PrintWriter pw = response.getWriter();

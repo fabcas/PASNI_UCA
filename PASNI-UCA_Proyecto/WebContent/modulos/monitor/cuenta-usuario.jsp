@@ -1,6 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"
+    import="datos.*, entidades.*,servlets.*,negocio.*, java.util.*"
+%>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<%
+	response.setHeader("Pragma", "No-cache");
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	response.setDateHeader("Expires", -1);
+%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -28,22 +37,23 @@
 
 <body style="background-color: rgb(0, 27, 54);">
         <div id="wrapper">
-                <section class="login_content">
-                    <form>
+                <div class="login_content">
+                    <form name="form" method="post" action="../../SLCuentaUsuario">
                         <h1 class="yellow">Crear cuenta</h1>
-                        <div id="monitorC">
-                            <input type="text" id="carneA" name="carneA" required="required" class="form-control" placeholder="Carné o INSS">
-                        	<button type="button" id="buscar" name="buscar" class="btn btn-success">Verificar</button>
-                       </div>
+                        
+                     	<input type="text" id="carneA" name="carneA" required="required" class="form-control" placeholder="Ingresá tu carné">
+                     	<button type="button" id="buscar" name="buscar" class="btn btn-success">Verificar</button>
+	                	<div id="monitorC">
+	                	</div>
+                       
                         <div class="separator white">
                             <div class="clearfix"></div>
                             <h1 class="yellow"><i style="font-size: 26px;"></i> PASNI-UCA</h1>
-
                             <p>&copy; Copyright 2016, Todos los Derechos Reservados</p>
 							<p>Universidad Centroamericana</p>
                         </div>
                     </form>
-                </section>
+                </div>
                 <!-- content -->
             </div>
 </body>

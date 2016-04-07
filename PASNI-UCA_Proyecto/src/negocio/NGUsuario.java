@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import datos.MDUsuario;
 import entidades.Rol;
+import entidades.Monitor;
 import entidades.Usuario;
 
 public class NGUsuario {
@@ -300,6 +301,26 @@ public class NGUsuario {
 				
 		return id;
 		
+	}
+	
+	public boolean guardarCU(Usuario u, Monitor m)
+	{
+		boolean bl = false;
+		
+		try
+		{
+			MDUsuario mdct = new MDUsuario();
+			bl = mdct.guardarCU(u, m);
+			System.out.println("NEGOCIO: DATOS GUARDADOS CON EXITO!");
+		}
+	
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("NEGOCIO: ERROR AL GUARDAR LOS DATOS " + e.getMessage());
+		}
+		
+		return bl;
 	}
 	
 	/** Fin **/

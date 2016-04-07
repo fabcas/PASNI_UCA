@@ -123,7 +123,8 @@
 
                                             <li><i class="fa fa-graduation-cap user-profile-icon"></i><%=carrera%></li>
                                         </ul>
-
+                                        <h5>Formato de informe semanal</h5>
+                                        <button type="submit" class="btn btn-primary">Descargar</button>
                                         <br />
 
                                     </div>

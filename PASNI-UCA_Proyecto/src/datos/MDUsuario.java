@@ -2,6 +2,7 @@ package datos;
 
 import java.sql.*;
 import java.util.ArrayList;
+
 import entidades.*;
 import entidades.Error;
 
@@ -48,7 +49,8 @@ public class MDUsuario extends Conexion{
 	
 	
 	
-	//M?todo Actualizar
+	
+	//Método Actualizar
 	public boolean actualizarUsuario(Usuario u)
 	{
 		boolean g = false;
@@ -598,5 +600,34 @@ public class MDUsuario extends Conexion{
 		
 		return s;
 	}
+	
+	//Guardar desde Crear cuenta usuario
+		public boolean guardarCU(Usuario u, Monitor m) throws SQLException
+		{
+			boolean g = false;
+			int y = 0;
+			
+			Connection cn = getConnection();
+			CallableStatement cstmt = null;	
+			String sql = "{call dbo.SPAgregarUsuario(?,?,?,?)}";
+			cstmt = cn.prepareCall(sql);			
+						
+			try {
+				cstmt.setInt("idRol", u.getIdRol());
+				cstmt.setString("usuario", u.getUsuario());
+				cstmt.setString("password", u.getPassword());
+				cstmt.setInt("idMonitor", m.getIdMonitor());
+				y = cstmt.executeUpdate();
+				g = y > 0;
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("Datos: Error al guardar los datos -> " + e.getMessage());
+			}	
+			
+			cstmt.close();
+			cn.close();
+			return g;
+		}
 
 }

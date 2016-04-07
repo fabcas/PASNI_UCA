@@ -38,25 +38,25 @@
 										<li><a href="modulos/monitor/monitor.jsp">Estudiante Monitor</a></li>
 										<li><a href="modulos/monitor/perfil-monitor.jsp">Perfil Estudiante Monitor</a></li>
 										<li><a href="modulos/monitor/periodo-inscripcion.jsp">Período de Inscripción</a></li>
-										<li><a href="modulos/monitor/bandejaSolicitudesMonitor.jsp">Bandeja Inscripciones Monitor</a></li>
+										<li><a href="modulos/monitor/bandeja-solicitud-monitor.jsp">Bandeja Inscripciones Monitor</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-edit"></i> Profesor Guía <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="modulos/profesorGuia/informe-guiatura.jsp">Informes de Guiatura</a></li>
-										<li><a href="modulos/profesorGuia/inscripcion-profesor.jsp">Inscripciones de Profesores</a></li>
-										<li><a href="modulos/profesorGuia/lista-profesores.jsp">Lista de Profesores</a></li>
+										<li><a href="modulos/profesor/informe-guiatura.jsp">Informes de Guiatura</a></li>
+										<li><a href="modulos/profesor/inscripcion-profesor.jsp">Inscripciones de Profesores</a></li>
+										<li><a href="modulos/profesor/lista-profesores.jsp">Lista de Profesores</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-desktop"></i> Taller de Formación <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="modulos/taller/solicitarTaller.jsp">Solicitar taller</a>
-										<li><a href="modulos/taller/bandejaSolicitudesTaller.jsp">Bandeja Solicitud Taller</a></li>
+										<li><a href="modulos/taller/solicitar-taller.jsp">Solicitar taller</a>
+										<li><a href="modulos/taller/bandeja-solicitud-taller.jsp">Bandeja Solicitud Taller</a></li>
 										<li><a href="modulos/taller/categoria-taller.jsp">Categoría de taller</a></li>
 										<li><a href="modulos/taller/taller.jsp">Talleres de Formación</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-magic"></i> Administración <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
-										<li><a href="Seg_CuentasUsuarios.jsp">Cuentas de usuarios</a></li>
-										<li><a href="Seg_Rol.jsp">Roles</a></li>
+										<li><a href="seg-cuenta-usuario.jsp">Cuentas de usuarios</a></li>
+										<li><a href="seg-rol.jsp">Roles</a></li>
 									</ul></li>
 							</ul>
 						</div>

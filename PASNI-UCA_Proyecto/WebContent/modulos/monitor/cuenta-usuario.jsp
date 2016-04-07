@@ -40,10 +40,9 @@
                 <div class="login_content">
                     <form name="form" method="post" action="../../SLCuentaUsuario">
                         <h1 class="yellow">Crear cuenta</h1>
-                        
-                     	<input type="text" id="carneA" name="carneA" required="required" class="form-control" placeholder="Ingresá tu carné">
-                     	<button type="button" id="buscar" name="buscar" class="btn btn-success">Verificar</button>
-	                	<div id="monitorC">
+                        <div id="monitorC">
+	                     	<input type="text" id="carneA" name="carneA" required="required" class="form-control" placeholder="Ingresá tu carné">
+	                     	<button type="button" id="buscar" name="buscar" class="btn btn-success">Verificar</button>
 	                	</div>
                        
                         <div class="separator white">

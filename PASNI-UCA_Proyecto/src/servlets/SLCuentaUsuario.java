@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import negocio.NGUsuario;
+import entidades.Monitor;
 import entidades.Usuario;
 
 /**
@@ -40,13 +41,17 @@ public class SLCuentaUsuario extends HttpServlet {
 		{
 			boolean g = false;
 			String opc ="";
+			String idMonitor = "";
 			NGUsuario usuario = new NGUsuario();
 			Usuario us = new Usuario();
+			Monitor m = new Monitor();
 			
 				us.setIdRol(2);
 				us.setUsuario(request.getParameter("usuario"));
 				us.setPassword(request.getParameter("pass"));
-				g = usuario.guardarNGUsuario(us);
+				idMonitor = request.getParameter("idMonitor");
+				m.setIdMonitor(Integer.parseInt(idMonitor));
+				g = usuario.guardarCU(us, m);
 				
 				if(g == true){
 					response.sendRedirect("./modulos/monitor/cuenta-usuario.jsp?msj=1");

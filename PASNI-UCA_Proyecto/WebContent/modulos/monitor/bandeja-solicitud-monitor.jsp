@@ -22,7 +22,7 @@
 
 <!-- Custom styling plus plugins -->
 <link href="../../css/custom.css" rel="stylesheet">
-<link href="../../css/green.css" rel="stylesheet">
+<link href="../../css/icheck/flat/green.css" rel="stylesheet">
 
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/utilidades.js"></script>
@@ -266,7 +266,7 @@
 							</div>
 							<div class="modal-body">
 							
-								<form class="form-horizontal form-label-left " name="form" method="post" >
+								<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLInscripcion?opc=3">
 									<div class="item form-group">
 										<label >Carné</label>
 										<div class="form-group">
@@ -398,12 +398,12 @@
 			<jsp:include page="../footer.jsp" flush="true" /><!-- /footer content -->
 
 		</div><!-- /page content -->
-	</div>
-
-	<div id="custom_notifications" class="custom-notifications dsp_none">
-		<ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
+		
+		<div id="custom_notifications" class="custom-notifications dsp_none">
+			<ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
 			<div class="clearfix"></div>
 			<div id="notif-group" class="tabbed_notifications"></div>
+		</div>
 	</div>
 </body>
 <script src="../../js/custom.js"></script>
@@ -418,10 +418,63 @@
 <script src="../../js/datatables/tools/js/dataTables.tableTools.js"></script>
 <script src="../../js/datatables/js/jquery.dataTables.columnFilter.js"></script>
 <!-- Fin Datatables -->
+
+<!-- PNotify -->
+<script type="text/javascript" src="../../js/notify/pnotify.core.js"></script>
+<script type="text/javascript" src="../../js/notify/pnotify.buttons.js"></script>
+<script type="text/javascript" src="../../js/notify/pnotify.nonblock.js"></script>
+<!-- Fin PNotify -->
+
+<!-- avisos de CRUD -->
+		<%
+    		String msj ="";
+    		msj = request.getParameter("msj");
+    	
+    	%>
+
+<script type="text/javascript">
+    		function cargarNotify()
+    		{
+    			var mensaje = <%=msj%>;
+    			if(mensaje=="1")
+    			{
+    				new PNotify({
+    	                title: "Registro Guardado",
+    	                type: "info",
+    	                text: "¡El registro se ha guardado con éxito!",
+    	                nonblock: {
+                                  nonblock: true,
+                                  nonblock_opacity: .9}
+    				});
+    			}
+    			 if(mensaje=="2")
+    			 {
+    				 new PNotify({
+    		                title: "Registro Modificado",
+    		                type: "success",
+    		                text: "¡El registro se ha modificado con éxito!",
+    		                nonblock: {
+                                   nonblock: true,
+                                   nonblock_opacity: .9}
+    					}); 
+    			 }
+    			 if(mensaje=="3")
+    			{
+    				 new PNotify({
+    		                title: "Registro Eliminado",
+    		                type: "error",
+    		                text: "¡El registro se ha eliminado con éxito!",
+    		                nonblock: {
+                                   nonblock: true,
+                                   nonblock_opacity: .9}
+    					}); 
+    			}
+    		}
+</script>
 		
 	<script type="text/javascript">
 			$(document).ready(function()
-			{	
+			{	cargarNotify();
 				$('table.display').dataTable(
 						{							
 							"sPaginationType": "full_numbers",

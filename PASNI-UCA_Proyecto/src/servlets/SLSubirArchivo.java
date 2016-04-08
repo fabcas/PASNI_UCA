@@ -46,16 +46,10 @@ public class SLSubirArchivo extends HttpServlet {
 		PerfilMonitor pm = new PerfilMonitor();
 		boolean g = false;
 		String idMonitor = "";
-		String idCuatrimestre = "";
-		String semana = "";
 		try{
 			idMonitor = request.getParameter("idMonitor");
 			pm.setIdMonitor(Integer.parseInt(idMonitor));
-			idCuatrimestre = request.getParameter("idCuatrimestre");
-			pm.setIdCuatrimestre(Integer.parseInt(idCuatrimestre));
 			pm.setNombre(request.getParameter("nombreA"));
-			semana = request.getParameter("semana");
-			pm.setSemana(Integer.parseInt(semana));
 			
 			InputStream inputStream = null; 
 	         

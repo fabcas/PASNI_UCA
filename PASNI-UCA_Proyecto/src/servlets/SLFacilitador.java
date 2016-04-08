@@ -53,10 +53,11 @@ public class SLFacilitador extends HttpServlet {
 			
 			if(opc.equals("1")){
 				
-				f.setPrimerNombre(request.getParameter("primernombre"));
-				f.setSegundoNombre(request.getParameter("segundonombre"));
-				f.setPrimerApellido(request.getParameter("primerapellido"));
-				f.setSegundoApellido(request.getParameter("segundoapellido"));
+				f.setNombre(request.getParameter("nombre"));
+				f.setApellido(request.getParameter("apellido"));
+				f.setInss(request.getParameter("inss"));
+				f.setEmail(request.getParameter("email"));
+				f.setTelefono(request.getParameter("telefono"));
 				
 				g = fac.guardarNGFacilitador(f);
 				if( g == true){
@@ -80,10 +81,11 @@ public class SLFacilitador extends HttpServlet {
 				if(fac.NGexistencia(Integer.parseInt(idFacilitador)))
 				{
 					f.setIdFacilitador(Integer.parseInt(request.getParameter("IdFacilitadorEditar")));
-					f.setPrimerNombre(request.getParameter("primernombreEditar"));
-					f.setSegundoNombre(request.getParameter("segundonombreEditar"));
-					f.setPrimerApellido(request.getParameter("primerapellidoEditar"));
-					f.setSegundoApellido(request.getParameter("segundoapellidoEditar"));
+					f.setNombre(request.getParameter("nombreEditar"));
+					f.setApellido(request.getParameter("apellidoEditar"));
+					f.setInss(request.getParameter("inssEditar"));
+					f.setEmail(request.getParameter("emailEditar"));
+					f.setTelefono(request.getParameter("telefonoEditar"));
 				
 					m = fac.actualizarNGFacilitador(f);
 					if(m == true)

@@ -72,6 +72,7 @@ public class SLBuscarMonitorCarne extends HttpServlet {
 				pw.flush();
 			}else if(opc.equals("2")){
 				for(Monitor mo : list){
+					out+="<p>Por favor, completá los siguientes datos</p><br>";
                     out +="<div>";
                         out +="<input type='text' id='nombreS' name='nombreS' required='required' class='form-control' disabled='disabled' value=\""+mo.getPrimerNombre()+ " " + mo.getPrimerApellido()+"\">";
                     out +="</div>";

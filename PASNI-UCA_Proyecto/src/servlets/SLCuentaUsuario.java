@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import negocio.NGProfesor;
 import negocio.NGUsuario;
 import entidades.Monitor;
+import entidades.Profesor;
 import entidades.Usuario;
 
 /**
@@ -40,12 +42,19 @@ public class SLCuentaUsuario extends HttpServlet {
 		try
 		{
 			boolean g = false;
+			boolean gp = false;
 			String opc ="";
 			String idMonitor = "";
+			String idProfesor = "";
+			String idRol = "";
 			NGUsuario usuario = new NGUsuario();
 			Usuario us = new Usuario();
 			Monitor m = new Monitor();
+			Profesor p = new Profesor();
+			opc = request.getParameter("opc");
 			
+			if(opc.equals("1")){
+				
 				us.setIdRol(2);
 				us.setUsuario(request.getParameter("usuario"));
 				us.setPassword(request.getParameter("pass"));
@@ -57,7 +66,29 @@ public class SLCuentaUsuario extends HttpServlet {
 					response.sendRedirect("./modulos/monitor/cuenta-usuario.jsp?msj=1");
 				}else{
 					response.sendRedirect("./modulos/monitor/cuenta-usuario.jsp");
+				}	
+			}else if(opc.equals("2")){
+				
+				us.setUsuario(request.getParameter("usuario"));
+				us.setPassword(request.getParameter("pass"));
+				idProfesor = request.getParameter("idProfesor");
+				p.setIdProfesorGuia(Integer.parseInt(idProfesor));
+				idRol = request.getParameter("rol");
+				if(idRol.equals("3")){
+					us.setIdRol(3);
+				}else if(idRol.equals("4")){
+					us.setIdRol(4);
+				}else if(idRol.equals("5")){
+					us.setIdRol(5);
 				}
+				gp = usuario.guardarPU(us, p);
+				
+				if(gp == true){
+					response.sendRedirect("./modulos/profesor/cuenta-usuario.jsp?msj=1");
+				}else{
+					response.sendRedirect("./modulos/profesor/cuenta-usuario.jsp");
+				}
+			}
 			
 		}
 		catch (Exception e)

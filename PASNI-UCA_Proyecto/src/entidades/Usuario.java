@@ -10,7 +10,7 @@ public class Usuario {
 	private String nombreRol;
 	private String nombreMonitor;
 	private Monitor m;
-	private ProfesorGuia pg;
+	private Profesor pg;
 	
 	public Usuario() {
 		
@@ -92,11 +92,11 @@ public class Usuario {
 		this.m = m;
 	}
 
-	public ProfesorGuia getPg() {
+	public Profesor getPg() {
 		return pg;
 	}
 
-	public void setPg(ProfesorGuia pg) {
+	public void setPg(Profesor pg) {
 		this.pg = pg;
 	}
 	

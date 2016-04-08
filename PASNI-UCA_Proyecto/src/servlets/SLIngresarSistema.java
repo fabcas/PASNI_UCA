@@ -110,12 +110,10 @@ public class SLIngresarSistema extends HttpServlet {
 					*/
 					
 					monitor = ngmon.cargarMonitorU(idUsuario); 
-					perfil = ngmon.cargarArchivo(idUsuario);
 					if(autenticado == true){
 						
 						HttpSession hts = request.getSession(true);
 						hts.setAttribute("login", monitor);
-						hts.setAttribute("loginp", perfil);
 						response.sendRedirect("modulos/monitor/perfil-monitor.jsp");
 						
 					}

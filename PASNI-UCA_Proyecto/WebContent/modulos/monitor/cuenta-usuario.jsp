@@ -36,25 +36,97 @@
 </head>
 
 <body style="background-color: rgb(0, 27, 54);">
-        <div id="wrapper">
-                <div class="login_content">
-                    <form name="form" method="post" action="../../SLCuentaUsuario">
-                        <h1 class="yellow">Crear cuenta</h1>
-                        <div id="monitorC">
-	                     	<input type="text" id="carneA" name="carneA" required="required" class="form-control" placeholder="Ingresá tu carné">
-	                     	<button type="button" id="buscar" name="buscar" class="btn btn-success">Verificar</button>
-	                	</div>
-                       
-                        <div class="separator white">
-                            <div class="clearfix"></div>
-                            <h1 class="yellow"><i style="font-size: 26px;"></i> PASNI-UCA</h1>
-                            <p>&copy; Copyright 2016, Todos los Derechos Reservados</p>
-							<p>Universidad Centroamericana</p>
-                        </div>
-                    </form>
-                </div>
+    <div id="wrapper">
+    	<div class="login_content">
+       		<form name="form" method="post" action="../../SLCuentaUsuario?opc=1">
+            	<h1 class="yellow">Crear cuenta</h1>
+            	<div id="monitorC">
+            		<h2 class="greenm">¡Bienvenido Estudiante Monitor!</h2> <br>
+                    <p class="white">Para poder acceder al sistema PASNI-UCA, deberán crear una cuenta de usuario.<br>
+                    Primero verificaremos si sus datos son correctos</p><br>
+	            	<input type="text" id="carneA" name="carneA" required="required" class="form-control" placeholder="Ingresá tu carné">
+	            	<button type="button" id="buscar" name="buscar" class="btn btn-success">Verificar</button>
+	        	</div>
+           		<div class="separator white">
+               	<div class="clearfix"></div>
+                	<h1 class="yellow"><i style="font-size: 26px;"></i> PASNI-UCA</h1>
+                    	<p>&copy; Copyright 2016, Todos los Derechos Reservados</p>
+						<p>Universidad Centroamericana</p>
+              	</div>
+       		</form>
+    	</div>
                 <!-- content -->
-            </div>
+        <div id="custom_notifications" class="custom-notifications dsp_none">
+			<ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
+			<div class="clearfix"></div>
+			<div id="notif-group" class="tabbed_notifications"></div>
+		</div>
+	</div>
 </body>
+<script src="../../js/custom.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+
+<!-- icheck -->
+	<script src="../../js/icheck.min.js"></script>
+	
+<!-- Datatables -->
+<script src="../../js/datatables/js/jquery.js"></script>
+<script src="../../js/datatables/js/jquery.dataTables.js"></script>
+<script src="../../js/datatables/tools/js/dataTables.tableTools.js"></script>
+<script src="../../js/datatables/js/jquery.dataTables.columnFilter.js"></script>
+<!-- Fin Datatables -->
+
+<!-- PNotify -->
+<script type="text/javascript" src="../../js/notify/pnotify.core.js"></script>
+<script type="text/javascript" src="../../js/notify/pnotify.buttons.js"></script>
+<script type="text/javascript" src="../../js/notify/pnotify.nonblock.js"></script>
+<!-- Fin PNotify -->
+
+<!-- avisos de CRUD -->
+		<%
+    		String msj ="";
+    		msj = request.getParameter("msj");
+    	
+    	%>
+
+<script type="text/javascript">
+    		function cargarNotify()
+    		{
+    			var mensaje = <%=msj%>;
+    			if(mensaje=="1")
+    			{
+    				new PNotify({
+    	                title: "Registro Guardado",
+    	                type: "info",
+    	                text: "¡El registro se ha guardado con éxito!",
+    	                nonblock: {
+                                  nonblock: true,
+                                  nonblock_opacity: .9}
+    				});
+    			}
+    			 if(mensaje=="2")
+    			 {
+    				 new PNotify({
+    		                title: "Registro Modificado",
+    		                type: "success",
+    		                text: "¡El registro se ha modificado con éxito!",
+    		                nonblock: {
+                                   nonblock: true,
+                                   nonblock_opacity: .9}
+    					}); 
+    			 }
+    			 if(mensaje=="3")
+    			{
+    				 new PNotify({
+    		                title: "Registro Eliminado",
+    		                type: "error",
+    		                text: "¡El registro se ha eliminado con éxito!",
+    		                nonblock: {
+                                   nonblock: true,
+                                   nonblock_opacity: .9}
+    					}); 
+    			}
+    		}
+</script>
 
 </html>

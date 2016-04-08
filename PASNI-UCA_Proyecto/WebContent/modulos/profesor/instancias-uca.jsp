@@ -13,7 +13,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PASNI-UCA | Facilitador</title>
+<title>PASNI-UCA | Instancias UCA</title>
 
 <!-- Librerías -->
 		
@@ -242,7 +242,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Catálogo de Facilitadores</h3>
+                            <h3>Catálogo de Instancias</h3>
                         </div>
 
                         <div class="title_right">
@@ -273,23 +273,17 @@
 		                                            <div class="modal-header">
 		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span>
 		                                                </button>
-		                                                <h5 class="modal-title"><b>Agregar Facilitador</b></h5>
+		                                                <h5 class="modal-title"><b>Agregar Instancia</b></h5>
 		                                            </div>
 		                                            <div class="modal-body">
 		                                                <h4><b>Complete los campos</b></h4>
-		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLFacilitador?opc=1">
+		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLInstanciasUCA?opc=1">
 		                                                	<div class="item form-group">
 		                                                	
 																<br><label>Nombre:</label> 
 																<input id="nombre" name="nombre" required="required" class="form-control" placeholder="Nombre">
-																<br><label>Apellido:</label> 
-																<input id="apellido" name="apellido" required="required" class="form-control" placeholder="Apellido">
-																<br><label>Inss:</label> 
-																<input id="inss" name="inss" required="required" class="form-control" placeholder="Inss">
-																<br><label>E-mail:</label> 
-																<input id="email" name="email" required="required" class="form-control" placeholder="E-mail">
-																<br><label>Teléfono:</label> 
-																<input id="telefono" name="telefono" required="required" class="form-control" placeholder="Telefono">
+																<br><label>Descripcion:</label> 
+																<input id="descripcion" name="descripcion" required="required" class="form-control" placeholder="Descripcion">
 																
 															</div>
 															<div class="m-footer">
@@ -314,22 +308,20 @@
 		                                            <div class="modal-header">
 		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span>
 		                                                </button>
-		                                                <h5 class="modal-title"><b>Editar Facilitador</b></h5>
+		                                                <h5 class="modal-title"><b>Editar Instancia</b></h5>
 		                                            </div>
 		                                            <div class="modal-body">
 		                                                <h4><b>Complete los campos</b></h4>
-		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="./SLRol?opc=2">
+		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLInstanciasUCA?opc=2">
 		                                                	<div class="item form-group">
+		                                                		<br> <label>Código de la Instancia: </label> <input
+																class="form-control" id="IdInstancia" name="IdInstancia"
+																disabled="disabled"> <input class="form-control"
+																type="hidden" id="IdInstanciaEditar" name="IdInstanciaEditar">
 		                                                		<br><label>Nombre:</label> 
 																<input id="nombreEditar" name="nombreEditar" required="required" class="form-control" placeholder="Primer Nombre">
-																<br><label>Apellido:</label> 
-																<input id="apellidoEditar" name="apellidoEditar" required="required" class="form-control" placeholder="Primer Nombre">
-																<br><label>Inss:</label> 
-																<input id="inssEditar" name="inssEditar" required="required" class="form-control" placeholder="Inss">
-																<br><label>E-mail:</label> 
-																<input id="emailEditar" name="emailEditar" required="required" class="form-control" placeholder="E-mail">
-																<br><label>Teléfono:</label> 
-																<input id="telefonoEditar" name="telefonoEditar" required="required" class="form-control" placeholder="Telefono">
+																<br><label>Descripción:</label>
+																<input id="descripcionEditar" name="descripcionEditar" required="required" class="form-control" placeholder="Primer Nombre">
 															</div>
 															<div class="m-footer">
 			                                                	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -354,16 +346,16 @@
 		                                            <div class="modal-header">
 		                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span>
 		                                                </button>
-		                                                <h5 class="modal-title"><b>Eliminar Facilitador</b></h5>
+		                                                <h5 class="modal-title"><b>Eliminar Instancia</b></h5>
 		                                            </div>
 		                                            <div class="modal-body">
 		                                               
-		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLFacilitador?opc=3">
+		                                                <form class="form-horizontal form-label-left" name="form" method="post" action="../../SLInstanciasUCA?opc=3">
 		                                                	<div class="item form-group">
 		                                                		<div class="col-md-12 col-sm-12 col-xs-12">
-																	<input type="hidden" name="IdFacilitadorEliminar" id="IdFacilitadorEliminar">
+																	<input type="hidden" name="IdInstanciaEliminar" id="IdInstanciaEliminar">
 																	<!-- <input type="text" name="nombre_TallerEliminado" id="nombre_TallerEliminado" disabled="disabled"> -->
-																	<p>¿Seguro que desea eliminar este facilitador?</p>
+																	<p>¿Seguro que desea eliminar esta instancia?</p>
 																</div>
 															</div>
 															<div class="m-footer">
@@ -381,7 +373,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Catálogo de Facilitadores</h2>
+                                <h2>Catálogo de Instancias</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -400,12 +392,12 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-								<button type="button" id="botonNuevo" title="Nuevo registro" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Ingresar nuevo facilitador</button>
+								<button type="button" id="botonNuevo" title="Nuevo registro" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Ingresar nueva instancia</button>
 								<br>		
 										<%
 											
-											NGFacilitador fac = new NGFacilitador();
-											ArrayList<Facilitador> lista = new ArrayList<Facilitador>(); 
+											NGInstanciasUCA fac = new NGInstanciasUCA();
+											ArrayList<InstanciasUCA> lista = new ArrayList<InstanciasUCA>(); 
 											lista = fac.cargarFacilitador();
 										
 										%>
@@ -416,12 +408,9 @@
                                                 <th>
                                                     <input type="checkbox" class="tableflat">
                                                 </th>
-                                                <th>Id Facilitador </th>
+                                                <th>Id Instancia </th>
                                                 <th>Nombre </th>
-                                                <th>Apellido</th>
-                                                <th>Inss</th>
-                                                <th>Email</th>
-                                                <th>Telefono</th>
+                                                <th>Descripcion</th>
                                                 <th><span class="nobr">Acción</span></th>
                                             </tr>
                                         </thead>
@@ -429,23 +418,19 @@
                                         <tbody>
                                         
                                         <%
-													for(Facilitador f: lista)
+													for(InstanciasUCA f: lista)
 													{
 												%>
                                             		<tr class="even pointer">
                                                 		<td class="a-center ">
                                                     		<input type="checkbox" class="tableflat">
                                                 		</td>
-			                                                <td class=""><%=f.getIdFacilitador() %></td>
+			                                                <td class=""><%=f.getIdInstancia() %></td>
 			                                                <td class=""><%=f.getNombre() %></td>
-			                                                <td class=""><%=f.getApellido() %></td>
-			                                                <td class=""><%=f.getInss() %></td>
-			                                                <td class=""><%=f.getEmail() %></td>
-			                                                <td class=""><%=f.getTelefono() %></td>
-			                                                
+			                                                <td class=""><%=f.getDescripcion() %></td>
 		                                                <td> 
-		                                                    <button type="button" id="botonModificar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar" onclick="cargarDatos('<%=f.getIdFacilitador() %>', '<%=f.getNombre()%>', '<%=f.getApellido()%>', '<%=f.getInss()%>', '<%=f.getEmail()%>', '<%=f.getTelefono()%>')"><i class="fa fa-pencil"></i></button>
-		                                                    <button type="button" id="botonEliminar" title="Eliminar registro" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modalEliminar" onclick="cargarDatos('<%=f.getIdFacilitador() %>', '<%=f.getNombre()%>', '<%=f.getApellido()%>', '<%=f.getInss()%>', '<%=f.getEmail()%>', '<%=f.getTelefono()%>')"><i class="fa fa-trash-o"></i></button>
+		                                                    <button type="button" id="botonModificar" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar" onclick="cargarDatos('<%=f.getIdInstancia() %>', '<%=f.getNombre()%>', '<%=f.getDescripcion()%>')"><i class="fa fa-pencil"></i></button>
+		                                                    <button type="button" id="botonEliminar" title="Eliminar registro" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modalEliminar" onclick="cargarDatos('<%=f.getIdInstancia() %>', '<%=f.getNombre()%>', '<%=f.getDescripcion()%>')"><i class="fa fa-trash-o"></i></button>
 		                                                </td>
 		                                            </tr>
                                             
@@ -509,16 +494,14 @@
     
     <script>
     	
-    	function cargarDatos(id, nombre, apellido, inss, email, telefono)
+    	function cargarDatos(id, nombre, descripcion)
     	{
-    		$("#IdFacilitador").val(id);
-    		$("#IdFacilitadorEditar").val(id);
-    		$("#IdFacilitadorEliminar").val(id);
+    		$("#IdInstancia").val(id);
+    		$("#IdInstanciaEditar").val(id);
+    		$("#IdInstanciaEliminar").val(id);
     		$("#nombreEditar").val(nombre);
-    		$("#apellidoEditar").val(apellido);
-    		$("#inssEditar").val(inss);
-    		$("#emailEditar").val(email);
-    		$("#telefonoEditar").val(telefono);
+    		$("#descripcionEditar").val(descripcion);
+    		
     	}
     
     </script>

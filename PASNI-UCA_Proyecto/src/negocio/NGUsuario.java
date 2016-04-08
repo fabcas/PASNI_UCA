@@ -3,6 +3,7 @@ package negocio;
 import java.util.ArrayList;
 
 import datos.MDUsuario;
+import entidades.Profesor;
 import entidades.Rol;
 import entidades.Monitor;
 import entidades.Usuario;
@@ -311,6 +312,26 @@ public class NGUsuario {
 		{
 			MDUsuario mdct = new MDUsuario();
 			bl = mdct.guardarCU(u, m);
+			System.out.println("NEGOCIO: DATOS GUARDADOS CON EXITO!");
+		}
+	
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("NEGOCIO: ERROR AL GUARDAR LOS DATOS " + e.getMessage());
+		}
+		
+		return bl;
+	}
+	
+	public boolean guardarPU(Usuario u, Profesor p)
+	{
+		boolean bl = false;
+		
+		try
+		{
+			MDUsuario mdct = new MDUsuario();
+			bl = mdct.guardarPU(u, p);
 			System.out.println("NEGOCIO: DATOS GUARDADOS CON EXITO!");
 		}
 	

@@ -118,22 +118,5 @@ public class NGMonitor {
 		
 		return bl;
 	}
-	
-	public ArrayList<PerfilMonitor> cargarArchivo(int usuario){
-			
-			ArrayList<PerfilMonitor> array = new ArrayList<PerfilMonitor>();
-			MDMonitor datos = new MDMonitor();
-			try
-			{
-				array = datos.cargarArchivo(usuario);
-			}
-			catch(Exception e)
-			{
-				System.out.println("Negocio, el error es: "+e.getMessage());
-				e.printStackTrace();
-			}
-			
-			return array;
-	}
-	
+		
 }

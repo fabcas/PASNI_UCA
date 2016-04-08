@@ -216,14 +216,12 @@ public class MDMonitor extends Conexion{
 		
 		Connection cn = getConnection();
 		CallableStatement cstmt = null;	
-		String sql = "{call dbo.SPSubirArchivo(?,?,?,?,?)}";
+		String sql = "{call dbo.SPSubirArchivo(?,?,?)}";
 		cstmt = cn.prepareCall(sql);
 		
 		try{
 			cstmt.setString("nombre", pm.getNombre());
 			cstmt.setInt("idMonitor", pm.getIdMonitor());
-			cstmt.setInt("semana", pm.getSemana());
-			cstmt.setInt("idCuatrimestre",pm.getIdCuatrimestre());
 			cstmt.setBlob("documento", pm.getImagen());
 			
 			y = cstmt.executeUpdate();
@@ -237,41 +235,4 @@ public class MDMonitor extends Conexion{
 		cn.close();
 		return g;
 	}
-	
-	public ArrayList<PerfilMonitor> cargarArchivo(int usuario){
-		
-		ArrayList <PerfilMonitor> array= new ArrayList <PerfilMonitor>();
-		String sql = ("select  dbo.Documento.nombre, dbo.Documento.semana, dbo.Documento.fecha " +
-						"from  Documento INNER JOIN Monitor ON dbo.Documento.idMonitor = dbo.Monitor.idMonitor, Usuario where dbo.Usuario.idUsuario = dbo.Monitor.idUsuario and dbo.Usuario.idUsuario = ?");	
-		try
-		{
-			Connection cn = getConnection();
-			PreparedStatement ps = cn.prepareStatement(sql);
-			ps.setInt(1, usuario);
-			System.out.println("Usuario asignado: " + usuario);
-			ResultSet rs = ps.executeQuery();
-											
-			while(rs.next())		
-			{					    					
-				PerfilMonitor pm = new PerfilMonitor();
-				
-				pm.setNombre(rs.getString("nombre"));
-				pm.setSemana(rs.getInt("semana"));
-				pm.setFecha(rs.getDate("fecha"));
-				array.add(pm);
-			}
-			
-			//Cerramos la conexion
-			ps.close();
-			cn.close();
-		}
-		catch(Exception e)
-		{
-			System.out.println("Datos: Error al cargar los informes-> "+e.getMessage());
-			e.printStackTrace();
-		}
-		
-		return array;
-	}
-
 }

@@ -3,59 +3,72 @@ package entidades;
 public class Facilitador {
 	
 	private int idFacilitador;
-	private String primerNombre;
-	private String segundoNombre;
-	private String primerApellido;
-	private String segundoApellido;
+	private String nombre;
+	private String apellido;
+	private String email;
+	private String inss;
+	private String telefono;
+	private boolean estado;
 	
-	public Facilitador(int idFacilitador, String primerNombre,
-			String segundoNombre, String primerApellido, String segundoApellido) {
+	public Facilitador(int idFacilitador, String nombre, String apellido,
+			String email, String inss, String telefono) {
 		super();
 		this.idFacilitador = idFacilitador;
-		this.primerNombre = primerNombre;
-		this.segundoNombre = segundoNombre;
-		this.primerApellido = primerApellido;
-		this.segundoApellido = segundoApellido;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.inss = inss;
+		this.telefono = telefono;
 	}
-	
 	
 	public Facilitador() {
 		super();
 	}
-
-
-
+	
 	public int getIdFacilitador() {
 		return idFacilitador;
 	}
 	public void setIdFacilitador(int idFacilitador) {
 		this.idFacilitador = idFacilitador;
 	}
-	public String getPrimerNombre() {
-		return primerNombre;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setPrimerNombre(String primerNombre) {
-		this.primerNombre = primerNombre;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public String getSegundoNombre() {
-		return segundoNombre;
+	public String getApellido() {
+		return apellido;
 	}
-	public void setSegundoNombre(String segundoNombre) {
-		this.segundoNombre = segundoNombre;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
-	public String getPrimerApellido() {
-		return primerApellido;
+	public String getEmail() {
+		return email;
 	}
-	public void setPrimerApellido(String primerApellido) {
-		this.primerApellido = primerApellido;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getSegundoApellido() {
-		return segundoApellido;
+	public String getInss() {
+		return inss;
 	}
-	public void setSegundoApellido(String segundoApellido) {
-		this.segundoApellido = segundoApellido;
+	public void setInss(String inss) {
+		this.inss = inss;
 	}
-	
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
 	
 
 }

@@ -61,6 +61,7 @@
 										<li><a href="modulos/profesor/informe-guiatura.jsp">Informes de Guiatura</a></li>
 										<li><a href="modulos/profesor/inscripcion-profesor.jsp">Inscripciones de Profesores</a></li>
 										<li><a href="modulos/profesor/lista-profesores.jsp">Lista de Profesores</a></li>
+										<li><a href="modulos/profesor/instancias-uca.jsp">Instancias UCA</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-desktop"></i> Taller de Formación <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">

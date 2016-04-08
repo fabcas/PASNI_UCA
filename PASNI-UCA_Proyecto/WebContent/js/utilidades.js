@@ -59,6 +59,20 @@
 			          }
 			        });
 			});
+			
+			$('#buscarP').click(function(event) {
+				var inss = $('#inss').val();
+				$.ajax({		    
+			          url:"../../SLBuscarProfesor?opc=1",
+			          type:"post",
+			          datatype:"html",
+			          data:{'inss':inss},
+			          success:function(data) 
+			          {
+			        		$('#profesor').html(data);  
+			          }
+			        });
+			});
 		
 		$("#facultad").change(function()
 				{

@@ -63,10 +63,10 @@ public class SLInscripcion extends HttpServlet {
 			
 			opc = request.getParameter("opc");
 			
-			/*if(opc.isEmpty() == true){
+			if(opc.isEmpty() == true){
 				response.sendRedirect("./modulos/monitor/inscripcion.jsp");
 			}
-			else*/ if(opc.equals("1")){
+			else if(opc.equals("1")){
 				
 				/*Monitor*/
 				
@@ -98,10 +98,10 @@ public class SLInscripcion extends HttpServlet {
 				}
 				
 				a = ni.guardarNGInscripcion(i, m);
-				if(a == true)
-					response.sendRedirect("./modulos/monitor/inscripcion.jsp?msj=1");
-				else
-					response.sendRedirect("./modulos/monitor/inscripcion.jsp");
+				if(a == true){
+					response.sendRedirect("./modulos/monitor/inscripcion.jsp?msj=1");}
+				else{
+					response.sendRedirect("./modulos/monitor/inscripcion.jsp");}
 			}
 			else if(opc.equals("2")){
 				
@@ -128,10 +128,10 @@ public class SLInscripcion extends HttpServlet {
 					i.setEstado(2);
 				}
 				e = ni.modificarInscripcion(i);
-				if(e == true)
-					response.sendRedirect("./modulos/monitor/bandeja-solicitud-monitor.jsp?msj=2");
-				else
-					response.sendRedirect("./modulos/monitor/bandeja-solicitud-monitor.jsp");
+				if(e == true){
+					response.sendRedirect("./modulos/monitor/bandeja-solicitud-monitor.jsp?msj=2");}
+				else{
+					response.sendRedirect("./modulos/monitor/bandeja-solicitud-monitor.jsp");}
 			}
 			else if(opc.equals("3")){
 				
@@ -158,16 +158,17 @@ public class SLInscripcion extends HttpServlet {
 				}
 				
 				ai = ni.agregarInscripcion(i);
-				if(ai == true)
-					response.sendRedirect("./modulos/monitor/bandeja-solicitud-monitor.jsp?msj=3");
-				else
-					response.sendRedirect("./modulos/monitor/bandeja-solicitud-monitor.jsp");
+				if(ai == true){
+					response.sendRedirect("./modulos/monitor/bandeja-solicitud-monitor.jsp?msj=3");}
+				else{
+					response.sendRedirect("./modulos/monitor/bandeja-solicitud-monitor.jsp");}
 			}
 		}	
 		catch(Exception e)
 		{
 			e.printStackTrace();
 			System.out.println("Servlet: Error en el catch al verificar los datos de la inscripción: -> " + e.getMessage());
+			response.sendRedirect("../../index.jsp");
 		}
 	}
 

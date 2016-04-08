@@ -8,11 +8,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entidades.Facilitador;
-import entidades.Rol;
+import entidades.InstanciasUCA;
 
-public class MDFacilitador extends Conexion{
+public class MDInstanciasUCA extends Conexion{
 	
-	public boolean guardarFacilitador(Facilitador f) throws SQLException
+	
+	
+	public boolean guardarInstancias(InstanciasUCA iu) throws SQLException
 	{
 		boolean g = false;
 		int y = 0;
@@ -20,17 +22,13 @@ public class MDFacilitador extends Conexion{
 		try
 		{
 		
-			String SQL= ("INSERT INTO Facilitador (Nombre, Apellido, Inss, Email, Telefono) VALUES (?, ? , ? , ?, ?, 1)");
+			String SQL= ("INSERT INTO InstanciasUCA (Nombre, Descripcion, Estado) VALUES (?, ? , 1)");
 			Connection cn = getConnection();
 			PreparedStatement s = cn.prepareStatement(SQL);
 		
 			   
-				s.setString(1, f.getNombre());
-				s.setString(2, f.getApellido());
-				s.setString(3, f.getInss());
-				s.setString(4, f.getEmail());
-				s.setString(5, f.getTelefono());
-								
+				s.setString(1, iu.getNombre());
+				s.setString(2, iu.getDescripcion());
 				
 			y = s.executeUpdate();
 			g = y >0;
@@ -53,7 +51,7 @@ public class MDFacilitador extends Conexion{
 	
 	
 	//M?todo Actualizar
-	public boolean actualizarFacilitador(Facilitador f)
+	public boolean actualizarInstancias(InstanciasUCA iu)
 	{
 		boolean g = false;
 		int y = 0;
@@ -61,17 +59,14 @@ public class MDFacilitador extends Conexion{
 		try
 		{
 		
-			String SQL= ("UPDATE Facilitador SET PrimerNombre=?, SegundoNombre=?, PrimerApellido=?, SegundoApellido=? WHERE IdFacilitador=?");
+			String SQL= ("UPDATE InstanciasUCA SET Nombre=?, Descripcion=? WHERE IdInstancia=?");
 			Connection cn = getConnection();
 			PreparedStatement s = cn.prepareStatement(SQL);
 		
 			   
-				s.setString(1, f.getNombre());
-				s.setString(2, f.getApellido());
-				s.setString(3, f.getInss());
-				s.setString(4, f.getEmail());
-				s.setString(5, f.getTelefono());
-				s.setInt(6, f.getIdFacilitador());
+				s.setString(1, iu.getNombre());
+				s.setString(2, iu.getDescripcion());
+				s.setInt(3, iu.getIdInstancia());
 				//s.setBoolean(3, c.isActivo());
 				
 				
@@ -96,7 +91,7 @@ public class MDFacilitador extends Conexion{
 
 
 	//metodo para eliminar logico
-	public boolean eliminarFacilitador(Facilitador f){
+	public boolean eliminarInstancias(InstanciasUCA iu){
 		
 		boolean el = false;
 		int y = 0;
@@ -104,11 +99,11 @@ public class MDFacilitador extends Conexion{
 		try
 		{
 		
-			String SQL= ("UPDATE Facilitador SET Estado = 0 WHERE IdFacilitador=?");
+			String SQL= ("UPDATE InstanciasUCA SET Estado = 0 WHERE IdInstancia=?");
 			Connection cn = getConnection();
 			PreparedStatement s = cn.prepareStatement(SQL);
 		
-				s.setInt(1, f.getIdFacilitador());
+				s.setInt(1, iu.getIdInstancia());
 				
 			y = s.executeUpdate();
 			el = y >0;
@@ -129,16 +124,16 @@ public class MDFacilitador extends Conexion{
 	}//eliminar
 	
 	
-	public boolean existencia(int IdFacilitador)
+	public boolean existencia(int IdInstancia)
 	{
 		boolean existe=false;
 		try
 		{
-			String sql = ("SELECT * FROM Facilitador WHERE IdFacilitador=?");
+			String sql = ("SELECT * FROM InstanciasUCA WHERE IdInstancia=?");
 			Connection cn = getConnection();
 			PreparedStatement s = cn.prepareStatement(sql);
 			
-			s.setInt(1, IdFacilitador);
+			s.setInt(1, IdInstancia);
 			
 			ResultSet rs = s.executeQuery();
 			if(rs.next())
@@ -156,11 +151,11 @@ public class MDFacilitador extends Conexion{
 	}
 	
 	//Cargar datos
-	public ArrayList < Facilitador  > cargarDatos()
+	public ArrayList < InstanciasUCA  > cargarDatos()
 	{
-		ArrayList <Facilitador> array = new ArrayList <Facilitador>();
+		ArrayList <InstanciasUCA> array = new ArrayList <InstanciasUCA>();
 		CallableStatement s = null;	
-		String sql = ("SELECT IdFacilitador, Nombre, Apellido, Inss, Email, Telefono FROM Facilitador WHERE Estado = 1;");
+		String sql = ("SELECT IdInstancia, Nombre, Descripcion FROM InstanciasUCA WHERE Estado = 1;");
 		
 		try
 		{
@@ -170,16 +165,13 @@ public class MDFacilitador extends Conexion{
 											
 			while(rs.next())		
 			{					    					
-				Facilitador enti = new Facilitador();
+				InstanciasUCA enti = new InstanciasUCA();
 				
 				
-				enti.setIdFacilitador(rs.getInt("IdFacilitador"));
+				enti.setIdInstancia(rs.getInt("IdInstancia"));
 				enti.setNombre(rs.getString("Nombre"));
-				enti.setApellido(rs.getString("Apellido"));
-				enti.setInss(rs.getString("Inss"));
-				enti.setEmail(rs.getString("Email"));
-				enti.setTelefono(rs.getString("Telefono"));
-				
+				enti.setDescripcion(rs.getString("Descripcion"));
+							
 					
 				array.add(enti);
 			}

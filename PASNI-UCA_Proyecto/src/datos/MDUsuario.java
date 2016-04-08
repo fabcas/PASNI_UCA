@@ -629,5 +629,33 @@ public class MDUsuario extends Conexion{
 			cn.close();
 			return g;
 		}
+		
+		public boolean guardarPU(Usuario u, Profesor p) throws SQLException
+		{
+			boolean g = false;
+			int y = 0;
+			
+			Connection cn = getConnection();
+			CallableStatement cstmt = null;	
+			String sql = "{call dbo.SPAgregarUsuarioP(?,?,?,?)}";
+			cstmt = cn.prepareCall(sql);			
+						
+			try {
+				cstmt.setInt("idRol", u.getIdRol());
+				cstmt.setString("usuario", u.getUsuario());
+				cstmt.setString("password", u.getPassword());
+				cstmt.setInt("IdProfesor", p.getIdProfesorGuia());
+				y = cstmt.executeUpdate();
+				g = y > 0;
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("Datos: Error al guardar los datos -> " + e.getMessage());
+			}	
+			
+			cstmt.close();
+			cn.close();
+			return g;
+		}
 
 }

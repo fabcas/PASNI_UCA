@@ -1,26 +1,30 @@
 package entidades;
 
-public class ProfesorGuia {
+public class Profesor {
 	
 	private int IdProfesorGuia;
 	private String nombre;
 	private String apellido;
 	private boolean sexo;
 	private String direccion;
+	private String email;
+	private String inss;
 	
 	
-	public ProfesorGuia() {
+	public Profesor() {
 		
 	}
 	
-	public ProfesorGuia(int idProfesorGuia, String nombre, String apellido,
-			boolean sexo, String direccion) {
+	public Profesor(int idProfesorGuia, String nombre, String apellido,
+			boolean sexo, String direccion,String email, String inss) {
 		super();
 		IdProfesorGuia = idProfesorGuia;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.sexo = sexo;
 		this.direccion = direccion;
+		this.email = email;
+		this.inss = inss;
 	}
 	public int getIdProfesorGuia() {
 		return IdProfesorGuia;
@@ -52,7 +56,20 @@ public class ProfesorGuia {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
-	
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getInss() {
+		return inss;
+	}
+
+	public void setInss(String inss) {
+		this.inss = inss;
+	}
 }

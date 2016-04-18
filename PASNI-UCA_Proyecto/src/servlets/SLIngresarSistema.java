@@ -91,29 +91,26 @@ public class SLIngresarSistema extends HttpServlet {
 					
 				case 2:
 				{
-					//Monitor
-					int idMonitor = 0;
+					//Monitorint idMonitor = 0;
 					autenticado = ng.validarInicioSesionMonitor(user, pass);
 					idUsuario = ng.devolverIdUsuarioMonitor(user, pass);
-					//ArrayList<UsuarioGenerico> listaMonitor = new ArrayList<UsuarioGenerico>();
-					ArrayList<Monitor> monitor = new ArrayList<Monitor>();
-					ArrayList<PerfilMonitor> perfil = new ArrayList<PerfilMonitor>();
+					ArrayList<UsuarioGenerico> listaMonitor = new ArrayList<UsuarioGenerico>();
+					//ArrayList<Monitor> monitor = new ArrayList<Monitor>();
+					//ArrayList<PerfilMonitor> perfil = new ArrayList<PerfilMonitor>();
 					
-					NGMonitor ngmon = new NGMonitor();
+					//NGMonitor ngmon = new NGMonitor();
 					
-					/*
-					 * UsuarioGenerico m = new UsuarioGenerico();
-						Monitor moni = new Monitor();
+					 UsuarioGenerico m = new UsuarioGenerico();
+						//Monitor moni = new Monitor();
 						m.setIdUsuario(idUsuario);
 						m.setIdRol(rol);
 						listaMonitor.add(m);
-					*/
 					
-					monitor = ngmon.cargarMonitorU(idUsuario); 
+					//monitor = ngmon.cargarMonitorU(idUsuario); 
 					if(autenticado == true){
 						
 						HttpSession hts = request.getSession(true);
-						hts.setAttribute("login", monitor);
+						hts.setAttribute("login", listaMonitor);
 						response.sendRedirect("modulos/monitor/perfil-monitor.jsp");
 						
 					}

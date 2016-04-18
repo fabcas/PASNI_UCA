@@ -117,4 +117,20 @@ public class NGInscripcion {
 		}
 		return array;
 	}
+	
+	public ArrayList <InscripcionMonitor> monitorPlanificacion(String carne)
+	{
+		ArrayList < InscripcionMonitor > array = new ArrayList<InscripcionMonitor>();
+		MDInscripcion datos = new MDInscripcion();
+		try
+		{
+			array = datos.monitorPlanificacion(carne);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Negocio, el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+		return array;
+	}
 }

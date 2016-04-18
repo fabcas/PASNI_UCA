@@ -54,7 +54,7 @@
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PASNI-UCA | Monitoreo</title>
+<title>PASNI-UCA | Planificar Monitoreo</title>
 <!-- Bootstrap core CSS -->
 
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -83,24 +83,24 @@
 				<div class="page-title">
 				
 					<div class="title_left">
-						<h3>Monitoreo</h3>
+						<h3>Planificar Monitoreo</h3>
 					</div>
 				</div>
 				
 				<div class="col-md-12 col-sm-12 col-xs-12">
                 	<div class="x_panel">
                     	<div class="x_title">
-                    		<h2>Informes Semanales | Grupos Horarios</h2>
+                    		<h2>Grupos | Monitor</h2>
                         	<div class="clearfix"></div>
-                        	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAgregar">Enviar Informe</button>
+                        	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAsignarG">Asignar Grupo</button>
                     	</div>
                     	
                     	 <div class="x_content">
 	                    	 <div class="" role="tabpanel" data-example-id="togglable-tabs">
 	                         	<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-	                            	<li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Informes Semanales</a></li>
-	                            	<li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab"  aria-expanded="false">Grupos / Horarios</a></li>
-	                        		<li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab"  aria-expanded="false">Asistencia</a></li>
+	                            	<li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Asignar Grupo</a></li>
+	                            	<li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab"  aria-expanded="false">Informe Semanal</a></li>
+	                        		<li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab"  aria-expanded="false">Histórico</a></li>
 	                        	</ul>
 	                         </div>
 	                         <div id="myTabContent" class="tab-content">
@@ -108,7 +108,7 @@
                                 	<div class="col-md-12 col-sm-12 col-xs-12">
                                 		<div class="x_panel">
 				                        	<div class="x_title">
-				                            	<h2>Informes Semanales</h2>
+				                            	<h2>Asignación de Grupos al Monitor</h2>
 				                            	<div class="clearfix"></div>
 				                       		</div>
 				                       		<div class="x_content">
@@ -139,7 +139,7 @@
 		                        	<div class="col-md-12 col-sm-12 col-xs-12">
 				                    	<div class="x_panel">
 				                    		<div class="x_title">
-				                            	<h2>Grupos / Horarios</h2>
+				                            	<h2>Informes Semanales</h2>
 				                            	<div class="clearfix"></div>
 				                        	</div>
 				                        	<div class="x_content">
@@ -171,7 +171,7 @@
 		                        	<div class="col-md-12 col-sm-12 col-xs-12">
 				                    	<div class="x_panel">
 				                    		<div class="x_title">
-				                            	<h2>Grupos / Horarios</h2>
+				                            	<h2>Histórico por Monitor</h2>
 				                            	<div class="clearfix"></div>
 				                        	</div>
 				                        	<div class="x_content">
@@ -211,9 +211,13 @@
 				NGTaller tallerNegocio = new NGTaller();
 				ArrayList<Cuatrimestre> listaCuatrimestre = new ArrayList<Cuatrimestre>();
 				listaCuatrimestre = tallerNegocio.comboCuatrimestre();
+				
+				NGFacultad fac = new NGFacultad();
+				ArrayList<Facultad> lis = new ArrayList<Facultad>();
+				lis = fac.comboFacultad();
 			%>
 			<!-- Modal Agregar Inscripcion -->
-			<div class="modal fade modalAgregar"  id="modalAgregar" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal fade modalAsignarG"  id="modalAsignarG" tabindex="-1" role="dialog" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -227,42 +231,54 @@
 						<div class="modal-body">
 							<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLMonitoreo?opc=1">
 								<div class="item form-group">
-									<input type="hidden" id="idMonitorA" name="idMonitorA" class="form-control" value="<%=idMonitor%>"> <br>
-									<label>Grupo</label>
-									<input type="text" id="idGrupoA" name="idGrupoA" class="form-control" required="required" tabindex="-1"> <br>
-									<label>Cuatrimestre</label> 
-									<select id="idCuatrimestreA" class="form-control" name="idCuatrimestreA" required="required" tabindex="-1">
-									<option value="0">Seleccione un cuatrimestre</option>
-									<%for(Cuatrimestre cuatri : listaCuatrimestre){%>
-									<option value="<%=cuatri.getIdCuatrimestre() %>"><%=cuatri.getNombre()%></option>
-									<%}%>
-									</select><br>
-									<label>Semana</label>
-									<select id="semana" class="form-control" name="semana" required="required" tabindex="-1">
-										<option value="Semana 1">Semana 1</option>
-										<option value="Semana 2">Semana 2</option>
-										<option value="Semana 3">Semana 3</option>
-										<option value="Semana 4">Semana 4</option>
-									</select><br>
-									<label>1. Temas Desarrollados</label>
-									<div class="form-group has-feedback">
-										<textarea id="p1" name="p1" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+									<label >Carné</label>
+									<div class="form-group">
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<input type="text" id="carneA" name="carneA" required="required" class="form-control">
+										</div>
+										<button type="button" id="buscarPM" name="buscarPM" class="btn btn-success">Buscar Estudiante</button>
 									</div>
-									<label>2. Fortalezas de los muchachos</label>
-									<div class="form-group has-feedback">
-										<textarea id="p2" name="p2" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10"data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+									<div id="monitor">
+										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+											<input type="text" id="nombreP" name="nombreP" class="form-control" disabled="disabled">
+										</div>
+										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+											<input type="text" id="nombreS" name="nombreS" class="form-control" disabled="disabled">
+										</div>
+										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+											<input type="text" id="apellidoP" name="apellidoP" class="form-control" disabled="disabled">
+										</div>
+										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+											<input type="text" id="apellidoS" name="apellidoS" class="form-control" disabled="disabled">
+										</div>
+										<div class="col-md-12 col-sm-12 col-xs-12 form-group">
+											<label>Asignatura a Monitorear</label>
+											<input type="text" id="nombreA" name="nombreA" class="form-control">
+										</div>
+										<input type="hidden" id="idInscripcion" name="idInscripcion" class="form-control">
 									</div>
-									<label>3. Dificultades más notables</label>
-									<div class="form-group has-feedback">
-										<textarea id="p3" name="p3" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
-									</div>
-									<label>4. Clima general del aula</label>
-									<div class="form-group has-feedback">
-										<textarea id="p4" name="p4" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
-									</div>
-									<label>5. Observación / Solicitud o sugerencia</label>
-									<div class="form-group has-feedback">
-										<textarea id="p5" name="p5" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+									<div class="col-md-12 col-sm-12 col-xs-12 form-group">
+										<label >Facultad</label>
+											<select id="facultad" name="facultad" class="form-control ">
+												<option>Seleccion una facultad</option>
+												<%for(Facultad facu: lis){%>
+													<option value="<%=facu.getCOFA()%>"><%=facu.getNOMBRE()%></option>
+												<%}%>
+											</select><br>
+											<label >Carrera</label>
+											<select id="carrera" name="carrera" class="form-control"></select> <br>
+										<label>Cuatrimestre</label> 
+										<select id="idCuatrimestre" class="form-control" name="idCuatrimestre" required="required" tabindex="-1">
+										<option value="0">Seleccione un cuatrimestre</option>
+										<%for(Cuatrimestre cuatri : listaCuatrimestre){%>
+										<option value="<%=cuatri.getNombre() %>"><%=cuatri.getNombre()%></option>
+										<%}%>
+										</select><br>
+										<div class="modal-footer">
+											<button type="button" id="buscarG" name="buscarG" class="btn btn-success" disabled="disabled">Buscar Grupos</button>
+										</div>
+										<table  id="grupo">
+					                    </table>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -291,6 +307,7 @@
 <script src="../../js/datatables/js/jquery.dataTables.js"></script>
 <script src="../../js/datatables/tools/js/dataTables.tableTools.js"></script>
 <script src="../../js/datatables/js/jquery.dataTables.columnFilter.js"></script>
+<script src="../../js/datatables/DT_bootstrap.js"></script>
 <!-- Fin Datatables -->
 
 <script type="text/javascript">
@@ -328,6 +345,47 @@
 					 			 { type: "text" },
 					 			 null
 					 			]
+				});
+				
+				$('#buscarG').click(function(event) {
+					var carr = $('#carrera option:selected').html();
+					var aperr = $('#idCuatrimestre option:selected').html();
+					$.ajax({		    
+				          url:"../../SLGrupo",
+				          type:"post",
+				          datatype:"html",
+				          data:{'idCuatrimestre':aperr, 'carrera':carr},
+				          success:function(data) 
+				          {
+				        		$('#grupo').html(data); 
+				        		$('#grupo').dataTable().fnDestroy();
+								$('#grupo').dataTable
+								(
+										{
+											"sPaginationType": "full_numbers",
+											"oLanguage": {
+												"bDestroy": true,
+												"sSearch": "Buscar: ",
+												"sEmptyTable": "No hay registros disponibles",
+												"sInfo": "Mostrando un total de _TOTAL_ registros (_START_ de _END_)",
+												"sInfoEmpty": "No hay registros disponibles",
+												"sInfoFiltered": " - filtrando de _MAX_ registros",
+												 "sLengthMenu": "Mostrar _MENU_ registros",
+												 "sLoadingRecords": "Por favor esperar - cargando...",
+												 "sProcessing": "Por favor, espere un momento mientras se procesa su petición",
+												 "sZeroRecords": "No se encontró ningún registro",
+												 "oPaginate": {
+														   "sFirst": "|<",
+												           "sLast": ">|",
+												           "sPrevious": "<<",
+												           "sNext": ">>"
+												         }
+											}	
+										}	
+								);
+				          }//sucess
+				        });
+						$('#grupo').addClass("table table-striped responsive-utilities jambo_table bulk_action");
 				});
 			});
 	</script>

@@ -186,7 +186,7 @@
 															for(Facultad facu: lista)
 	 														{
 														%>
-															<option value="<%=facu.getIdFacultad()%>"><%=facu.getNombre()%></option>
+															<option value="<%=facu.getCOFA()%>"><%=facu.getNOMBRE()%></option>
 														<%
 	 														}
 														%>
@@ -208,7 +208,7 @@
 															for(Carrera carr: list)
 	 														{
 														%>
-															<option value="<%=carr.getIdCarrera()%>"><%=carr.getNombre()%></option>
+															<option value="<%=carr.getCARR()%>"><%=carr.getNOMBRE()%></option>
 														<%
 	 														}
 														%>

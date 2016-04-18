@@ -53,7 +53,6 @@ public class SLInscripcion extends HttpServlet {
 			
 			String opc ="";
 			String idAsignatura ="";
-			String idCarrera= "";
 			String promedio =""; 
 			String calificacion ="";
 			String turno =""; 
@@ -79,8 +78,7 @@ public class SLInscripcion extends HttpServlet {
 				m.setCarne(request.getParameter("carne"));
 				promedio = request.getParameter("promedio");
 				m.setPromedio(Float.parseFloat(promedio));
-				idCarrera = request.getParameter("carrera");
-				m.setIdCarrera(Integer.parseInt(idCarrera));
+				m.setCARR(request.getParameter("carrera"));
 				
 				/*Inscripción*/
 				idAsignatura = request.getParameter("asignatura");

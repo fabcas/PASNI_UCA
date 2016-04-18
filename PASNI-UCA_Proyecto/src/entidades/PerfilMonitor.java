@@ -6,7 +6,6 @@ import java.sql.Date;
 public class PerfilMonitor {
 	
 	private int idDocumento;
-	private String nombre;
 	private Date fecha;
 	private int idMonitor;
 	private InputStream imagen;
@@ -16,12 +15,6 @@ public class PerfilMonitor {
 	}
 	public void setIdDocumento(int idDocumento) {
 		this.idDocumento = idDocumento;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 	public Date getFecha() {
 		return fecha;
@@ -44,11 +37,10 @@ public class PerfilMonitor {
 	public PerfilMonitor() {
 		super();
 	}
-	public PerfilMonitor(int idDocumento, String nombre, Date fecha,
+	public PerfilMonitor(int idDocumento, Date fecha,
 			int idMonitor, InputStream imagen) {
 		super();
 		this.idDocumento = idDocumento;
-		this.nombre = nombre;
 		this.fecha = fecha;
 		this.idMonitor = idMonitor;
 		this.imagen = imagen;

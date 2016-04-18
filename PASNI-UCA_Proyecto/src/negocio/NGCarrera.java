@@ -9,13 +9,13 @@ import entidades.Facultad;
 
 public class NGCarrera {
 
-	public ArrayList<Carrera> comboCarrera(int id)
+	public ArrayList<Carrera> comboCarrera(String COFA)
 	{
 		ArrayList<Carrera> combo = new ArrayList<Carrera>();
 		MDCarrera datos = new MDCarrera();
 		try
 		{
-			combo = datos.comboCarrera(id);
+			combo = datos.comboCarrera(COFA);
 		}
 		catch(Exception e)
 		{

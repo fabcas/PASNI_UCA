@@ -82,7 +82,7 @@
 							<div class="cover"
 								style="background: url('img/est.jpg'); background-size: cover;">
 								<div class="overlay text-center">
-									<form  method="post" action="SLInicioSesion">
+									<form  method="post" action="./SLInicioSesion">
 										<button type="submit" class="btn btn-white-fill">Sé Monitor</button><br>
 										<input type="hidden" id="fecha" name="fecha" value="<%=f_actual%>">
 									</form>
@@ -143,7 +143,7 @@
 				<div class="modal-content modal-popup">
 					<a class="close-link"><i class="icon_close_alt2"></i></a>
 					<h4 class="white">Profesores Guías</h4>
-							<p class="white">
+							<p class="white" style="text-align:justify;">
 								Cada cuatrimestre del primer año como estudiante de nuevo ingreso, tendrás el acompañamiento 
 								de un profesor o profesora guía, quien estará comprometido con tu crecimiento personal y 
 								desempeño académico. Es importane que lo identifiques desde la primera semana de clases, pues

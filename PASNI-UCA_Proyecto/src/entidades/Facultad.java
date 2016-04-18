@@ -1,29 +1,28 @@
 package entidades;
 
 public class Facultad {
-
-	private int idFacultad;
-	private String nombre;
+	private String COFA;
+	private String NOMBRE;
 	
 	public Facultad() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Facultad(int idFacultad, String nombre) {
+	public Facultad(String COFA, String NOMBRE) {
 		super();
-		this.idFacultad = idFacultad;
-		this.nombre = nombre;
+		this.COFA = COFA;
+		this.NOMBRE = NOMBRE;
 	}
-	public int getIdFacultad() {
-		return idFacultad;
+	public String getCOFA() {
+		return COFA;
 	}
-	public void setIdFacultad(int idFacultad) {
-		this.idFacultad = idFacultad;
+	public void setCOFA(String COFA) {
+		this.COFA = COFA;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getNOMBRE() {
+		return NOMBRE;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNOMBRE(String NOMBRE) {
+		this.NOMBRE = NOMBRE;
 	}	
 }

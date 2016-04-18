@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import negocio.NGInscripcion;
 import negocio.NGMonitor;
-
+import entidades.InscripcionMonitor;
 import entidades.Monitor;
 
 /**
@@ -44,13 +45,16 @@ public class SLBuscarMonitorCarne extends HttpServlet {
 			String out = "";
 			String carne= request.getParameter("carneA");
 			NGMonitor ngm = new NGMonitor();
+			NGInscripcion im = new NGInscripcion();
 			ArrayList<Monitor> list = new ArrayList<Monitor>();
+			ArrayList<InscripcionMonitor> listm = new ArrayList<InscripcionMonitor>();
 			list = ngm.buscarMonitorC(carne);
+			listm = im.monitorPlanificacion(carne);
 			
 			opc = request.getParameter("opc");
 			
 			 if(opc.equals("1")){
-			
+			/*Para bandeja-inscripcion-monitor.jsp*/
 				for(Monitor m : list){
 					out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
 						out +="<input type='text' id='nombreP' name='nombreP' required='required' class='form-control' disabled='disabled' value=\""+m.getPrimerNombre()+"\">";
@@ -71,6 +75,7 @@ public class SLBuscarMonitorCarne extends HttpServlet {
 				pw.write(out);
 				pw.flush();
 			}else if(opc.equals("2")){
+				/*Para cuenta-usuario.jsp monitor*/
 				for(Monitor mo : list){
 					out+="<p>Por favor, completá los siguientes datos</p><br>";
                     out +="<div>";
@@ -92,6 +97,31 @@ public class SLBuscarMonitorCarne extends HttpServlet {
                 PrintWriter pw = response.getWriter();
                 pw.write(out);
                 pw.flush();
+			}else if(opc.equals("3")){
+				/*Para cuenta-usuario.jsp monitor*/
+				for(InscripcionMonitor inm : listm){
+					out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
+					out +="<input type='text' id='nombreP' name='nombreP' class='form-control' disabled='disabled' value=\""+inm.getPrimerNombre()+"\">";
+					out +="</div>";
+					out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
+						out +="<input type='text' id='nombreS' name='nombreS' class='form-control' disabled='disabled' value=\""+inm.getSegundoNombre()+"\">";
+					out +="</div>";
+					out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
+						out +="<input type='text' id='apellidoP' name='apellidoP' class='form-control' disabled='disabled' value=\""+inm.getPrimerApellido()+"\">";
+					out +="</div>";
+					out +="<div class='col-md-6 col-sm-6 col-xs-12 form-group'>";
+						out +="<input type='text' id='apellidoS' name='apellidoS' class='form-control' disabled='disabled' value=\""+inm.getSegundoApellido()+"\">";
+					out +="</div>";
+					out += "<div class='col-md-12 col-sm-12 col-xs-12 form-group'>";
+						out += "<label>Asignatura a Monitorear</label>";
+						out += "<input type='text' id='nombreA' name='nombreA' class='form-control' value=\""+inm.getNombreA()+"\">";
+					out +="</div>";
+					out +="<input type='hidden' id='idInscripcion' name='idInscripcion' value=\""+inm.getIdInscripcion()+"\">";
+		        }
+	            
+	            PrintWriter pw = response.getWriter();
+	            pw.write(out);
+	            pw.flush();
 			}
 		
 		}

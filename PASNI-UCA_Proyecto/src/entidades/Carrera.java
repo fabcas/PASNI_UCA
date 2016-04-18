@@ -2,36 +2,35 @@ package entidades;
 
 public class Carrera {
 
-	private int idCarrera;
-	private int idFacultad;
-	private String nombre;
+	private String CARR;
+	private int COFA;
+	private String NOMBRE;
 	
-	public int getIdCarrera() {
-		return idCarrera;
+	public String getCARR() {
+		return CARR;
 	}
-	public void setIdCarrera(int idCarrera) {
-		this.idCarrera = idCarrera;
+	public void setCARR(String cARR) {
+		CARR = cARR;
 	}
-	public int getIdFacultad() {
-		return idFacultad;
+	public int getCOFA() {
+		return COFA;
 	}
-	public void setIdFacultad(int idFacultad) {
-		this.idFacultad = idFacultad;
+	public void setCOFA(int cOFA) {
+		COFA = cOFA;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getNOMBRE() {
+		return NOMBRE;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNOMBRE(String nOMBRE) {
+		NOMBRE = nOMBRE;
 	}
-	public Carrera(int idCarrera, int idFacultad, String nombre) {
+	public Carrera(String cARR, int cOFA, String nOMBRE) {
 		super();
-		this.idCarrera = idCarrera;
-		this.idFacultad = idFacultad;
-		this.nombre = nombre;
+		CARR = cARR;
+		COFA = cOFA;
+		NOMBRE = nOMBRE;
 	}
 	public Carrera() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 }

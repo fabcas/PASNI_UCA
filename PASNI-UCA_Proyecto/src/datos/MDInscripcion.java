@@ -2,13 +2,16 @@ package datos;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import entidades.Inscripcion;
 import entidades.InscripcionMonitor;
 import entidades.Monitor;
+import entidades.PerfilMonitor;
 
 public class MDInscripcion extends Conexion{
 	
@@ -34,7 +37,7 @@ public class MDInscripcion extends Conexion{
 			cstmt.setString("telefono", m.getTelefono());
 			cstmt.setString("carne", m.getCarne());
 			cstmt.setFloat("promedio", m.getPromedio());
-			cstmt.setInt("idCarrera", m.getIdCarrera());
+			cstmt.setString("CARR", m.getCARR());
 			
 			/*Inscripcion*/
 			
@@ -122,7 +125,7 @@ public class MDInscripcion extends Conexion{
 	{
 		ArrayList <InscripcionMonitor> array = new ArrayList <InscripcionMonitor>();
 		CallableStatement s = null;	
-		String sql = ("{call dbo.SPListaInscripcionMonitor}");
+		String sql = ("SELECT * FROM Vw_inscripcion_monitor");
 		
 		try
 		{
@@ -139,7 +142,7 @@ public class MDInscripcion extends Conexion{
 				i.setPrimerNombre(rs.getString("primerNombre"));
 				i.setSegundoNombre(rs.getString("segundoNombre"));
 				i.setPrimerApellido(rs.getString("primerApellido"));
-				i.setSegundoApellido(rs.getString("segundoNombre"));
+				i.setSegundoApellido(rs.getString("segundoApellido"));
 				i.setCarne(rs.getString("carne"));
 				i.setTelefono(rs.getString("telefono"));
 				i.setEmail(rs.getString("email"));
@@ -172,7 +175,7 @@ public class MDInscripcion extends Conexion{
 	{
 		ArrayList <InscripcionMonitor> array = new ArrayList <InscripcionMonitor>();
 		CallableStatement s = null;	
-		String sql = ("{call dbo.SPListaInscripcionMonitorAprobado}");
+		String sql = ("SELECT * FROM Vw_inscripcion_monitor_a");
 		
 		try
 		{
@@ -189,7 +192,7 @@ public class MDInscripcion extends Conexion{
 				i.setPrimerNombre(rs.getString("primerNombre"));
 				i.setSegundoNombre(rs.getString("segundoNombre"));
 				i.setPrimerApellido(rs.getString("primerApellido"));
-				i.setSegundoApellido(rs.getString("segundoNombre"));
+				i.setSegundoApellido(rs.getString("segundoApellido"));
 				i.setCarne(rs.getString("carne"));
 				i.setTelefono(rs.getString("telefono"));
 				i.setEmail(rs.getString("email"));
@@ -222,7 +225,7 @@ public class MDInscripcion extends Conexion{
 	{
 		ArrayList <InscripcionMonitor> array = new ArrayList <InscripcionMonitor>();
 		CallableStatement s = null;	
-		String sql = ("{call dbo.SPListaSolicitudMonitorRechazado}");
+		String sql = ("SELECT * FROM Vw_inscripcion_monitor_d");
 		
 		try
 		{
@@ -239,7 +242,7 @@ public class MDInscripcion extends Conexion{
 				i.setPrimerNombre(rs.getString("primerNombre"));
 				i.setSegundoNombre(rs.getString("segundoNombre"));
 				i.setPrimerApellido(rs.getString("primerApellido"));
-				i.setSegundoApellido(rs.getString("segundoNombre"));
+				i.setSegundoApellido(rs.getString("segundoApellido"));
 				i.setCarne(rs.getString("carne"));
 				i.setTelefono(rs.getString("telefono"));
 				i.setEmail(rs.getString("email"));
@@ -261,6 +264,43 @@ public class MDInscripcion extends Conexion{
 		catch(Exception e)
 		{
 			System.out.println("DATOS: ERROR AL CONSULTAR LOS DATOS "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return array;
+	}
+	
+	public ArrayList <InscripcionMonitor> monitorPlanificacion(String carne)
+	{
+		ArrayList <InscripcionMonitor> array= new ArrayList <InscripcionMonitor>();
+		String sql = ("SELECT i.idInscripcion, i.idMonitor, m.primerNombre, m.segundoNombre, m.primerApellido, m.segundoApellido, a.nombreA as nombreA FROM Inscripcion i INNER JOIN Monitor m ON i.idMonitor = m.idMonitor INNER JOIN Asignatura a ON i.idAsignatura = a.idAsignatura WHERE  i.estado = 1 AND m.carne = ?");
+		
+		try
+		{
+			Connection cn = getConnection();
+			PreparedStatement ps = cn.prepareStatement(sql);
+			ps.setString(1, carne);
+			ResultSet rs = ps.executeQuery();
+											
+			while(rs.next())		
+			{					    					
+				InscripcionMonitor im = new InscripcionMonitor();
+				im.setIdInscripcion(rs.getInt("idInscripcion"));
+				im.setPrimerNombre(rs.getString("primerNombre"));
+				im.setSegundoNombre(rs.getString("segundoNombre"));
+				im.setPrimerApellido(rs.getString("primerApellido"));
+				im.setSegundoApellido(rs.getString("segundoApellido"));
+				im.setNombreA(rs.getString("nombreA"));
+				array.add(im);
+			}
+		
+			//Cerramos la conexion
+			ps.close();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Datos: Error al buscar al monitor-> "+e.getMessage());
 			e.printStackTrace();
 		}
 		

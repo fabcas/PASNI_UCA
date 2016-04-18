@@ -54,7 +54,7 @@ public class SLComboFacultad extends HttpServlet {
 			out += "<option value=''>SELECCIONE</option>";
 			for (Facultad fac: listFac)
 			{
-				out +="<option value=\""+fac.getIdFacultad()+"\">"+StringEscapeUtils.escapeHtml4(fac.getNombre())+"</option>";
+				out +="<option value=\""+fac.getCOFA()+"\">"+StringEscapeUtils.escapeHtml4(fac.getNOMBRE())+"</option>";
 			}
 			PrintWriter pw = response.getWriter();
 			pw.write(out);

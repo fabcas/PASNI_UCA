@@ -64,8 +64,7 @@ public class SLMonitor extends HttpServlet {
 				m.setSegundoApellido(request.getParameter("apellidoSA"));
 				m.setEmail(request.getParameter("emailA"));
 				m.setTelefono(request.getParameter("telefonoA"));
-				idC = request.getParameter("carrera");
-				m.setIdCarrera(Integer.parseInt(idC));
+				m.setCARR(request.getParameter("carrera"));
 				promedio = request.getParameter("promedioA");
 				m.setPromedio(Float.parseFloat(promedio));
 				
@@ -91,8 +90,7 @@ public class SLMonitor extends HttpServlet {
 				m.setSegundoApellido(request.getParameter("apellidoSE"));
 				m.setEmail(request.getParameter("emailE"));
 				m.setTelefono(request.getParameter("telefonoE"));
-				idC = request.getParameter("carrera");
-				m.setIdCarrera(Integer.parseInt(idC));
+				m.setCARR(request.getParameter("carrera"));
 				promedio = request.getParameter("promedioEM");
 				m.setPromedio(Float.parseFloat(promedio));
 				
@@ -110,14 +108,14 @@ public class SLMonitor extends HttpServlet {
 				
 				idM = request.getParameter("idMonitorE");
 				m.setIdMonitor(Integer.parseInt(idM));
+				m.setCarne(request.getParameter("carneE"));
 				m.setPrimerNombre(request.getParameter("nombrePE"));
 				m.setSegundoNombre(request.getParameter("nombreSE"));
 				m.setPrimerApellido(request.getParameter("apellidoEP"));
 				m.setSegundoApellido(request.getParameter("apellidoSE"));
 				m.setEmail(request.getParameter("emailE"));
 				m.setTelefono(request.getParameter("telefonoE"));
-				idC = request.getParameter("carrera");
-				m.setIdCarrera(Integer.parseInt(idC));
+				m.setCARR(request.getParameter("carrera"));
 				promedio = request.getParameter("promedioEM");
 				m.setPromedio(Float.parseFloat(promedio));
 				

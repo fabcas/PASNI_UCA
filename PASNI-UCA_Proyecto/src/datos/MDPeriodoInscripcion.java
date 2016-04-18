@@ -100,7 +100,7 @@ public class MDPeriodoInscripcion extends Conexion{
 		
 		ArrayList <PeriodoInscripcion> array = new ArrayList <PeriodoInscripcion>();
 		CallableStatement cstmt = null;	
-		String sql = ("select * from Vw_periodo_inscripcion");
+		String sql = ("SELECT * FROM Vw_pi_habilitado");
 		
 		try{
 			Connection cn = getConnection();
@@ -127,7 +127,7 @@ public class MDPeriodoInscripcion extends Conexion{
 		
 		ArrayList <PeriodoInscripcion> array = new ArrayList <PeriodoInscripcion>();
 		CallableStatement cstmt = null;	
-		String sql = ("select * from Vw_periodo_inscripcion_fin");
+		String sql = ("SELECT * FROM Vw_pi_finalizado");
 		
 		try{
 			

@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.MultipartConfig;
-
 import javax.servlet.http.Part;
 
 import entidades.PerfilMonitor;
@@ -49,7 +49,6 @@ public class SLSubirArchivo extends HttpServlet {
 		try{
 			idMonitor = request.getParameter("idMonitor");
 			pm.setIdMonitor(Integer.parseInt(idMonitor));
-			pm.setNombre(request.getParameter("nombreA"));
 			
 			InputStream inputStream = null; 
 	         

@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entidades.Cuatrimestre;
@@ -14,10 +15,10 @@ public class MDInforme extends Conexion{
 	public ArrayList <Informe> cargarInforme(int usuario)
 	{
 		ArrayList <Informe> array = new ArrayList <Informe>();
-		String sql = ("{SELECT dbo.Informe.idInforme, dbo.Informe.idMonitor, dbo.Informe.idCuatrimestre, dbo.Cuatrimestre.nombre, dbo.Informe.semana,"
-				+ " dbo.Informe.fecha,dbo.Informe.pregunta1, dbo.Informe.pregunta2, dbo.Informe.pregunta3, dbo.Informe.pregunta4, dbo.Informe.pregunta5" 
-				+ "from dbo.Informe INNER JOIN dbo.Monitor ON dbo.Monitor.idMonitor = dbo.Informe.idMonitor INNER JOIN Usuario ON dbo.Usuario.idUsuario = dbo.Monitor.idUsuario,"
-				+ "Cuatrimestre where dbo.Cuatrimestre.idCuatrimestre = dbo.Informe.idCuatrimestre and dbo.Usuario.idUsuario = ?}");
+		String sql = ("SELECT idInforme, dbo.Informe.idMonitor, dbo.Informe.idCuatrimestre, dbo.Cuatrimestre.nombre AS [cuatrimestre], semana, dbo.Informe.fecha,"
+				+ "pregunta1,pregunta2, pregunta3, pregunta4, pregunta5 FROM Informe INNER JOIN Monitor ON dbo.Monitor.idMonitor = dbo.Informe.idMonitor "
+				+ "INNER JOIN Usuario ON dbo.Usuario.idUsuario = dbo.Monitor.idUsuario, Cuatrimestre WHERE dbo.Cuatrimestre.idCuatrimestre = dbo.Informe.idCuatrimestre "
+				+ "AND dbo.Usuario.idUsuario = ?");
 		
 		try
 		{
@@ -34,8 +35,9 @@ public class MDInforme extends Conexion{
 				i.setIdInforme(rs.getInt("idInforme"));
 				i.setIdMonitor(rs.getInt("idMonitor"));
 				i.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
-				c.setNombre(rs.getString("nombre"));
+/*REVISAR AQUÍ*/i.setCuatrimestre(rs.getString("cuatrimestre"));
 				i.setSemana(rs.getString("semana"));
+				i.setFecha(rs.getDate("fecha"));
 				i.setPregunta1(rs.getString("pregunta1"));
 				i.setPregunta2(rs.getString("pregunta2"));
 				i.setPregunta3(rs.getString("pregunta3"));
@@ -55,6 +57,38 @@ public class MDInforme extends Conexion{
 		}
 		
 		return array;
+	}
+	
+	public boolean agregarInforme(Informe i)throws SQLException{
+		
+		boolean a = false;
+		int y = 0;
+		
+		Connection cn = getConnection();
+		CallableStatement cstmt = null;	
+		String sql = "{call dbo.SPAgregarInforme(?,?,?,?,?,?,?,?,?)}";
+		cstmt = cn.prepareCall(sql);
+					
+		try {
+			cstmt.setInt("idMonitor", i.getIdMonitor());
+			cstmt.setInt("idCuatrimestre", i.getIdCuatrimestre());
+			cstmt.setString("semana", i.getSemana());
+			cstmt.setString("GRUP", i.getGRUP());
+			cstmt.setString("pregunta1",i.getPregunta1());
+			cstmt.setString("pregunta2",i.getPregunta2());
+			cstmt.setString("pregunta3",i.getPregunta3());
+			cstmt.setString("pregunta4",i.getPregunta4());
+			cstmt.setString("pregunta5",i.getPregunta5());
+			a = y > 0;
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Datos: Error al enviar la solicitud-> " + e.getMessage());
+		}
+		cstmt.close();
+		cn.close();
+		return a;
 	}
 
 }

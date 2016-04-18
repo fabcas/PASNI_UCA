@@ -60,6 +60,37 @@
 			        });
 			});
 			
+			$('#buscarPM').click(function(event) {
+				var carne = $('#carneA').val();
+				$.ajax({		    
+			          url:"../../SLBuscarMonitorCarne?opc=3",
+			          type:"post",
+			          datatype:"html",
+			          data:{'carneA':carne},
+			          success:function(data) 
+			          {
+			        		$('#monitor').html(data); 
+			        		$("#buscarG").prop('disabled',false);
+			          }
+			        });
+			});
+			
+			/*$('#buscarG').click(function(event) {
+				var aname = $('#nombreA').val();
+				var carr = $('#carrera option:selected').html();
+				var aperr = $('#idCuatrimestre option:selected').html();
+				$.ajax({		    
+			          url:"../../SLGrupo?opc=1",
+			          type:"post",
+			          datatype:"html",
+			          data:{'idCuatrimestre':aperr, 'nombreA':aname, 'carrera':carr},
+			          success:function(data) 
+			          {
+			        		$('#grupo').html(data); 
+			          }
+			        });
+			});*/
+			
 			$('#buscarP').click(function(event) {
 				var inss = $('#inss').val();
 				$.ajax({		    

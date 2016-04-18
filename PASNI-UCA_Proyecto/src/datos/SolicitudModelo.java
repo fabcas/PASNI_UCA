@@ -43,7 +43,7 @@ public class SolicitudModelo extends Conexion {
 			cstmt.setString(8, m.getCarne());
 			cstmt.setFloat(9, m.getPromedio());
 			cstmt.setBoolean(10, m.isEstipendio());
-			cstmt.setInt(11, m.getIdCarrera());			
+			cstmt.setString(11, m.getCARR());			
 			cstmt.setString(12, listDetalleSolicitud);
 			
 			cstmt.registerOutParameter(13, Types.VARCHAR);

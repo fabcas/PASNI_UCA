@@ -10,24 +10,24 @@ import entidades.Carrera;
 
 public class MDCarrera extends Conexion{
 	
-	public ArrayList <Carrera> comboCarrera(int id)
+	public ArrayList <Carrera> comboCarrera(String COFA)
 	{
 		ArrayList <Carrera> arrayCarrera = new ArrayList <Carrera>();
-		String sql = ("SELECT idCarrera, nombre FROM Carrera WHERE idFacultad = ?");
+		String sql = ("select * from Vw_maestro_carreras where COFA = ?");
 		
 		try
 		{
 			Connection cn = getConnection();
 			PreparedStatement ps = cn.prepareStatement(sql);
-			ps.setInt(1, id);
+			ps.setString(1, COFA);
 			ResultSet rs = ps.executeQuery();
 											
 			while(rs.next())		
 			{					    					
 				Carrera enti = new Carrera();
 				
-				enti.setIdCarrera(rs.getInt("idCarrera"));
-				enti.setNombre(rs.getString("nombre"));
+				enti.setCARR(rs.getString("CARR"));
+				enti.setNOMBRE(rs.getString("NOMBRE"));
 				arrayCarrera.add(enti);
 			}
 			

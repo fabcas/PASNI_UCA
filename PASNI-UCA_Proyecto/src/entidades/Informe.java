@@ -8,6 +8,8 @@ public class Informe {
 	private int idInforme;
 	private int idMonitor;
 	private int idCuatrimestre;
+	private String GRUP;
+	private String cuatrimestre;
 	private String semana;
 	private Date fecha;
 	private String pregunta1;
@@ -15,6 +17,7 @@ public class Informe {
 	private String pregunta3;
 	private String pregunta4;
 	private String pregunta5;
+	
 	public int getIdInforme() {
 		return idInforme;
 	}
@@ -32,6 +35,18 @@ public class Informe {
 	}
 	public void setIdCuatrimestre(int idCuatrimestre) {
 		this.idCuatrimestre = idCuatrimestre;
+	}
+	public String getCuatrimestre() {
+		return cuatrimestre;
+	}
+	public void setCuatrimestre(String cuatrimestre) {
+		this.cuatrimestre = cuatrimestre;
+	}
+	public String getGRUP() {
+		return GRUP;
+	}
+	public void setGRUP(String gRUP) {
+		GRUP = gRUP;
 	}
 	public String getSemana() {
 		return semana;
@@ -78,13 +93,15 @@ public class Informe {
 	public Informe() {
 		super();
 	}
-	public Informe(int idInforme, int idMonitor, int idCuatrimestre,
+	public Informe(int idInforme, int idMonitor, int idCuatrimestre, String GRUP, String cuatrimestre,
 			String semana, Date fecha, String pregunta1, String pregunta2,
 			String pregunta3, String pregunta4, String pregunta5) {
 		super();
 		this.idInforme = idInforme;
 		this.idMonitor = idMonitor;
 		this.idCuatrimestre = idCuatrimestre;
+		this.cuatrimestre = cuatrimestre;
+		this.GRUP = GRUP;
 		this.semana = semana;
 		this.fecha = fecha;
 		this.pregunta1 = pregunta1;

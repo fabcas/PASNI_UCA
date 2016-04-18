@@ -118,5 +118,22 @@ public class NGMonitor {
 		
 		return bl;
 	}
+	
+	/*public ArrayList<PerfilMonitor> cargarFoto(int usuario){
+			
+			ArrayList<PerfilMonitor> array = new ArrayList<PerfilMonitor>();
+			MDMonitor datos = new MDMonitor();
+			try
+			{
+				array = datos.cargarFoto(usuario);
+			}
+			catch(Exception e)
+			{
+				System.out.println("Negocio, el error es: "+e.getMessage());
+				e.printStackTrace();
+			}
+			
+			return array;
+	}*/
 		
 }

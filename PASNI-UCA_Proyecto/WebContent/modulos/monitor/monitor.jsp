@@ -164,7 +164,7 @@
 										<select id="facultad" name="facultad" class="form-control ">
 											<option>Seleccion una facultad</option>
 											<%for(Facultad facu: lis){%>
-												<option value="<%=facu.getIdFacultad()%>"><%=facu.getNombre()%></option>
+												<option value="<%=facu.getCOFA()%>"><%=facu.getNOMBRE()%></option>
 											<%}%>
 										</select><br>
 										<label >Carrera</label>

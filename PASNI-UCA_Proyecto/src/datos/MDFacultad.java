@@ -12,7 +12,7 @@ public class MDFacultad extends Conexion{
 	public ArrayList <Facultad> comboFacultad()
 	{
 		ArrayList <Facultad> arrayFacultad = new ArrayList <Facultad>();
-		String sql = ("SELECT idFacultad,nombre FROM Facultad");
+		String sql = ("select * from Vw_maestro_facultad");
 		
 		try
 		{
@@ -23,8 +23,8 @@ public class MDFacultad extends Conexion{
 			while(rs.next())		
 			{					    					
 				Facultad  enti = new Facultad();
-				enti.setIdFacultad(rs.getInt("idFacultad"));
-				enti.setNombre(rs.getString("nombre"));
+				enti.setCOFA(rs.getString("COFA"));
+				enti.setNOMBRE(rs.getString("NOMBRE"));
 				arrayFacultad.add(enti);
 				
 			}

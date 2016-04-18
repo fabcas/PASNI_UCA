@@ -48,13 +48,15 @@
 
 						<div class="menu_section">
 							<ul class="nav side-menu yellow">
-								<li><a><i class="fa fa-graduation-cap"></i> Alumno
+								<li><a><i class="fa fa-graduation-cap"></i> Estudiante
 										Monitor <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
 										<li><a href="modulos/monitor/monitor.jsp">Estudiante Monitor</a></li>
 										<li><a href="modulos/monitor/perfil-monitor.jsp">Perfil Estudiante Monitor</a></li>
 										<li><a href="modulos/monitor/periodo-inscripcion.jsp">Período de Inscripción</a></li>
 										<li><a href="modulos/monitor/bandeja-solicitud-monitor.jsp">Bandeja Inscripciones Monitor</a></li>
+										<li><a href="modulos/monitor/monitoreo.jsp">Monitoreo</a></li>
+										<li><a href="modulos/monitor/planificacion-monitoreo.jsp">Planificar Monitoreo</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-edit"></i> Profesor Guía <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">

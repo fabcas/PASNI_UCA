@@ -46,13 +46,13 @@ public class SLComboCarreras extends HttpServlet {
 		try
 		{
 			String out = "";
-			int id= Integer.parseInt(request.getParameter("idFacultad"));
+			String id= request.getParameter("idFacultad");
 			NGCarrera ngc = new NGCarrera();
 			ArrayList<Carrera> listCar = new ArrayList<Carrera>();
 			listCar = ngc.comboCarrera(id);
 			for (Carrera car : listCar)
 			{
-				out +="<option value=\""+car.getIdCarrera()+"\">"+StringEscapeUtils.escapeHtml4(car.getNombre())+"</option>";
+				out +="<option value=\""+car.getCARR()+"\">"+StringEscapeUtils.escapeHtml4(car.getNOMBRE())+"</option>";
 			}
 			PrintWriter pw = response.getWriter();
 			pw.write(out);

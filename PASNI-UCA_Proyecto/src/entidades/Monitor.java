@@ -14,7 +14,7 @@ public class Monitor {
 	private String segundoApellido;
 	private String carne;
 	private float promedio;
-	private int idCarrera;
+	private String CARR;
 	private String carrera;
 	private boolean estipendio;
 	private Date fecha;
@@ -79,11 +79,11 @@ public class Monitor {
 	public void setPromedio(float promedio) {
 		this.promedio = promedio;
 	}
-	public int getIdCarrera() {
-		return idCarrera;
+	public String getCARR() {
+		return CARR;
 	}
-	public void setIdCarrera(int idCarrera) {
-		this.idCarrera = idCarrera;
+	public void setCARR(String CARR) {
+		this.CARR = CARR;
 	}
 	public String getCarrera() {
 		return carrera;
@@ -110,7 +110,7 @@ public class Monitor {
 	public Monitor(int idMonitor, int idUsuario, String primerNombre,
 			String email, String segundoNombre, String telefono,
 			String primerApellido, String segundoApellido, String carne,
-			float promedio, int idCarrera, String carrera, boolean estipendio, Date fecha) {
+			float promedio, String CARR, String carrera, boolean estipendio, Date fecha) {
 		super();
 		this.idMonitor = idMonitor;
 		this.idUsuario = idUsuario;
@@ -122,7 +122,7 @@ public class Monitor {
 		this.segundoApellido = segundoApellido;
 		this.carne = carne;
 		this.promedio = promedio;
-		this.idCarrera = idCarrera;
+		this.CARR = CARR;
 		this.carrera = carrera;
 		this.estipendio = estipendio;
 		this.fecha = fecha;

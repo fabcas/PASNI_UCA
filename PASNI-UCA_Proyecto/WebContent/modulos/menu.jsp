@@ -42,19 +42,22 @@
 
 						<div class="menu_section">
 							<ul class="nav side-menu yellow">
-								<li><a><i class="fa fa-graduation-cap"></i> Alumno
+								<li><a><i class="fa fa-graduation-cap"></i> Estudiante
 										Monitor <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
 										<li><a href="../monitor/monitor.jsp">Estudiante Monitor</a></li>
 										<li><a href="../monitor/perfil-monitor.jsp">Perfil Estudiante Monitor</a></li>
 										<li><a href="../monitor/periodo-inscripcion.jsp">Período de Inscripción</a></li>
 										<li><a href="../monitor/bandeja-solicitud-monitor.jsp">Bandeja Inscripciones Monitor</a></li>
+										<li><a href="../monitor/monitoreo.jsp">Monitoreo</a></li>
+										<li><a href="../monitor/planificacion-monitoreo.jsp">Planificar Monitoreo</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-edit"></i> Profesor Guía <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
 										<li><a href="../profesor/informe-guiatura.jsp">Informes de Guiatura</a></li>
 										<li><a href="../profesor/inscripcion-profesor.jsp">Inscripciones de Profesores</a></li>
 										<li><a href="../profesor/lista-profesores.jsp">Lista de Profesores</a></li>
+										<li><a href="../profesor/instancias-uca.jsp">Instancias UCA</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-desktop"></i> Taller de Formación <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">
@@ -62,6 +65,7 @@
 										<li><a href="../taller/bandeja-solicitud-taller.jsp">Bandeja Solicitud Taller</a></li>
 										<li><a href="../taller/categoria-taller.jsp">Categoría de taller</a></li>
 										<li><a href="../taller/taller.jsp">Talleres de Formación</a></li>
+										<li><a href="../taller/facilitador.jsp">Facilitadores</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-magic"></i> Administración <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">

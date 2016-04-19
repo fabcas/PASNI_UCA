@@ -52,7 +52,7 @@ public class SLInscripcion extends HttpServlet {
 			boolean ai = false; //agregar inscripcion
 			
 			String opc ="";
-			String idAsignatura ="";
+			//String idAsignatura ="";
 			String promedio =""; 
 			String calificacion ="";
 			String turno =""; 
@@ -81,8 +81,7 @@ public class SLInscripcion extends HttpServlet {
 				m.setCARR(request.getParameter("carrera"));
 				
 				/*Inscripción*/
-				idAsignatura = request.getParameter("asignatura");
-				i.setIdAsignatura(Integer.parseInt(idAsignatura));
+				i.setIdAsignatura(request.getParameter("asignatura"));
 				i.setMotivo(request.getParameter("motivo"));
 				calificacion = request.getParameter("calificacion");
 				i.setCalificación(Integer.parseInt(calificacion));
@@ -106,8 +105,7 @@ public class SLInscripcion extends HttpServlet {
 				/*Inscripción*/
 				idInscripcion = request.getParameter("idInscripcionE");
 				i.setIdInscripcion(Integer.parseInt(idInscripcion));
-				idAsignatura = request.getParameter("asignaturaE");
-				i.setIdAsignatura(Integer.parseInt(idAsignatura));
+				i.setIdAsignatura(request.getParameter("asignatura"));
 				calificacion = request.getParameter("calificacionE");
 				i.setCalificación(Integer.parseInt(calificacion));
 				i.setMotivo(request.getParameter("motivoE"));
@@ -135,8 +133,7 @@ public class SLInscripcion extends HttpServlet {
 				
 				idMonitor = request.getParameter("idMonitor");
 				i.setIdMonitor(Integer.parseInt(idMonitor));
-				idAsignatura = request.getParameter("asignaturaA");
-				i.setIdAsignatura(Integer.parseInt(idAsignatura));
+				i.setIdAsignatura(request.getParameter("asignatura"));
 				calificacion = request.getParameter("calificacionA");
 				i.setCalificación(Integer.parseInt(calificacion));
 				i.setMotivo(request.getParameter("motivoA"));

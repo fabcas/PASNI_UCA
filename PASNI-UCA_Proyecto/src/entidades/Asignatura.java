@@ -2,14 +2,14 @@ package entidades;
 
 public class Asignatura {
 
-	private int idAsigntatura;
+	private String idAsigntatura;
 	private int idPlanEstudio;
 	private String nombre;
-	public int getIdAsigntatura() {
+	public String getIdAsigntatura() {
 		return idAsigntatura;
 	}
-	public void setIdAsigntatura(int idAsigntatura) {
-		this.idAsigntatura = idAsigntatura;
+	public void setIdAsigntatura(String idAsignatura) {
+		this.idAsigntatura = idAsignatura;
 	}
 	public int getIdPlanEstudio() {
 		return idPlanEstudio;
@@ -27,7 +27,7 @@ public class Asignatura {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Asignatura(int idAsigntatura, int idPlanEstudio, String nombre) {
+	public Asignatura(String idAsigntatura, int idPlanEstudio, String nombre) {
 		super();
 		this.idAsigntatura = idAsigntatura;
 		this.idPlanEstudio = idPlanEstudio;

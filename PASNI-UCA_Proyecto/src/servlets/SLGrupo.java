@@ -43,30 +43,34 @@ public class SLGrupo extends HttpServlet {
 	try{
 			String opc = "";
 			String out = "";
-			String CARR= request.getParameter("carrera");
 			//String ANOMBRE= request.getParameter("nombreA");
+			String CARR= request.getParameter("carrera");
 			String APER= request.getParameter("idCuatrimestre");
 			NGGrupo ng = new NGGrupo();
 			ArrayList <Grupo> lista = new ArrayList <Grupo>();
 			lista = ng.cargarGrupo(APER, CARR);
-			
+			System.out.println(APER);
+			System.out.println(CARR);
 			opc = request.getParameter("opc");
 			
 				
 						out += "<thead>";
 							out += "<tr class='headings'>";
-								out += "th class='column-title'>Grupo</th>";
-								out += "th class='column-title'>Seleccione</th>";
+								out += "<th class='column-title'>Grupo</th>";
+								out += "<th class='column-title'>Seleccione</th>";
 							out += "</tr>";
 						out += "</thead>";
 						out += "<tbody>";
+						System.out.println(out);
 						for(Grupo gr : lista){
 							out += "<tr class='even pointer'>";
 								out += "<td class=''>"+gr.getGRUP()+"</td>";
+								System.out.println(gr.getGRUP());
 								out += "<td class='a-center'>";
 									out += "<input type='checkbox' class='tableflat'>";
 								out += "</td>";
-							out += "</tr";
+							out += "</tr>";
+							System.out.println(out);
 						}
 						out += "</tbody>";
 			

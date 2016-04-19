@@ -41,7 +41,7 @@ public class MDInscripcion extends Conexion{
 			
 			/*Inscripcion*/
 			
-			cstmt.setInt("idAsignatura",i.getIdAsignatura());
+			cstmt.setString("idAsignatura",i.getIdAsignatura());
 			cstmt.setString("motivo", i.getMotivo());
 			cstmt.setInt("calificacion", i.getCalificación());
 			cstmt.setString("turno", i.getTurno());
@@ -70,7 +70,7 @@ public class MDInscripcion extends Conexion{
 					
 		try {			
 			cstmt.setInt("idMonitor",i.getIdMonitor());
-			cstmt.setInt("idAsignatura",i.getIdAsignatura());
+			cstmt.setString("idAsignatura",i.getIdAsignatura());
 			cstmt.setInt("calificacion", i.getCalificación());
 			cstmt.setString("motivo", i.getMotivo());
 			cstmt.setInt("estado", i.getEstado());
@@ -100,7 +100,7 @@ public class MDInscripcion extends Conexion{
 				String sql = "{call dbo.SPModificarInscripcionMonitor(?,?,?,?,?,?)}";
 				s = cn.prepareCall(sql);
 				
-				s.setInt("idAsignatura", i.getIdAsignatura());
+				s.setString("idAsignatura", i.getIdAsignatura());
 				s.setInt("idInscripcion", i.getIdInscripcion());
 				s.setInt("calificacion", i.getCalificación());
 				s.setString("motivo", i.getMotivo());

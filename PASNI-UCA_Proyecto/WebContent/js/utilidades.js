@@ -75,22 +75,6 @@
 			        });
 			});
 			
-			/*$('#buscarG').click(function(event) {
-				var aname = $('#nombreA').val();
-				var carr = $('#carrera option:selected').html();
-				var aperr = $('#idCuatrimestre option:selected').html();
-				$.ajax({		    
-			          url:"../../SLGrupo?opc=1",
-			          type:"post",
-			          datatype:"html",
-			          data:{'idCuatrimestre':aperr, 'nombreA':aname, 'carrera':carr},
-			          success:function(data) 
-			          {
-			        		$('#grupo').html(data); 
-			          }
-			        });
-			});*/
-			
 			$('#buscarP').click(function(event) {
 				var inss = $('#inss').val();
 				$.ajax({		    
@@ -104,32 +88,34 @@
 			          }
 			        });
 			});
+			
+			
 		
-		$("#facultad").change(function()
-				{
-					var facultad=$("#facultad").val();
-					console.log(facultad);
-					if (facultad=="0")
+			$("#facultad").change(function()
 					{
-						$("#carrera").val("0");
-						$("#carrera").prop('disabled',true);
-					}
-					else 
-					{
-						$("#carrera").prop('disabled',false);
-						$.ajax({		    
-					          url:"../../SLComboCarreras",
-					          type:"post",
-					          datatype:"html",
-					          data:{'idFacultad':facultad},
-					          success:function(data) 
-					          {
-					        		$('#carrera').html(data);  
-					          }
-					        });
-					};			
-				});
-		});
+						var facultad=$("#facultad").val();
+						console.log(facultad);
+						if (facultad=="0")
+						{
+							$("#carrera").val("0");
+							$("#carrera").prop('disabled',true);
+						}
+						else 
+						{
+							$("#carrera").prop('disabled',false);
+							$.ajax({		    
+						          url:"../../SLComboCarreras",
+						          type:"post",
+						          datatype:"html",
+						          data:{'idFacultad':facultad},
+						          success:function(data) 
+						          {
+						        		$('#carrera').html(data);  
+						          }
+						        });
+						};			
+					});
+			});
 	
 	//Cargar datos en un modal bandejaSolicitudesMonitor.jsp
 	function cargarDatos(IdInscripcionE, carneE, nombreE, apellidoE, asignaturaE,motivoE,calificacionE,promedioE,turnoE){

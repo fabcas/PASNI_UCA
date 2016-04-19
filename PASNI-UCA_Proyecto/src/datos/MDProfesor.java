@@ -9,6 +9,40 @@ import entidades.Profesor;
 
 public class MDProfesor extends Conexion{
 	
+	public ArrayList<Profesor> cargarProfesor()
+	{
+		ArrayList <Profesor> array= new ArrayList <Profesor>();
+		String sql = ("select idDocente, nombre, apellido from Docente");
+		
+		try
+		{
+			Connection cn = getConnection();
+			PreparedStatement ps = cn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+											
+			while(rs.next())		
+			{					    					
+				Profesor pg = new Profesor();
+				
+				pg.setIdProfesorGuia(rs.getInt("idDocente"));
+				pg.setNombre(rs.getString("nombre"));
+				pg.setApellido(rs.getString("apellido"));
+				array.add(pg);
+			}
+		
+			//Cerramos la conexion
+			ps.close();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Datos: Error al buscar los datos-> "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return array;
+	}
+	
 	public ArrayList<Profesor> buscarProfesor(String inss)
 	{
 		ArrayList <Profesor> array= new ArrayList <Profesor>();

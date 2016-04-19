@@ -8,7 +8,7 @@ public class Inscripcion {
 	private int idMonitor;
 	private Date fecha;
 	private int estado;
-	private int idAsignatura; 
+	private String idAsignatura; 
 	private String motivo; 
 	private int calificación;
 	private String turno;
@@ -37,10 +37,10 @@ public class Inscripcion {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-	public int getIdAsignatura() {
+	public String getIdAsignatura() {
 		return idAsignatura;
 	}
-	public void setIdAsignatura(int idAsignatura) {
+	public void setIdAsignatura(String idAsignatura) {
 		this.idAsignatura = idAsignatura;
 	}
 	public String getMotivo() {
@@ -67,7 +67,7 @@ public class Inscripcion {
 	}
 	
 	public Inscripcion(int idInscripcion, int idMonitor, Date fecha, int estado,
-			int idAsignatura, String motivo, int calificación, String turno) {
+			String idAsignatura, String motivo, int calificación, String turno) {
 		super();
 		this.idInscripcion = idInscripcion;
 		this.idMonitor = idMonitor;

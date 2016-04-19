@@ -23,4 +23,21 @@ public class NGGrupo {
 		return array;
 	
 	}
+	
+	public ArrayList<Grupo> cargarGrupoU(int usuario){
+			
+			ArrayList < Grupo > array = new ArrayList<Grupo>();
+			MDGrupo datos = new MDGrupo();
+			try
+			{
+				array = datos.cargarGrupoU(usuario);
+			}
+			catch(Exception e)
+			{
+				System.out.println("Negocio, el error es: "+e.getMessage());
+				e.printStackTrace();
+			}
+			return array;
+		
+	}
 }

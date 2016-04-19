@@ -204,10 +204,6 @@
 				
 			</div>
 			<%
-				NGAsignatura ng = new NGAsignatura();
-				ArrayList<Asignatura> listam = new ArrayList<Asignatura>();
-				listam = ng.comboAsignatura();
-
 				NGTaller tallerNegocio = new NGTaller();
 				ArrayList<Cuatrimestre> listaCuatrimestre = new ArrayList<Cuatrimestre>();
 				listaCuatrimestre = tallerNegocio.comboCuatrimestre();
@@ -215,6 +211,10 @@
 				NGFacultad fac = new NGFacultad();
 				ArrayList<Facultad> lis = new ArrayList<Facultad>();
 				lis = fac.comboFacultad();
+				
+				NGProfesor profesor = new NGProfesor();
+				ArrayList<Profesor> listap = new ArrayList<Profesor>();
+				listap = profesor.cargarProfesor();
 			%>
 			<!-- Modal Agregar Inscripcion -->
 			<div class="modal fade modalAsignarG"  id="modalAsignarG" tabindex="-1" role="dialog" aria-hidden="true">
@@ -229,7 +229,7 @@
 							</h5>
 						</div>
 						<div class="modal-body">
-							<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLMonitoreo?opc=1">
+						<!--  	<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLMonitoreo?opc=1">-->
 								<div class="item form-group">
 									<label >Carné</label>
 									<div class="form-group">
@@ -259,14 +259,14 @@
 									</div>
 									<div class="col-md-12 col-sm-12 col-xs-12 form-group">
 										<label >Facultad</label>
-											<select id="facultad" name="facultad" class="form-control ">
-												<option>Seleccion una facultad</option>
-												<%for(Facultad facu: lis){%>
-													<option value="<%=facu.getCOFA()%>"><%=facu.getNOMBRE()%></option>
-												<%}%>
-											</select><br>
-											<label >Carrera</label>
-											<select id="carrera" name="carrera" class="form-control"></select> <br>
+										<select id="facultad" name="facultad" class="form-control ">
+											<option>Seleccion una facultad</option>
+											<%for(Facultad facu: lis){%>
+											<option value="<%=facu.getCOFA()%>"><%=facu.getNOMBRE()%></option>
+											<%}%>
+										</select><br>
+										<label >Carrera</label>
+										<select id="carrera" name="carrera" class="form-control"></select> <br>
 										<label>Cuatrimestre</label> 
 										<select id="idCuatrimestre" class="form-control" name="idCuatrimestre" required="required" tabindex="-1">
 										<option value="0">Seleccione un cuatrimestre</option>
@@ -279,13 +279,20 @@
 										</div>
 										<table  id="grupo">
 					                    </table>
+					                    
+					                    <select id="idCuatrimestre" class="form-control" name="idCuatrimestre" required="required" tabindex="-1">
+										<option value="0">Seleccione un cuatrimestre</option>
+										<%for(Profesor profe : listap){%>
+										<option value="<%=profe.getIdProfesorGuia() %>"><%=profe.getNombre()+""+profe.getApellido() %></option>
+										<%}%>
+										</select><br>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 										<button type="submit" class="btn btn-primary">Agregar</button>
 									</div>
 								</div>
-							</form>
+							<!--  </form>-->
 						</div>
 					</div>
 				</div>
@@ -312,7 +319,8 @@
 
 <script type="text/javascript">
 			$(document).ready(function()
-			{	//cargarNotify();
+			{	
+				//cargarNotify();
 				$('table.display').dataTable(
 						{							
 							"sPaginationType": "full_numbers",
@@ -335,26 +343,17 @@
 								         }
 							}	
 						}	
-				)
-				.columnFilter({
-					aoColumns: [ { type: "text" },
-					             { type: "text" },
-					 			 { type: "text" },
-					 			 { type: "text" },
-					 			 { type: "text" },
-					 			 { type: "text" },
-					 			 null
-					 			]
-				});
+				);
 				
 				$('#buscarG').click(function(event) {
-					var carr = $('#carrera option:selected').html();
-					var aperr = $('#idCuatrimestre option:selected').html();
+					//var carr = $('#carrera option:selected').html();
+					//var aperr = $('#idCuatrimestre option:selected').html();
 					$.ajax({		    
 				          url:"../../SLGrupo",
 				          type:"post",
 				          datatype:"html",
-				          data:{'idCuatrimestre':aperr, 'carrera':carr},
+				          data:{'idCuatrimestre':$('#idCuatrimestre option:selected').html(), 
+				        	  	'carrera':$('#carrera option:selected').attr('value')},
 				          success:function(data) 
 				          {
 				        		$('#grupo').html(data); 

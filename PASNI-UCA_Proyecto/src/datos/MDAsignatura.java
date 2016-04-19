@@ -24,7 +24,7 @@ public class MDAsignatura extends Conexion{
 			{					    					
 				Asignatura enti = new Asignatura();
 				
-				enti.setIdAsigntatura(rs.getInt("idAsignatura"));
+				enti.setIdAsigntatura(rs.getString("idAsignatura"));
 				enti.setNombre(rs.getString("nombreA"));
 				arrayAsignatura.add(enti);
 			}

@@ -13,6 +13,8 @@
 	int idUsuario = 0;
 	int idInforme = 0;
 	int idMonitor = 0;
+	int idGrupo = 0;
+	String grupo = "";
 	String semana = "";
 	int idC = 0;
 	String cuatrimestre = "";
@@ -21,6 +23,8 @@
 	
 	ArrayList <UsuarioGenerico> listadmin = new ArrayList <UsuarioGenerico>();
 	listadmin = (ArrayList <UsuarioGenerico>) session.getAttribute("login");
+	
+	
 	if(listadmin != null)
  	{
 		for (UsuarioGenerico user: listadmin)
@@ -211,6 +215,10 @@
 				NGTaller tallerNegocio = new NGTaller();
 				ArrayList<Cuatrimestre> listaCuatrimestre = new ArrayList<Cuatrimestre>();
 				listaCuatrimestre = tallerNegocio.comboCuatrimestre();
+				
+				NGGrupo grup = new NGGrupo();
+				ArrayList<Grupo> lg = new ArrayList<Grupo>();
+				grup.cargarGrupoU(idUsuario);
 			%>
 			<!-- Modal Agregar Inscripcion -->
 			<div class="modal fade modalAgregar"  id="modalAgregar" tabindex="-1" role="dialog" aria-hidden="true">
@@ -221,21 +229,25 @@
 								<span aria-hidden="true">x</span>
 							</button>
 							<h5 class="modal-title">
-								<b>Agregar Inscripción de Monitor</b>
+								<b>Informe Semanal</b>
 							</h5>
 						</div>
 						<div class="modal-body">
 							<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLMonitoreo?opc=1">
 								<div class="item form-group">
-									<input type="hidden" id="idMonitorA" name="idMonitorA" class="form-control" value="<%=idMonitor%>"> <br>
 									<label>Grupo</label>
-									<input type="text" id="idGrupoA" name="idGrupoA" class="form-control" required="required" tabindex="-1"> <br>
+									<select id="idGrupo" class="form-control" name="idGrupo" required="required" tabindex="-1">
+										<option >Seleccione un grupo</option>
+										<%for(Grupo g : lg){%>
+											<option value="<%=g.getIdGrupo()%>"><%=g.getGRUP()%></option>
+										<%}%>
+									</select><br>
 									<label>Cuatrimestre</label> 
 									<select id="idCuatrimestreA" class="form-control" name="idCuatrimestreA" required="required" tabindex="-1">
-									<option value="0">Seleccione un cuatrimestre</option>
-									<%for(Cuatrimestre cuatri : listaCuatrimestre){%>
-									<option value="<%=cuatri.getIdCuatrimestre() %>"><%=cuatri.getNombre()%></option>
-									<%}%>
+										<option value="0">Seleccione un cuatrimestre</option>
+										<%for(Cuatrimestre cuatri : listaCuatrimestre){%>
+										<option value="<%=cuatri.getIdCuatrimestre() %>"><%=cuatri.getNombre()%></option>
+										<%}%>
 									</select><br>
 									<label>Semana</label>
 									<select id="semana" class="form-control" name="semana" required="required" tabindex="-1">

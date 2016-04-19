@@ -30,6 +30,7 @@ public class MDGrupo extends Conexion{
 				Grupo g = new Grupo();
 				
 				g.setGRUP(rs.getString("GRUP"));
+				System.out.println(g.getGRUP());
 				array.add(g);
 			}
 		
@@ -46,5 +47,39 @@ public class MDGrupo extends Conexion{
 		return array;
 	
 	}
+	
+	public ArrayList<Grupo> cargarGrupoU(int usuario){
+			
+			ArrayList <Grupo> array= new ArrayList <Grupo>();
+			String sql = (" SELECT idGrupo, GRUP FROM Grupo, Inscripcion i, Monitor m  WHERE i.idMonitor = m.idMonitor and m.idUsuario = ? ");
+			
+			try
+			{
+				Connection cn = getConnection();
+				PreparedStatement ps = cn.prepareStatement(sql);
+				ps.setInt(1,usuario);
+				ResultSet rs = ps.executeQuery();
+												
+				while(rs.next())		
+				{					    					
+					Grupo g = new Grupo();
+					g.setIdGrupo(rs.getInt("idGrupo"));
+					g.setGRUP(rs.getString("GRUP"));
+					array.add(g);
+				}
+			
+				//Cerramos la conexion
+				ps.close();
+				cn.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("Datos: Error al buscar el grupo-> "+e.getMessage());
+				e.printStackTrace();
+			}
+			
+			return array;
+		
+		}
 
 }

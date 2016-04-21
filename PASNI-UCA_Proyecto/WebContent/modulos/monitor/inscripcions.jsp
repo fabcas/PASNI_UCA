@@ -8,6 +8,10 @@
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	response.setDateHeader("Expires", -1);
+	
+	Date date = new Date();
+	SimpleDateFormat format = new SimpleDateFormat("yyyy");
+	String anio = format.format(date);
 %>
 <head>
 <meta charset="utf-8">
@@ -82,7 +86,7 @@
 		</section>
 		<div class="mastfoot">
 			<div class="white text-center">
-				<p>&copy; Copyright 2016, Todos los Derechos Reservados</p>
+				<p>&copy; Copyright <%=anio%>, Todos los Derechos Reservados</p>
 				<p>Universidad Centroamericana</p>
 			</div>            
 		</div>

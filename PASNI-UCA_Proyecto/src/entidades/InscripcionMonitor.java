@@ -15,6 +15,7 @@ public class InscripcionMonitor {
 	private String nombreC;
 	private float promedio;
 	private int idInscripcion; 
+	private String idAsignatura;
 	private String nombreA; 
 	private int calificacion; 
 	private String motivo;
@@ -88,6 +89,12 @@ public class InscripcionMonitor {
 	public void setIdInscripcion(int idInscripcion) {
 		this.idInscripcion = idInscripcion;
 	}
+	public String getIdAsignatura() {
+		return idAsignatura;
+	}
+	public void setIdAsignatura(String idAsignatura) {
+		this.idAsignatura = idAsignatura;
+	}
 	public String getNombreA() {
 		return nombreA;
 	}
@@ -131,8 +138,8 @@ public class InscripcionMonitor {
 			String segundoNombre, String primerApellido,
 			String segundoApellido, String carne, String telefono,
 			String email, String nombreC, float promedio,int idInscripcion, 
-			String nombreA, int calificacion, String motivo,
-			String turno, Date fecha, int estado) {
+			String idAsignatura, String nombreA, int calificacion, 
+			String motivo,String turno, Date fecha, int estado) {
 		super();
 		this.idMonitor = idMonitor;
 		this.primerNombre = primerNombre;
@@ -145,6 +152,7 @@ public class InscripcionMonitor {
 		this.nombreC = nombreC;
 		this.promedio = promedio;
 		this.idInscripcion = idInscripcion;
+		this.idAsignatura = idAsignatura;
 		this.nombreA = nombreA;
 		this.calificacion = calificacion;
 		this.motivo = motivo;

@@ -115,6 +115,7 @@ public class SLBuscarMonitorCarne extends HttpServlet {
 					out += "<div class='col-md-12 col-sm-12 col-xs-12 form-group'>";
 						out += "<label>Asignatura a Monitorear</label>";
 						out += "<input type='text' id='nombreA' name='nombreA' class='form-control' value=\""+inm.getNombreA()+"\">";
+						out += "<input type='hidden' id='idAsignatura' name='idAsignatura' class='form-control' value=\""+inm.getIdAsignatura()+"\">";						
 					out +="</div>";
 					out +="<input type='hidden' id='idInscripcion' name='idInscripcion' value=\""+inm.getIdInscripcion()+"\">";
 		        }

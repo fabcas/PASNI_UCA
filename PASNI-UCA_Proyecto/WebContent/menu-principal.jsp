@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"
+	import="datos.*, entidades.*,servlets.*, java.util.*"
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +9,23 @@
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	response.setDateHeader("Expires", -1);
+	
+	int idUsuario = 0;
+	
+	ArrayList <UsuarioGenerico> listadmin = new ArrayList <UsuarioGenerico>();
+	listadmin = (ArrayList <UsuarioGenerico>) session.getAttribute("login");
+	if(listadmin != null)
+ 	{
+		for (UsuarioGenerico user: listadmin)
+		{	
+			idUsuario = user.getIdUsuario();
+		}
+ 	}
+	else
+	{
+		response.sendRedirect("index.jsp");
+		return;
+	}
 	
 %>
 

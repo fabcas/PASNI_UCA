@@ -181,19 +181,19 @@
 											<label >Nombres</label> 
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" id="nombrePE" name="nombrePE" required="required" class="form-control" value="<%=nombreP%>">
+													<input type="text" id="nombrePE" name="nombrePE" class="form-control" value="<%=nombreP%>" disabled="disabled">
 												</div>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" id="nombreSE" name="nombreSE" class="form-control" value="<%=nombreS%>">
+													<input type="text" id="nombreSE" name="nombreSE" class="form-control" value="<%=nombreS%>" disabled="disabled">
 												</div>
 											</div>
 											<label >Apellidos</label>
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" id="apellidoEP" name="apellidoEP" required="required" class="form-control" value="<%=apellidoP%>">
+													<input type="text" id="apellidoEP" name="apellidoEP" class="form-control" value="<%=apellidoP%>" disabled="disabled">
 												</div>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" id="apellidoSE" name="apellidoSE" class="form-control" value="<%=apellidoS%>">
+													<input type="text" id="apellidoSE" name="apellidoSE" class="form-control" value="<%=apellidoS%>" disabled="disabled">
 												</div>
 											</div>
 											<label>Correo</label><input type="email" class="form-control" id="emailE" name="emailE" required="required" value="<%=correo%>"><br>

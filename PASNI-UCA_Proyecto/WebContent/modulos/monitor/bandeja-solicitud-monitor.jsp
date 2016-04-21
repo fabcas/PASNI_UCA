@@ -311,6 +311,11 @@
 											<input type="radio" class="flat" checked name="turnoA" id="turnoA" value="vespertino">Vespertino
 											<input type="radio" class="flat" checked name="turnoA" id="turnoA" value="sabatino"> Sabatino
 										</p>
+										<label>Estipendio</label> 
+                                        <p>
+                                        	<input type="radio" class="flat"  name="estipendioE" id="estipendioA" value="1">Si
+											<input type="radio" class="flat"  name="estipendioE" id="estipendioA" value="2">No
+                                        </p>
 										<label>Aprobar</label> 
 										<p>
                                            	<input type="radio" class="flat"  name="estadoA" id="estadoA" value="1">Si
@@ -373,6 +378,11 @@
                                            	<input type="radio" class="flat"  name="turnoE" id="turnoED" value="diurno">Diurno
 											<input type="radio" class="flat"  name="turnoE" id="turnoEV" value="vespertino">Vespertino
 											<input type="radio" class="flat"  name="turnoE" id="turnoES" value="sabatino"> Sabatino
+                                        </p>
+                                        <label>Estipendio</label> 
+                                        <p>
+                                        	<input type="radio" class="flat"  name="estipendioE" id="estipendioE" value="1">Si
+											<input type="radio" class="flat"  name="estipendioE" id="estipendioE" value="2">No
                                         </p>
 										<label>Aprobar</label> 
 										<p>

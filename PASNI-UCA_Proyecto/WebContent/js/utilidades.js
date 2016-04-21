@@ -88,8 +88,6 @@
 			          }
 			        });
 			});
-			
-			
 		
 			$("#facultad").change(function()
 					{
@@ -111,6 +109,31 @@
 						          success:function(data) 
 						          {
 						        		$('#carrera').html(data);  
+						          }
+						        });
+						};			
+					});
+			
+			$("#FACU").change(function()
+					{
+						var facultad=$("#FACU").val();
+						console.log(facultad);
+						if (facultad=="0")
+						{
+							$("#CAR").val("0");
+							$("#CAR").prop('disabled',true);
+						}
+						else 
+						{
+							$("#CAR").prop('disabled',false);
+							$.ajax({		    
+						          url:"../../SLComboCarreras",
+						          type:"post",
+						          datatype:"html",
+						          data:{'idFacultad':facultad},
+						          success:function(data) 
+						          {
+						        		$('#CAR').html(data);  
 						          }
 						        });
 						};			
@@ -153,4 +176,19 @@
 		$("#telefonoE").val(telefonoM);
 		$("#carreraE").val(carreraM);
 		$("#promedioEM").val(promedioM);
+	};
+	
+	function cargarDatosI(idInforme, GRUP, semana, p1, p2, p3, p4, p5,oP,oA){
+		limpiar();
+		$("#idInformei").val(idInforme);
+		$("#grupoi").val(GRUP);
+		$("#semanai").val(semana);
+		$("#p1").val(p1);
+		$("#p2").val(p2);
+		$("#p3").val(p3);
+		$("#p4").val(p4);
+		$("#p5").val(p5);
+		$("#observacionP").val(oP);
+		$("#observacionA").val(oA);
+		
 	};

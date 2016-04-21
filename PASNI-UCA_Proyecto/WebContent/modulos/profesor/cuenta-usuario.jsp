@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
-    import="datos.*, entidades.*,servlets.*,negocio.*, java.util.*"
+    import="datos.*, entidades.*,servlets.*,negocio.*, java.util.*, java.text.SimpleDateFormat"
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,6 +9,10 @@
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	response.setDateHeader("Expires", -1);
+	
+	Date date = new Date();
+	SimpleDateFormat format = new SimpleDateFormat("yyyy");
+	String anio = format.format(date);
 %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -51,7 +55,7 @@
                         <div class="separator white">
                             <div class="clearfix"></div>
                             <h1 class="yellow"><i style="font-size: 26px;"></i> PASNI-UCA</h1>
-                            <p>&copy; Copyright 2016, Todos los Derechos Reservados</p>
+                            <p>&copy; Copyright <%=anio %>, Todos los Derechos Reservados</p>
 							<p>Universidad Centroamericana</p>
                         </div>
                     </form>

@@ -24,26 +24,11 @@
 	ArrayList <UsuarioGenerico> listadmin = new ArrayList <UsuarioGenerico>();
 	listadmin = (ArrayList <UsuarioGenerico>) session.getAttribute("login");
 	
-	
 	if(listadmin != null)
  	{
 		for (UsuarioGenerico user: listadmin)
 		{	
 			idUsuario = user.getIdUsuario();
-			idMonitor = user.getIdMonitor();
-		}
-		NGInforme informe = new NGInforme();
-		ArrayList<Informe> listai = new ArrayList<Informe>();
-		listai = informe.cargarInformes(idUsuario);
-		
-		if(listai != null){
-			for(Informe inf : listai){
-				idInforme = inf.getIdInforme();
-				idC = inf.getIdCuatrimestre();
-				cuatrimestre = inf.getCuatrimestre();
-			 	semana = inf.getSemana();
-			 	fecha = sdf.format(new java.sql.Date(inf.getFecha().getTime()));
-			}
 		}
  	}
 	else
@@ -51,10 +36,6 @@
 		response.sendRedirect("../../index.jsp");
 		return;
 	}
-	
-	
-	
-	
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -75,7 +56,6 @@
 <script src="../../js/icheck.min.js"></script>
 </head>
 <body class="nav-md">
-
 	<div class="container body">
 
 		<div class="main_container">
@@ -107,6 +87,11 @@
 	                        		<li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab"  aria-expanded="false">Asistencia</a></li>
 	                        	</ul>
 	                         </div>
+	                         <%
+	                         	NGInforme ngi = new NGInforme();
+	                         	ArrayList<Informe> li = new ArrayList<Informe>();
+	                         	li = ngi.cargarInformes(idUsuario);
+	                         %>
 	                         <div id="myTabContent" class="tab-content">
                              	<div role="tabpanel" class="tab-pane fade active in" id="tab_content1">
                                 	<div class="col-md-12 col-sm-12 col-xs-12">
@@ -119,20 +104,23 @@
 												<table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
 													<thead>
 					                                	<tr class="headings">
-					                               			<th class="column-title"># Informe </th>
-					                                		<th class="column-title">Cuatrimestre</th>
-					                                        <th class="column-title">Semana</th>
-					                                        <th class="column-title">Fecha</th>
+					                               			<th class="column-title">Informe</th>
+							                                <th class="column-title">Semana</th>
+							                                <th class="column-title">Monitor</th>
+							                                <th class="column-title">Fecha</th>
+							                                <th class="column-title">Acción</th>
 					                               		</tr>
 					                            	</thead>
 					                            	<tbody>
-					                            	
+					                            		<%for(Informe i : li){%>
 										                <tr class="even pointer">
-									                    	<td class=" "><%=idInforme%></td>
-									                   		<td class=""><%=cuatrimestre%></td>
-									                    	<td class=" "><%=semana %></td>
-									                   		<td class=" "><%=fecha %></td>
+									                    	<td class=" "><%=i.getIdInforme() %></td>
+									                   		<td class=""><%=i.getSemana() %></td>
+									                    	<td class=" "><%=i.getMonitor() %></td>
+									                   		<td class=" "><fmt:formatDate type="date" value="<%=i.getFecha()%>"/></td>
+									                   		<td class=" "></td>
 									                    </tr>
+									                    <%} %>
 								              		</tbody>
 												</table>
 				                            </div>
@@ -150,11 +138,11 @@
 				                        		<table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
 					                        		<thead>
 						                              	<tr class="headings">
-							                               	<th class="column-title">Grupo </th>
-							                                <th class="column-title">Asignatura</th>
-							                                <th class="column-title">Sección</th>
-							                                <th class="column-title">Día</th>
-							                                <th class="column-title">Horas</th>
+							                               	<th class="column-title">Informe</th>
+							                                <th class="column-title">Semana</th>
+							                                <th class="column-title">Monitor</th>
+							                                <th class="column-title">Fecha</th>
+							                                <th class="column-title">Acción</th>
 						                                </tr>
 					                            	</thead>
 					                            	<tbody>
@@ -214,11 +202,11 @@
 
 				NGTaller tallerNegocio = new NGTaller();
 				ArrayList<Cuatrimestre> listaCuatrimestre = new ArrayList<Cuatrimestre>();
-				listaCuatrimestre = tallerNegocio.comboCuatrimestre();
+				listaCuatrimestre = tallerNegocio.comboCuatrimestre();		
 				
-				NGGrupo grup = new NGGrupo();
+				NGGrupo g = new NGGrupo();
 				ArrayList<Grupo> lg = new ArrayList<Grupo>();
-				grup.cargarGrupoU(idUsuario);
+				lg = g.cargarGrupoU(idUsuario);
 			%>
 			<!-- Modal Agregar Inscripcion -->
 			<div class="modal fade modalAgregar"  id="modalAgregar" tabindex="-1" role="dialog" aria-hidden="true">
@@ -238,16 +226,9 @@
 									<label>Grupo</label>
 									<select id="idGrupo" class="form-control" name="idGrupo" required="required" tabindex="-1">
 										<option >Seleccione un grupo</option>
-										<%for(Grupo g : lg){%>
-											<option value="<%=g.getIdGrupo()%>"><%=g.getGRUP()%></option>
-										<%}%>
-									</select><br>
-									<label>Cuatrimestre</label> 
-									<select id="idCuatrimestreA" class="form-control" name="idCuatrimestreA" required="required" tabindex="-1">
-										<option value="0">Seleccione un cuatrimestre</option>
-										<%for(Cuatrimestre cuatri : listaCuatrimestre){%>
-										<option value="<%=cuatri.getIdCuatrimestre() %>"><%=cuatri.getNombre()%></option>
-										<%}%>
+										<%for(Grupo gr : lg){ %>
+											<option value="<%=gr.getIdGrupo()%>"><%=gr.getGRUP()%></option>
+										<%} %>
 									</select><br>
 									<label>Semana</label>
 									<select id="semana" class="form-control" name="semana" required="required" tabindex="-1">
@@ -255,6 +236,14 @@
 										<option value="Semana 2">Semana 2</option>
 										<option value="Semana 3">Semana 3</option>
 										<option value="Semana 4">Semana 4</option>
+										<option value="Semana 5">Semana 1</option>
+										<option value="Semana 6">Semana 2</option>
+										<option value="Semana 7">Semana 3</option>
+										<option value="Semana 8">Semana 4</option>
+										<option value="Semana 9">Semana 1</option>
+										<option value="Semana 10">Semana 2</option>
+										<option value="Semana 11">Semana 3</option>
+										<option value="Semana 12">Semana 4</option>
 									</select><br>
 									<label>1. Temas Desarrollados</label>
 									<div class="form-group has-feedback">
@@ -278,7 +267,7 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-										<button type="submit" class="btn btn-primary">Agregar</button>
+										<button type="submit" class="btn btn-primary">Enviar</button>
 									</div>
 								</div>
 							</form>

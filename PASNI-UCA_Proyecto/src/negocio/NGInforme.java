@@ -46,4 +46,41 @@ public class NGInforme {
 		
 		return bl;
 	}
+	
+	public ArrayList<Informe> cargarInformeT(){
+		
+		ArrayList < Informe > array = new ArrayList<Informe>();
+		MDInforme datos = new MDInforme();
+		try
+		{
+			array = datos.cargarInformeT();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Negocio, el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+		return array;
+	}
+	
+	public boolean agregarObservacion(Informe i)
+	{
+		
+		boolean bl = false;
+		
+		try
+		{
+			MDInforme inf = new MDInforme();
+			bl = inf.agregarObservacion(i);
+			System.out.println("NEGOCIO: La observación se ha enviado con éxito!!!");
+		}
+	
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("NEGOCIO: ERROR AL GUARDAR LOS DATOS " + e.getMessage());
+		}
+		
+		return bl;
+	}
 }

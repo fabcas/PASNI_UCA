@@ -6,10 +6,8 @@ import java.util.Date;
 public class Informe {
 	
 	private int idInforme;
-	private int idMonitor;
-	private int idCuatrimestre;
+	private int idGrupo;
 	private String GRUP;
-	private String cuatrimestre;
 	private String semana;
 	private Date fecha;
 	private String pregunta1;
@@ -17,6 +15,9 @@ public class Informe {
 	private String pregunta3;
 	private String pregunta4;
 	private String pregunta5;
+	private String monitor;
+	private String observacionP;
+	private String observacionA;
 	
 	public int getIdInforme() {
 		return idInforme;
@@ -24,29 +25,17 @@ public class Informe {
 	public void setIdInforme(int idInforme) {
 		this.idInforme = idInforme;
 	}
-	public int getIdMonitor() {
-		return idMonitor;
+	public int getIdGrupo() {
+		return idGrupo;
 	}
-	public void setIdMonitor(int idMonitor) {
-		this.idMonitor = idMonitor;
-	}
-	public int getIdCuatrimestre() {
-		return idCuatrimestre;
-	}
-	public void setIdCuatrimestre(int idCuatrimestre) {
-		this.idCuatrimestre = idCuatrimestre;
-	}
-	public String getCuatrimestre() {
-		return cuatrimestre;
-	}
-	public void setCuatrimestre(String cuatrimestre) {
-		this.cuatrimestre = cuatrimestre;
+	public void setIdGrupo(int idGrupo) {
+		this.idGrupo = idGrupo;
 	}
 	public String getGRUP() {
 		return GRUP;
 	}
-	public void setGRUP(String gRUP) {
-		GRUP = gRUP;
+	public void setGRUP(String GRUP) {
+		this.GRUP = GRUP;
 	}
 	public String getSemana() {
 		return semana;
@@ -90,18 +79,35 @@ public class Informe {
 	public void setPregunta5(String pregunta5) {
 		this.pregunta5 = pregunta5;
 	}
+	public String getMonitor() {
+		return monitor;
+	}
+	public void setMonitor(String monitor) {
+		this.monitor = monitor;
+	}
+	public String getObservacionP() {
+		return observacionP;
+	}
+	public void setObservacionP(String observacionP) {
+		this.observacionP = observacionP;
+	}
+	public String getObservacionA() {
+		return observacionA;
+	}
+	public void setObservacionA(String observacionA) {
+		this.observacionA = observacionA;
+	}
 	public Informe() {
 		super();
 	}
-	public Informe(int idInforme, int idMonitor, int idCuatrimestre, String GRUP, String cuatrimestre,
-			String semana, Date fecha, String pregunta1, String pregunta2,
-			String pregunta3, String pregunta4, String pregunta5) {
+	public Informe(int idInforme, int idGrupo, String gRUP, String semana,
+			Date fecha, String pregunta1, String pregunta2, String pregunta3,
+			String pregunta4, String pregunta5, String monitor,
+			String observacionP, String observacionA) {
 		super();
 		this.idInforme = idInforme;
-		this.idMonitor = idMonitor;
-		this.idCuatrimestre = idCuatrimestre;
-		this.cuatrimestre = cuatrimestre;
-		this.GRUP = GRUP;
+		this.idGrupo = idGrupo;
+		this.GRUP = gRUP;
 		this.semana = semana;
 		this.fecha = fecha;
 		this.pregunta1 = pregunta1;
@@ -109,5 +115,8 @@ public class Informe {
 		this.pregunta3 = pregunta3;
 		this.pregunta4 = pregunta4;
 		this.pregunta5 = pregunta5;
+		this.monitor = monitor;
+		this.observacionP = observacionP;
+		this.observacionA = observacionA;
 	}
 }

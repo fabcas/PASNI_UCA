@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entidades.GestionHorario;
 import entidades.Grupo;
+import entidades.HorarioAula;
 import negocio.NGGrupo;
 
 /**
@@ -41,42 +43,143 @@ public class SLGrupo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	try{
+			//var
 			String opc = "";
 			String out = "";
-			//String ANOMBRE= request.getParameter("nombreA");
-			String CARR= request.getParameter("carrera");
-			String APER= request.getParameter("idCuatrimestre");
+			boolean a = false;
+			
+			//ent
 			NGGrupo ng = new NGGrupo();
-			ArrayList <Grupo> lista = new ArrayList <Grupo>();
-			lista = ng.cargarGrupo(APER, CARR);
-			System.out.println(APER);
-			System.out.println(CARR);
+			
+			Grupo g = new Grupo();
+			GestionHorario gh = new GestionHorario();
+			HorarioAula ha = new HorarioAula();
+			
+			//val
 			opc = request.getParameter("opc");
 			
-				
-						out += "<thead>";
-							out += "<tr class='headings'>";
-								out += "<th class='column-title'>Grupo</th>";
-								out += "<th class='column-title'>Seleccione</th>";
-							out += "</tr>";
-						out += "</thead>";
-						out += "<tbody>";
-						System.out.println(out);
-						for(Grupo gr : lista){
-							out += "<tr class='even pointer'>";
-								out += "<td class=''>"+gr.getGRUP()+"</td>";
-								System.out.println(gr.getGRUP());
-								out += "<td class='a-center'>";
-									out += "<input type='checkbox' class='tableflat'>";
-								out += "</td>";
-							out += "</tr>";
-							System.out.println(out);
-						}
-						out += "</tbody>";
+			String idDocente = "";
+			String idInscripcion = "";
 			
-	        PrintWriter pw = response.getWriter();
-	        pw.write(out);
-	        pw.flush();
+			if(opc.equals("1")){
+				
+				String CARR= request.getParameter("carrera");
+				String APER= request.getParameter("idCuatrimestre");
+				String CODIASI = request.getParameter("idAsignatura");
+				
+				ArrayList <Grupo> lista = new ArrayList <Grupo>();
+				lista = ng.cargarGrupo(APER, CARR, CODIASI);
+				
+				out += "<thead>";
+				out += "<tr class='headings'>";
+					out += "<th class='column-title'>Grupo</th>";
+					out += "<th class='column-title'>Seleccione</th>";
+				out += "</tr>";
+				out += "</thead>";
+				out += "<tbody>";
+				for(Grupo gr : lista){
+					out += "<tr class='even pointer'>";
+						out += "<td class='a-center'>"+gr.getGRUP()+"</td>";
+						out += "<td class='a-center'>";
+							out += "<input type='checkbox' name='check' id='check' value='"+gr.getGRUP()+"'>";
+						out += "</td>";
+					out += "</tr>";
+				}
+				out += "</tbody>";
+	
+				PrintWriter pw = response.getWriter();
+				pw.write(out);
+				pw.flush();
+			}
+			else if(opc.equals("2")){
+				
+				String [] ListCheck = request.getParameterValues("check");
+				if(ListCheck!=null && ListCheck.length>0 && ListCheck.length<=3)
+				{
+					for(int i=0; i<ListCheck.length; i++){
+						idDocente = request.getParameter("idProfesor");
+						g.setIdDocente(Integer.parseInt(idDocente));
+						idInscripcion = request.getParameter("idInscripcion");
+						g.setIdInscripcion(Integer.parseInt(idInscripcion));
+						g.setCARR(request.getParameter("carrera"));
+						g.setGRUP(ListCheck[i]);
+						g.setAPER(request.getParameter("idCuatrimestre"));
+						a = ng.agregarGrupo(g);
+						
+						if(a == true){
+							response.sendRedirect("./modulos/monitor/planificacion-monitoreo.jsp?msj=1");}
+						else{
+							response.sendRedirect("./modulos/monitor/planificacion-monitoreo.jsp");}
+					}
+				}else{
+					response.sendRedirect("./modulos/monitor/planificacion-monitoreo.jsp?msj=2");
+				}
+			}
+			else if(opc.equals("3")){
+				
+				String id = request.getParameter("IDP");
+				String CUATRI = request.getParameter("CUATRI");
+				System.out.println(CUATRI);
+				String CAR = request.getParameter("CAR");
+				System.out.println(CAR);
+				
+				//parse
+				int IDP = Integer.parseInt(id);
+				System.out.println(IDP);
+				
+				ArrayList <Grupo> listah = new ArrayList <Grupo>();
+				listah = ng.cargarGrupoP(CAR, CUATRI, IDP);
+				
+				out += "<thead>";
+				out += "<tr class='headings'>";
+					out += "<th class='column-title'># Grupo</th>";
+					out += "<th class='column-title'>Grupo</th>";
+					out += "<th class='column-title'>Seleccione</th>";
+				out += "</tr>";
+				out += "</thead>";
+				out += "<tbody>";
+				System.out.println(out);
+				for(Grupo gr : listah){
+					out += "<tr class='even pointer'>";
+						out += "<td class='a-center'>"+gr.getIdGrupo()+"</td>";
+						System.out.println(out);
+						out += "<td class='a-center'>"+gr.getGRUP()+"</td>";
+						System.out.println(out);
+						out += "<td class='a-center'>";
+							out += "<input type='checkbox' name='checkg' id='checkg' value='"+gr.getIdGrupo()+"'>";
+						out += "</td>";
+					out += "</tr>";
+				}
+				out += "</tbody>";
+	
+				PrintWriter pw = response.getWriter();
+				pw.write(out);
+				pw.flush();
+			}
+			else if(opc.equals("4")){
+				
+				String [] ListCheck = request.getParameterValues("checkg");
+				if(ListCheck!=null && ListCheck.length>0 && ListCheck.length<=1)
+				{
+					for(int i=0; i<ListCheck.length; i++){
+						gh.setIdGrupo(Integer.parseInt(ListCheck[i]));
+						ha.setCODIAULA(request.getParameter("idAula"));
+						ha.setDia(request.getParameter("dia"));
+						ha.setHoraInicio(request.getParameter("horaI"));
+						ha.setHoraFin(request.getParameter("horaF"));
+						a = ng.agregarGestionH(gh, ha);
+						
+						if(a == true){
+							response.sendRedirect("./modulos/monitor/planificacion-monitoreo.jsp?msj=3");}
+						else{
+							response.sendRedirect("./modulos/monitor/planificacion-monitoreo.jsp");}
+					}
+				}else{
+					response.sendRedirect("./modulos/monitor/planificacion-monitoreo.jsp?msj=4");
+				}
+				
+			}
+						
 		}
 
 		catch (Exception e)

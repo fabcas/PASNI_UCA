@@ -273,7 +273,7 @@ public class MDInscripcion extends Conexion{
 	public ArrayList <InscripcionMonitor> monitorPlanificacion(String carne)
 	{
 		ArrayList <InscripcionMonitor> array= new ArrayList <InscripcionMonitor>();
-		String sql = ("SELECT i.idInscripcion, i.idMonitor, m.primerNombre, m.segundoNombre, m.primerApellido, m.segundoApellido, a.nombreA as nombreA FROM Inscripcion i INNER JOIN Monitor m ON i.idMonitor = m.idMonitor INNER JOIN Asignatura a ON i.idAsignatura = a.idAsignatura WHERE  i.estado = 1 AND m.carne = ?");
+		String sql = ("SELECT i.idInscripcion, i.idMonitor, i.idAsignatura, m.primerNombre, m.segundoNombre, m.primerApellido, m.segundoApellido, a.nombreA as nombreA FROM Inscripcion i INNER JOIN Monitor m ON i.idMonitor = m.idMonitor INNER JOIN Asignatura a ON i.idAsignatura = a.idAsignatura WHERE  i.estado = 1 AND m.carne = ?");
 		
 		try
 		{
@@ -290,6 +290,7 @@ public class MDInscripcion extends Conexion{
 				im.setSegundoNombre(rs.getString("segundoNombre"));
 				im.setPrimerApellido(rs.getString("primerApellido"));
 				im.setSegundoApellido(rs.getString("segundoApellido"));
+				im.setIdAsignatura(rs.getString("idAsignatura"));
 				im.setNombreA(rs.getString("nombreA"));
 				array.add(im);
 			}

@@ -47,6 +47,9 @@
 	Date date = new Date();
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	String f_actual = format.format(date);
+	
+	SimpleDateFormat f = new SimpleDateFormat("yyyy");
+	String anio = f.format(date);
 %>
 	<div class="site-wrapper"> 
 		<nav class="navbar">
@@ -119,7 +122,7 @@
 		</section>
 		<div class="mastfoot">
 			<div class="white text-center">
-				<p>&copy; Copyright 2016, Todos los Derechos Reservados</p>
+				<p>&copy; Copyright <%=anio %>, Todos los Derechos Reservados</p>
 				<p>Universidad Centroamericana</p>
 			</div>            
 		</div>

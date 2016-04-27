@@ -88,6 +88,19 @@
 			          }
 			        });
 			});
+			
+			$('#idGrupoAsis').change(function(){
+				$.ajax({		    
+			          url:"../../SLComboGrupo",
+			          type:"post",
+			          datatype:"html",
+			          data:{'idGrupoAsis':$('#idGrupoAsis option:selected').attr('value')},
+			          success:function(data) 
+			          {
+			        		$('#idAsis').html(data);  
+			          }
+			        });
+			});
 		
 			$("#facultad").change(function()
 					{
@@ -113,6 +126,9 @@
 						        });
 						};			
 					});
+			
+			//idGrupoAsis
+			
 			
 			$("#FACU").change(function()
 					{
@@ -162,7 +178,10 @@
 			$('#turnoES').prop('checked',true);
 		}
 	};
-	
+	function cargarDatosG(grupo, grup){
+		$("#idgrupo").val(grupo);
+		$("#grupn").val(grup);
+	}
 	//Cargar datos en un modal monitor.jsp
 	function cargarDatosM(idMonitor, carneM, nombrePM, nombreSM, apellidoPM, apellidoSM, correoM, telefonoM, carreraM, promedioM){
 		limpiar();
@@ -190,5 +209,19 @@
 		$("#p5").val(p5);
 		$("#observacionP").val(oP);
 		$("#observacionA").val(oA);
+		
+	};
+	
+	function cargarDatosIM(GRUPM, semanaM, p1M, p2M, p3M, p4M, p5M,oPM,oAM){
+		limpiar();
+		$("#grupoM").val(GRUPM);
+		$("#semanaM").val(semanaM);
+		$("#p1M").val(p1M);
+		$("#p2M").val(p2M);
+		$("#p3M").val(p3M);
+		$("#p4M").val(p4M);
+		$("#p5M").val(p5M);
+		$("#observacionPM").val(oPM);
+		$("#observacionAM").val(oAM);
 		
 	};

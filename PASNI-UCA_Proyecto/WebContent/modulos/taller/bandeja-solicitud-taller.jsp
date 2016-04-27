@@ -8,9 +8,15 @@
 <html>
 
 <%
-response.setHeader("Pragma", "No-cache");
-response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-response.setDateHeader("Expires", -1);
+	response.setHeader("Pragma", "No-cache");
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	response.setDateHeader("Expires", -1);
+%>
+
+<%
+	
+	
+
 %>
 
 <head>
@@ -79,7 +85,7 @@ response.setDateHeader("Expires", -1);
 
 									<div class="modal fade" id="modalAprobar" tabindex="-1"
 										role="dialog" aria-hidden="true">
-										<div class="modal-dialog modal-sm">
+										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
 													<button type="button" class="close" data-dismiss="modal"
@@ -87,7 +93,7 @@ response.setDateHeader("Expires", -1);
 														<span aria-hidden="true">x</span>
 													</button>
 													<h5 class="modal-title">
-														<b>Aprobar Solicitud</b>
+														<b>Revisar información de la solicitud</b>
 													</h5>
 												</div>
 												<div class="modal-body">
@@ -96,11 +102,16 @@ response.setDateHeader("Expires", -1);
 														method="post" action="../../SLSolicitudTaller?opc=2">
 														<div class="item form-group">
 															<div class="col-md-12 col-sm-12 col-xs-12">
-																<label><b>¿A dónde desea enviar la siguiente solicitud?</b></label><br>
-																Aprobadas: <input type="radio" id="estado" name="estado" value="Si"><br><br>
-																Desaprobada: <input type="radio" id="estado" name="estado" value="No">
+																<label><b>Seleccione una de las opciones de ésta solicitud</b></label><br><br>
+																
 																<input type="hidden" name="idSolicitudTaller"
 																	id="idSolicitudTaller">
+																<label>Profesor Guía:</label> <br>
+																<input type="text" name="idProfesorGuia"
+																	id="idProfesorGuia" class="form-control" disabled="disabled">
+																	
+																<!-- Detalles -->
+																
 																<!-- <input type="text" name="nombre_TallerEliminado" id="nombre_TallerEliminado" disabled="disabled"> -->
 																<!-- <p>¿Seguro que desea aprobar ésta solicitud?</p> -->
 															</div>
@@ -151,10 +162,10 @@ response.setDateHeader("Expires", -1);
 															</th>
 															<th>Id Solicitud</th>
 															<th>Profesor Guía</th>
-															<th>Taller</th>
 															<th>Horario</th>
-															<th>Cantidad de Estudiantes</th>
 															<th>Fecha</th>
+															<th>Día Propuesto</th>
+															<th>Número de participantes</th>
 															<th>Estado</th>
 															<th><span class="nobr">Acción</span></th>
 														</tr>
@@ -171,17 +182,17 @@ response.setDateHeader("Expires", -1);
 																class="tableflat"></td>
 															<td class=""><%=st.getIdSolicitudTaller() %></td>
 															<td class=""><%=st.getNombreProfesor() %></td>
-															<td class=""><%=st.getNombreTaller() %></td>
-															<td class=""><%=st.getHorarioPropuesto() %></td>
-															<td class=""><%=st.getCantidadEstudiantes() %></td>
+															<td class=""><%=st.getHorario() %></td>
 															<td class=""><fmt:formatDate type="date" value="<%=st.getFechaSolicitud()%>"/></td>
+															<td class=""><fmt:formatDate type="date" value="<%=st.getDiaPropuesto()%>"/></td>
+															<td class=""><%=st.getCantidadEstudiantes() %></td>
 															<td class=""><%=st.getCadenaEstado() %></td>
 															<td>
 																<button type="button" id="botonAprobar"
 																	title="Aprobar solicitud"
 																	class="btn btn-success btn-xs" data-toggle="modal"
 																	data-target="#modalAprobar"
-																	onclick="cargarDatos('<%= st.getIdSolicitudTaller() %>')">
+																	onclick="cargarDatos('<%= st.getIdSolicitudTaller() %>', '<%=st.getNombreProfesor()%>')">
 																	<i class="fa fa-check-square-o"></i>
 																</button>
 															</td>
@@ -214,10 +225,10 @@ response.setDateHeader("Expires", -1);
 															</th>
 															<th>Id Solicitud</th>
 															<th>Profesor Guía</th>
-															<th>Taller</th>
-															<th>Fecha</th>
 															<th>Horario</th>
-															<th>Cantidad de Estudiantes</th>
+															<th>Fecha</th>
+															<th>Día Propuesto</th>
+															<th>Número de participantes</th>
 															<th>Estado</th>
 															<th><span class="nobr">Acción</span></th>
 														</tr>
@@ -234,11 +245,10 @@ response.setDateHeader("Expires", -1);
 																class="tableflat"></td>
 															<td class=""><%=st.getIdSolicitudTaller() %></td>
 															<td class=""><%=st.getNombreProfesor() %></td>
-															<td class=""><%=st.getNombreTaller() %></td>
-															<td class=""><%=st.getFechaSolicitud() %></td>
-															<td class=""><%=st.getHorarioPropuesto() %></td>
-															<td class=""><%=st.getCantidadEstudiantes() %></td>
+															<td class=""><%=st.getHorario() %></td>
 															<td class=""><fmt:formatDate type="date" value="<%=st.getFechaSolicitud()%>"/></td>
+															<td class=""><fmt:formatDate type="date" value="<%=st.getDiaPropuesto()%>"/></td>
+															<td class=""><%=st.getCantidadEstudiantes() %></td>
 															<td class=""><%=st.getCadenaEstado() %></td>
 															<td>
 																<!-- <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar" onclick=""><i class="fa fa-check-square-o"></i></button> -->
@@ -270,10 +280,10 @@ response.setDateHeader("Expires", -1);
 															</th>
 															<th>Id Solicitud</th>
 															<th>Profesor Guía</th>
-															<th>Taller</th>
-															<th>Fecha</th>
 															<th>Horario</th>
-															<th>Cantidad de Estudiantes</th>
+															<th>Fecha</th>
+															<th>Día Propuesto</th>
+															<th>Número de participantes</th>
 															<th>Estado</th>
 															<th><span class="nobr">Acción</span></th>
 														</tr>
@@ -290,11 +300,10 @@ response.setDateHeader("Expires", -1);
 																class="tableflat"></td>
 															<td class=""><%=st.getIdSolicitudTaller() %></td>
 															<td class=""><%=st.getNombreProfesor() %></td>
-															<td class=""><%=st.getNombreTaller() %></td>
-															<td class=""><%=st.getFechaSolicitud() %></td>
-															<td class=""><%=st.getHorarioPropuesto() %></td>
-															<td class=""><%=st.getCantidadEstudiantes() %></td>
+															<td class=""><%=st.getHorario() %></td>
 															<td class=""><fmt:formatDate type="date" value="<%=st.getFechaSolicitud()%>"/></td>
+															<td class=""><fmt:formatDate type="date" value="<%=st.getDiaPropuesto()%>"/></td>
+															<td class=""><%=st.getCantidadEstudiantes() %></td>
 															<td class=""><%=st.getCadenaEstado() %></td>
 															<td>
 																<!-- <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalEditar" onclick=""><i class="fa fa-check-square-o"></i></button> -->
@@ -372,9 +381,10 @@ response.setDateHeader("Expires", -1);
 
 <script type="text/javascript">
 		
-        	function cargarDatos(id){
+        	function cargarDatos(id, idprofesor){
 				
         		$("#idSolicitudTaller").val(id);
+        		$("#idProfesorGuia").val(idprofesor);
 				
 			}
         	
@@ -430,7 +440,7 @@ response.setDateHeader("Expires", -1);
     		}
         </script>
 
-<script type="text/javascript">
+		<script type="text/javascript">
 			
 			cargarNotify();
 			$(document).ready(function()
@@ -465,23 +475,12 @@ response.setDateHeader("Expires", -1);
 							}	
 						}	
 				)
-				.columnFilter({
-					aoColumns: [ { type: "text" },
-					             { type: "text" },
-					 			 { type: "text" },
-					 			 { type: "text" },
-					 			 { type: "text" },
-					 			 { type: "text" },
-					 			 null
-					 			]
-				});
-				
 			});
 		</script>
 
-<script>
-         $(function() {
-            $("#botonAprobar").tooltip();
-         });
-      </script>
+		<script type="text/javascript">
+	         $(function() {
+	            $("#botonAprobar").tooltip();
+	         });
+        </script>
 </html>

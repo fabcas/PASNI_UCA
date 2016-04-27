@@ -39,10 +39,7 @@ public class SLInscripcion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		NGPeriodoInscripcion pi = new NGPeriodoInscripcion();
-		
-		
-		try{
+	try{
 			
 			Inscripcion i = new Inscripcion();
 			Monitor m = new Monitor();
@@ -52,7 +49,6 @@ public class SLInscripcion extends HttpServlet {
 			boolean ai = false; //agregar inscripcion
 			
 			String opc ="";
-			//String idAsignatura ="";
 			String promedio =""; 
 			String calificacion ="";
 			String turno =""; 
@@ -62,11 +58,12 @@ public class SLInscripcion extends HttpServlet {
 			
 			opc = request.getParameter("opc");
 			
-			if(opc.isEmpty() == true){
-				response.sendRedirect("./modulos/monitor/inscripcion.jsp");
-			}
-			else if(opc.equals("1")){
-				
+			if(opc.isEmpty() == true)
+			 {
+				 response.sendRedirect("./modulos/monitor/inscripcion.jsp");
+			 }
+			else if(opc.equals("1"))
+			 {	
 				/*Monitor*/
 				
 				m.setPrimerNombre(request.getParameter("primerN"));
@@ -96,9 +93,11 @@ public class SLInscripcion extends HttpServlet {
 				
 				a = ni.guardarNGInscripcion(i, m);
 				if(a == true){
-					response.sendRedirect("./modulos/monitor/inscripcion.jsp?msj=1");}
+					response.sendRedirect("./modulos/monitor/inscripcion.jsp?msj=1");
+				}
 				else{
-					response.sendRedirect("./modulos/monitor/inscripcion.jsp");}
+					response.sendRedirect("./modulos/monitor/inscripcion.jsp");
+				}
 			}
 			else if(opc.equals("2")){
 				

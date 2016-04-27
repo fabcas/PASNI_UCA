@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import negocio.NGSolicitudTaller;
+import entidades.DetalleSolicitudTaller;
 import entidades.SolicitudTaller;
 
 /**
@@ -41,6 +42,7 @@ public class SLSolicitudTaller extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		SolicitudTaller st = new SolicitudTaller();
+		DetalleSolicitudTaller dst = new DetalleSolicitudTaller();
 		NGSolicitudTaller ngs = new NGSolicitudTaller();
 		boolean a = false;
 		String opc = "";
@@ -48,8 +50,11 @@ public class SLSolicitudTaller extends HttpServlet {
 		String estado = "";
 		Date fechaActual = new Date();
 		String idTaller = "";
+		String idTaller1 = "";
+		String idTaller2 = "";
 		String idProfesor = "";
 		String fecha = "";
+		String dia = "";
 		
 		try{
 			opc = request.getParameter("opc");
@@ -57,32 +62,59 @@ public class SLSolicitudTaller extends HttpServlet {
 			if(opc.equals("1"))
 			{
 				
-				idTaller = request.getParameter("taller");
-				st.setIdTaller(Integer.parseInt(idTaller));
+				
+				/* Talleres */
+				idTaller = request.getParameter("taller1");
+				dst.setIdTaller1(Integer.parseInt(idTaller));
+				
+				idTaller1 = request.getParameter("taller2");
+				dst.setIdTaller2(Integer.parseInt(idTaller1));
+				
+				idTaller2 = request.getParameter("taller3");
+				dst.setIdTaller3(Integer.parseInt(idTaller2));
+				
+				/* Fin de Talleres */
+				
+				//Id del Profesor
 				idProfesor = request.getParameter("idUsuario");
 				st.setIdProfesor(Integer.parseInt(idProfesor));
-				fecha = request.getParameter("fecha");
 				
+				//Fecha de la solicitud
+				fecha = request.getParameter("fecha");
 				
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				java.util.Date parsed = null;
 				parsed = format.parse(fecha);
 				st.setFechaSolicitud((new java.sql.Date(parsed.getTime())));
 				
-				st.setHorarioPropuesto(request.getParameter("horario"));
+				//Día propuesto
+				dia = request.getParameter("diapropuesto");
+				SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+				java.util.Date parsed2 = null;
+				parsed2 = format2.parse(dia);
+				st.setDiaPropuesto((new java.sql.Date(parsed2.getTime())));
+				
+				//Horario propuesto
+				st.setHorarioPropuesto(Integer.parseInt(request.getParameter("horario")));
+				
+				//Cantidad de estudiantes
 				st.setCantidadEstudiantes(Integer.parseInt(request.getParameter("cantidadEstudiantes")));
 				//st.setEstado(1);
 				
-				a = ngs.guardarSolicitudTaller(st);
+				a = ngs.guardarSolicitudTaller(st, dst);
 				
 				if(a == true)
 				{
-					response.sendRedirect("./modulos/taller/solicitarTaller.jsp?msj=1");
+					response.sendRedirect("./modulos/taller/solicitar-taller.jsp?msj=1");
 				}
 				else
 				{
-					response.sendRedirect("./modulos/taller/solicitarTaller.jsp");
+					response.sendRedirect("./modulos/taller/solicitar-taller.jsp");
 				}
+			}
+			
+			if(opc.equals("2")){
+				
 			}
 			
 		}
@@ -90,7 +122,7 @@ public class SLSolicitudTaller extends HttpServlet {
 		{
 			 e.printStackTrace();
 			 System.out.println("Servlet: Error en el catch al verificar los datos del taller: -> " + e.getMessage());
-			 response.sendRedirect("./modulos/taller/solicitarTaller.jsp");
+			 response.sendRedirect("./modulos/taller/solicitar-taller.jsp");
 		}
 
 		

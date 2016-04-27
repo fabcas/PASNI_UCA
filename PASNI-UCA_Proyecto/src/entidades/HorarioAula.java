@@ -8,6 +8,7 @@ public class HorarioAula {
 	private String horaInicio;
 	private String horaFin;
 	private int idGestionHorario;
+	private String GRUP;
 	public int getIdHorario() {
 		return idHorario;
 	}
@@ -17,8 +18,8 @@ public class HorarioAula {
 	public String getCODIAULA() {
 		return CODIAULA;
 	}
-	public void setCODIAULA(String cODIAULA) {
-		CODIAULA = cODIAULA;
+	public void setCODIAULA(String CODIAULA) {
+		this.CODIAULA = CODIAULA;
 	}
 	public String getDia() {
 		return dia;
@@ -44,17 +45,24 @@ public class HorarioAula {
 	public void setIdGestionHorario(int idGestionHorario) {
 		this.idGestionHorario = idGestionHorario;
 	}
+	public String getGRUP() {
+		return GRUP;
+	}
+	public void setGRUP(String gRUP) {
+		GRUP = gRUP;
+	}
 	public HorarioAula() {
 		super();
 	}
-	public HorarioAula(int idHorario, String cODIAULA, String dia,
-			String horaInicio, String horaFin, int idGestionHorario) {
+	public HorarioAula(int idHorario, String CODIAULA, String dia,
+			String horaInicio, String horaFin, int idGestionHorario, String GRUP) {
 		super();
 		this.idHorario = idHorario;
-		CODIAULA = cODIAULA;
+		this.CODIAULA = CODIAULA;
 		this.dia = dia;
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
 		this.idGestionHorario = idGestionHorario;
+		this.GRUP = GRUP;
 	}
 }

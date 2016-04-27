@@ -41,7 +41,8 @@ public class SLGrupo extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+			response.setContentType("text/html;charset=UTF-8");
+			request.setCharacterEncoding("UTF-8");
 	try{
 			//var
 			String opc = "";
@@ -128,8 +129,8 @@ public class SLGrupo extends HttpServlet {
 				System.out.println(IDP);
 				
 				ArrayList <Grupo> listah = new ArrayList <Grupo>();
-				listah = ng.cargarGrupoP(CAR, CUATRI, IDP);
-				
+				listah = ng.cargarGrupoP(CUATRI, CAR, IDP);
+				//System.out.println(listah.get(0).getIdGrupo());
 				out += "<thead>";
 				out += "<tr class='headings'>";
 					out += "<th class='column-title'># Grupo</th>";
@@ -138,15 +139,15 @@ public class SLGrupo extends HttpServlet {
 				out += "</tr>";
 				out += "</thead>";
 				out += "<tbody>";
-				System.out.println(out);
-				for(Grupo gr : listah){
+				for(Grupo gru : listah){
+					System.out.println("Entró al for: "+gru.getIdGrupo());
 					out += "<tr class='even pointer'>";
-						out += "<td class='a-center'>"+gr.getIdGrupo()+"</td>";
+						out += "<td class='a-center'>"+gru.getIdGrupo()+"</td>";
 						System.out.println(out);
-						out += "<td class='a-center'>"+gr.getGRUP()+"</td>";
+						out += "<td class='a-center'>"+gru.getGRUP()+"</td>";
 						System.out.println(out);
 						out += "<td class='a-center'>";
-							out += "<input type='checkbox' name='checkg' id='checkg' value='"+gr.getIdGrupo()+"'>";
+							out += "<input type='checkbox' name='checkg' id='checkg' value='"+gru.getIdGrupo()+"'>";
 						out += "</td>";
 					out += "</tr>";
 				}
@@ -158,27 +159,22 @@ public class SLGrupo extends HttpServlet {
 			}
 			else if(opc.equals("4")){
 				
-				String [] ListCheck = request.getParameterValues("checkg");
-				if(ListCheck!=null && ListCheck.length>0 && ListCheck.length<=1)
-				{
-					for(int i=0; i<ListCheck.length; i++){
-						gh.setIdGrupo(Integer.parseInt(ListCheck[i]));
+						String idgrupo = request.getParameter("idgrupo");
+						gh.setIdGrupo(Integer.parseInt(idgrupo));
 						ha.setCODIAULA(request.getParameter("idAula"));
 						ha.setDia(request.getParameter("dia"));
-						ha.setHoraInicio(request.getParameter("horaI"));
-						ha.setHoraFin(request.getParameter("horaF"));
+						ha.setHoraInicio(request.getParameter("horaInicio"));
+						ha.setHoraFin(request.getParameter("horaFin"));
 						a = ng.agregarGestionH(gh, ha);
 						
 						if(a == true){
 							response.sendRedirect("./modulos/monitor/planificacion-monitoreo.jsp?msj=3");}
 						else{
 							response.sendRedirect("./modulos/monitor/planificacion-monitoreo.jsp");}
-					}
+					
 				}else{
 					response.sendRedirect("./modulos/monitor/planificacion-monitoreo.jsp?msj=4");
 				}
-				
-			}
 						
 		}
 

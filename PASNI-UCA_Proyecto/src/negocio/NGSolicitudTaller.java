@@ -2,16 +2,20 @@ package negocio;
 
 import java.util.ArrayList;
 
+import datos.MDHorarioTaller;
 import datos.MDSolicitudTaller;
 import datos.MDTaller;
+import entidades.DetalleSolicitudTaller;
+import entidades.HorarioTaller;
 import entidades.SolicitudTaller;
 import entidades.Taller;
+import entidades.VwSolicitudDetalles;
 
 public class NGSolicitudTaller {
 	
 	/** Métodos de agregar, modificar, eliminar **/
 		
-	public boolean guardarSolicitudTaller(SolicitudTaller st)
+	public boolean guardarSolicitudTaller(SolicitudTaller st, DetalleSolicitudTaller dst)
 	{
 		
 		boolean bl = false;
@@ -19,7 +23,7 @@ public class NGSolicitudTaller {
 		try
 		{
 			MDSolicitudTaller datos = new MDSolicitudTaller();
-			bl = datos.guardarSolicitudTaller(st);
+			bl = datos.guardarSolicitudTaller(st, dst);
 			System.out.println("Negocio: Solicitud aprobada!!!");
 		}
 				
@@ -122,6 +126,43 @@ public class NGSolicitudTaller {
 		try
 		{
 			array = datos.cargarDatos();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Negocio, el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
+		return array;
+	}
+	
+	public ArrayList<VwSolicitudDetalles> cargarSolicitudesDetalles(int idSolicitud)
+	{
+		ArrayList < VwSolicitudDetalles > array = new ArrayList<VwSolicitudDetalles>();
+		MDSolicitudTaller datos = new MDSolicitudTaller();
+		
+		try
+		{
+			array = datos.cargarDetalles(idSolicitud);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Negocio, el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
+		return array;
+	}
+	
+	public ArrayList<HorarioTaller> cargarComboHorarios()
+	{
+		ArrayList < HorarioTaller > array = new ArrayList<HorarioTaller>();
+		MDHorarioTaller datos = new MDHorarioTaller();
+		try
+		{
+			array = datos.comboHorarioTaller();
 		}
 		catch(Exception e)
 		{

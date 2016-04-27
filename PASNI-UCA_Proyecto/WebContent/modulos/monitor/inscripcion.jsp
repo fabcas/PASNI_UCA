@@ -33,7 +33,6 @@
 
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/utilidades.js"></script>
-<script src="../../js/validaciones.js" type="text/javascript"></script>
 </head>
 
 <body class="nav-md">
@@ -78,14 +77,25 @@
 							</div>
 						</div>
 					</div>
+					<%
+						NGPeriodoInscripcion ngpi = new NGPeriodoInscripcion();
+						ArrayList<PeriodoInscripcion> lis = ngpi.cargarPI();
+							
+						NGFacultad fac = new NGFacultad();
+						ArrayList<Facultad> lista = new ArrayList<Facultad>();
+						lista = fac.comboFacultad();
+							
+						NGCarrera nc = new NGCarrera();
+						ArrayList<Carrera> list = new ArrayList<Carrera>();	
+							
+						NGAsignatura nga = new NGAsignatura();
+						ArrayList<Asignatura> listac = new ArrayList<Asignatura>();
+						listac = nga.comboAsignatura();
+					%>
 					<div class="page-title">
 						<div class="title_right">
 							<h4 class="white">Inscripción al programa</h4>
 						</div>
-						<%
-							NGPeriodoInscripcion ngpi = new NGPeriodoInscripcion();
-							ArrayList<PeriodoInscripcion> lis = ngpi.cargarPI();
-						%>
 						<div class="title_left white">
 						<%for(PeriodoInscripcion pi : lis)
 						{%>
@@ -100,7 +110,7 @@
 					
 						<div class="col-md-12 col-sm-12 col-xs-12">
 						
-							<form method="post" action="../../SLInscripcion?opc=1">
+							<form method="post" action="../../SLInscripcion?opc=1" onsubmit="return cargarNotify()">
 							
 								<div class="x_panel">
 								
@@ -114,7 +124,7 @@
 										<div class="form-horizontal form-label-left input_mask" >
 	
 											<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-												<input type="text" class="form-control has-feedback-left" id="primerN" name="primerN" placeholder="Primer Nombre"> <span
+												<input type="text" class="form-control has-feedback-left" required="required" id="primerN" name="primerN" placeholder="Primer Nombre"> <span
 												class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
 											</div>
 	
@@ -124,7 +134,7 @@
 											</div>
 	
 											<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-												<input type="text" class="form-control has-feedback-left" id="primerA" name="primerA" placeholder="Primer Apellido"> <span
+												<input type="text" class="form-control has-feedback-left" required="required" id="primerA" name="primerA" placeholder="Primer Apellido"> <span
 													class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
 											</div>
 	
@@ -136,7 +146,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Celular</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" class="form-control has-feedback-left inputTelefono" id="telefono" name="telefono"> <span
+													<input type="text" class="form-control has-feedback-left inputTelefono" required="required" id="telefono" name="telefono"> <span
 													class="fa fa-mobile form-control-feedback left" aria-hidden="true"></span>
 												</div>
 											</div>
@@ -144,7 +154,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Correo</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="email" class="form-control has-feedback-left" id="email" name="email" onblur="validarCorreo(this.value);">
+													<input type="email" class="form-control has-feedback-left" required="required" id="email" name="email" onblur="validarCorreo(this.value);">
 													<span class="fa fa-envelope-o form-control-feedback left" aria-hidden="true"></span>
 												</div>
 											</div>
@@ -171,29 +181,19 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Carné</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" class="form-control has-feedback-left" id="carne" name="carne"> <span
+													<input type="text" class="form-control has-feedback-left" required="required" id="carne" name="carne"> <span
 														class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
 												</div>
 											</div>
 											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Facultad</label>
-													<% 
-														NGFacultad fac = new NGFacultad();
-														ArrayList<Facultad> lista = new ArrayList<Facultad>();
-														lista = fac.comboFacultad();
-													%>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<select id="facultad" name="facultad" class="form-control has-feedback-left">
+													<select id="facultad" name="facultad" required="required" class="form-control has-feedback-left">
 														<option>Seleccion una facultad</option>
-														<%
-															for(Facultad facu: lista)
-	 														{
-														%>
-															<option value="<%=facu.getCOFA()%>"><%=facu.getNOMBRE()%></option>
-														<%
-	 														}
-														%>
+														<%for(Facultad facu: lista){%>
+														<option value="<%=facu.getCOFA()%>"><%=facu.getNOMBRE()%></option>
+														<%}%>
 													</select>
 													 <span class="fa fa-list form-control-feedback left" aria-hidden="true"></span>
 												</div>
@@ -202,30 +202,21 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Carrera </label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<%
-														NGCarrera nc = new NGCarrera();
-														ArrayList<Carrera> list = new ArrayList<Carrera>();	
-													%>
-													<select id="carrera" name="carrera" class="form-control has-feedback-left">
+													<select id="carrera" name="carrera" class="form-control has-feedback-left" required="required">
 														<option value="0">Seleccione una carrera</option>
-														<%
-															for(Carrera carr: list)
-	 														{
-														%>
-															<option value="<%=carr.getCARR()%>"><%=carr.getNOMBRE()%></option>
-														<%
-	 														}
-														%>
+														<%for(Carrera carr: list){%>
+														<option value="<%=carr.getCARR()%>"><%=carr.getNOMBRE()%></option>
+														<%}%>
 													</select>
 													<span class="fa fa-list form-control-feedback left" aria-hidden="true"></span>
 												</div>
 											</div>
 											
 											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Promedio</br>
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Promedio<br>
 												<small>(Cuatrimestre anterior)</small></label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" class="form-control has-feedback-left" id="promedio" name="promedio"> <span
+													<input type="text" class="form-control has-feedback-left" required="required" id="promedio" name="promedio"> <span
 														class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
 												</div>
 											</div>											
@@ -251,21 +242,11 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Asignatura</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<%
-														NGAsignatura nga = new NGAsignatura();
-														ArrayList<Asignatura> listac = new ArrayList<Asignatura>();
-														listac = nga.comboAsignatura();
-													%>
-													<select id="asignatura" name="asignatura" class="form-control has-feedback-left">
+													<select id="asignatura" name="asignatura" required="required"  class="form-control has-feedback-left">
 														<option>Seleccione una asignatura</option>
-														<%
-															for(Asignatura asig: listac)
-	 														{
-														%>
-															<option value="<%=asig.getIdAsigntatura()%>"><%=asig.getNombre()%></option>
-														<%
-	 														}
-														%>
+														<%for(Asignatura asig: listac){%>
+														<option value="<%=asig.getIdAsigntatura()%>"><%=asig.getNombre()%></option>
+														<%}%>
 													</select>
 													<span class="fa fa-book form-control-feedback left" aria-hidden="true"></span>
 												</div>
@@ -274,7 +255,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Calificación (Obtenida en la asignatura seleccionada)</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" class="form-control has-feedback-left" id="calificacion" name="calificacion"> <span
+													<input type="text" class="form-control has-feedback-left" required="required" id="calificacion" name="calificacion"> <span
 														class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
 												</div>
 											</div>
@@ -293,7 +274,7 @@
 												<div
 													class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 													<textarea id="motivo" name="motivo" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10"
-														data-parsley-maxlength="200" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+														data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 500 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
 												</div>
 											</div>
 											
@@ -303,7 +284,7 @@
 												<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
 													<label>Recuerda! Todos los datos son requeridos.</label>
 													<button type="submit" class="btn btn-primary">Cancelar</button>
-													<button type="submit" class="btn btn-success">Enviar</button>
+													<button type="submit" class="btn btn-success" value="Submit">Enviar</button>
 												</div>
 											</div>
 										</div>
@@ -317,63 +298,58 @@
 												
 					</div><!-- row -->
 
-					<div class=" text-center">
-						<p>&copy; Copyright <%=anio %>, Todos los Derechos Reservados</p>
-						<p>Universidad Centroamericana</p>
+					<div class="mastfoot">
+						<div class="white text-center">
+							<h5>&copy; Copyright <%=anio %>, Todos los Derechos Reservados</h5>
+							<h2>Universidad Centroamericana</h2>
+						</div>            
 					</div>
 					
 			</div><!-- /page content -->
 			
 		</div> <!-- main_container -->
 		
+		<div id="custom_notifications" class="custom-notifications dsp_none">
+			<ul class="list-unstyled notifications clearfix"
+				data-tabbed_notifications="notif-group">
+			</ul>
+			<div class="clearfix"></div>
+			<div id="notif-group" class="tabbed_notifications"></div>
+		</div>
+		
 	</div> <!-- container body -->
 	
-	<div id="custom_notifications" class="custom-notifications dsp_none">
-        <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
-        </ul>
-        <div class="clearfix"></div>
-        <div id="notif-group" class="tabbed_notifications"></div>
-    </div>	
-	<!-- notificaciones de CRUD -->
-		<%
-			String msj ="";
-			msj = request.getParameter("msj");
-		
-		%>
-		<script type="text/javascript">
-		
-		  function cargarNotify()
-			{
-				var mensaje = "<%=msj%>";
-				
-					if(mensaje=="1" )
-					{
-							new PNotify({
-				                title: "Inscripción Guardado",
-				                type: "info",
-				                text: "¡Su inscripción se ha enviado!",
-				                nonblock: {
-	                                nonblock: true,
-	                                nonblock_opacity: .2}
-							});
-					}
-			}	 
-		</script>
-	
-	<!-- Mensajes CRUD -->
-	<script>
-		$(function() {
-	    	$("#botonEnviar").tooltip();
-	     });
-	</script>
-	
-	<script src="../../js/bootstrap.min.js"></script>
-	<script src="../../js/custom.js"></script>
-	<!-- icheck -->
-	<script src="../../js/icheck.min.js"></script>
-	<!-- librerias externas -->
-	<script type="text/javascript" src="../../js/notify/pnotify.core.js"></script>
-    <script type="text/javascript" src="../../js/notify/pnotify.buttons.js"></script>
-    <script type="text/javascript" src="../../js/notify/pnotify.nonblock.js"></script>
 </body>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/custom.js"></script>
+<!-- icheck -->
+<script src="../../js/icheck.min.js"></script>
+<!-- librerias externas -->
+<script type="text/javascript" src="../../js/notify/pnotify.core.js"></script>
+<script type="text/javascript" src="../../js/notify/pnotify.buttons.js"></script>
+<script type="text/javascript" src="../../js/notify/pnotify.nonblock.js"></script>
+
+
+<!-- notificaciones de CRUD -->
+<%
+	String msj ="";
+	msj = request.getParameter("msj");
+%>
+<script type="text/javascript">
+	function cargarNotify()
+	{
+		var mensaje = <%=msj%>;
+		if(mensaje=="1")
+		{
+	    	new PNotify({
+	    	title: "Inscripción Enviada",
+	    	type: "info",
+	    	text: "¡La inscripción se ha enviado exitosamente!",
+	   		nonblock: {
+	        	nonblock: true,
+	        	nonblock_opacity: .9}
+	    	});
+		}
+	}
+</script>
 </html>

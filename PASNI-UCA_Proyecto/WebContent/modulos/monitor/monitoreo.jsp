@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
     import="servlets.*,entidades.*,datos.*, negocio.*, java.util.*, java.text.SimpleDateFormat"
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -38,7 +38,7 @@
 	}
 %>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PASNI-UCA | Monitoreo</title>
 <!-- Bootstrap core CSS -->
 
@@ -76,8 +76,7 @@
                     	<div class="x_title">
                     		<h2>Informes Semanales | Grupos Horarios</h2>
                         	<div class="clearfix"></div>
-                        	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAgregar">Enviar Informe</button>
-                    	</div>
+                        </div>
                     	
                     	 <div class="x_content">
 	                    	 <div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -91,6 +90,21 @@
 	                         	NGInforme ngi = new NGInforme();
 	                         	ArrayList<Informe> li = new ArrayList<Informe>();
 	                         	li = ngi.cargarInformes(idUsuario);
+	                         	
+	                         	NGAsignatura ng = new NGAsignatura();
+	            				ArrayList<Asignatura> listam = new ArrayList<Asignatura>();
+	            				listam = ng.comboAsignatura();
+
+	            				NGTaller tallerNegocio = new NGTaller();
+	            				ArrayList<Cuatrimestre> listaCuatrimestre = new ArrayList<Cuatrimestre>();
+	            				listaCuatrimestre = tallerNegocio.comboCuatrimestre();		
+	            				
+	            				NGGrupo g = new NGGrupo();
+	            				ArrayList<Grupo> lg = new ArrayList<Grupo>();
+	            				lg = g.cargarGrupoU(idUsuario);
+	            				
+	            				ArrayList<HorarioAula> la = new ArrayList<HorarioAula>();
+	            				la = g.cargarHorarioE(idUsuario);
 	                         %>
 	                         <div id="myTabContent" class="tab-content">
                              	<div role="tabpanel" class="tab-pane fade active in" id="tab_content1">
@@ -99,7 +113,10 @@
 				                        	<div class="x_title">
 				                            	<h2>Informes Semanales</h2>
 				                            	<div class="clearfix"></div>
-				                       		</div>
+				                            	<div class="modal-footer">
+				                            		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAgregar">Enviar Informe</button>
+				                            	</div>
+                    						</div>
 				                       		<div class="x_content">
 												<table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
 													<thead>
@@ -108,7 +125,7 @@
 							                                <th class="column-title">Semana</th>
 							                                <th class="column-title">Monitor</th>
 							                                <th class="column-title">Fecha</th>
-							                                <th class="column-title">Acción</th>
+							                                <th class="column-title">AcciÃ³n</th>
 					                               		</tr>
 					                            	</thead>
 					                            	<tbody>
@@ -118,7 +135,12 @@
 									                   		<td class=""><%=i.getSemana() %></td>
 									                    	<td class=" "><%=i.getMonitor() %></td>
 									                   		<td class=" "><fmt:formatDate type="date" value="<%=i.getFecha()%>"/></td>
-									                   		<td class=" "></td>
+									                   		<td>
+									                   			<button type="button" id="modalInformeV" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalInformeV"
+																	onclick="cargarDatosIM('<%=i.getGRUP()%>', '<%=i.getSemana() %>', '<%=i.getPregunta1() %>','<%=i.getPregunta2()%>','<%=i.getPregunta3()%>','<%=i.getPregunta4()%>','<%=i.getPregunta5()%>','<%=i.getObservacionP()%>','<%=i.getObservacionA()%>');">
+																	<i class="fa fa-pencil"></i>
+																</button>
+							                               	</td>
 									                    </tr>
 									                    <%} %>
 								              		</tbody>
@@ -138,21 +160,23 @@
 				                        		<table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
 					                        		<thead>
 						                              	<tr class="headings">
-							                               	<th class="column-title">Informe</th>
-							                                <th class="column-title">Semana</th>
-							                                <th class="column-title">Monitor</th>
-							                                <th class="column-title">Fecha</th>
-							                                <th class="column-title">Acción</th>
+							                               	<th class="column-title">Grupo</th>
+							                                <th class="column-title">Aula</th>
+							                                <th class="column-title">DÃ­a</th>
+							                                <th class="column-title">Hora inicio</th>
+							                                <th class="column-title">Hora fin</th>
 						                                </tr>
 					                            	</thead>
 					                            	<tbody>
+					                            	<%for(HorarioAula ha : la){ %>
 					                            		<tr class="even pointer">
-							                            	<td class=" "></td>
-							                            	<td class=" "></td>
-							                            	<td class=" "></td>
-							                            	<td class=" "></td>
-							                            	<td class=" "></td>
+							                            	<td class=" "><%=ha.getGRUP() %></td>
+							                            	<td class=" "><%=ha.getCODIAULA() %></td>
+							                            	<td class=" "><%=ha.getDia() %></td>
+							                            	<td class=" "><%=ha.getHoraInicio() %></td>
+							                            	<td class=" "><%=ha.getHoraFin() %></td>
 							                        	</tr>
+							                        <%} %>
 					                            	</tbody>
 				                        		</table>
 				                        	</div>
@@ -161,32 +185,28 @@
 				            	</div>
 				            	 <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
 		                        	<div class="col-md-12 col-sm-12 col-xs-12">
-				                    	<div class="x_panel">
-				                    		<div class="x_title">
-				                            	<h2>Grupos / Horarios</h2>
-				                            	<div class="clearfix"></div>
-				                        	</div>
-				                        	<div class="x_content">
-				                        		<table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
-					                        		<thead>
-						                              	<tr class="headings">
-							                               	<th class="column-title">Carné </th>
-							                                <th class="column-title">Nombre y Apellido</th>
-							                                <th class="column-title">Asistió</th>
-						                                </tr>
-					                            	</thead>
-					                            	<tbody>
-					                            		<tr class="even pointer">
-							                            	<td class=" "></td>
-							                            	<td class=" "></td>
-							                            	<td class="a-center ">
-                                                    			<input type="checkbox" class="tableflat">
-                                                			</td>
-							                        	</tr>
-					                            	</tbody>
-				                        		</table>
-				                        	</div>
-				                   		</div>
+		                        		<form action="../../SLMonitoreo?opc=4">
+											<div class="x_panel">
+					                    		<div class="x_title">
+					                            	<h2>Grupos / Horarios</h2>
+					                            	<div class="clearfix"></div>
+					                            	<label>Grupo</label>
+													<select id="idGrupoAsis" class="form-control" name="idGrupoAsis" required="required" tabindex="-1">
+														<option >Seleccione un grupo</option>
+														<%for(Grupo gr : lg){ %>
+															<option value="<%=gr.getGRUP()%>"><%=gr.getGRUP()%></option>
+														<%} %>
+													</select><br>
+													<div id="idAsis"></div>
+													<div class="modal-footer">
+														<button type="button" id="cargarAsis" name="cargarAsis" class="btn btn-success" >Listar asistencia</button>
+													</div>
+					                        	</div>
+					                        	<div class="x_content">
+					                        		<table  id="asistencia"></table>
+					                        	</div>
+					                   		</div>
+				                   		</form>
 				                 	</div>
 				            	</div>
                              </div>
@@ -195,19 +215,6 @@
                 </div>
 				
 			</div>
-			<%
-				NGAsignatura ng = new NGAsignatura();
-				ArrayList<Asignatura> listam = new ArrayList<Asignatura>();
-				listam = ng.comboAsignatura();
-
-				NGTaller tallerNegocio = new NGTaller();
-				ArrayList<Cuatrimestre> listaCuatrimestre = new ArrayList<Cuatrimestre>();
-				listaCuatrimestre = tallerNegocio.comboCuatrimestre();		
-				
-				NGGrupo g = new NGGrupo();
-				ArrayList<Grupo> lg = new ArrayList<Grupo>();
-				lg = g.cargarGrupoU(idUsuario);
-			%>
 			<!-- Modal Agregar Inscripcion -->
 			<div class="modal fade modalAgregar"  id="modalAgregar" tabindex="-1" role="dialog" aria-hidden="true">
 				<div class="modal-dialog">
@@ -253,7 +260,7 @@
 									<div class="form-group has-feedback">
 										<textarea id="p2" name="p2" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10"data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
 									</div>
-									<label>3. Dificultades más notables</label>
+									<label>3. Dificultades mÃ¡s notables</label>
 									<div class="form-group has-feedback">
 										<textarea id="p3" name="p3" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
 									</div>
@@ -261,13 +268,67 @@
 									<div class="form-group has-feedback">
 										<textarea id="p4" name="p4" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
 									</div>
-									<label>5. Observación / Solicitud o sugerencia</label>
+									<label>5. ObservaciÃ³n / Solicitud o sugerencia</label>
 									<div class="form-group has-feedback">
 										<textarea id="p5" name="p5" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 										<button type="submit" class="btn btn-primary">Enviar</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Modal Observacion Informe -->
+			<div class="modal fade modalInformeV"  id="modalInformeV" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">x</span>
+							</button>
+							<h5 class="modal-title">
+								<b>Informe Semanal | Obervaciones</b>
+							</h5>
+						</div>
+						<div class="modal-body">
+							<form class="form-horizontal form-label-left " name="form">
+								<div class="item form-group">
+									<label>Grupo</label>
+									<input type="text" id="grupoM" name="grupoM" class="form-control" tabindex="-1" disabled="disabled"><br>
+									<label>Semana</label>
+									<input type="text" id="semanaM" name="semanaM" class="form-control" disabled="disabled" tabindex="-1"><br>
+									<label>1. Temas Desarrollados</label>
+									<div class="form-group has-feedback">
+										<textarea id="p1M" name="p1M" disabled="disabled" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+									</div>
+									<label>2. Fortalezas de los muchachos</label>
+									<div class="form-group has-feedback">
+										<textarea id="p2M" name="p2M" disabled="disabled" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10"data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+									</div>
+									<label>3. Dificultades mÃ¡s notables</label>
+									<div class="form-group has-feedback">
+										<textarea id="p3M" name="p3M" disabled="disabled" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+									</div>
+									<label>4. Clima general del aula</label>
+									<div class="form-group has-feedback">
+										<textarea id="p4M" name="p4M" disabled="disabled" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+									</div>
+									<label>5. ObservaciÃ³n / Solicitud o sugerencia</label>
+									<div class="form-group has-feedback">
+										<textarea id="p5M" name="p5M" disabled="disabled" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+									</div>
+									<label>ObservaciÃ³n Profesor GuÃ­a</label>
+									<div class="form-group has-feedback">
+										<textarea id="observacionPM" name="observacionPM" disabled="disabled" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+									</div>
+									<label>ObservaciÃ³n Ãrea de Asistencia a Pregrado</label>
+									<div class="form-group has-feedback">
+										<textarea id="observacionAM" name="observacionAM" disabled="disabled" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="500" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
 									</div>
 								</div>
 							</form>
@@ -308,27 +369,58 @@
 								"sInfoFiltered": " - filtrando de _MAX_ registros",
 								 "sLengthMenu": "Mostrar _MENU_ registros",
 								 "sLoadingRecords": "Por favor esperar - cargando...",
-								 "sProcessing": "Por favor, espere un momento mientras se procesa su petición",
-								 "sZeroRecords": "No se encontró ningún registro",
+								 "sProcessing": "Por favor, espere un momento mientras se procesa su peticiÃ³n",
+								 "sZeroRecords": "No se encontrÃ³ ningÃºn registro",
 								 "pagingType": "full_numbers",
 									 "oPaginate": {
 										   "sFirst": "Primero",
-								           "sLast": "Último",
-								           "sPrevious": "Atrás",
+								           "sLast": "Ãšltimo",
+								           "sPrevious": "AtrÃ¡s",
 								           "sNext": "Siguiente"
 								         }
 							}	
 						}	
-				)
-				.columnFilter({
-					aoColumns: [ { type: "text" },
-					             { type: "text" },
-					 			 { type: "text" },
-					 			 { type: "text" },
-					 			 { type: "text" },
-					 			 { type: "text" },
-					 			 null
-					 			]
+				);
+				
+				$('#cargarAsis').click(function(event){
+					$.ajax({		    
+						  url:"../../SLMonitoreo?opc=3",
+				          type:"post",
+				          datatype:"html",
+				          data:{'aperAsis':$('#aperAsis').val(),
+				        	  	'asigAsis':$('#asigAsis').val(),
+				        	  	'grupoAsis':$('#grupoAsis').val()},
+				        	  	success:function(data) 
+						          {
+						        		$('#asistencia').html(data); 
+						        		$('#asistencia').dataTable().fnDestroy();
+										$('#asistencia').dataTable
+										(
+												{
+													"sPaginationType": "full_numbers",
+													"oLanguage": {
+														"bDestroy": true,
+														"sSearch": "Buscar: ",
+														"sEmptyTable": "No hay registros disponibles",
+														"sInfo": "Mostrando un total de _TOTAL_ registros (_START_ de _END_)",
+														"sInfoEmpty": "No hay registros disponibles",
+														"sInfoFiltered": " - filtrando de _MAX_ registros",
+														 "sLengthMenu": "Mostrar _MENU_ registros",
+														 "sLoadingRecords": "Por favor esperar - cargando...",
+														 "sProcessing": "Por favor, espere un momento mientras se procesa su peticiÃ³n",
+														 "sZeroRecords": "No se encontrÃ³ ningÃºn registro",
+														 "oPaginate": {
+																   "sFirst": "|<",
+														           "sLast": ">|",
+														           "sPrevious": "<<",
+														           "sNext": ">>"
+														         }
+													}	
+												}	
+										);
+						          }//sucess
+				        });
+						$('#asistencia').addClass("table table-striped responsive-utilities jambo_table bulk_action");
 				});
 			});
 	</script>

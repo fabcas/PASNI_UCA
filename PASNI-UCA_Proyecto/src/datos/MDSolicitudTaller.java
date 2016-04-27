@@ -8,37 +8,36 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import entidades.DetalleSolicitudTaller;
 import entidades.SolicitudTaller;
 import entidades.Taller;
+import entidades.VwSolicitudDetalles;
 
 public class MDSolicitudTaller extends Conexion{
 	
 	
 	
-	public boolean guardarSolicitudTaller(SolicitudTaller st) throws SQLException
+	public boolean guardarSolicitudTaller(SolicitudTaller st, DetalleSolicitudTaller dst) throws SQLException
 	{
 		boolean g = false;
 		int y = 0;
 		
-		
-		String sql = "INSERT INTO SolicitudTaller (IdProfesor, IdTaller, Fecha, Estado, HorarioPropuesto, CantidadEstudiantes) "
-				+ "VALUES (?,?,?,0,?,?);";
-		
 		Connection cn = getConnection();
-		PreparedStatement s = cn.prepareStatement(sql);
-		   
-		s = cn.prepareCall(sql);			
+		CallableStatement cstmt = null;	
+		String sql = "{call dbo.SPAgregarSolicitudTaller_DetalleSolicitud(?, ?, ?, ?, ?, 0, ?, ?, ?)}";
+		cstmt = cn.prepareCall(sql);			
 					
 		try {
 			
-			s.setInt(1, st.getIdProfesor());
-			s.setInt(2, st.getIdTaller());
-			s.setDate(3, (Date) st.getFechaSolicitud());
-			//s.setInt(4, st.getEstado());
-			s.setString(4, st.getHorarioPropuesto());
-			s.setInt(5, st.getCantidadEstudiantes());
-			
-			y = s.executeUpdate();
+			cstmt.setInt(1,st.getIdProfesor());
+			cstmt.setInt(2, st.getHorarioPropuesto());
+			cstmt.setDate(3, (Date)st.getFechaSolicitud());
+			cstmt.setInt(4,st.getCantidadEstudiantes());
+			cstmt.setDate(5, (Date) st.getDiaPropuesto());
+			cstmt.setInt(6, dst.getIdTaller1());
+			cstmt.setInt(7, dst.getIdTaller2());
+			cstmt.setInt(8, dst.getIdTaller3());
+			y = cstmt.executeUpdate();
 			g = y > 0;
 			
 		} catch (SQLException e) {
@@ -48,7 +47,7 @@ public class MDSolicitudTaller extends Conexion{
 		}
 	
 		
-		s.close();
+		cstmt.close();
 		cn.close();
 		return g;
 	}//guardar
@@ -127,6 +126,43 @@ public class MDSolicitudTaller extends Conexion{
 		return el;
 	}
 	
+	public ArrayList<VwSolicitudDetalles> cargarDetalles(int idSolicitud){
+		
+		ArrayList<VwSolicitudDetalles> lista = new ArrayList<VwSolicitudDetalles>();
+		String SQL = ("SELECT * FROM VwSolicitudesDetalles WHERE IdSolicitudTaller=?");
+
+		try
+		{
+			Connection cn = getConnection();
+			PreparedStatement ps = cn.prepareStatement(SQL);
+			ps.setInt(1, idSolicitud);
+			ResultSet rs = null;
+			rs = ps.executeQuery();
+
+			while (rs.next()) 
+			{
+				VwSolicitudDetalles vsd = new VwSolicitudDetalles();
+				
+				vsd.setIdDetalleSolicitudTaller(rs.getInt("IdDetalleSolicitudTaller"));
+				vsd.setIdSolicitudTaller(rs.getInt("IdSolicitudTaller"));
+				vsd.setNombreTaller(rs.getString("Taller"));
+				
+				lista.add(vsd);
+			}
+			ps.close();
+			cn.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Datos, Solicitud Taller, el error es: " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return lista;
+
+		
+	}
+	
 	
 	//Solicitudes pendientes
 	public ArrayList < SolicitudTaller  > cargarSolicitudesPendientes() throws SQLException
@@ -149,10 +185,11 @@ public class MDSolicitudTaller extends Conexion{
 				st.setIdSolicitudTaller(rs.getInt("IdSolicitudTaller"));
 				//enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
 				st.setNombreProfesor(rs.getString("Profesor"));
-				st.setNombreTaller(rs.getString("Taller"));
-				st.setFechaSolicitud((Date) rs.getDate("Fecha"));
-				st.setHorarioPropuesto(rs.getString("Horario"));
-				st.setCantidadEstudiantes(rs.getInt("CantidadEstudiantes"));
+				st.setHorario(rs.getString("Horario"));
+				st.setFechaSolicitud(rs.getDate("Fecha"));
+				st.setDiaPropuesto(rs.getDate("DiaPropuesto"));
+				//st.setHorarioPropuesto(rs.getString("Horario"));
+				st.setCantidadEstudiantes(rs.getInt("NumeroParticipantes"));
 				st.setCadenaEstado(rs.getString("Estado"));				
 					
 				lista.add(st);
@@ -192,11 +229,12 @@ public class MDSolicitudTaller extends Conexion{
 				st.setIdSolicitudTaller(rs.getInt("IdSolicitudTaller"));
 				//enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
 				st.setNombreProfesor(rs.getString("Profesor"));
-				st.setNombreTaller(rs.getString("Taller"));
-				st.setFechaSolicitud((Date) rs.getDate("Fecha"));
-				st.setHorarioPropuesto(rs.getString("Horario"));
-				st.setCantidadEstudiantes(rs.getInt("CantidadEstudiantes"));
-				st.setCadenaEstado(rs.getString("Estado"));				
+				st.setHorario(rs.getString("Horario"));
+				st.setFechaSolicitud(rs.getDate("Fecha"));
+				st.setDiaPropuesto(rs.getDate("DiaPropuesto"));
+				//st.setHorarioPropuesto(rs.getString("Horario"));
+				st.setCantidadEstudiantes(rs.getInt("NumeroParticipantes"));
+				st.setCadenaEstado(rs.getString("Estado"));			
 					
 				lista.add(st);
 			}
@@ -235,11 +273,55 @@ public class MDSolicitudTaller extends Conexion{
 				st.setIdSolicitudTaller(rs.getInt("IdSolicitudTaller"));
 				//enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
 				st.setNombreProfesor(rs.getString("Profesor"));
-				st.setNombreTaller(rs.getString("Taller"));
-				st.setFechaSolicitud((Date) rs.getDate("Fecha"));
-				st.setHorarioPropuesto(rs.getString("Horario"));
-				st.setCantidadEstudiantes(rs.getInt("CantidadEstudiantes"));
-				st.setCadenaEstado(rs.getString("Estado"));				
+				st.setHorario(rs.getString("Horario"));
+				st.setFechaSolicitud(rs.getDate("Fecha"));
+				st.setDiaPropuesto(rs.getDate("DiaPropuesto"));
+				//st.setHorarioPropuesto(rs.getString("Horario"));
+				st.setCantidadEstudiantes(rs.getInt("NumeroParticipantes"));
+				st.setCadenaEstado(rs.getString("Estado"));	
+					
+				lista.add(st);
+			}
+			
+			//Cerramos la conexion
+			s.close();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("DATOS: ERROR AL CONSULTAR LOS DATOS "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
+	
+	public ArrayList < SolicitudTaller  > cargarSolicitudesConDetalles() throws SQLException
+	{
+		Connection cn = getConnection();
+		CallableStatement s = null;	
+		ArrayList < SolicitudTaller > lista = new ArrayList < SolicitudTaller>();
+		String sql = "{call dbo.SPListaSolicitudesDesaprobadas}";
+		s = cn.prepareCall(sql);
+		
+		try
+		{
+			ResultSet rs = s.executeQuery();
+											
+			while(rs.next())		
+			{					    					
+				SolicitudTaller  st = new SolicitudTaller();
+				
+				
+				st.setIdSolicitudTaller(rs.getInt("IdSolicitudTaller"));
+				//enti.setIdCuatrimestre(rs.getInt("idCuatrimestre"));
+				st.setNombreProfesor(rs.getString("Profesor"));
+				st.setHorario(rs.getString("Horario"));
+				st.setFechaSolicitud(rs.getDate("Fecha"));
+				st.setDiaPropuesto(rs.getDate("DiaPropuesto"));
+				//st.setHorarioPropuesto(rs.getString("Horario"));
+				st.setCantidadEstudiantes(rs.getInt("NumeroParticipantes"));
+				st.setCadenaEstado(rs.getString("Estado"));	
 					
 				lista.add(st);
 			}
@@ -258,27 +340,5 @@ public class MDSolicitudTaller extends Conexion{
 	}
 	
 	
-	/** Calcula cuántas veces se repite un mismo taller. **/
-	public int cantidadSolicitadaDelTaller(SolicitudTaller st) throws SQLException
-	{
-		int x = 0;
-		Connection cn = getConnection();
-		CallableStatement s = null;	
-		
-		String sql = "{call dbo.SPTotalDeSolicitudesDeUnTaller_PorCuatrimestre(?)}";
-		s = cn.prepareCall(sql);
-		
-			
-		
-		x = s.executeUpdate(sql);
-		
-		
-		
-		return x;
-		
-	}
 	
-	
-	
-
 }

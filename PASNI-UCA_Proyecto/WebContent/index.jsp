@@ -80,7 +80,18 @@
 					<h4 class="yellow">Programas de Acompañamiento y Seguimiento a Nuevo Ingreso</h4>
 				</div>
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-3">
+						<div class="team text-center">
+							<div class="cover"
+								style="background: url('img/ci.jpg'); background-size: cover;">
+								<div class="overlay text-center">
+									<a href="modulos/taller/vista-taller.jsp" class="btn btn-white-fill">Infórmate</a>
+								</div>
+							</div>
+							<p class="par">Curso de Introducción</p>
+						</div>
+					</div>
+					<div class="col-md-3">
 						<div class="team text-center">
 							<div class="cover"
 								style="background: url('img/est.jpg'); background-size: cover;">
@@ -95,7 +106,7 @@
 							<p class="par">Estudiantes Monitores</p>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="team text-center">
 							<div class="cover"
 								style="background: url('img/doc.jpg'); background-size: cover;">
@@ -106,7 +117,7 @@
 							<p class="par">Profesores Guías</p>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="team text-center">
 							<div class="cover"
 								style="background: url('img/tal.jpg'); background-size: cover;">

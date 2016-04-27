@@ -12,8 +12,10 @@ public class SolicitudTaller {
 	private String nombreTaller;
 	private int idProfesor;
 	private String nombreProfesor;
-	private String horarioPropuesto;
+	private int horarioPropuesto;
 	private int cantidadEstudiantes;
+	private Date diaPropuesto;
+	private String horario;
 	
 	
 	public SolicitudTaller(int idSolicitudTaller, Date fechaSolicitud,
@@ -115,12 +117,12 @@ public class SolicitudTaller {
 	}
 
 
-	public String getHorarioPropuesto() {
+	public int getHorarioPropuesto() {
 		return horarioPropuesto;
 	}
 
 
-	public void setHorarioPropuesto(String horarioPropuesto) {
+	public void setHorarioPropuesto(int horarioPropuesto) {
 		this.horarioPropuesto = horarioPropuesto;
 	}
 
@@ -133,6 +135,27 @@ public class SolicitudTaller {
 	public void setCantidadEstudiantes(int cantidadEstudiantes) {
 		this.cantidadEstudiantes = cantidadEstudiantes;
 	}
+
+
+	public Date getDiaPropuesto() {
+		return diaPropuesto;
+	}
+
+
+	public void setDiaPropuesto(Date diaPropuesto) {
+		this.diaPropuesto = diaPropuesto;
+	}
+
+
+	public String getHorario() {
+		return horario;
+	}
+
+
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
+	
 	
 	
 	

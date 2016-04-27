@@ -45,18 +45,20 @@ public class SLComboGrupo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String out = "";
-		String usuario = "";
+		String GRUP = "";
 		try 
 		{
-			usuario = request.getParameter("usuario");
+			GRUP = request.getParameter("idGrupoAsis");
 			NGGrupo comboT = new NGGrupo();
 			ArrayList <Grupo> listCom = new ArrayList <Grupo>();
-			listCom = comboT.cargarGrupoU(Integer.parseInt(usuario));
-			out += "<option value='0'>Seleccione...</option>";
+			listCom = comboT.cargarAsis(GRUP);
 			for(Grupo entiCom: listCom)
 			{
-				out +="<option value=\""+entiCom.getIdGrupo()+"\">"+StringEscapeUtils.escapeHtml4(entiCom.getGRUP())+"</option>";
-				System.out.println("out in ajax: "+out);
+				out +="<input type='hidden' id='idgrupAsis' name='idgrupAsis' class='form-control'  value=\""+entiCom.getIdGrupo()+"\">";
+				out +="<input type='hidden' id='asigAsis' name='asigAsis' class='form-control' value=\""+entiCom.getIdAsignatura()+"\">";
+				out +="<input type='hidden' id='grupoAsis' name='grupoAsis' class='form-control'  value=\""+entiCom.getGRUP()+"\">";
+				out +="<input type='hidden' id='aperAsis' name='aperAsis' class='form-control'  value=\""+entiCom.getAPER()+"\">";
+
 			}
 			
 			PrintWriter pw = response.getWriter();

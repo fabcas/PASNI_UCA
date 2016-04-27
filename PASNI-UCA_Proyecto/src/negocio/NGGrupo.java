@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import datos.MDGrupo;
 import datos.MDMonitor;
+import entidades.Asistencia;
+import entidades.Estudiante;
 import entidades.GestionHorario;
 import entidades.Grupo;
 import entidades.HorarioAula;
@@ -139,6 +141,94 @@ public class NGGrupo {
 		}
 		
 		return bl;
+	}
+	
+	public ArrayList<Grupo> cargarAsis(String GRUP){
+		
+		ArrayList<Grupo> array = new ArrayList<Grupo>();
+		MDGrupo datos = new MDGrupo();
+		
+		try
+		{
+			array = datos.cargarAsis(GRUP);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Negocio, el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+		return array;
+	}
+	
+	public ArrayList<Estudiante> cargarEstudiante(String GRUP, String APER, String ASIG){
+		
+		ArrayList<Estudiante> array = new ArrayList<Estudiante>();
+		MDGrupo datos = new MDGrupo();
+		
+		try
+		{
+			array = datos.cargarEstudiante(GRUP, APER, ASIG);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Negocio, el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+		return array;
+	}
+	
+	public boolean ingresarAsistencia(Asistencia a){
+		
+		boolean bl = false;
+		
+		try
+		{
+			MDGrupo s = new MDGrupo();
+			bl = s.ingresarAsistencia(a);
+			System.out.println("NEGOCIO: Asistencia agregada con éxito!!!");
+		}
+	
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("NEGOCIO: ERROR AL GUARDAR LOS DATOS " + e.getMessage());
+		}
+		
+		return bl;
+	}
+	
+	public ArrayList<HorarioAula> cargarHorario(){
+		
+		ArrayList<HorarioAula> array = new ArrayList<HorarioAula>();
+		MDGrupo datos = new MDGrupo();
+		
+		try
+		{
+			array = datos.cargarHorario();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Negocio, el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+		return array;
+	}
+	
+	public ArrayList<HorarioAula> cargarHorarioE(int idUsuario){
+		
+		ArrayList<HorarioAula> array = new ArrayList<HorarioAula>();
+		MDGrupo datos = new MDGrupo();
+		
+		try
+		{
+			array = datos.cargarHorarioE(idUsuario);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Negocio, el error es: "+e.getMessage());
+			e.printStackTrace();
+		}
+		return array;
 	}
 	
 }

@@ -89,7 +89,7 @@ public class SLIngresarSistema extends HttpServlet {
 				}	
 					break;
 					
-				case 2:
+				case 4:
 				{
 					//Monitorint idMonitor = 0;
 					autenticado = ng.validarInicioSesionMonitor(user, pass);
@@ -120,13 +120,13 @@ public class SLIngresarSistema extends HttpServlet {
 				}
 					break;
 					
-				case 3:
+				case 5:
 				{
 					//Profesor
 				}
 					break;
 					
-				case 4:
+				case 6:
 				{
 					//Profesor guía
 					autenticado = ng.validarInicioSesionProfesorGuia(user, pass);
@@ -151,7 +151,7 @@ public class SLIngresarSistema extends HttpServlet {
 				}
 					break;
 					
-				case 5:
+				case 7:
 				{
 					
 				}

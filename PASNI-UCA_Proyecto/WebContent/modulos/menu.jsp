@@ -66,6 +66,7 @@
 										<li><a href="../taller/categoria-taller.jsp">Categoría de taller</a></li>
 										<li><a href="../taller/taller.jsp">Talleres de Formación</a></li>
 										<li><a href="../taller/facilitador.jsp">Facilitadores</a></li>
+										<li><a href="../taller/horario-taller.jsp">Horarios de Talleres de Formación</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-magic"></i> Administración <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu" style="display: none">

@@ -72,7 +72,6 @@
                     		<h2>Grupos | Monitor</h2>
                         	<div class="clearfix"></div>
                         	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAsignarG">Asignar Grupo</button>
-                    		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAsignarGH">Asignar Horario</button>
                     	</div>
                     	
                     	 <div class="x_content">
@@ -107,6 +106,7 @@
 					                                        <th class="column-title">Monitor</th>
 					                                        <th class="column-title">Docente</th>
 					                                        <th class="column-title">Fecha</th>
+					                                        <th class="column-title">Acción</th>
 					                               		</tr>
 					                            	</thead>
 					                            	<tbody>
@@ -118,6 +118,12 @@
 									                   		<td class=" "><%=g.getMonitor() %></td>
 									                   		<td class=" "><%=g.getProfesor() %></td>
 									                   		<td class=" "><fmt:formatDate type="date" value="<%=g.getFecha()%>"/></td>
+									                    	<td>
+								                            	<button type="button" id="modalAsignarGH" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalAsignarGH"
+																	onclick="cargarDatosG('<%=g.getIdGrupo()%>','<%=g.getGRUP() %>');">
+																	<i class="fa fa-pencil"></i>
+																</button>
+							                               	</td>
 									                    </tr>
 									                <%} %>
 								              		</tbody>
@@ -126,6 +132,44 @@
 				                       </div>
                                 	</div>
                                 </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+		                        	<div class="col-md-12 col-sm-12 col-xs-12">
+				                    	<div class="x_panel">
+				                    		<div class="x_title">
+				                            	<h2>Histórico por Monitor</h2>
+				                            	<div class="clearfix"></div>
+				                        	</div>
+				                        	<div class="x_content">
+				                        		<table  id="" class="display table table-striped responsive-utilities jambo_table bulk_action">
+				                        		<%
+				                        			ArrayList<HorarioAula> lh = new ArrayList<HorarioAula>();
+				                        			lh = grupo.cargarHorario();
+		                        				%>
+					                        		<thead>
+						                              	<tr class="headings">
+							                               	<th class="column-title">Grupo </th>
+							                                <th class="column-title">Aula</th>
+							                                <th class="column-title">Dia</th>
+							                                <th class="column-title">Hora inicio</th>
+							                                <th class="column-title">Hora fin</th>
+						                                </tr>
+					                            	</thead>
+					                            	<tbody>
+					                            	<%for(HorarioAula ha : lh){ %>
+					                            		<tr class="even pointer">
+							                            	<td class=" "><%=ha.getGRUP() %></td>
+							                            	<td class=" "><%=ha.getCODIAULA() %></td>
+							                            	<td class=" "><%=ha.getDia() %></td>
+							                            	<td class=" "><%=ha.getHoraInicio() %></td>
+							                            	<td class=" "><%=ha.getHoraFin() %></td>
+							                        	</tr>
+							                        <%} %>
+					                            	</tbody>
+				                        		</table>
+				                        	</div>
+				                   		</div>
+				                 	</div>
+				            	</div>
                                 <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
 		                        	<div class="col-md-12 col-sm-12 col-xs-12">
 				                    	<div class="x_panel">
@@ -160,10 +204,10 @@
 							                            	<td class=" "><fmt:formatDate type="date" value="<%=in.getFecha() %>"/></td>
 							                            	<td>
 								                            	<button type="button" id="modalInforme" title="Modificar registro" class="btn btn-success btn-xs" data-toggle="modal" data-target=".modalInforme"
-																	onclick="cargarDatosI('<%=in.getIdInforme() %>','<%=in.getGRUP()%>', '<%=in.getSemana() %>', '<%=in.getPregunta1() %>','<%=in.getPregunta2()%>','<%=in.getPregunta3()%>','<%=in.getPregunta4()%>','<%=in.getPregunta5()%>');">
+																	onclick="cargarDatosI('<%=in.getIdInforme() %>','<%=in.getGRUP()%>', '<%=in.getSemana() %>', '<%=in.getPregunta1() %>','<%=in.getPregunta2()%>','<%=in.getPregunta3()%>','<%=in.getPregunta4()%>','<%=in.getPregunta5()%>','<%=in.getObservacionP()%>','<%=in.getObservacionA()%>');">
 																	<i class="fa fa-pencil"></i>
 																</button>
-							                               </td>
+							                               	</td>
 							                        	</tr>
 							                        	<%} %>
 								              		</tbody>
@@ -327,35 +371,10 @@
 							<form class="form-horizontal form-label-left " name="form" method="post" action="../../SLGrupo?opc=4">
 								<div class="item form-group">
 									<div class="col-md-12 col-sm-12 col-xs-12 form-group">
-										<label >Facultad</label>
-										<select id="FACU" name="FACU" class="form-control ">
-											<option>Seleccion una facultad</option>
-											<%for(Facultad facu: lis){%>
-											<option value="<%=facu.getCOFA()%>"><%=facu.getNOMBRE()%></option>
-											<%}%>
-										</select><br>
-										<label >Carrera</label>
-										<select id="CAR" name="CAR" class="form-control"></select> <br>
-										<label>Cuatrimestre</label> 
-										<select id="CUATRI" class="form-control" name="CUATRI" required="required" tabindex="-1">
-											<option value="0">Seleccione un cuatrimestre</option>
-											<%for(Cuatrimestre cuatri : listaCuatrimestre){%>
-											<option value="<%=cuatri.getNombre() %>"><%=cuatri.getNombre()%></option>
-											<%}%>
-										</select><br>
-										<label>Profesor</label> 
-										<select id="IDP" class="form-control" name="IDP" required="required" tabindex="-1">
-											<option value="0">Seleccione un profesor</option>
-											<%for(Profesor profe : listap){%>
-											<option value="<%=profe.getIdProfesorGuia()%>"><%=profe.getNombre()+""+profe.getApellido()%></option>
-											<%}%>
-										</select><br>
-										<div class="modal-footer">
-											<button type="button" id="buscarGG" name="buscarGG" class="btn btn-success" >Buscar Grupos</button>
-										</div>
-										<table id="grupop">
-					                    </table><br><br>
-					                    <label>Aula</label>
+										<label>Grupo</label>
+										<input type="text" id="grupn" name="grupn" class="form-control" tabindex="-1" disabled="disabled"><br>
+										<input type="hidden" id="idgrupo" name="idgrupo" class="form-control" tabindex="-1">
+										<label>Aula</label>
 					                    <select id="idAula" class="form-control" name="idAula" required="required" tabindex="-1">
 											<option value="0">Seleccione un aula</option>
 											<%for(VwMaestroAulas a : la){%>
@@ -374,11 +393,11 @@
 										</select><br>
 										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
 											<label>Hora inicio</label>
-											<input type="time" id="horaI" name="horaI" class="form-control" required="required" tabindex="-1">
+											<input type="time" id="horaInicio" name="horaInicio" class="form-control" required="required" tabindex="-1">
 										</div>
 										<div class="col-md-6 col-sm-6 col-xs-12 form-group">
 											<label>Hora fin</label>
-											<input type="time" id="horaF" name="horaF" class="form-control" required="required" tabindex="-1">
+											<input type="time" id="horaFin" name="horaFin" class="form-control" required="required" tabindex="-1">
 										</div>
 									</div>
 									<div class="modal-footer">

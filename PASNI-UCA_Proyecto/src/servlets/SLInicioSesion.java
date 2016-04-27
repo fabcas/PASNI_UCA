@@ -59,9 +59,10 @@ public class SLInicioSesion extends HttpServlet {
 				}else{
 					response.sendRedirect("modulos/monitor/inscripcions.jsp");
 				}
-		} catch (ParseException | SQLException e) {
-			// TODO Auto-generated catch block
+		}catch(Exception e){
 			e.printStackTrace();
+			System.out.println("Servlet: Error en el catch: -> " + e.getMessage());
+			response.sendRedirect("modulos/monitor/inscripcions.jsp");
 		}
 	}
 

@@ -153,7 +153,7 @@ public class MDPeriodoInscripcion extends Conexion{
 	/*Verificar el período con la fecha actual */
 	public boolean verificarPeriodo(PeriodoInscripcion PI) throws SQLException{	
 		
-		String sql = ("select fechaInicio, fechaFin from PeriodoInscripcion where estado = 1");
+		String sql = ("select idPeriodoInscripcion, fechaInicio, fechaFin from PeriodoInscripcion where estado = 1");
 		
 		Connection cn = getConnection();
 		PreparedStatement ps = cn.prepareStatement(sql);
@@ -161,6 +161,7 @@ public class MDPeriodoInscripcion extends Conexion{
 		PeriodoInscripcion pi = new PeriodoInscripcion();						
 		while(rs.next())		
 		{	
+			pi.setIdPeriodoInscripcion(rs.getInt("idPeriodoInscripcion"));
 			pi.setFechaInicio(rs.getDate("fechaInicio"));
 			pi.setFechaFin(rs.getDate("fechaFin"));
 		}
@@ -169,8 +170,29 @@ public class MDPeriodoInscripcion extends Conexion{
 		if(pi.getFechaInicio().after(PI.getFechaActual()) && pi.getFechaFin().before(PI.getFechaActual())){
 			return true;
 		}else{
+			cambiarEstado(pi.getIdPeriodoInscripcion());
 			return false;
 		}
+	}
+	
+	public boolean cambiarEstado (int pi) throws SQLException{
+		
+		int x = 0;
+		boolean g = false;
+		
+		String SQL = ("UPDATE PeriodoInscripcion SET  estado = 0  WHERE idPeriodoInscripcion = ?");
+		Connection cn = getConnection();
+		PreparedStatement s = cn.prepareStatement(SQL);
+
+		s.setInt(1, pi);
+
+		x = s.executeUpdate();
+		g = x >0;
+			
+		s.close();
+		cn.close();
+				
+		return g;
 	}
 }
 

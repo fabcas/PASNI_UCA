@@ -15,7 +15,7 @@ public class MDInforme extends Conexion{
 	public ArrayList <Informe> cargarInforme(int usuario)
 	{
 		ArrayList <Informe> array = new ArrayList <Informe>();
-		String sql = ("SELECT i.idInforme, i.semana, i.fecha, m.primerNombre + ' ' + m.primerApellido [Monitor], i.pregunta1, i.pregunta2, i.pregunta3, i.pregunta4, i.pregunta5"
+		String sql = ("SELECT i.idInforme, g.GRUP AS GRUP, i.semana, i.fecha, m.primerNombre + ' ' + m.primerApellido [Monitor], i.pregunta1, i.pregunta2, i.pregunta3, i.pregunta4, i.pregunta5"
 				+ " FROM Informe i INNER JOIN Grupo g ON g.idGrupo = i.idGrupo "
 				+ "INNER JOIN Inscripcion c ON c.idInscripcion = g.idInscripcion "
 				+ "INNER JOIN Monitor m ON m.idMonitor = c.idMonitor WHERE m.idUsuario = ?");
@@ -32,6 +32,7 @@ public class MDInforme extends Conexion{
 				Informe  i = new Informe();
 				
 				i.setIdInforme(rs.getInt("idInforme"));
+				i.setGRUP(rs.getString("GRUP"));
 				i.setSemana(rs.getString("semana"));
 				i.setFecha(rs.getDate("fecha"));
 				i.setMonitor(rs.getString("Monitor"));
@@ -90,7 +91,7 @@ public class MDInforme extends Conexion{
 	public ArrayList<Informe> cargarInformeT(){
 		
 		ArrayList<Informe> array = new ArrayList<Informe>();
-		String sql = ("SELECT i.idInforme, i.idGrupo, g.GRUP AS GRUP, i.semana, i.fecha, m.primerNombre + ' ' + m.primerApellido [Monitor], i.pregunta1, i.pregunta2, i.pregunta3, i.pregunta4, i.pregunta5 "
+		String sql = ("SELECT i.idInforme, i.idGrupo, g.GRUP AS GRUP, i.semana, i.fecha, m.primerNombre + ' ' + m.primerApellido [Monitor], i.pregunta1, i.pregunta2, i.pregunta3, i.pregunta4, i.pregunta5, i.observacionP, i.observacionA"
 				+ "		FROM Informe i INNER JOIN Grupo g ON g.idGrupo = i.idGrupo "
 				+ "		INNER JOIN Inscripcion c ON c.idInscripcion = g.idInscripcion "
 				+ "		INNER JOIN Monitor m ON m.idMonitor = c.idMonitor");
@@ -117,6 +118,8 @@ public class MDInforme extends Conexion{
 				i.setPregunta3(rs.getString("pregunta3"));
 				i.setPregunta4(rs.getString("pregunta4"));
 				i.setPregunta5(rs.getString("pregunta5"));
+				i.setObservacionP(rs.getString("observacionP"));
+				i.setObservacionA(rs.getString("observacionA"));
 				array.add(i);
 			}
 		}catch(Exception e)

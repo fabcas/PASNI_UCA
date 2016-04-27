@@ -10,9 +10,9 @@
 
 <%
 
-response.setHeader("Pragma", "No-cache");
-response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-response.setDateHeader("Expires", -1);
+	response.setHeader("Pragma", "No-cache");
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	response.setDateHeader("Expires", -1);
 
 %>
 
@@ -21,7 +21,7 @@ response.setDateHeader("Expires", -1);
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
 <%
 	//String email = "";
@@ -43,7 +43,7 @@ response.setDateHeader("Expires", -1);
     }
 	else
 	{
- 		response.sendRedirect("index.jsp");
+ 		response.sendRedirect("../../index.jsp");
  		return;
 		
 	}
@@ -119,163 +119,6 @@ response.setDateHeader("Expires", -1);
 
 					<div class="">
 
-						<!-- Inicio del modal para agregar nuevo registro -->
-
-						<div class="modal fade bs-example-modal-lg" tabindex="-1"
-							role="dialog" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">x</span>
-										</button>
-										<h5 class="modal-title">Agregar Taller de Reforzamiento</h5>
-									</div>
-									<div class="modal-body">
-										<h4>Complete los campos</h4>
-										<form class="form-horizontal form-label-left" name="form"
-											method="post" action="../../SLTaller?opc=1">
-											<div class="item form-group">
-												<%
-																	NGTaller negC1 = new NGTaller();
-																	ArrayList<Cuatrimestre> arrayLC1 = new ArrayList<Cuatrimestre>();
-																	arrayLC1 = negC1.comboCuatrimestre();
-															%>
-												<br>
-												<label>Cuatrimestre:</label> <select id="cuatri"
-													name="cuatri" required="required"
-													class="select2_single form-control">
-													<option>Seleccione...</option>
-													<%for(Cuatrimestre entiC1 : arrayLC1)
-																		  { 
-																		%>
-													<option value="<%=entiC1.getIdCuatrimestre() %>"><%=entiC1.getNombre()%></option>
-													<%}%>
-												</select>
-												<!--<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">-->
-												<label>Nombre:</label> <input id="nombre" name="nombre"
-													required="required" class="form-control" placeholder="">
-												<label>Descripción:</label>
-												<textarea id="descripcion" name="descripcion"
-													required="required" class="form-control" placeholder=""></textarea>
-												<label>Fecha inicio:</label> <input type="date"
-													id="fechaini" name="fechaini" required="required"
-													class="form-control" placeholder=""> <label>Fecha
-													final:</label> <input type="date" id="fechafin" name="fechafin"
-													required="required" class="form-control" placeholder="">
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default"
-													data-dismiss="modal">Cancelar</button>
-												<button type="submit" class="btn btn-primary">Guardar</button>
-											</div>
-										</form>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-						<!-- Final del modal para guardar nuevo registro -->
-
-						<!-- Inicio del modal para editar registro -->
-
-						<div class="modal fade modalEditar" tabindex="-1" role="dialog"
-							aria-hidden="true">
-							<div class="modal-dialog ">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">x</span>
-										</button>
-										<h5 class="modal-title">Editar Taller de Reforzamiento</h5>
-									</div>
-									<div class="modal-body">
-										<h4>Complete los campos</h4>
-										<form class="form-horizontal form-label-left" name="form"
-											method="post" action="../../SLTaller?opc=2">
-											<div class="item form-group">
-												<%
-																	NGTaller negt = new NGTaller();
-																	ArrayList<Cuatrimestre> arrayt = new ArrayList<Cuatrimestre>();
-																	arrayt = negt.comboCuatrimestre();
-																%>
-												<label>Cuatrimestre:</label> <select id="cuatri"
-													name="cuatri" required="required" class="form-control">
-													<option>Seleccione...</option>
-													<%for(Cuatrimestre negtw : arrayt)
-																		  { 
-																		%>
-													<option value="<%=negtw.getIdCuatrimestre() %>"><%=negtw.getNombre()%></option>
-													<%}%>
-												</select>
-												<!--<input type="number" id="cuatri" name="cuatri" required="required" class="form-control" placeholder="">-->
-												<label>Nombre:</label> <input id="nombre" name="nombre"
-													required="required" class="form-control" placeholder="">
-												<label>Descripción:</label> <input id="descripcion"
-													name="descripcion" required="required" class="form-control"
-													placeholder=""> <label>Fecha inicio:</label> <input
-													type="date" id="fechaini" name="fechaini"
-													required="required" class="form-control" placeholder="">
-												<label>Fecha final:</label> <input type="date" id="fechafin"
-													name="fechafin" required="required" class="form-control"
-													placeholder="">
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default"
-													data-dismiss="modal">Cancelar</button>
-												<button type="submit" class="btn btn-primary">Guardar</button>
-											</div>
-										</form>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-						<!-- Fin del modal de editar  -->
-
-						<!-- Inicio del modal para eliminar registro -->
-
-						<div class="modal fade" id="modalEliminar" tabindex="-1"
-							role="dialog" aria-hidden="true">
-							<div class="modal-dialog modal-sm">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">x—</span>
-										</button>
-										<h5 class="modal-title">Eliminar Taller de Reforzamiento</h5>
-									</div>
-									<div class="modal-body">
-
-										<form class="form-horizontal form-label-left" name="form"
-											method="post" action="../../SLTaller?opc=3">
-											<div class="item form-group">
-												<div class="col-md-12 col-sm-12 col-xs-12">
-													<input type="hidden" name="idTallerEliminar"
-														id="idTallerEliminar">
-													<p>¿Seguro que desea eliminar este taller?</p>
-												</div>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default"
-													data-dismiss="modal">Cancelar</button>
-												<button type="submit" class="btn btn-primary">Eliminar</button>
-											</div>
-										</form>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-						<!-- Fin del modal de eliminar  -->
-
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
@@ -291,10 +134,48 @@ response.setDateHeader("Expires", -1);
 											lista = st.cargarTalleres();
 										%>
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Taller de formación: <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Taller de formación #1: <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <select id="taller" class="select2_single form-control col-md-7 col-xs-12 has-feedback-left" name="taller" required="required"  tabindex="-1">
+                                                <select id="taller1" class="form-control col-md-7 col-xs-12 has-feedback-left" name="taller1" required="required"  tabindex="-1">
+													<option value="0">Seleccione..</option>
+														<%
+															for(Taller t : lista)
+														  	{ 
+														%>
+													<option value="<%=t.getIdTaller() %>" ><%=t.getNombre()%></option>
+														<%	
+															}
+														%>	
+												</select>
+												<span class="fa fa-list-ul form-control-feedback left" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+                                        
+                                         <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Taller de formación #2: <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <select id="taller2" class="form-control col-md-7 col-xs-12 has-feedback-left" name="taller2" required="required"  tabindex="-1">
+													<option value="0">Seleccione..</option>
+														<%
+															for(Taller t : lista)
+														  	{ 
+														%>
+													<option value="<%=t.getIdTaller() %>" ><%=t.getNombre()%></option>
+														<%	
+															}
+														%>	
+												</select>
+												<span class="fa fa-list-ul form-control-feedback left" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+                                        
+                                         <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Taller de formación #3: <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <select id="taller3" class="form-control col-md-7 col-xs-12 has-feedback-left" name="taller3" required="required"  tabindex="-1">
 													<option value="0">Seleccione..</option>
 														<%
 															for(Taller t : lista)
@@ -310,14 +191,33 @@ response.setDateHeader("Expires", -1);
                                         </div>
                                         
                                         <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Día propuesto: <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="date" id="diapropuesto" name="diapropuesto" class="form-control">
+												<!-- <span class="fa fa-list-ul form-control-feedback left" aria-hidden="true"></span> -->
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Horario propuesto <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <select id="horario" name="horario" class="select2_single form-control col-md-7 col-xs-12 has-feedback-left">
-                                                	<option>Seleccione..</option>
-                                                	<option>8:00 a.m. - 11:00 a.m.</option>
-                                                	<option>11:00 a.m. - 02:00 p.m.</option>
-                                                	<option>02:00 p.m. - 05:00 p.m.</option>
+                                            <%
+												NGSolicitudTaller st2 = new NGSolicitudTaller();
+												ArrayList<HorarioTaller> lista2 = new ArrayList<HorarioTaller>();
+												lista2 = st2.cargarComboHorarios();
+											%>
+                                                <select id="horario" name="horario" class="form-control col-md-7 col-xs-12 has-feedback-left">
+													<option value="0">Seleccione..</option>
+														<%
+															for(HorarioTaller ht : lista2)
+														  	{ 
+														%>
+													<option value="<%=ht.getIdHorarioTaller() %>" ><%=ht.getHoraInicioFin()%></option>
+														<%	
+															}
+														%>	
                                                 </select>
                                                 <span class="fa fa-list-ul form-control-feedback left" aria-hidden="true"></span>
                                                 <input type="hidden" id="idUsuario" name="idUsuario" value="<%=idUsuario%>">
@@ -455,18 +355,18 @@ response.setDateHeader("Expires", -1);
     		}
         </script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 			$(document).ready(function()
 			{
 				cargarNotify();
 				$('table.display').dataTable(
 						{
-							// "dom": 'T<"clear">lfrtip',
-				           // "tableTools": {
-				            //    "sSwfPath": "js/datatables/tools/swf/copy_csv_xls_pdf.swf",
-				             //   "aButtons": ["pdf", "xls"]
-				            //}
+							 "dom": 'T<"clear">lfrtip',
+				            "tableTools": {
+				                "sSwfPath": "../../js/datatables/tools/swf/copy_csv_xls_pdf.swf",
+				                "aButtons": ["pdf", "xls"]
+				        },
 							
 							"sPaginationType": "full_numbers",
 							"oLanguage": {
@@ -488,18 +388,7 @@ response.setDateHeader("Expires", -1);
 								         }
 							}	
 						}	
-				)
-				.columnFilter({
-					aoColumns: [ { type: "text" },
-					             { type: "text" },
-					 			 { type: "text" },
-					 			 { type: "text" },
-					 			 { type: "text" },
-					 			 { type: "text" },
-					 			 null
-					 			]
-				});
-				
+				)				
 			});
 		</script>
 
